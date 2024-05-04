@@ -5,8 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="resource/css/styles_index.css" />
-    <link rel="stylesheet" href="resource/css/nav.css" />
-    <link rel="stylesheet" href="resource/css/footer.css" />
     <link rel="stylesheet" href="./resource/css/recomen.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     
@@ -24,7 +22,7 @@
 </head>
 
 <body>
-    <?php include_once ('view/layout/nav.html') ?>
+    <?php include_once ('../FRESAS_ARTURO/view/layout/navs/nav-inicio.php') ?>
     
     <section id="section-inicio" class="section-inicio">
         <div class="contenedor-inicio">
@@ -230,9 +228,10 @@
                 </div>
             </div>
         </div>
+        <div id="section-contacto">
 
+            <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
         </div>
-        <?php include_once ('view/layout/footer.html') ?>
 
 
     </section>

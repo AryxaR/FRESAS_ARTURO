@@ -76,45 +76,6 @@
             width: 65px;
         }
 
-        .footer-bottom {
-            position: relative;
-            width: 100%;
-            background-color: #8B0000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 16px;
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-bottom small {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-bottom-info-center {
-            display: flex;
-            gap: 7px;
-        }
-
-        @media screen and (max-width: 1000px) {
-            .footer-bottom {
-                align-items: center;
-                gap: 10px;
-                text-align: center;
-                flex-direction: column;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .footer-bottom {
-                align-items: center;
-                gap: 10px;
-                text-align: center;
-                flex-direction: column;
-            }
-        }
     </style>
 
     <title>CATALOGO</title>
@@ -124,7 +85,7 @@
 
     <?php
     require_once '../FRESAS_ARTURO/controller/conexion.php';
-    include_once '../FRESAS_ARTURO/View/layout/Catalogo/nav-volver.html';
+    include_once '../FRESAS_ARTURO/View/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br>";
     ?>
 
@@ -179,7 +140,7 @@
 
         $conexion->close();
         echo "<br><br><br><br>";
-        include_once './view/layout/footer-admin.html';
+        include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
         ?>
 
         </div>

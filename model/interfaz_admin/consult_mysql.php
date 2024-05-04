@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLIENTES</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/nav.css" />
-    <link rel="stylesheet" href="../../resource/css/footer.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -141,36 +139,6 @@
             display: inline;
         }
 
-        .footer-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #8B0000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 16px;
-        }
-
-        .footer-bottom small {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-bottom-info-center {
-            display: flex;
-            gap: 7px;
-        }
-
-        @media screen and (max-width: 1000px) {
-            .footer-bottom {
-                align-items: center;
-                gap: 10px;
-                text-align: center;
-                flex-direction: column;
-            }
-        }
-
     </style>
 
     <script>
@@ -223,7 +191,7 @@
 <body>
 
     <?php
-    include_once '../../view/layout/Catalogo/nav-volver.html';
+    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br>";
     ?>
     <div class="container">
@@ -285,7 +253,7 @@
     </div>
     <?php
     echo "<br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    include_once('../../view/layout/footer-admin.html');
+    include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php');
     ?>
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

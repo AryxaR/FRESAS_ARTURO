@@ -7,8 +7,6 @@
     <title>PROVEEDORES</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/consult.css">
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/nav.css" />
-    <link rel="stylesheet" href="../../resource/css/footer.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
 
@@ -181,51 +179,11 @@
             display: inline-block;
         }
 
-        .footer-bottom {
-
-            bottom: 0;
-            width: 100%;
-            background-color: #8B0000;
-            /* Puedes ajustar el color de fondo según tus necesidades */
-            color: white;
-            /* Puedes ajustar el color del texto según tus necesidades */
-            display: flex;
-            justify-content: space-between;
-            padding: 16px;
-        }
-
-        .footer-bottom small {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-bottom-info-center {
-            display: flex;
-            gap: 7px;
-        }
 
         @media screen and (max-width: 1024px) {
             .TITULO {
                 font-size: 20px;
                 margin-top: 50px;
-            }
-        }
-
-        @media screen and (max-width: 1000px) {
-            .footer-bottom {
-                align-items: center;
-                gap: 10px;
-                text-align: center;
-                flex-direction: column;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .footer-bottom {
-                align-items: center;
-                gap: 10px;
-                text-align: center;
-                flex-direction: column;
             }
         }
 
@@ -300,7 +258,7 @@ if ($conexion->connect_error) {
 
     <?php
     require_once '../../controller/conexion.php';
-    include_once '../../view/layout/Catalogo/nav-volver.html';
+    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br>";
     ?>
 
@@ -352,7 +310,7 @@ if ($conexion->connect_error) {
 
     <?php
     echo "<br><br><br><br>";
-    include_once '../../view/layout/footer-admin.html';
+    include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
     ?>
 
     <!-- JavaScript -->

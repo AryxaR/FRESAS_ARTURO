@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="nav-admin.css">
+    <link rel="stylesheet" href="../../../../FRESAS_ARTURO/resource/css/nav-admin.css">
     <script src="https://kit.fontawesome.com/c90742bd6c.js" crossorigin="anonymous"></script>
 </head>
 
@@ -13,7 +13,7 @@
     <header class="header">
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="logofresas.png" alt="logo don ramiro" class="logo" />
+                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo" />
             </div>
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">

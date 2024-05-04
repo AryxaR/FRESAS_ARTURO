@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="resource/css/styles_index.css" />
-    <link rel="stylesheet" href="resource/css/nav.css" />
-    <link rel="stylesheet" href="resource/css/footer.css" />
     <link rel="stylesheet" href="./resource/css/recomen.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="http://localhost/FresasRamiro/resource/css/recomendaciones.css" />
     <!-- <link rel="stylesheet" href="resource/css/recomen.css" /> -->
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="resource/css/catalogo.css">
     <script src="resource/js/Catalogo.js" async></script>
@@ -22,7 +20,7 @@
 </head>
 
 <body>
-    <?php include_once('view/layout/nav_usuarios.html') ?>
+    <?php include_once ('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php') ?>
     <section class="section-inicio">
         <div class="contenedor-inicio">
             <h1 class='titulo-inicio'>Fresas Don Arturo</h1>
@@ -35,7 +33,7 @@
 
         <div class="contenedor-items">
 
-        <div class="item">
+            <div class="item">
                 <span class="titulo-item">EXTRA</span>
                 <img src="resource/img/catalogo/FRESA_EXTRA.jpeg" alt="" class="img-item">
             </div>
@@ -186,47 +184,16 @@
         </div>
         </div>
     </section>
-    
-    <section class="recomen-section">
-        <h1 class="titulo-seccion">Recomendaciones</h1>
-        <p>Lo que dicen nuestros clientes</p>
-        
-        <div class="contenedor-personas">
-            <div class="item-persona">
-                <div class="persona-imagen"><img class="r" src="./resource/img/index/R.png" alt=""></div>
-                <p class="persona-descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem mollitia, exercitationem ex maiores dolorem tempora necessitatibus provident autem nostrum molestias minus error delectus dolorum repellat corrupti inventore sequi ipsa incidunt!
-                </p>
-                <div class="persona-datos">
-                    <h3>Nombre persona</h3>
-                    <p>Procedencia</p>
-                </div>
-            </div>
-                <div class="item-persona">
-                    <div class="persona-imagen"><img src="./resource/img/index/R.png" alt=""></div>
-                    <p class="persona-descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem mollitia, exercitationem ex maiores dolorem tempora necessitatibus provident autem nostrum molestias minus error delectus dolorum repellat corrupti inventore sequi ipsa incidunt!
-                    </p>
-                    <div class="persona-datos">
-                        <h3>Nombre persona</h3>
-                        <p>Procedencia</p>
-                    </div>
-                </div>
-                    <div class="item-persona">
-                        <div class="persona-imagen"><img src="./resource/img/index/R.png" alt=""></div>
-                        <p class="persona-descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem mollitia, exercitationem ex maiores dolorem tempora necessitatibus provident autem nostrum molestias minus error delectus dolorum repellat corrupti inventore sequi ipsa incidunt!
-                        </p>
-                        <div class="persona-datos">
-                            <h3>Nombre persona</h3>
-                            <p>Procedencia</p>
-                        </div>
-                        </div>
-            </div>
 
         </div>
-        <?php include_once('view/layout/footer.html') ?>
+        <div id="section-contacto">
 
-       
-     </section>
-    <script defer src="resource/js/index/main.js"></script>
-    <script defer src="resource/js/layout/nav.js"></script>        
+            <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+        </div>
+
+
+        <script defer src="resource/js/index/main.js"></script>
+        <script defer src="resource/js/layout/nav.js"></script>
 </body>
+
 </html>

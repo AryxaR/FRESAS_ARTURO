@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="nav-admin-redirect.css">
+    <link rel="stylesheet" href="../../../../FRESAS_ARTURO/resource/css/nav-admin-redirect.css">
     <script src="https://kit.fontawesome.com/c90742bd6c.js" crossorigin="anonymous"></script>
 </head>
 
@@ -16,18 +16,18 @@
             <i id="icono" class="fa-solid fa-bars"></i>
         </label>
         <div class="logo-resopnsive">
-            <img src="logofresas.png" alt="logo don ramiro" class="logo-dos" />
+            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo-dos" />
         </div>
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="logofresas.png" alt="logo don ramiro" class="logo" />
+                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo" />
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
                 <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php">Usuarios</a></li>
                     <li><a href="../../../FRESAS_ARTURO/Catalogo-admin.php">Catálogo</a></li>
                     <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Proveedores.php">Proveedores</a></li>
-                    <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Proveedores.php">Cosechas</a></li>
+                    <li><a href="../../../../FRESAS_ARTURO/view/layout/Lotes.php">Cosechas</a></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">
