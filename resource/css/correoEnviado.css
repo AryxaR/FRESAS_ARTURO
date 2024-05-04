@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  padding: auto;
+  display: grid;
+  place-items: center;
+  background-image: url("../../../FRESAS_ARTURO/resource/img/index/fondoborroso.png");
+  background-position: center;
+  background-repeat: repeat;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.f-roja {
+  display: flex;
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  background-color: #e43a3a;
+  z-index: -1;
+}
+
+.contenedor {
+  background-color: #a71f1f;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  height: 80%; /* Ajustamos la altura */
+  max-height: 600px; /* Añadimos una altura máxima */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icons {
+  color: #000000;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+}
+
+.material-symbols-outlined {
+  color: #000000;
+}
+
+.form-clave {
+  
+}
+
+.formulario-clave {
+  margin-top: 20px;
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formulario-clave .input-correo {
+  position: absolute;
+  font-size: 1.5em;
+  background-color: transparent;
+  border-radius: 3px;
+  border: solid rgb(0, 0, 0) 1px;
+  outline: none;
+  z-index: 999;
+  padding: 0.5em;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  margin-bottom: 20px; /* Agregamos un margen inferior */
+}
+
+.formulario-clave label {
+  /* position: absolute; */
+  /* top: calc(15% - 1.5em);  */
+  /* left: 2%;  */
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+}
+
+.formulario-clave .input-correo:focus ~ label,
+.formulario-clave .input-correo:valid ~ label {
+  color: rgb(12, 12, 12);
+  /* top: -25px; */
+  transform: translate(0, -32px);
+  padding: 0.3em;
+  background-color: white;
+}
+
+.btn-enviar {
+  width: 100%;
+  height: 50px;
+  border: none;
+  color: white;
+  transition: 0.3s;
+  background-color: #090a09;
+  /* background-color: #4CAF50; */
+  margin-top: 100px; /* Ajustamos el margen superior */
+  margin-bottom: 10px; /* Agregamos un margen inferior */
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: background-color 0.3s, transform 0.3s; /* Transición de color de fondo y transformación */
+}
+
+.btn-enviar:hover {
+  background-color: #e43a3a; /* Cambio de color de fondo al hacer hover */
+  transform: translateY(-10px); /* Desplazamiento hacia arriba */
+}
+
+.regresar {
+  text-decoration: none;
+  font-size: 1.1em;
+  margin-top: 40px; /* Ajustamos el margen superior */
+  /* background-color: #e43a3a; */
+  /* background-color: #000000; */
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.regresar:hover {
+  transform: scale(1);
+  text-decoration: underline;
+  background-color: #4caf50;
+  color: white;
+  transform: translateY(-10px), transform 0.9s;
+}

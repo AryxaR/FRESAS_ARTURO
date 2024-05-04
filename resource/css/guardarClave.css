@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e43a3a;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.fondo {
+  display: flex;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: -1;
+  background-image: url(../../../FRESAS_ARTURO/resource/img/index/fondoborroso.png);
+  background-position: right;
+  background-repeat: repeat;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  /* border: solid 1px black; */
+  margin-bottom: 4rem;
+}
+
+.icons span {
+  font-size: 6rem;
+}
+
+h1 {
+  font-size: 2.8em;
+  margin-bottom: 1em;
+  text-align: center;
+  text-shadow: 1px 1px 10px rgba(189, 43, 43, 0.816);
+}
+
+.form-guardar {
+  /* border: solid black 1px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.formulario-guardar #contrasena,
+.formulario-guardar #confirmar_contrasena {
+  font-size: 1.5em;
+  background-color: transparent;
+  border-radius: 3px;
+  border: solid rgb(0, 0, 0) 1px;
+  outline: none;
+  z-index: 999;
+  padding: 0.5em;
+  width: 100%; /* Ajuste del ancho del input */
+  margin-top: 1.5em; /* Ajuste del espacio entre los inputs */
+}
+
+.formulario-guardar .contrasena,
+.formulario-guardar .confirmar-contrasena {
+  position: absolute;
+  transform: translate(16px,-40px);
+  transition: 0.3s;
+}
+
+.formulario-guardar #contrasena:focus ~ .contrasena,
+.formulario-guardar #confirmar_contrasena:focus ~ .confirmar-contrasena,
+.formulario-guardar #contrasena:valid~ .contrasena, 
+.formulario-guardar #confirmar_contrasena:valid ~ .confirmar-contrasena {
+  color: rgb(0, 0, 0);
+  /* top: -4em; */
+  transform: translate(10px,-73px);
+  background-color: #ffffff;
+  padding: 0.3em;
+  z-index: 999;
+}
+
+/* Visualizar clave */
+
+span.mostrar {
+  position: absolute;
+  padding: 10px;
+  margin-top: 11px;
+  transform: translateX(309px);
+  font-weight: 700;
+}
+form span.material-symbols-outlined {
+  transform: translate(523px, 23px);
+  cursor: pointer;
+}
+
+
+.btn-guardar {
+  width: 100%;
+  height: 50px;
+  border: rgb(0, 0, 0) solid 2px;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  transition: 0.3s;
+  margin-top: 3em;
+  border-radius: 30px;
+  font-size: 1em;
+}
+
+.btn-guardar:hover {
+  background-color: #e43a3a;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  border: #e43a3a solid;
+}
+
+.regresar {
+  text-decoration: none;
+  font-size: 1.2em;
+  margin-top: 1em;
+  color: #e43a3a;
+  transition: 0.3s;
+}
+
+.regresar:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 1300px) {
+  .fondo {
+    width: 70%;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .icons span {
+    font-size: 5rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .fondo {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .icons span {
+    font-size: 4rem;
+  }
+
+  .regresar {
+    font-size: 0.9em;
+  }
+}

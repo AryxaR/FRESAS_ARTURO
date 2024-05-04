@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  padding: auto;
+  display: grid;
+  place-items: center;
+  background-image: url("../img/index/fondonitido.png");
+  background-position: center;
+  background-repeat: repeat;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+    margin-top: -15%;
+    margin-bottom: -15%; 
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 24px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    text-shadow: 2px 2px 4px #888888; /* Aplica relieve al texto */
+}
+
+.contenedor{
+    margin-top: -15%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 90%; /* Ajustamos la altura */
+    max-height: 600px; /* Añadimos una altura máxima */
+    text-align: center;
+    justify-content: center;
+}
+
+.contenedor label {
+    display: block;
+    text-align: center; /* Alinear el texto del label a la izquierda */
+  }
+  
+  .contenedor input[type="number"] {
+    text-align: center; 
+  }  
+
+.boton{
+    background-color: #f8eaef; /* Fondo del botón */
+    color: black; /* Color de la letra del botón */
+    border-radius: 10%;
+    width: 30%;
+    height: 10%;
+    border: 1px solid #d22c5d; /* Borde del botón */
+    padding: 2px 2px; /* Espaciado interno */
+    text-decoration: none; /* Eliminar subrayado */
+    transition: background-color 0.3s, color 0.3s; /* Transición al cambiar los colores */
+    font-size: 1rem;
+}
+
+.boton:hover{
+    background-color: #d22c5d; /* Fondo del botón al pasar el ratón */
+    color: #f8eaef; /* Color de la letra al pasar el ratón */
+}

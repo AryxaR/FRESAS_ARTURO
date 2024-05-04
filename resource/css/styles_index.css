@@ -1,0 +1,187 @@
+/*ESTILOS GENERALES*/
+section {
+  padding: 4rem 2rem;
+}
+.titulo-seccion {
+  margin-bottom: 4rem;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+/* ESTILOS SECCION DE INICIO */
+.section-inicio {
+  background-image: url("../../resource/img/index/fondoplato.png");
+  background-size: cover; /* La imagen cubrirá todo el contenedor manteniendo su relación de aspecto */
+  background-position: center; /* La imagen se centrará en el contenedor */
+  height: 90vh; /* Altura del 100% del viewport (pantalla) */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-repeat: no-repeat;
+}
+.contenedor-inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 40%;
+  gap: 1rem;
+}
+.contenedor-inicio .titulo-inicio {
+  font-size: 4rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contenedor-inicio .parrafo-inicio {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.contenedor-inicio .boton-inicio {
+  color: antiquewhite;
+  background-color: #e43a64;
+  border-radius: 8px;
+  padding: 8px 18px;
+  border: 1px solid #e43a64;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.section-recetas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* ESTILOS DEL CARRUSEL */
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(255, 247, 247) 110%
+  );
+}
+.contenedor-personas{
+  width: 90%;
+  height: 10%;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+h4,
+h2,
+small,
+a {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+.Carousel {
+  width: 100%;
+  margin: 0px 60px;
+}
+.Carousel h2 {
+  font-size: 26px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 38px;
+  padding-bottom: 24px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+/* images */
+
+.slick-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 304px;
+  padding: 10px 0px;
+  margin: 0px auto;
+  max-width: 90vw;
+  overflow: hidden;
+}
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  transition: 0.5s ease-in-out;
+}
+.slick {
+  position: relative;
+  width: 275px;
+  padding: 0 18px;
+  float: left;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+}
+.slick h4 {
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1;
+  font-size: 22px;
+  line-height: 23px;
+  color: #fff;
+  padding: 15px;
+}
+.slick h4 small {
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  display: block;
+}
+.slick a img {
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+}
+.slick a img:hover {
+  opacity: 0.85;
+}
+
+/* buttons */
+
+.slick-arrow {
+  border-radius: 30px;
+  background-color: #fff;
+  position: absolute;
+  z-index: 4;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+  border: 0;
+  cursor: pointer;
+}
+.slick-arrow:focus {
+  outline: 0;
+}
+.slick-arrow svg {
+  width: 12px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.7);
+}
+.slick-prev {
+  left: 0px;
+}
+.slick-next {
+  right: 0px;
+}
+
+@media screen and (max-width:510px) {
+ .section-inicio{
+  background-image: none;
+ }
+ .contenedor-inicio {
+  width: 100%;
+}
+}

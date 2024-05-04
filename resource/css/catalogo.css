@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+.section-carrito {
+  max-width: 1500px;
+  padding: 20px 10px 10px 0;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  contain: paint;
+}
+
+.section-carrito .contenedor-items {
+  margin-top: 30px;
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 30px;
+  grid-row-gap: 30px;
+  width: 100%;
+  transition: 0.3s;
+  padding:0 10px;
+  max-width: 1100px;
+}
+
+.contenedor-items{
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-items .item:hover {
+  box-shadow: 0 0 10px #666;
+  scale: 1.1;
+}
+
+.contenedor-items .item .img-item {
+  width: 100%;
+}
+
+.contenedor-items .item .titulo-item {
+  display: block;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  background-color: #d8f0e1;
+  text-align: center;
+}
+
+.contenedor-items .item .precio-item {
+  display: block;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.contenedor-items .item .boton-item {
+  display: block;
+  margin: 10px auto;
+  border: none;
+  background-color: #e43a64;
+  color: aliceblue;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
