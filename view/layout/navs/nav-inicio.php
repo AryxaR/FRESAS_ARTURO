@@ -24,7 +24,7 @@
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a></li>
+                    <li><a href="../FRESAS_ARTURO/index.php">Inicio</a></li>
                     <li><a href="#section-carrito">Catálogo</a></li>
                     <li><a href="#section-contacto">Contacto</a></li>
                 </ul>
