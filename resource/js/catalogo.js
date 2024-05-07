@@ -241,7 +241,7 @@ function hacerVisibleCarrito() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Redireccionar a la página de la factura
-            window.location.href = "../../FRESAS_ARTURO/view/layout/factura.html";
+            window.location.href = "../../FRESAS_ARTURO/controller/Detalleventa.php";
         }
     };
     xhr.send(JSON.stringify(itemsFactura));
