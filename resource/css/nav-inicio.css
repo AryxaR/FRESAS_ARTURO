@@ -12,6 +12,8 @@
   height: 80px;
   width: 100vw;
   position: fixed;
+  z-index: 100;
+
   /* position: relative; */
 }
 

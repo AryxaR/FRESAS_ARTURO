@@ -27,7 +27,7 @@
                 <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php">Usuarios</a></li>
                     <li><a href="../../../FRESAS_ARTURO/Catalogo-admin.php">Catálogo</a></li>
                     <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Proveedores.php">Proveedores</a></li>
-                    <li><a href="../../../../FRESAS_ARTURO/view/layout/Lotes.php">Cosechas</a></li>
+                    <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Cosechas.php">Cosechas</a></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">

@@ -137,13 +137,21 @@
 
         .acciones-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
         }
 
         .btn-icon-container {
-            padding: 5px;
-            border-radius: 5px;
-            margin-right: 10px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            /* height: 100%; */
+            font-size: 0.5em;
+        }
+
+        .contenedor-cosechas {
+            border: #666666 solid 1px;
+            background-color: black;
+            z-index: -1000;
         }
 
         .btn-subtitle {
@@ -151,34 +159,15 @@
             margin-left: 5px;
         }
 
+    
         .btn-icon:hover .btn-subtitle {
             display: inline-block;
         }
 
-        .btn-custom {
-            margin-top: -20%;
-            margin-left: calc(50% - 600px);
+        td:nth-child(8){
+            width: 300px;
+            height: 100%;
         }
-
-        .btn-custom {
-            background-color: #f8eaef;
-            color: black;
-            border-radius: 10px;
-            border: 1px solid #d22c5d;
-            padding: 10px;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .btn-custom:hover {
-            background-color: #d22c5d;
-            color: #f8eaef;
-        }
-
-        .btn-custom:hover .btn-subtitle {
-            display: inline-block;
-        }
-
 
         @media screen and (max-width: 1024px) {
             .TITULO {
@@ -193,42 +182,6 @@
             .usuarios-table th,
             .usuarios-table td {
                 padding: 5px;
-            }
-        }
-
-        @media screen and (min-width: 440px)and (max-width: 768px) {
-            .btn-custom {
-                width: 10%;
-                padding: 8px 8px;
-                /* Reducir el relleno para dispositivos más pequeños */
-                margin-left: 30%;
-                margin-top: 10px;
-                /* Agregar un margen superior para separar los botones */
-                display: block;
-                /* Mostrar los botones como bloques para que se apilen verticalmente */
-            }
-        }
-
-        /* Media query para ajustar el botón "Crear Proveedor" en tamaños de pantalla intermedios */
-        @media screen and (min-width: 776px) and (max-width: 1198px) {
-            .btn-custom {
-                margin-top: 20px;
-                /* Aumentar el margen superior para separar el botón de la tabla */
-                margin-left: calc(50% - 100px);
-                /* Centrar el botón en la pantalla */
-                max-width: 100px;
-                /* Establecer un ancho máximo para el botón */
-            }
-        }
-
-        @media screen and (min-width: 1200px) {
-            .btn-custom {
-                margin-top: 20px;
-                /* Aumentar el margen superior para separar el botón de la tabla */
-                margin-left: calc(50% - 100px);
-                /* Centrar el botón en la pantalla */
-                max-width: 200px;
-                /* Establecer un ancho máximo para el botón */
             }
         }
 
@@ -261,7 +214,7 @@ if ($conexion->connect_error) {
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br>";
     ?>
-
+<div class="contenedor-cosechas">
     <DIV class="TITULO">COSECHAS</DIV>
     <?php
 
@@ -290,11 +243,12 @@ if ($conexion->connect_error) {
             echo "<td>" . $row["fecha_recogida"] . "</td>";
             echo "<td>" . $row["id_producto"] . "</td>";
             echo "<td>" . $row["cantidad_recogida_extra"] . "</td>";
-            echo "<td>" . $row["cantidad:recogida_primera"] . "</td>";
+            echo "<td>" . $row["cantidad_recogida_primera"] . "</td>";
             echo "<td>" . $row["cantidad_recogida_segunda"] . "</td>";
             echo "<td>" . $row["cantidad_recogida_riche"] . "</td>";
             echo "<td class='acciones-container'>";
-            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["id_lote"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver detalles</span></a></div>";
+            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["id_lote"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver
+            </span></a></div>";
             echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["fecha_recogida"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
             echo "<div class='btn-icon-container'><form method='post' style='display: inline;'>
                   <input type='hidden' name='eliminar_proveedor' value='" . $row["id_producto"] . "'>
@@ -313,9 +267,11 @@ if ($conexion->connect_error) {
         echo "No se encontraron resultados";
     }
 
+    
+
     $conexion->close();
     ?>
-
+</div>
     <?php
     echo "<br><br><br><br>";
     include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
