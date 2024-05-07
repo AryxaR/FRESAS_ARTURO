@@ -3,10 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEDIDO</title>
+    <title>Factura</title>
+    <style>
+        /* Estilos para la factura */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>SU PEDIDO SE GENERÓ CON EXITO</h1>
-    <BR></BR><BR></BR><BR></BR><BR></BR><BR></BR>
+    <h1>Factura de Compra</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se generarán dinámicamente las filas de la factura desde JavaScript -->
+        </tbody>
+    </table>
+    <p>Total a Pagar: <span id="total-a-pagar"></span></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Hacer una solicitud AJAX para obtener los datos de la factura
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../../FRESAS_ARTURO/controller/Detalleventa.php", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.querySelector("#total-a-pagar").textContent = response.total;
+                    document.querySelector("tbody").innerHTML = response.html;
+                }
+            };
+            xhr.send();
+        });
+    </script>
+    
 </body>
 </html>

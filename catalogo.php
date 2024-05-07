@@ -80,7 +80,7 @@
                 </span>
             </div>
 
-            <a id="btn-generar-factura" href="../FRESAS_ARTURO/view/layout/factura.html">Generar Factura</a>
+            <a id="btn-generar-factura" href="#" onclick="generarFactura()">Generar Factura</a>
 
         </div>
     </div>

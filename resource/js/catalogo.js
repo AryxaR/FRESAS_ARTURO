@@ -216,6 +216,37 @@ function hacerVisibleCarrito() {
     items.style.width = "60";
   }
   
+  function generarFactura() {
+    // Recopilar los datos del carrito
+    var carritoItems = document.getElementsByClassName("carrito-item");
+    var itemsFactura = [];
+    for (var i = 0; i < carritoItems.length; i++) {
+        var item = carritoItems[i];
+        var titulo = item.getElementsByClassName("carrito-item-titulo")[0].innerText;
+        var cantidad = item.getElementsByClassName("carrito-item-cantidad")[0].value;
+        var precioUnitario = item.getElementsByClassName("carrito-item-precio")[0].innerText;
+        var subtotal = parseFloat(precioUnitario.replace("$", "")) * parseInt(cantidad);
+        itemsFactura.push({
+            titulo: titulo,
+            cantidad: cantidad,
+            precioUnitario: precioUnitario,
+            subtotal: subtotal.toFixed(2)
+        });
+    }
+    
+    // Enviar los datos al backend
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../../FRESAS_ARTURO/controller/Detalleventa.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Redireccionar a la página de la factura
+            window.location.href = "../../FRESAS_ARTURO/view/layout/factura.html";
+        }
+    };
+    xhr.send(JSON.stringify(itemsFactura));
+}
+
 
 (function () {
   const listElements = document.querySelectorAll(".menu__item--show");
