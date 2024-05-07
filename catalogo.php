@@ -5,20 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/catUsuarios.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>CATALOGO</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
 </head>
 
 <body>
     <?php
-    require_once ('../FRESAS_ARTURO/controller/conexion.php');
+    require_once('../FRESAS_ARTURO/controller/conexion.php');
     if ($conn === null) {
         die("Error de conexión: " . mysqli_connect_error());
     }
-    include_once ('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php') ?>
+    include_once('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php') ?>
 
     <div class="TITULO">
         <h1>CATÁLOGO</h1>
@@ -46,7 +44,7 @@
                 while ($row = $result->fetch_assoc()) {
                     $nombre_imagen = 'FRESA_' . strtoupper($row['categoria_producto']) . '.jpeg';
                     $ruta_imagen = './model/uploads/' . $nombre_imagen;
-                    ?>
+            ?>
                     <div class="item">
                         <span class="titulo-item"><?php echo $row['categoria_producto']; ?></span>
                         <?php if (file_exists($ruta_imagen)) { ?>
@@ -59,7 +57,7 @@
                         <button class="boton-item">Agregar al carrito</button>
                     </div>
 
-                    <?php
+            <?php
                 }
             } else {
                 echo "No se encontraron productos.";
@@ -81,13 +79,14 @@
                 <span class="carrito-precio-total">
                 </span>
             </div>
-            <button id="btn-generar-factura" data-nombre-cliente="<?php echo $nombreCliente; ?>">Generar
-                Factura</button>
+
+            <a id="btn-generar-factura" href="../FRESAS_ARTURO/view/layout/factura.html">Generar Factura</a>
+
         </div>
     </div>
     <div id="section-contacto">
 
-        <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+        <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
     </div>
 
     <script src="../FRESAS_ARTURO/resource/js/catalogo.js" async></script>
