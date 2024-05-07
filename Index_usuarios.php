@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="resource/css/styles_index.css" />
-    <link rel="stylesheet" href="./resource/css/recomen.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
@@ -73,7 +72,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4><small>Share Your Message</small>View</h4>
                             <picture>
                                 <img src="resource/img/index/1.jpeg" alt="Image" />
                             </picture>
@@ -182,18 +181,16 @@
                 </svg>
             </button>
         </div>
-        </div>
     </section>
 
-        </div>
-        <div id="section-contacto">
+    <div id="section-contacto">
 
-            <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
-        </div>
+        <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+    </div>
 
 
-        <script defer src="resource/js/index/main.js"></script>
-        <script defer src="resource/js/layout/nav.js"></script>
+    <script defer src="resource/js/index/main.js"></script>
+    <script defer src="resource/js/layout/nav.js"></script>
 </body>
 
 </html>

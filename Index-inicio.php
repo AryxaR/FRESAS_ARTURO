@@ -4,32 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="resource/css/styles_index.css" /> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="resource/css/styles_index.css" />
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <!-- <link rel="stylesheet" href="http://localhost/FresasRamiro/resource/css/recomendaciones.css" /> -->
+    <link rel="stylesheet" href="http://localhost/FresasRamiro/resource/css/recomendaciones.css" />
     <!-- <link rel="stylesheet" href="resource/css/recomen.css" /> -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="resource/css/catalogo.css">
+    <script src="resource/js/Catalogo.js" async></script>
 
     <title>FRESAS DON ARTURO</title>
 </head>
 
 <body>
-    <?php include_once ('../FRESAS_ARTURO/view/layout/navs/nav-inicio.php') ?>
-    
-    <section id="section-inicio" class="section-inicio">
+    <!-- <?php include_once ('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php') ?> -->
+    <section class="section-inicio">
         <div class="contenedor-inicio">
             <h1 class='titulo-inicio'>Fresas Don Arturo</h1>
             <p class="parrafo-inicio">Explora el mundo de las fresas más frescas y deliciosas. En FresasRamiro, cada
                 bocado es un festín de sabor natural cultivado con amor. Descubre la frescura en cada momento dulce.</p>
         </div>
     </section>
-
-    <section id="section-carrito" class="section-carrito">
+    <section class="section-carrito">
         <h2 class="titulo-seccion">Catalogo de productos</h2>
 
         <div class="contenedor-items">
@@ -74,7 +72,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4><small>Share Your Message</small>View</h4>
                             <picture>
                                 <img src="resource/img/index/1.jpeg" alt="Image" />
                             </picture>
@@ -183,14 +181,14 @@
                 </svg>
             </button>
         </div>
-        </div>
     </section>
 
-        <div id="section-contacto">
+    <div id="section-contacto">
 
-            <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
-        </div>
-    </section>
+        <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+    </div>
+
+
     <script defer src="resource/js/index/main.js"></script>
     <script defer src="resource/js/layout/nav.js"></script>
 </body>
