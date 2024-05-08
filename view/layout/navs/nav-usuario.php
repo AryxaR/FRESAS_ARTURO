@@ -32,12 +32,13 @@
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">
                     <li>
-                        <a class="perfil" href="../FRESAS_ARTURO/model/perfil.php">Perfil <i
-                                class="fa-solid fa-circle-user"></i></a>
+                        <a class="perfil" href="../FRESAS_ARTURO/model/perfil.php">Perfil <i class="fa-solid fa-circle-user"></i></a>
                     </li>
                     <li>
-                        <a class="salir" href="../Fresas_Arturo/model/login_usuarios.php">Salir <i
-                                class="fa-solid fa-right-from-bracket"></i></a>
+                    <li>
+                        <a class="salir" href="../FRESAS_ARTURO/controller/logout.php">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+
                     </li>
                 </ul>
             </div>
@@ -49,17 +50,17 @@
         var i = document.querySelector('#icono');
         var check = document.getElementById('check-btn');
 
-    check.addEventListener('click', function(){
+        check.addEventListener('click', function() {
 
-        if (check.checked) {
-            i.classList.remove('fa-bars');
-            i.classList.add('fa-xmark');
-        }else {
-            i.classList.remove('fa-xmark');
-            i.classList.add('fa-bars');
-        }
-    });
-
+            if (check.checked) {
+                i.classList.remove('fa-bars');
+                i.classList.add('fa-xmark');
+            } else {
+                i.classList.remove('fa-xmark');
+                i.classList.add('fa-bars');
+            }
+        });
     </script>
 </body>
+
 </html>

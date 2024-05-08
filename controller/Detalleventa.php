@@ -2,12 +2,13 @@
 session_start();
 require_once('../../FRESAS_ARTURO/controller/conexion.php');
 
-// Verificar si se ha enviado un ID de producto
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto'])) {
+// Verificar si se ha enviado un ID de producto y la cantidad
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto']) && isset($_POST['cantidad'])) {
     $id_producto = $_POST['id_producto'];
+    $cantidad = $_POST['cantidad'];
 
     // Consultar el producto en la base de datos
-    $sql = "SELECT id_producto, nombre_producto, precio_producto FROM productos WHERE id_producto = $id_producto";
+    $sql = "SELECT id_producto, nombre_producto, precio_producto, categoria_producto FROM productos WHERE id_producto = $id_producto";
     $result = $conn->query($sql);
 
     // Si el producto existe en la base de datos
@@ -17,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto'])) {
             "id" => $row['id_producto'],
             "nombre" => $row['nombre_producto'],
             "precio" => $row['precio_producto'],
-            "cantidad" => 1 // Puedes permitir que el usuario seleccione la cantidad
+            "categoria" => $row['categoria_producto'],
+            "cantidad" => $cantidad // Utilizar la cantidad ingresada
         );
 
         // Si no existe un carrito en la sesión, crear uno
@@ -27,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto'])) {
 
         // Verificar si el producto ya está en el carrito
         if (isset($_SESSION['carrito'][$id_producto])) {
-            $_SESSION['carrito'][$id_producto]['cantidad'] += 1;
+            $_SESSION['carrito'][$id_producto]['cantidad'] += $cantidad;
         } else {
             $_SESSION['carrito'][$id_producto] = $producto;
         }
@@ -39,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto'])) {
         echo "Producto no encontrado.";
     }
 } else {
-    // Si no se ha enviado un ID de producto, redirigir al catálogo
+    // Si no se ha enviado un ID de producto o cantidad, redirigir al catálogo
     header("Location: catalogo.php");
     exit();
 }
