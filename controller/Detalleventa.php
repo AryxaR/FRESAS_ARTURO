@@ -1,62 +1,46 @@
 <?php
-// Recibir los datos del carrito
-$itemsFactura = json_decode(file_get_contents('php://input'), true);
+session_start();
+require_once('../../FRESAS_ARTURO/controller/conexion.php');
 
-// Calcular el total
-$total = 0;
-$html = "<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Factura</title>
-    <style>
-        /* Estilos para la factura */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <h1>Factura de Compra</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        
-        <tbody>";
+// Verificar si se ha enviado un ID de producto
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto'])) {
+    $id_producto = $_POST['id_producto'];
 
-foreach ($itemsFactura as $item) {
-    $subtotal = $item['cantidad'] * $item['precioUnitario'];
-    $total += $subtotal;
-    $html .= "<tr>
-                <td>{$item['titulo']}</td>
-                <td>{$item['cantidad']}</td>
-                <td>{$item['precioUnitario']}</td>
-                <td>{$subtotal}</td>
-            </tr>";
+    // Consultar el producto en la base de datos
+    $sql = "SELECT id_producto, nombre_producto, precio_producto FROM productos WHERE id_producto = $id_producto";
+    $result = $conn->query($sql);
+
+    // Si el producto existe en la base de datos
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        $producto = array(
+            "id" => $row['id_producto'],
+            "nombre" => $row['nombre_producto'],
+            "precio" => $row['precio_producto'],
+            "cantidad" => 1 // Puedes permitir que el usuario seleccione la cantidad
+        );
+
+        // Si no existe un carrito en la sesión, crear uno
+        if (!isset($_SESSION['carrito'])) {
+            $_SESSION['carrito'] = array();
+        }
+
+        // Verificar si el producto ya está en el carrito
+        if (isset($_SESSION['carrito'][$id_producto])) {
+            $_SESSION['carrito'][$id_producto]['cantidad'] += 1;
+        } else {
+            $_SESSION['carrito'][$id_producto] = $producto;
+        }
+
+        // Redirigir de vuelta al catálogo
+        header("Location: ../../FRESAS_ARTURO/catalogo.php");
+        exit();
+    } else {
+        echo "Producto no encontrado.";
+    }
+} else {
+    // Si no se ha enviado un ID de producto, redirigir al catálogo
+    header("Location: catalogo.php");
+    exit();
 }
-
-$html .= "</tbody>
-    </table>
-    <p>Total a Pagar: {$total}</p>
-</body>
-</html>";
-
-// Devolver la factura en HTML
-echo $html;
 ?>
