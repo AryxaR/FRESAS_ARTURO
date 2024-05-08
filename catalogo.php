@@ -107,9 +107,18 @@ function mostrarModalCarrito()
         <h1>CATÁLOGO</h1>
     </div>
     <br><br>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carrito">
+    <!-- Botón del carrito con el contador -->
+    <button type="button" class="btn btn-primary ms-4 position-relative" id="carritoBtn" data-bs-toggle="modal" data-bs-target="#modal-carrito" style="z-index: 1;">
         <i class="bi bi-cart"></i>
+        <?php
+        // Obtener el número de artículos en el carrito
+        $numArticulosCarrito = count($_SESSION['carrito']);
+        ?>
+        <?php if ($numArticulosCarrito > 0) : ?>
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><?php echo $numArticulosCarrito; ?></span>
+        <?php endif; ?>
     </button>
+
     <section class="contenedor-general">
         <div class="contenedor-items">
             <?php
@@ -130,10 +139,10 @@ function mostrarModalCarrito()
                         <?php } ?>
                         <h6>*EL PRECIO DE VENTA ES POR "CANASTILLA = 8KG"</h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>
-                        <!-- Input para ingresar la cantidad -->
+                
                         <form method="post" action="../FRESAS_ARTURO/controller/Detalleventa.php">
                             <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
-                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required>
+                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3">
                             <button type="submit" class="btn btn-primary">Agregar al carrito</button>
                         </form>
                     </div>

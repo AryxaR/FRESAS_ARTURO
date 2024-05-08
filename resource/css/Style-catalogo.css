@@ -50,6 +50,10 @@ body {
     color: #d22c5d; 
   }
   
+  .btn-primary{
+    margin-left: 5%;
+  }
+
   .boton-item {
     margin-bottom: 20px;
     background-color: black; /* Color verde para el botón */
