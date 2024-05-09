@@ -14,6 +14,21 @@ if (isset($_GET['id_factura'])) {
     $sql_total_factura = "SELECT total FROM facturas WHERE id_factura = $id_factura";
     $result_total = $conn->query($sql_total_factura);
     $total_factura = ($result_total->num_rows > 0) ? $result_total->fetch_assoc()['total'] : 0;
+
+    // Obtener los datos del cliente desde la tabla "usuarios"
+    $sql_cliente = "SELECT cedula, nombre, correo FROM usuarios WHERE Id_cliente = (SELECT id_cliente FROM facturas WHERE id_factura = $id_factura)";
+    $result_cliente = $conn->query($sql_cliente);
+    if ($result_cliente->num_rows > 0) {
+        $row_cliente = $result_cliente->fetch_assoc();
+        $cedula_cliente = $row_cliente['cedula'];
+        $nombre_cliente = $row_cliente['nombre'];
+        $correo_cliente = $row_cliente['correo'];
+    } else {
+        // Cliente no encontrado, manejar el error como mejor convenga
+        $cedula_cliente = '';
+        $nombre_cliente = '';
+        $correo_cliente = '';
+    }
 } else {
     header("Location: catalogo.php");
     exit();
@@ -30,53 +45,135 @@ if (isset($_GET['id_factura'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style-confirmacion-pedido.css">
+    <style>
+        .invoice-card {
+            background-image: url("../../FRESAS_ARTURO/resource/img/index/fondonitido.png");
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ccc;
+        }
+
+        .invoice-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            margin: auto; 
+        }
+
+        .logo-container {
+            display: inline-block; 
+            vertical-align: top; 
+        }
+
+        .logo-img {
+            max-width: 150px;
+        }
+
+        .float-right {
+            float: right;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Confirmación de Pedido</h1>
+        <div class="card invoice-card">
+            <div class="card-body">
+                <section class="content">
+                    <div class="container-fluid">
 
-        <h2>Detalles de la Factura</h2>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Categoría</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($result_detalle->num_rows > 0) {
-                        while ($row = $result_detalle->fetch_assoc()) {
-                            $subtotal = $row['cantidad'] * $row['precio_unitario'];
-                    ?>
-                            <tr>
-                                <td><?php echo $row['nombre_producto']; ?></td>
-                                <td><?php echo $row['categoria_producto']; ?></td>
-                                <td><?php echo $row['cantidad']; ?></td>
-                                <td>$<?php echo $row['precio_unitario']; ?></td>
-                                <td>$<?php echo number_format($subtotal, 2); ?></td>
-                            </tr>
-                    <?php
-                        }
-                    }
+                        <!-- Contenido del modal -->
+                        <div class="invoice p-3 mb-3 col-md-8 invoice-content">
+                            <!-- title row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>
+                                        <div class="logo-container">
+                                            <img src="../../FRESAS_ARTURO/resource/img/logo/FONDO_LOGO.jpeg" alt="Logo de Kepler S.A.S." class="logo-img">
+                                        </div>
+                                        <small class="float-right">Fecha: <?php echo date('d/m/Y'); ?></small>
+                                    </h4>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- info row -->
+                            <div class="row invoice-info">
+                                <div class="col-sm-6 invoice-col">
+                                    <address>
+                                        <strong>FRESAS DON ARTURO</strong><br>
+                                        Cuitiva-Boyacá <br>
+                                        Vereda llano de Alarcón<br>
+                                        Teléfono: 3118226066<br>
+                                        Correo:
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-6 invoice-col">
+                                    <address>
+                                        <strong>Cliente:</strong><br>
+                                        <?php echo $nombre_cliente; ?><br>
+                                        Cédula: <?php echo $cedula_cliente; ?><br>
+                                        Correo: <?php echo $correo_cliente; ?>
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
 
-                    ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" class="text-end">Total:</td>
-                        <td>$<?php echo number_format($total_factura, 2); ?></td>
-                    </tr>
-                </tfoot>
-            </table>
+                            <!-- Table row -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Categoría</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio Unitario</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                if ($result_detalle->num_rows > 0) {
+                                                    while ($row = $result_detalle->fetch_assoc()) {
+                                                        $subtotal = $row['cantidad'] * $row['precio_unitario'];
+                                                ?>
+                                                        <tr>
+                                                            <td><?php echo $row['nombre_producto']; ?></td>
+                                                            <td><?php echo $row['categoria_producto']; ?></td>
+                                                            <td><?php echo $row['cantidad']; ?></td>
+                                                            <td>$<?php echo $row['precio_unitario']; ?></td>
+                                                            <td>$<?php echo number_format($subtotal, 2); ?></td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4" class="text-end">Total:</td>
+                                                    <td>$<?php echo number_format($total_factura, 2); ?></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <a href="../../FRESAS_ARTURO/catalogo.php" class="btn btn-primary">Volver al Catálogo</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-
-        <a href="../../FRESAS_ARTURO/catalogo.php" class="btn btn-primary">Volver al Catálogo</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
