@@ -6,19 +6,30 @@ if ($conn === null) {
 }
 include_once('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php');
 
-// Inicializar el carrito en la sesión si no existe
+if (isset($_SESSION['Id_cliente'])) {
+    $Id_cliente = $_SESSION['Id_cliente'];
+    $sql = "SELECT Nombre FROM Usuarios WHERE Id_cliente = $Id_cliente";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $nombreCliente = $row['Nombre'];
+    } else {
+        $nombreCliente = "Nombre no disponible";
+    }
+} else {
+    $nombreCliente = "Nombre no disponible";
+}
+
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = array();
 }
 
-// Función para obtener la ruta de la imagen
 function obtenerRutaImagen($categoria)
 {
     $nombre_imagen = 'FRESA_' . strtoupper($categoria) . '.jpeg';
     return './model/uploads/' . $nombre_imagen;
 }
 
-// Función para mostrar el modal con los productos del carrito
 function mostrarModalCarrito()
 {
     echo '<div class="modal fade" id="modal-carrito" tabindex="-1" aria-labelledby="modal-carrito-label" aria-hidden="true">';
@@ -30,7 +41,6 @@ function mostrarModalCarrito()
     echo '</div>';
     echo '<div class="modal-body">';
 
-    // Verificar si hay productos en el carrito
     if (!empty($_SESSION['carrito'])) {
         echo '<div class="table-responsive">';
         echo '<table class="table table-striped">';
@@ -64,27 +74,32 @@ function mostrarModalCarrito()
             $total += $subtotal;
         }
 
-
         echo '<tr>';
-        echo '<td colspan="3"></td>'; // Espacio para las primeras tres columnas
+        echo '<td colspan="3"></td>'; 
         echo '<td><strong>Total:</strong></td>';
-        echo '<td>$' . number_format($total, 2) . '</td>'; // Mostrar el total formateado con dos decimales
+        echo '<td>$' . number_format($total, 2) . '</td>'; 
         echo '</tr>';
 
         echo '</tbody>';
         echo '</table>';
-        echo '</div>'; // Cerrar table-responsive
-    } else {
-        echo 'El carrito está vacío.';
-    }
-
-    echo '</div>'; // Cerrar modal-body
-    echo '<div class="modal-footer">';
-    echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+        echo '</div>'; 
+        } else {
+            echo 'El carrito está vacío.';
+        }
+        
+        echo '</div>'; 
+        echo '<div class="modal-footer">';
+      
+        echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/factura.php" target="_blank">';
+        echo '<button type="submit" class="btn btn-primary">Confirmar</button>';
+        echo '</form>';
+        
+        echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        
 }
 ?>
 
@@ -95,7 +110,6 @@ function mostrarModalCarrito()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CATÁLOGO</title>
-    <!-- Enlace al archivo CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style-catalogo.css">
@@ -107,11 +121,10 @@ function mostrarModalCarrito()
         <h1>CATÁLOGO</h1>
     </div>
     <br><br>
-    <!-- Botón del carrito con el contador -->
     <button type="button" class="btn btn-primary ms-4 position-relative" id="carritoBtn" data-bs-toggle="modal" data-bs-target="#modal-carrito" style="z-index: 1;">
         <i class="bi bi-cart"></i>
+
         <?php
-        // Obtener el número de artículos en el carrito
         $numArticulosCarrito = count($_SESSION['carrito']);
         ?>
         <?php if ($numArticulosCarrito > 0) : ?>
@@ -122,7 +135,7 @@ function mostrarModalCarrito()
     <section class="contenedor-general">
         <div class="contenedor-items">
             <?php
-            // Mostrar los productos
+
             $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto FROM productos";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -156,16 +169,14 @@ function mostrarModalCarrito()
         </div>
     </section>
 
-    <!-- Incluir el modal del carrito -->
     <?php mostrarModalCarrito(); ?>
 
-    <!-- Incluir los scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         $(document).ready(function() {
-            $('#modal-carrito').modal('show'); // Abrir el modal al cargar la página
+            $('#modal-carrito').modal('show'); 
         });
     </script>
 </body>
