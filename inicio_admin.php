@@ -164,7 +164,7 @@
             </div>
         </a>
 
-        <a class="card" href="../FRESAS_ARTURO/view/layout/Lotes.php">
+        <a class="card" href="../FRESAS_ARTURO/model/interfaz_admin/Cosechas.php">
             <div class="card-text">
                 <h3> COSECHAS </h3>
                 <p>Registro de recolección por lote</p>
