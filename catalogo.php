@@ -89,10 +89,12 @@ function mostrarModalCarrito()
         
         echo '</div>'; 
         echo '<div class="modal-footer">';
-      
-        echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/factura.php" target="_blank">';
-        echo '<button type="submit" class="btn btn-primary">Confirmar</button>';
-        echo '</form>';
+        
+        if (!empty($_SESSION['carrito'])) {
+            echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/factura.php" target="_blank">';
+            echo '<button type="submit" class="btn btn-primary">Confirmar</button>';
+            echo '</form>';
+        }
         
         echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
         echo '</div>';
