@@ -44,7 +44,19 @@ if (isset($_GET['id_factura'])) {
     <title>Confirmación de Pedido</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style-confirmacion-pedido.css">
+
+
+    <script>
+        function closeAndReload() {
+            window.opener.location.reload();
+            
+            window.close();
+            
+            return false;
+        }
+    </script>
+
+
     <style>
         .invoice-card {
             background-image: url("../../FRESAS_ARTURO/resource/img/index/fondonitido.png");
@@ -59,12 +71,13 @@ if (isset($_GET['id_factura'])) {
             border: 2px solid black;
             padding: 20px;
             border-radius: 10px;
-            margin: auto; 
+            margin: auto;
+            margin-top: 20px;
         }
 
         .logo-container {
-            display: inline-block; 
-            vertical-align: top; 
+            display: inline-block;
+            vertical-align: top;
         }
 
         .logo-img {
@@ -164,11 +177,11 @@ if (isset($_GET['id_factura'])) {
                                         </table>
                                     </div>
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
 
-                            <a href="../../FRESAS_ARTURO/catalogo.php" class="btn btn-primary">Volver al Catálogo</a>
+                            <a href="../../FRESAS_ARTURO/catalogo.php" id="btnVolverCatalogo" class="btn btn-primary" onclick="return closeAndReload();">Volver al Catálogo</a>
+
+                            <button onclick="exportToPdf()" id="btnExportarPdf" class="btn btn-success float-end me-2">Exportar a PDF</button>
                         </div>
                     </div>
                 </section>
@@ -177,6 +190,27 @@ if (isset($_GET['id_factura'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <script>
+        function exportToPdf() {
+            // Ocultar botones antes de generar el PDF
+            document.getElementById('btnExportarPdf').style.display = 'none';
+            document.getElementById('btnVolverCatalogo').style.display = 'none';
+
+            var element = document.querySelector('.invoice-content');
+            html2pdf()
+                .from(element)
+                .save('factura.pdf')
+                .then(function() {
+                    // Volver a mostrar botones después de guardar el PDF
+                    document.getElementById('btnExportarPdf').style.display = 'inline-block';
+                    document.getElementById('btnVolverCatalogo').style.display = 'inline-block';
+                });
+        }
+    </script>
+
+
 </body>
 
 </html>
