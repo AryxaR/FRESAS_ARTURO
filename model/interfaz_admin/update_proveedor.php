@@ -1,10 +1,11 @@
 <?php
-include_once '../../view/layout/Catalogo/nav-volver.html';
+include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,33 +13,38 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <title>ACTUALIZACION</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,200;1,300;1,500&display=swap");
 
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url();
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Poppins', sans-serif;
+            font-family: "Montserrat", sans-serif;
         }
 
-        .container {
+        body {
+            background-image: url("../../../FRESAS_ARTURO/resource/img/index/fondoborroso.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .container-proveedor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            max-width: 500px;
+            /* max-width: 500px; */
             width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-            position: relative;
+            padding: 30px;
+            /* box-sizing: border-box; */
+            /* position: relative; */
         }
 
         .btn-volver {
+            align-self:self-start;
             position: left;
             top: 20px;
-            margin-left: -250%;
             color: white;
             background-color: #d22c5d;
             border: none;
@@ -50,9 +56,9 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
         }
 
 
-        .btn-volver:hover{
+        .btn-volver:hover {
             border: 1px solid #d22c5d;
-            color:#d22c5d;
+            color: #d22c5d;
             background-color: white;
         }
 
@@ -63,13 +69,14 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
             border-radius: 10px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             box-sizing: border-box;
-            margin-top: 20px;
+            width: 40%;
+            margin: auto;
         }
 
         form label {
             display: block;
             margin-bottom: 5px;
-            text-align: center; 
+            text-align: center;
         }
 
         form input[type="text"],
@@ -99,7 +106,7 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 
         form input[type="submit"]:hover {
             border: 1px solid #d22c5d;
-            color:#d22c5d;
+            color: #d22c5d;
             background-color: white;
         }
 
@@ -110,61 +117,39 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
             text-shadow: 2px 2px 4px #888888;
         }
 
-        .footer-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            margin-left: -3%;
-            background-color: #8B0000;
-            /* Puedes ajustar el color de fondo según tus necesidades */
-            color: white;
-            /* Puedes ajustar el color del texto según tus necesidades */
-            display: flex;
-            justify-content: space-between;
-            padding: 16px;
-        }
-
-        .footer-bottom small {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-bottom-info-center {
-            display: flex;
-            gap: 7px;
-        }
     </style>
 
 </head>
+
 <body>
-    <div class="container">
+    <div class="container-proveedor">
         <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <h2>MODIFICACIÓN DE PROVEEDORES</h2>
         <?php
         require_once '../../controller/conexion.php';
 
         // Verificar si se ha enviado un formulario para actualizar
-        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $id = $_GET['id'];
 
-        $sql_select = "SELECT * FROM proveedores WHERE Id_proveedor= $id";
-        $result = $conn->query($sql_select);
+            $sql_select = "SELECT * FROM proveedores WHERE Id_proveedor= $id";
+            $result = $conn->query($sql_select);
 
-        if($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
         ?>
-        <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $row['Id_proveedor']; ?>">
-            <label for="Nombre_proveedor">Nombre_provedor:</label>
-            <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>"><br><br>
-            <label for="Telefono_proveedor">Telefono_proveedor:</label>
-            <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>"><br><br>
-            <input type="submit" name="actualizar" value="Actualizar">
-        </form>
+                <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $row['Id_proveedor']; ?>">
+                    <label for="Nombre_proveedor">Nombre_provedor:</label>
+                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>"><br><br>
+                    <label for="Telefono_proveedor">Telefono_proveedor:</label>
+                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>"><br><br>
+                    <input type="submit" name="actualizar" value="Actualizar">
+                </form>
         <?php
-        } else {
-            echo "Usuario no encontrado.";
-        }
+            } else {
+                echo "Usuario no encontrado.";
+            }
         }
         $conn->close();
         ?>
@@ -172,6 +157,7 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 </body>
 <?php
 echo "<br><br><br><br><br>";
-include_once '../../view/layout/footer-admin.html';
+include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
 ?>
+
 </html>

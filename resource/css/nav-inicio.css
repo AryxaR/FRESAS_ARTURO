@@ -13,7 +13,7 @@
   width: 100vw;
   position: fixed;
   z-index: 100;
-
+  align-items: center;
   /* position: relative; */
 }
 
@@ -41,17 +41,16 @@
 .lista-ingreso {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 
 .lista-nav li {
   margin: 0 20px;
   font-size: 1.2em;
-  
 }
 
 .lista-nav li a:hover {
   background-color: #f8eaef;
-  
 }
 
 .lista-ingreso li {
@@ -71,8 +70,12 @@
   font-weight: 500;
 }
 
+.lista-nav li .fa-arrow-right {
+  display: none;
+}
+
 .fa-arrow-right-to-bracket {
-    transform: translate(0, 2px);
+  transform: translate(0, 2px);
 }
 
 .lista-ingreso li a {
@@ -96,12 +99,23 @@
   display: none;
 }
 
+@media screen and (max-width: 1000px) {
+    .lista-ingreso,
+    .lista-nav {
+      font-size: 0.9em;
+    }
+
+    .lista-nav li {
+        margin: 0 5px;
+      }
+}
+
 @media screen and (max-width: 780px) {
   .contenedor {
     position: absolute;
     width: 100vw;
     height: 95vh;
-    background-color: #951c47;
+    background-color: #ce2761f5;
     flex-direction: column;
     top: 80px;
     left: -200%;
@@ -109,6 +123,7 @@
     justify-content: center;
     transition: all 0.5s;
     font-size: 1.3em;
+    padding: 0 0 30px 0;
   }
 
   .contenedor-logo .logo {
@@ -117,10 +132,10 @@
 
   .nav {
     height: 50%;
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
   }
 
   .btn-ingreso {
@@ -138,10 +153,38 @@
     flex-wrap: wrap;
     display: flex;
     align-items: center;
+    width: 100%;
   }
 
   .lista-nav li {
+    border-bottom: #f8eaef solid 1px;
     margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 30px 0 10px;
+    transition: border 0.5s ease-in-out;
+  }
+
+  .lista-nav li a:hover {
+    background-color: transparent;
+  }
+
+  .lista-nav li:hover {
+    width: 100%;
+    border-bottom: #f8eaef solid 2px;
+    cursor: pointer;
+  }
+
+  .lista-nav li a {
+    color: white;
+    width: 100%;
+  }
+
+  .lista-nav li .fa-arrow-right {
+    color: white;
+    display: inline;
   }
 
   .lista-ingreso {
@@ -151,7 +194,10 @@
   }
 
   .lista-ingreso li {
+    /* justify-content: center;
+    display: flex; */
     margin: 15px;
+    /* width: 100%; */
   }
 
   .lista-ingreso li a {
@@ -188,4 +234,13 @@
   .header {
     padding: 5px 0 0 5px;
   }
+}
+
+@media screen and (max-width: 340px) {
+    .lista-ingreso li {
+        justify-content: center;
+        display: flex;
+        margin: 15px;
+        width: 100%;
+      }
 }

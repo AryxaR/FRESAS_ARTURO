@@ -24,9 +24,9 @@
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a></li>
-                    <li><a href="#section-carrito">Catálogo</a></li>
-                    <li><a href="#section-contacto">Contacto</a></li>
+                    <li><a href="../FRESAS_ARTURO/index.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a id="catalogo" href="#section-carrito">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a id="contacto" href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">
@@ -47,17 +47,20 @@
         var i = document.querySelector('#icono');
         var check = document.getElementById('check-btn');
 
-    check.addEventListener('click', function(){
+        check.addEventListener('click', function() {
 
-        if (check.checked) {
-            i.classList.remove('fa-bars');
-            i.classList.add('fa-xmark');
-        }else {
-            i.classList.remove('fa-xmark');
-            i.classList.add('fa-bars');
-        }
-    });
+            if (check.checked) {
+                i.classList.remove('fa-bars');
+                i.classList.add('fa-xmark');
+            } else {
+                i.classList.remove('fa-xmark');
+                i.classList.add('fa-bars');
+            }
+        });
 
+        var catalogo = document.querySelector('#catalogo');
+        var contacto = document.querySelector('#contacto');
     </script>
 </body>
+
 </html>

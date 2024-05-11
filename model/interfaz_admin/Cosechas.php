@@ -149,8 +149,6 @@
         }
 
         .contenedor-cosechas {
-            border: #666666 solid 1px;
-            background-color: black;
             z-index: -1000;
         }
 

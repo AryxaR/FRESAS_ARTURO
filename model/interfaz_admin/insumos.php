@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre_insumo']) && is
 ?>
 
 <?php
-include_once '../../view/layout/Catalogo/nav-volver.html';
+include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br>
 
@@ -182,7 +182,6 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 </body>
 <?php
     echo "<br><br><br>";
-    include_once '../../view/layout/footer-admin.html'; 
+    include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
     ?>
-    <script defer src="./Resource/JS/nav.js"></script>
 </html>
