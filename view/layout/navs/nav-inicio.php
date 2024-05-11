@@ -24,9 +24,9 @@
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a id="catalogo" href="#section-carrito">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a id="contacto" href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a></li>
+                    <li><a href="#section-carrito">Catálogo</a></li>
+                    <li><a href="#section-contacto">Contacto</a></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">

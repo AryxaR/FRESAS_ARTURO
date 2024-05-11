@@ -117,7 +117,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4><small>Muestra tu mensaje</small>Watch</h4>
                             <picture>
                                 <img src="resource/img/index/5.jpeg" alt="Image" />
                             </picture>
