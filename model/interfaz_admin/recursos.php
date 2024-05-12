@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['tipo']) && isset($_POS
 ?>
 
 <?php
-include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+// include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
 
