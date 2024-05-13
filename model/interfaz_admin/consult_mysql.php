@@ -297,7 +297,7 @@
                             doc.content.splice(0, 0, {
                                 image: logo,
                                 width: 100,
-                                alignment: 'right',
+                                alignment: 'left',
                                 margin: [null, 10, 10, null]
                             });
 
