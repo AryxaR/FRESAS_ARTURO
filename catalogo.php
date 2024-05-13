@@ -157,7 +157,7 @@ function mostrarModalCarrito()
                 
                         <form method="post" action="../FRESAS_ARTURO/controller/Detalleventa.php">
                             <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
-                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3">
+                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3" maxlength="2">
                             <button type="submit" class="btn btn-primary">Agregar al carrito</button>
                         </form>
                     </div>
