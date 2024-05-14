@@ -1,59 +1,56 @@
 <?php
-// Procesar los datos del formulario de actualización
+// Verificar si se reciben datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_producto = $_POST['id_producto'];
-    $nuevo_precio = $_POST['nuevo_precio'];
+    
+    // Verificar si se recibió el ID del producto y el nuevo precio
+    if (isset($_POST["id_producto"]) && isset($_POST["precio"])) {
 
-    // Procesar la nueva imagen, si se proporcionó una
-    if ($_FILES['nueva_imagen']['size'] > 0) {
-        $nombre_imagen = $_FILES['nueva_imagen']['name'];
-        $temporal_imagen = $_FILES['nueva_imagen']['tmp_name'];
-        $ruta_guardada = '../../../FRESAS_ARTURO/model/uploads/' . $nombre_imagen;
-        // Mover la imagen del directorio temporal al directorio de destino
-        if (move_uploaded_file($temporal_imagen, $ruta_guardada)) {
-
-            echo "Ruta de la imagen guardada: " . $ruta_guardada . "<br>";
-
-            $conexion = new mysqli("localhost", "root", "", "proyecto");
-
-            // Verifica si hay error en la conexión
-            if ($conexion->connect_error) {
-                die("Error de conexión: " . $conexion->connect_error);
-            }
-
-            $sql = "UPDATE productos SET precio_producto = $nuevo_precio, imagen = '$ruta_guardada' WHERE id_producto = $id_producto";
-
-            if ($conexion->query($sql) === TRUE) {
-                echo "<script>alert('El producto se ha actualizado correctamente.');</script>";
-                echo "<script>window.close();</script>";
-                echo "<script>window.opener.location.reload();</script>";
-            } else {
-                echo "Error al actualizar el producto: " . $conexion->error;
-            }
-
-            $conexion->close();
-        } else {
-            echo "Error al mover la imagen al directorio de destino.";
-        }
-    } else {
-        // Si no se proporciona una nueva imagen, actualizar solo el precio del producto
+        // Conexión a la base de datos
         $conexion = new mysqli("localhost", "root", "", "proyecto");
 
-        // Verifica si hay error en la conexión
         if ($conexion->connect_error) {
             die("Error de conexión: " . $conexion->connect_error);
         }
-        
-        $sql = "UPDATE productos SET precio_producto = $nuevo_precio WHERE id_producto = $id_producto";
 
+        // Obtener el ID del producto y el nuevo precio del formulario
+        $id_producto = $_POST["id_producto"];
+        $nuevo_precio = $_POST["precio"];
+
+        // Actualizar el precio en la base de datos
+        $sql = "UPDATE productos SET precio_producto='$nuevo_precio' WHERE id_producto='$id_producto'";
         if ($conexion->query($sql) === TRUE) {
-            echo "<script>alert('El producto se ha actualizado correctamente.');</script>";
-            echo "<script>window.close();</script>";
-            echo "<script>window.opener.location.reload();</script>";
+            echo "Precio actualizado correctamente.";
         } else {
-            echo "Error al actualizar el producto: " . $conexion->error;
+            echo "Error al actualizar el precio: " . $conexion->error;
         }
 
+        // Verificar si se recibió una nueva imagen
+        if ($_FILES["imagen"]["name"]) {
+
+            // Ruta donde se guardarán las imágenes
+            $ruta_imagen = 'model/uploads/' . $_FILES["imagen"]["name"];
+
+            // Mover la imagen subida al directorio de imágenes
+            if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta_imagen)) {
+
+                // Actualizar la ruta de la imagen en la base de datos
+                $sql = "UPDATE productos SET imagen='$ruta_imagen' WHERE id_producto='$id_producto'";
+                if ($conexion->query($sql) === TRUE) {
+                    echo "Imagen actualizada correctamente.";
+                } else {
+                    echo "Error al actualizar la imagen: " . $conexion->error;
+                }
+            } else {
+                echo "Error al subir la imagen.";
+            }
+        }
+
+        // Cerrar la conexión
         $conexion->close();
+    } else {
+        echo "ID del producto o precio no especificado.";
     }
+} else {
+    echo "Solicitud no válida.";
 }
+?>

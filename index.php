@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="resource/css/catalogo.css">
 
     <title>FRESAS DON ARTURO</title>
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -117,7 +123,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4><small>Muestra tu mensaje</small>Watch</h4>
                             <picture>
                                 <img src="resource/img/index/5.jpeg" alt="Image" />
                             </picture>
@@ -189,47 +195,7 @@
         </div>
     </section>
 
-    <section class="recomen-section">
-        <h1 class="titulo-seccion">Recomendaciones</h1>
-        <p>Lo que dicen nuestros clientes</p>
-
-        <div class="contenedor-personas">
-            <div class="item-persona">
-                <div class="persona-imagen"><img src="./resource/img/index/R.png" alt=""></div>
-                <p class="persona-descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem mollitia,
-                    exercitationem ex maiores dolorem tempora necessitatibus provident autem nostrum molestias minus
-                    error delectus dolorum repellat corrupti inventore sequi ipsa incidunt!
-                </p>
-                <div class="persona-datos">
-                    <h3>Nombre persona</h3>
-                    <p>Procedencia</p>
-                </div>
-            </div>
-            <div class="item-persona">
-                <div class="persona-imagen"><img src="./resource/img/index/R.png" alt=""></div>
-                <p class="persona-descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem mollitia,
-                    exercitationem ex maiores dolorem tempora necessitatibus provident autem nostrum molestias minus
-                    error delectus dolorum repellat corrupti inventore sequi ipsa incidunt!
-                </p>
-                <div class="persona-datos">
-                    <h3>Nombre persona</h3>
-                    <p>Procedencia</p>
-                </div>
-            </div>
-            <div class="item-persona">
-                <div class="persona-imagen"><img src="./resource/img/index/R.png" alt=""></div>
-                <p class="persona-descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem mollitia,
-                    exercitationem ex maiores dolorem tempora necessitatibus provident autem nostrum molestias minus
-                    error delectus dolorum repellat corrupti inventore sequi ipsa incidunt!
-                </p>
-                <div class="persona-datos">
-                    <h3>Nombre persona</h3>
-                    <p>Procedencia</p>
-                </div>
-            </div>
-        </div>
         <div id="section-contacto">
-
             <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
         </div>
 
@@ -237,6 +203,7 @@
     </section>
     <script defer src="resource/js/index/main.js"></script>
     <script defer src="resource/js/layout/nav.js"></script>
+   
 </body>
 
 </html>

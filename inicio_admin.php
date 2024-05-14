@@ -141,6 +141,12 @@
             background-color: rgba(206, 112, 86, 0.4);
         }
     </style>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
+     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
 </head>
 
 <body>

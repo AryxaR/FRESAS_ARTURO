@@ -42,7 +42,8 @@ $conexion->close();
 ?>
 
 <?php
-include_once '../../view/layout/Catalogo/nav-volver.html';
+// include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
 
@@ -61,7 +62,6 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 
         body {
             font-family: 'Poppins', sans-serif;
-            padding: 20px;
         }
 
         .TITULO {
@@ -73,12 +73,11 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 
         .back-button {
             position: absolute;
-            top: 130px;
+            display: flex;
+            align-items: center;
             left: 20px;
-            font-size: 24px;
-            padding: 5px;
-            height: 7%;
-            border: none;
+            font-size: 26px;
+            padding: 3px 3px 9px 3px;
             border-radius: 5px;
             background-color: #d22c5d;
             color: white;
@@ -157,6 +156,7 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 </head>
 
 <body>
+
     <a href="javascript:history.go(-1)" class="back-button">&#8592;</a>
 
     <h1 class="TITULO">INFORMACIÓN PROVEEDOR</h1>
@@ -195,7 +195,7 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 </body>
 <?php
 echo "<br><br><br><br><br>";
-include_once '../../view/layout/footer-admin.html';
+include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php');
 ?>
 
 </html>
