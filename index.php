@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="resource/css/catalogo.css">
 
     <title>FRESAS DON ARTURO</title>
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -197,6 +203,7 @@
     </section>
     <script defer src="resource/js/index/main.js"></script>
     <script defer src="resource/js/layout/nav.js"></script>
+   
 </body>
 
 </html>

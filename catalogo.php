@@ -103,6 +103,69 @@ function mostrarModalCarrito()
         echo '</div>';
         
 }
+
+// Función para verificar el stock disponible de un producto
+function verificarStock($id_producto, $cantidad, $conn) {
+    $sql = "SELECT Stock FROM productos WHERE id_producto = $id_producto";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $stock_disponible = $row['Stock'];
+        if ($cantidad <= $stock_disponible) {
+            // Si la cantidad ingresada no supera el stock disponible, agregar al carrito
+            return true;
+        } else {
+            // Si la cantidad ingresada supera el stock disponible, mostrar mensaje de alerta
+            return false;
+        }
+    } else {
+        // Si no se encuentra el producto, mostrar mensaje de alerta
+        return false;
+    }
+}
+
+// Procesamiento del formulario para agregar productos al carrito
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['id_producto']) && isset($_POST['cantidad'])) {
+        $id_producto = $_POST['id_producto'];
+        $cantidad = $_POST['cantidad'];
+        
+        // Verificar el stock disponible
+        if (verificarStock($id_producto, $cantidad, $conn)) {
+            // Si hay suficiente stock, agregar el producto al carrito
+            $sql = "SELECT nombre_producto, categoria_producto, precio_producto FROM productos WHERE id_producto = $id_producto";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $nombre = $row['nombre_producto'];
+                $categoria = $row['categoria_producto'];
+                $precio = $row['precio_producto'];
+
+                // Agregar el producto al carrito
+                $_SESSION['carrito'][$id_producto] = array(
+                    'nombre' => $nombre,
+                    'categoria' => $categoria,
+                    'precio' => $precio,
+                    'cantidad' => $cantidad
+                );
+
+                // Redireccionar o mostrar mensaje de éxito
+            } else {
+                // Si no se encuentra el producto, mostrar mensaje de error
+            }
+        } else {
+            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
+            echo '<script>';
+            echo "Swal.fire({
+                        icon: 'error',
+                        title: '¡No se puede agregar el producto!',
+                        text: 'Stock insuficiente en la bodega',
+                        confirmButtonText: 'OK'
+                    });";
+            echo '</script>';
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +177,14 @@ function mostrarModalCarrito()
     <title>CATÁLOGO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style-catalogo.css">
+
 </head>
 
 <body>
@@ -155,9 +225,9 @@ function mostrarModalCarrito()
                         <h6>*EL PRECIO DE VENTA ES POR "CANASTILLA = 8KG"</h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>
                 
-                        <form method="post" action="../FRESAS_ARTURO/controller/Detalleventa.php">
+                        <form method="post" action="">
                             <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
-                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3">
+                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3" oninput="this.value = this.value.slice(0, 2)">
                             <button type="submit" class="btn btn-primary">Agregar al carrito</button>
                         </form>
                     </div>

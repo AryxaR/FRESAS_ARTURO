@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header" style='z-index:9999;'>
         <input type="checkbox" id="check-btn">
         <label for="check-btn" class="menu">
             <i id="icono" class="fa-solid fa-bars"></i>
