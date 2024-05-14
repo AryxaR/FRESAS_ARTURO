@@ -10,6 +10,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>CATALOGO</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
 </head>
 
 <body>
