@@ -42,11 +42,7 @@ $conexion->close();
 ?>
 
 <?php
-<<<<<<< HEAD
-// include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
-=======
-include_once '../../view/layout/Catalogo/nav-volver.html';
->>>>>>> 7697cf46e34eedb129f3ff69e97e46c66cc52946
+ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
 
