@@ -157,6 +157,10 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 </head>
 
 <body>
+<?php
+echo "<br><br><br><br>";
+?>
+
     <a href="javascript:history.go(-1)" class="back-button">&#8592;</a>
 
     <h1 class="TITULO">INFORMACIÓN PROVEEDOR</h1>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../../FRESAS_ARTURO/resource/css/nav-usuario.css">
+    <link rel="stylesheet" href="../../../../FRESAS_ARTURO/resource/css/navUsuario.css">
     <script src="https://kit.fontawesome.com/c90742bd6c.js" crossorigin="anonymous"></script>
 </head>
 
@@ -24,20 +24,21 @@
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a></li>
-                    <li><a href="../FRESAS_ARTURO/catalogo.php">Catálogo</a></li>
-                    <li><a href="#section-contacto">Contacto</a></li>
+                    <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../FRESAS_ARTURO/catalogo.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">
                     <li>
-                        <a class="perfil" href="../FRESAS_ARTURO/model/perfil.php">Perfil <i
-                                class="fa-solid fa-circle-user"></i></a>
+                        <a class="perfil" href="../FRESAS_ARTURO/model/perfil.php">Perfil <i class="fa-solid fa-circle-user"></i></a>
                     </li>
                     <li>
-                        <a class="salir" href="../Fresas_Arturo/model/login_usuarios.php">Salir <i
-                                class="fa-solid fa-right-from-bracket"></i></a>
+                    <li>
+                        <a class="salir" href="../FRESAS_ARTURO/controller/logout.php">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
+                    </li>
+
                     </li>
                 </ul>
             </div>
@@ -49,17 +50,17 @@
         var i = document.querySelector('#icono');
         var check = document.getElementById('check-btn');
 
-    check.addEventListener('click', function(){
+        check.addEventListener('click', function() {
 
-        if (check.checked) {
-            i.classList.remove('fa-bars');
-            i.classList.add('fa-xmark');
-        }else {
-            i.classList.remove('fa-xmark');
-            i.classList.add('fa-bars');
-        }
-    });
-
+            if (check.checked) {
+                i.classList.remove('fa-bars');
+                i.classList.add('fa-xmark');
+            } else {
+                i.classList.remove('fa-xmark');
+                i.classList.add('fa-bars');
+            }
+        });
     </script>
 </body>
+
 </html>

@@ -47,17 +47,20 @@
         var i = document.querySelector('#icono');
         var check = document.getElementById('check-btn');
 
-    check.addEventListener('click', function(){
+        check.addEventListener('click', function() {
 
-        if (check.checked) {
-            i.classList.remove('fa-bars');
-            i.classList.add('fa-xmark');
-        }else {
-            i.classList.remove('fa-xmark');
-            i.classList.add('fa-bars');
-        }
-    });
+            if (check.checked) {
+                i.classList.remove('fa-bars');
+                i.classList.add('fa-xmark');
+            } else {
+                i.classList.remove('fa-xmark');
+                i.classList.add('fa-bars');
+            }
+        });
 
+        var catalogo = document.querySelector('#catalogo');
+        var contacto = document.querySelector('#contacto');
     </script>
 </body>
+
 </html>
