@@ -141,6 +141,12 @@
             background-color: rgba(206, 112, 86, 0.4);
         }
     </style>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
+     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
 </head>
 
 <body>
@@ -164,7 +170,7 @@
             </div>
         </a>
 
-        <a class="card" href="../FRESAS_ARTURO/view/layout/Lotes.php">
+        <a class="card" href="../FRESAS_ARTURO/model/interfaz_admin/Cosechas.php">
             <div class="card-text">
                 <h3> COSECHAS </h3>
                 <p>Registro de recolección por lote</p>

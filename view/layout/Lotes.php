@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/lotes.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+   <!-- accesibiliad -->
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
     <title>Ingreso de Cantidades Recogidas</title>
 </head>
 

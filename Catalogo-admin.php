@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Resource/CSS/nav.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
@@ -26,10 +26,15 @@
             text-shadow: 2px 2px 4px #888888;
         }
 
-        .tabla-productos {
-            width: 80%;
-            border-collapse: collapse;
+        .tabla-container {
+            width: 70%; /* Ajustar el ancho del contenedor de la tabla */
             margin: 0 auto;
+            z-index: -999;
+        }
+
+        .tabla-productos {
+            width: 100%;
+            border-collapse: collapse;
         }
 
         .tabla-productos th,
@@ -76,8 +81,21 @@
             width: 65px;
         }
 
-    </style>
+        .dataTables_wrapper .dataTables_info {
+            display: none;
+        }
 
+        .dataTables_wrapper .dataTables_filter input{
+            margin-bottom: 5%;
+        }
+
+    </style>
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top:150px !important;
+        }
+    </style>
+     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
     <title>CATALOGO</title>
 </head>
 
@@ -92,66 +110,75 @@
     <div class="TITULO">CATÁLOGO</div>
     <br><br>
 
-    <table class="tabla-productos">
-        <tr>
-            <th>Categoria</th>
-            <th>Foto</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-        </tr>
-        <?php
+    <div class="tabla-container">
+        <table id="tabla-productos" class="tabla-productos">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Foto</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
 
-        $conexion = new mysqli("localhost", "root", "", "proyecto");
+                $conexion = new mysqli("localhost", "root", "", "proyecto");
 
-        if ($conexion->connect_error) {
-            die("Error de conexión: " . $conexion->connect_error);
-        }
-
-        // Realizar una consulta para obtener los productos
-        $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-
-            while ($row = $result->fetch_assoc()) {
-                $nombre_imagen = 'FRESA_' . strtoupper($row['categoria_producto']) . '.jpeg';
-                $ruta_imagen = './model/uploads/' . $nombre_imagen;
-
-                echo '<tr>';
-                echo '<td>' . $row["categoria_producto"] . '</td>';
-                echo '<td>';
-                if (file_exists($ruta_imagen)) {
-                    echo '<img src="' . $ruta_imagen . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
-                } else {
-                    echo '<img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">';
+                if ($conexion->connect_error) {
+                    die("Error de conexión: " . $conexion->connect_error);
                 }
-                echo '</td>';
-                echo '<td>$' . $row["precio_producto"] . '</td>';
-                echo '<td>';
-                echo '<button type="button" class="btn-custom" onclick="abrirVentana(' . $row["id_producto"] . ')">Actualizar</button>';
-                echo '</td>';
-                echo '</tr>';
-            }
 
-            echo '</table>';
-        } else {
-            echo "<p>No se encontraron productos.</p>";
-        }
+                // Realizar una consulta para obtener los productos
+                $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
+                $result = $conn->query($sql);
 
-        $conexion->close();
-        echo "<br><br><br><br>";
-        include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
-        ?>
+                if ($result->num_rows > 0) {
 
-        </div>
-        </section>
+                    while ($row = $result->fetch_assoc()) {
+                        $nombre_imagen = 'FRESA_' . strtoupper($row['categoria_producto']) . '.jpeg';
+                        $ruta_imagen = './model/uploads/' . $nombre_imagen;
 
-        <script>
-            function abrirVentana(id_producto) {
-                // Abre la ventana emergente con el formulario de actualización
-                var ventana = window.open("../../FRESAS_ARTURO/model/interfaz_admin/update_catalogo.php?id=" + id_producto, "_blank", "width=600,height=400");
-            }
-        </script>
+                        echo '<tr>';
+                        echo '<td>' . $row["categoria_producto"] . '</td>';
+                        echo '<td>';
+                        if (file_exists($ruta_imagen)) {
+                            echo '<img src="' . $ruta_imagen . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
+                        } else {
+                            echo '<img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">';
+                        }
+                        echo '</td>';
+                        echo '<td>$' . $row["precio_producto"] . '</td>';
+                        echo '<td>';
+                        echo '<button type="button" class="btn-custom">Actualizar</button>';
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+
+                    echo '</tbody>';
+                    echo '</table>';
+                } else {
+                    echo "<p>No se encontraron productos.</p>";
+                }
+
+                $conexion->close();
+                ?>
+
+                </div>
+                </section>
+                <br><br><br>
+                <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('#tabla-productos').DataTable({
+                            "paging": false, // Deshabilitar paginación
+                            "ordering": false // Deshabilitar ordenamiento
+                        });
+                    });
+                </script>
+
+                <?php include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
 
 </body>
 

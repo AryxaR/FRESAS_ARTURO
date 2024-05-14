@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title>ENVIO CODIGO</title>
+</head>
+<body>
+
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,19 +20,14 @@ require '../../FRESAS_ARTURO/PhpMailer/SMTP.php';
 $mail = new PHPMailer(true);
 
 include_once '../../FRESAS_ARTURO/controller/conexion.php';
-    $correo = $_POST['correo'];
-
+$correo = $_POST['correo'];
 
 $sql = "SELECT * FROM usuarios WHERE Correo = '$correo'";
 $resultado = mysqli_query($conn, $sql);
 
-//* Secrea un token aleatorio hexadecimal de 32 caracteres 16 bytes
 $token = bin2hex(random_bytes(16));
-// echo $token;
-//* Se toma la fecha de cuando se realizo la accion de envio de correo y se le suma 1 hora como fecha de expiracion
 $fecha_expiracion = time() + (1 * 60 * 60);
 
-//! Funciones para escapar valores y evita inyecciones SQL (MEJOR SEGURIDAD)
 $token = $conn->real_escape_string($token);
 $fecha_expiracion = $conn->real_escape_string($fecha_expiracion);
 
@@ -32,7 +37,6 @@ $consulta = mysqli_query($conn, $sqlToken);
 if ($resultado->num_rows > 0) {
     $row = $resultado->fetch_assoc();
 
-    
     try {
         //Server settings
         $mail->SMTPDebug = 0;                      //Enable verbose debug output
@@ -48,36 +52,53 @@ if ($resultado->num_rows > 0) {
         $mail->setFrom('fresasarturo@gmail.com', 'Fresas Arturo');
         $mail->addAddress($row['Correo']);     //Add a recipient
 
-
-
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Recuperacion de clave';
-        $url_recuperacion = "http://localhost/FRESAS_ARTURO/model/guardarClave.php?token=" . urlencode($token); //* Esta funcion es para asegurar que los datos pasados en una URL sean válidos y seguros,
+        $url_recuperacion = "http://localhost/FRESAS_ARTURO/model/guardarClave.php?token=" . urlencode($token); 
         $mail->Body    = 'Para recuperar tu contraseña, haz clic en el siguiente enlace: <br><br>
-
-
         <a href="' . $url_recuperacion . '">Click aqui</a> <br><br>
-        
         Este enlace es válido por 1 hora. <br><br>
-        
         Si no has solicitado recuperar tu contraseña, ignora este correo electrónico.
         ';
-        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
         ?>
-         <script>
-                alert("Revise su correo");
-                window.location = "../../FRESAS_ARTURO/model/login_usuarios.php";
-            </script>   
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Código Enviado',
+                text: 'Revise su correo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "../../FRESAS_ARTURO/model/login_usuarios.php";
+                }
+            });
+        </script>
         <?php
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Message could not be sent. Mailer Error: <?php echo $mail->ErrorInfo; ?>'
+            });
+        </script>
+        <?php
     }
 } else {
-    echo "El correo ingresado no se encuentra registrado";  
+    ?>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Correo Inválido',
+            text: 'El correo ingresado no se encuentra registrado'
+        });
+    </script>
+    <?php  
 }
 
-
 ?>
+</body>
+</html>
