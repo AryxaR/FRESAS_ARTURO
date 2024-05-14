@@ -7,32 +7,32 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url();
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Poppins', sans-serif;
-
+            font-family: 'Poppins', sans-serif
         }
 
-        .container {
+        body {
+            background-image: url(../../../FRESAS_ARTURO//resource//img//index//fondoborroso.png);
+            background-size: cover;
+            background-attachment: fixed;
+            /* background-position: center; */
+        }
+        
+        .container-usuarios {
+            display: flex;
+            align-items: center;
             text-align: center;
-            max-width: 500px;
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-            position: relative;
+            flex-direction: column;
+            background-color: transparent;
+            padding: 0 30px;
+
         }
 
         .btn-volver {
-            position: left;
-            top: 20px;
-            margin-left: -250%;
+            margin: 5% 8%;
             color: white;
             background-color: #d22c5d;
             border: none;
@@ -58,6 +58,7 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             box-sizing: border-box;
             margin-top: 20px;
+            width: 50%;
         }
 
         form label {
@@ -107,8 +108,9 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <button class="btn-volver" onclick="history.back()">&#8592;</button>
+
+    <button class="btn-volver" onclick="history.back()">&#8592;</button>
+    <div class="container-usuarios">
         <h2>MODIFICACIÓN DE USUARIOS</h2>
         <?php
         require_once '../../../FRESAS_ARTURO/controller/conexion.php';
@@ -139,8 +141,13 @@
         }
         }
         $conn->close();
+
         ?>
     </div>
+
+    <?php
+    include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php')
+    ?>
 </body>
 </html>
 

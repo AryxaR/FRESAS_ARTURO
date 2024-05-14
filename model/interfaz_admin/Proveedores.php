@@ -19,13 +19,13 @@
 
         body {
             /* Establecer la imagen de fondo */
-            background-image: url(../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(../../../FRESAS_ARTURO/resource/img/index/fondonitido.png);
             /* Centrar y estirar la imagen para cubrir toda la página */
             background-size: cover;
             /* Fijar la imagen de fondo para que no se desplace con el contenido */
             background-attachment: fixed;
             /* Centrar la imagen de fondo */
-            background-position: center;
+            /* background-position: center; */
             font-family: 'Poppins', sans-serif;
 
         }

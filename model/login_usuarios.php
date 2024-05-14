@@ -5,11 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login y Register - MagtimusPro</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+
+    <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- JS de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../FRESAS_ARTURO/resource/css/login.css">
 </head>
 
@@ -24,6 +33,7 @@
                     <p>Inicia sesión para entrar en la página</p>
                     <button id="btn__iniciar-sesion" class="resetear">Iniciar Sesión</button>
                 </div>
+
                 <div class="caja__trasera-register">
                     <h3>¿Aún no tienes una cuenta?</h3>
                     <p>Regístrate para que puedas iniciar sesión</p>
@@ -36,6 +46,17 @@
                 <!--Login-->
                 <form action="../controller/login.php" method="POST" class="formulario__login">
                     <h2>Iniciar Sesión</h2>
+                    <?php
+                    if (isset($_GET['msj_error'])) {
+                        $msj_error = $_GET['msj_error'];
+                        $mostrar = '<div id="mensaje_error" class= "alert alert-danger" role="alert">' . $msj_error . '</div>';
+                        echo $mostrar;
+                    }
+
+                    if (isset($_GET['mensaje_inactivo'])) {
+                        $mensaje_inactivo = $_GET['mensaje_inactivo'];
+                    }
+                    ?>
                     <input type="text" placeholder="Cedula" name="Cedula" required>
                     <input class="visible" type="password" placeholder="Contraseña" name="Contrasena" required>
                     <span class="material-symbols-outlined">
@@ -49,6 +70,14 @@
                 <!--Register-->
                 <form action="../controller/registro.php" method="POST" class="formulario__register">
                     <h2>Regístrarse</h2>
+                    <?php
+                    if (isset($_GET['msj_error_2'])) {
+                        $msj_error_2 = $_GET['msj_error_2'];
+                        $mostrar = '<div class= "alert alert-danger" role="alert">' . $msj_error_2 . '</div>';
+                        echo $mostrar;
+                    }
+
+                    ?>
                     <input type="text" placeholder="Nombre completo" name="Nombre" required>
                     <input type="number" placeholder="Cedula" name="Cedula" required>
                     <input type="email" placeholder="Correo Electronico" name="Correo" required>
@@ -67,13 +96,12 @@
 
     </main>
     <script>
-
         var icons = document.querySelectorAll('.material-symbols-outlined');
         var password = document.querySelectorAll('.visible');
 
-        icons.forEach(function (icon) {
-            icon.addEventListener('click', function () {
-                password.forEach(function (pass) {
+        icons.forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                password.forEach(function(pass) {
                     if (pass.type === "password") {
                         pass.type = "text";
                         icon.textContent = 'visibility_off';
@@ -87,19 +115,30 @@
 
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var resetButtons = document.querySelectorAll('.resetear');
             var formulario1 = document.querySelector('.formulario__login');
             var formulario2 = document.querySelector('.formulario__register');
 
-            resetButtons.forEach(function (button) {
-                button.addEventListener('click', function () {
+            resetButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
                     formulario1.reset();
                     formulario2.reset();
                 });
             });
         });
+        
+        if(window.location.search.includes('msj_error_2')) {
+            document.getElementById('btn__registrarse').click();
+        }
 
+        if (window.location.search.includes('mensaje_inactivo')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Usuario Inhabilitado',
+                text: 'El usuario ha sido desactivado, para más información comuníquese con nosotros'
+            })
+        }
     </script>
 
     <script src="../resource/js/script.js"></script>

@@ -25,38 +25,18 @@ $query = "INSERT INTO usuarios (Cedula, Nombre, Correo, Contrasena, Rol)
 $verificar_cedula = mysqli_query($conn, "SELECT * FROM usuarios WHERE Cedula = '$Cedula'");
 
 if (mysqli_num_rows($verificar_cedula) > 0) {
-    ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Usuario Inválido',
-            text: 'Esta Cédula ya se encuentra registrada'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = "../model/login_usuarios.php";
-            }
-        });
-    </script>
-    <?php
+
+    $mensaje_error_2 = 'Usuario Inválido. Esta Cédula ya se encuentra registrada';
+            header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
     exit();
 }
 
 $verificar_correo = mysqli_query($conn, "SELECT * FROM usuarios WHERE Correo = '$Correo' ");
 
 if (mysqli_num_rows($verificar_correo) > 0) {
-    ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Usuario Inválido',
-            text: 'Este correo ya se encuentra registrado con otro usuario'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = "../model/login_usuarios.php";
-            }
-        });
-    </script>
-    <?php
+
+    $mensaje_error_2 = 'Usuario Inválido. Este correo ya se encuentra registrado con otro usuario';
+    header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
     exit();
 }
 

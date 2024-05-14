@@ -38,19 +38,9 @@
                     header("location: ../index_usuarios.php");
                     exit();
                 } else {
-    ?>
-                    <script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Usuario Inhabilitado',
-                            text: 'El usuario ha sido desactivado, para más información comuníquese con nosotros'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location = "../model/login_usuarios.php";
-                            }
-                        });
-                    </script>
-            <?php
+
+                    $mensaje_inactivo = 'Su usuario ha sido desactivado, para más información comuníquese con nosotros';
+                    header("Location: ../model/login_usuarios.php?mensaje_inactivo= $mensaje_inactivo");
                     exit();
                 }
             } else {
@@ -58,34 +48,18 @@
                 exit();
             }
         } else {
-            ?>
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Credenciales incorrectas',
-                    text: 'Revise los datos ingresados. Intente nuevamente'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "../model/login_usuarios.php";
-                    }
-                });
-            </script>
-        <?php
+
+            $mensaje_error = 'Revise los datos ingresados. Intente nuevamente';
+            header("Location: ../model/login_usuarios.php?msj_error= $mensaje_error");
             exit();
         }
     } else {
+
+        $mensaje_error = 'Revise los datos ingresados. Intente nuevamente';
+            header("Location: ../model/login_usuarios.php?msj_error= $mensaje_error");
+            exit();
         ?>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'No se encuentra registrado',
-                text: 'Revise los datos ingresados. Intente nuevamente'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "../model/login_usuarios.php";
-                }
-            });
-        </script>
+        
 </body>
 
 </html>

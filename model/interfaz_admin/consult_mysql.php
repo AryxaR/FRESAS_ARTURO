@@ -17,10 +17,10 @@
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
         body {
-            background-image: url(../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(../../../FRESAS_ARTURO//resource//img/index/fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
-            background-position: center;
+            /* background-position: center; */
             font-family: 'Poppins', sans-serif;
         }
 
@@ -139,7 +139,6 @@
         .btn-custom:hover .btn-subtitle {
             display: inline;
         }
-
     </style>
 
     <script>
@@ -197,6 +196,11 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_GET['mensaje_exito'])) {
+        $mensaje_exito = $_GET['mensaje_exito'];
+    }
+    ?>
 
     <?php
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
@@ -236,7 +240,7 @@
                     echo "<td>" . $row["Estado"] . "</td>";
                     echo "<td style='text-align: center;'>";
                     if ($row["Estado"] == 'INACTIVO') {
-                        echo "<a href='' class='btn-custom' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
+                        echo "<a href='#' class='btn-custom' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
                     } else {
                         echo "<a href='update_mysql.php?id=" . $row["Id_cliente"] . "' class='btn-custom btn-actualizar' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
                     }
@@ -338,6 +342,17 @@
                 extend: 'excelHtml5',
             });
         });
+
+
+        if (window.location.search.includes('mensaje_exito')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registro actualizado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
 
 </body>

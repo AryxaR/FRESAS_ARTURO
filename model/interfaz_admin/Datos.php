@@ -41,13 +41,6 @@ if ($id_proveedor) {
 $conexion->close();
 ?>
 
-<?php
-<<<<<<< HEAD
-// include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
-=======
-include_once '../../view/layout/Catalogo/nav-volver.html';
->>>>>>> 7697cf46e34eedb129f3ff69e97e46c66cc52946
-?>
 <br><br><br><br><br>
 
 <!DOCTYPE html>
@@ -65,21 +58,29 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 
         body {
             font-family: 'Poppins', sans-serif;
-            padding: 20px;
+            /* padding: 20px; */
+            background-image: url(../../../FRESAS_ARTURO//resource//img/index//fondoborroso.png);
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         .TITULO {
-            text-align: center; /* Centra el texto horizontalmente */
-            font-size: 24px; /* Tamaño de la fuente */
-            font-weight: bold; /* Negrita */
-            text-shadow: 2px 2px 4px #888888; /* Aplica relieve al texto */
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #888888;
+        }
+
+        .contenedor-datos {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2% 6%;
         }
 
         .back-button {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            left: 20px;
+            align-self: self-start;
             font-size: 26px;
             padding: 3px 3px 9px 3px;
             border-radius: 5px;
@@ -132,74 +133,53 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
             background-color: #d22c5d;
             /* Cambio de color al pasar el mouse */
         }
-
-        .footer-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            margin-left: -1.5%;
-            background-color: #8B0000;
-            /* Puedes ajustar el color de fondo según tus necesidades */
-            color: white;
-            /* Puedes ajustar el color del texto según tus necesidades */
-            display: flex;
-            justify-content: space-between;
-            padding: 16px;
-        }
-
-        .footer-bottom small {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .footer-bottom-info-center {
-            display: flex;
-            gap: 7px;
-        }
     </style>
 </head>
 
 <body>
+    <div class="contenedor-datos">
 
-    <a href="javascript:history.go(-1)" class="back-button">&#8592;</a>
 
-    <h1 class="TITULO">INFORMACIÓN PROVEEDOR</h1>
-    <?php if ($id_proveedor && isset($nombre_proveedor)) : ?>
-        <table>
-            <tr>
-                <th>Nombre del Proveedor</th>
-                <td><?php echo $nombre_proveedor; ?></td>
-            </tr>
-            <tr>
-                <th>Teléfono del Proveedor</th>
-                <td><?php echo $telefono_proveedor; ?></td>
-            </tr>
-            <tr>
-                <th>Recurso Registrado</th>
-                <td><?php echo $tipo_recurso; ?></td>
-            </tr>
-            <tr>
-                <th>Insumo Ingresado</th>
-                <td><?php echo $nombre_insumo; ?></td>
-            </tr>
-            <tr>
-                <th>Cantidad (Stock)</th>
-                <td><?php echo $stock; ?> kg</td>
-            </tr>
-            <tr>
-                <th>Fecha de Ingreso</th>
-                <td><?php echo $fecha_ingreso; ?></td>
-            </tr>
-        </table>
-    <?php elseif ($id_proveedor) : ?>
-        <p>No se encontraron datos para el proveedor con ID <?php echo $id_proveedor; ?>.</p>
-    <?php else : ?>
-        <p>ID de proveedor no proporcionado.</p>
-    <?php endif; ?>
+        <a href="javascript:history.go(-1)" class="back-button">&#8592;</a>
+
+        <h1 class="TITULO">INFORMACIÓN PROVEEDOR</h1>
+        <?php if ($id_proveedor && isset($nombre_proveedor)) : ?>
+            <table>
+                <tr>
+                    <th>Nombre del Proveedor</th>
+                    <td><?php echo $nombre_proveedor; ?></td>
+                </tr>
+                <tr>
+                    <th>Teléfono del Proveedor</th>
+                    <td><?php echo $telefono_proveedor; ?></td>
+                </tr>
+                <tr>
+                    <th>Recurso Registrado</th>
+                    <td><?php echo $tipo_recurso; ?></td>
+                </tr>
+                <tr>
+                    <th>Insumo Ingresado</th>
+                    <td><?php echo $nombre_insumo; ?></td>
+                </tr>
+                <tr>
+                    <th>Cantidad (Stock)</th>
+                    <td><?php echo $stock; ?> kg</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Ingreso</th>
+                    <td><?php echo $fecha_ingreso; ?></td>
+                </tr>
+            </table>
+        <?php elseif ($id_proveedor) : ?>
+            <p>No se encontraron datos para el proveedor con ID <?php echo $id_proveedor; ?>.</p>
+        <?php else : ?>
+            <p>ID de proveedor no proporcionado.</p>
+        <?php endif; ?>
+    </div>
 </body>
 <?php
 echo "<br><br><br><br><br>";
-include_once '../../view/layout/footer-admin.html';
+include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
 ?>
 
 </html>

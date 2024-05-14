@@ -1,7 +1,3 @@
-<?php
-include_once '../../view/layout/Catalogo/nav-volver.html';
-?>
-<br><br><br><br><br>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -32,19 +28,16 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
         .container-proveedor {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             text-align: center;
-            /* max-width: 500px; */
-            width: 100%;
-            padding: 30px;
-            /* box-sizing: border-box; */
-            /* position: relative; */
+            /* height: 100vh; */
+            padding-top: 5%;
+
         }
 
         .btn-volver {
-            align-self:self-start;
-            position: left;
-            top: 20px;
+            margin: 6% 0 0 6%;
             color: white;
             background-color: #d22c5d;
             border: none;
@@ -70,7 +63,7 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             box-sizing: border-box;
             width: 40%;
-            margin: auto;
+            /* margin: auto; */
         }
 
         form label {
@@ -122,8 +115,8 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
 </head>
 
 <body>
+    <button class="btn-volver" onclick="history.back()">&#8592;</button>
     <div class="container-proveedor">
-        <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <h2>MODIFICACIÓN DE PROVEEDORES</h2>
         <?php
         require_once '../../controller/conexion.php';
@@ -156,7 +149,6 @@ include_once '../../view/layout/Catalogo/nav-volver.html';
     </div>
 </body>
 <?php
-echo "<br><br><br><br><br>";
-include_once '../../view/layout/footer-admin.html';
+include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
 ?>
 </html>
