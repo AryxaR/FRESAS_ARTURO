@@ -42,6 +42,7 @@ $conexion->close();
 ?>
 
 <?php
+// include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
  include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
