@@ -150,7 +150,7 @@
 
         .contenedor-cosechas {
             border: #666666 solid 1px;
-            background-color: black;
+            background-color: while;
             z-index: -1000;
         }
 
@@ -215,10 +215,10 @@ if ($conexion->connect_error) {
     echo "<br><br><br>";
     ?>
 <div class="contenedor-cosechas">
-    <DIV class="TITULO">COSECHAS</DIV>
+    <div class="TITULO">COSECHAS</div>
     <?php
 
-    $sqselect = "SELECT id_lote, fecha_recogida, id_producto, cantidad_recogida_extra, cantidad_recogida_primera, cantidad_recogida_segunda, cantidad_recogida_riche FROM lotes";
+    $sqselect = "SELECT id, fecha, cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche  FROM lotes";
     $result = $conexion->query($sqselect);
 
     if ($result->num_rows > 0) {
@@ -228,7 +228,6 @@ if ($conexion->connect_error) {
             <tr>
                 <th><i class='bi bi-person-badge-fill'></i>Id </th>
                 <th><i class='bi bi-person-check-fill'></i>Fecha recogida </th>
-                <th><i class='bi bi-telephone-fill'></i>Producto </th>
                 <th><i class='bi bi-telephone-fill'></i>Cantidad recogida extra  </th>
                 <th><i class='bi bi-telephone-fill'></i>Cantidad recogida primera </th>
                 <th><i class='bi bi-telephone-fill'></i>Cantidad recogida segunda </th>
@@ -239,20 +238,18 @@ if ($conexion->connect_error) {
         echo "<tbody>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row["id_lote"] . "</td>";
-            echo "<td>" . $row["fecha_recogida"] . "</td>";
-            echo "<td>" . $row["id_producto"] . "</td>";
-            echo "<td>" . $row["cantidad_recogida_extra"] . "</td>";
-            echo "<td>" . $row["cantidad_recogida_primera"] . "</td>";
-            echo "<td>" . $row["cantidad_recogida_segunda"] . "</td>";
-            echo "<td>" . $row["cantidad_recogida_riche"] . "</td>";
+            echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["fecha"] . "</td>";
+            echo "<td>" . $row["cantidad_extra"] . "</td>";
+            echo "<td>" . $row["cantidad_primera"] . "</td>";
+            echo "<td>" . $row["cantidad_segunda"] . "</td>";
+            echo "<td>" . $row["cantidad_riche"] . "</td>";  
+         
             echo "<td class='acciones-container'>";
-            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["id_lote"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver
-            </span></a></div>";
-            echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["fecha_recogida"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+            echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
             echo "<div class='btn-icon-container'><form method='post' style='display: inline;'>
-                  <input type='hidden' name='eliminar_proveedor' value='" . $row["id_producto"] . "'>
-                  <button type='submit' class='btn-icon eliminar-proveedor' title=' Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>
+                  <input type='hidden' name='eliminar_cosecha' value='" . $row["id"] . "'>
+                  <button type='submit' class='btn-icon eliminar-cosecha' title=' Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>
                   </form></div>";
             echo "</td>";
             echo "</tr>";
@@ -261,8 +258,9 @@ if ($conexion->connect_error) {
         echo "</table>";
 
         echo "<div class='text-center mt-4'>
-            <a href='insert_proveedor.php' class='btn btn-success' title='Crear Proveedor'><i class='bi bi-person-plus-fill'></i> Crear Proveedor</a>
-        </div>";
+        <a href='../interfaz_admin/Lotes.php' title='Añadir'><i class='fa-solid fa-plus-minus'></i>Añadir cosecha</a>
+    </div>";
+    
     } else {
         echo "No se encontraron resultados";
     }
