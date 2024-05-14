@@ -43,6 +43,7 @@ $conexion->close();
 
 <?php
 // include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
 
@@ -61,7 +62,6 @@ $conexion->close();
 
         body {
             font-family: 'Poppins', sans-serif;
-            padding: 20px;
         }
 
         .TITULO {
@@ -195,7 +195,7 @@ $conexion->close();
 </body>
 <?php
 echo "<br><br><br><br><br>";
-include_once '../../view/layout/footer-admin.html';
+include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php');
 ?>
 
 </html>
