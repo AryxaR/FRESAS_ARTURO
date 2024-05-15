@@ -1,26 +1,37 @@
-<?php 
-require_once '../../controller/conexion.php';
+<?php
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(isset($_POST['id']) && is_numeric($_POST['id'])){
-        $id = $_POST['id'];
+$servidor = "localhost"; // Nombre del servidor de la base de datos
+$usuario = "root"; // Nombre de usuario de la base de datos
+$password = ""; // Contraseña de la base de datos
+$base_datos = "proyecto"; // Nombre de la base de datos
 
-        $sqlDelete = "DELETE FROM lotes WHERE id = $id";
+// Crear una nueva conexión
+$conexion = new mysqli($servidor, $usuario, $password, $base_datos);
 
-        if($conn->query($sqlDelete) === TRUE){
-            http_response_code(200); // OK
-            exit(); 
-        } else {
-            http_response_code(500); // Internal Server Error
-            exit();
-        }
+// Verifica si se ha enviado el formulario y si se ha proporcionado el parámetro eliminar_cosecha
+if(isset($_POST['eliminar_cosecha'])) {
+    // Incluye el archivo de conexión a la base de dato
+
+    // Sanitiza el valor del parámetro eliminar_cosecha para evitar inyección de SQL
+    $id = intval($_POST['eliminar_cosecha']);
+
+    // Prepara la consulta SQL para eliminar el registro de la base de datos
+    $sql = "DELETE FROM lotes WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    // Ejecuta la consulta SQL
+    if ($stmt->execute()) {
+        echo "Registro eliminado correctamente.";
     } else {
-        http_response_code(400); // Bad Request
-        exit();
+        echo "Error al eliminar el registro: " . $conexion->error;
     }
-} else {
-    http_response_code(405); // Method Not Allowed
-    exit();
-}
 
+    // Cierra la conexión
+    $stmt->close();
+    $conexion->close();
+} else {
+    // Si no se ha enviado el formulario, redirecciona a alguna página de error o realiza alguna acción adicional.
+    echo "No se ha proporcionado el parámetro eliminar_cosecha.";
+}
 ?>
