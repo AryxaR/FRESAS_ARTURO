@@ -344,6 +344,30 @@
                                     doc.styles[key] = styles[key];
                                 }
                             }
+
+                               var columnWidths = [
+                        '7%',  
+                        '12%',  
+                        '22%',
+                        '31%',
+                        '18%',
+                        '10%'
+                    ];
+
+                    // Busca la tabla y ajusta los anchos de las columnas
+                    var table = doc.content[doc.content.length - 1].table;
+
+                    if (table) {
+                        table.widths = columnWidths;
+                        
+                    }
+
+                    // Ajusta la fuente y el tamaño para mejorar la legibilidad
+                    doc.defaultStyle.fontSize = 10; // Ajusta el tamaño de la fuente
+                    doc.styles.tableHeader.fontSize = 12; 
+                        },
+                        exportOptions: {
+                        columns: ':not(:last-child)',
                         }
                     },
                     {
