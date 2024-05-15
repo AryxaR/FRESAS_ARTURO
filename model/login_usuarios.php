@@ -13,9 +13,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- JS de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -49,12 +46,17 @@
                     <?php
                     if (isset($_GET['msj_error'])) {
                         $msj_error = $_GET['msj_error'];
-                        $mostrar = '<div id="mensaje_error" class= "alert alert-danger" role="alert">' . $msj_error . '</div>';
+                        $mostrar = '<div class= "alert alert-danger" role="alert">' . $msj_error . '</div>';
                         echo $mostrar;
+                        header('refresh:1;url=login_usuarios.php');
                     }
 
                     if (isset($_GET['mensaje_inactivo'])) {
                         $mensaje_inactivo = $_GET['mensaje_inactivo'];
+                    }
+
+                    if (isset($_GET['msj_registro'])) {
+                        $msj_registro = $_GET['msj_registro'];
                     }
                     ?>
                     <input type="text" placeholder="Cedula" name="Cedula" required>
@@ -127,10 +129,21 @@
                 });
             });
         });
-        
-        if(window.location.search.includes('msj_error_2')) {
-            document.getElementById('btn__registrarse').click();
-        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.search.includes('msj_error_2')) {
+                console.log("si reconoce que existe la variable en js");
+                // Simula el evento de click en lugar de llamar al método click()
+                var btnRegistrarse = document.getElementById('btn__registrarse');
+                if (btnRegistrarse) { // Verifica que el botón exista
+                    btnRegistrarse.dispatchEvent(new MouseEvent('click'));
+                    console.log("se dio el click");
+                } else {
+                    console.error("El botón 'btn__registrarse' no se encontró.");
+                }
+            }
+        });
+
 
         if (window.location.search.includes('mensaje_inactivo')) {
             Swal.fire({
@@ -138,6 +151,16 @@
                 title: 'Usuario Inhabilitado',
                 text: 'El usuario ha sido desactivado, para más información comuníquese con nosotros'
             })
+        }
+
+        if (window.location.search.includes('msj_registro')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Usuario registrado con éxito",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     </script>
 

@@ -18,6 +18,9 @@
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">
                     <li>
+                        <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php"><span class="cerrar">Backup</span></a>
+                    </li>
+                    <li>
                         <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php"><span class="cerrar">Cerrar Sesion</span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
                     </li>
                 </ul>

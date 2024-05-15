@@ -13,6 +13,10 @@
     <!-- Agregar CSS de DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css">
 
+    <!-- Link de sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
@@ -252,6 +256,10 @@ $conexion = new mysqli("localhost", "root", "", "proyecto");
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
+
+if (isset($_GET['msj_exito'])) {
+    $mensaje_exito = $_GET['msj_exito'];
+}
 ?>
 
 <body>
@@ -381,6 +389,16 @@ if ($conexion->connect_error) {
 
             });
         });
+
+        if (window.location.search.includes('msj_exito')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registro actualizado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
 
 </body>

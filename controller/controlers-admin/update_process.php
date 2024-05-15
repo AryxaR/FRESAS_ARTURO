@@ -14,7 +14,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sqlUpdate) == TRUE) {
         $mensaje_exito = "Registro actualizado";
         header( "Location: ../../../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php?mensaje_exito= $mensaje_exito" );
-        // echo '<script>alert("Registro actualizado"); window.location.href = "../../../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php";</script>';
         exit(); 
     }else{
         echo "Error al actualizar el registro: " . $conn->error;

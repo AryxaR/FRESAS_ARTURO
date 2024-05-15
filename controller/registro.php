@@ -43,19 +43,10 @@ if (mysqli_num_rows($verificar_correo) > 0) {
 $ejecutar = mysqli_query($conn, $query);
 
 if ($ejecutar) {
-    ?>
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Registro exitoso',
-            text: 'Usuario registrado con éxito'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = "../model/login_usuarios.php";
-            }
-        });
-    </script>
-    <?php
+
+    $msj_registro = 'Usuario registrado con éxito';
+    header("Location: ../model/login_usuarios.php?msj_registro= $msj_registro");
+
 }
 ?>
 </body>
