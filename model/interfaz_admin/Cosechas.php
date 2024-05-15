@@ -145,7 +145,7 @@
             display: flex;
             justify-content: space-between;
             /* height: 100%; */
-            font-size: 0.5em;
+            font-size: 0.4em;
         }
 
         .contenedor-cosechas {
