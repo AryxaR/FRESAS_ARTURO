@@ -233,7 +233,7 @@ if ($conexion->connect_error) {
         <th><i class='bi bi-calendar-check'></i> Fecha de Recogida</th>
         <th><i class='bi bi-basket'></i> Cantidad Recogida Extra</th>
         <th><i class='bi bi-basket'></i> Cantidad Recogida Primera</th>
-        <th><i class='bi bi-basket'></i> Cantidad Reco Segunda</th>
+        <th><i class='bi bi-basket'></i> Cantidad Recogida Segunda</th>
         <th><i class='bi bi-basket'></i> Cantidad Recogida Riche</th>
         <th style='text-align: center;'><i class='bi bi-shield-lock'></i> Acciones</th>
     </tr>
