@@ -49,4 +49,7 @@
         <input class="boton" type="submit" value="Enviar">
     </form>
 </body>
+<?php
+    include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+    ?>
 </html>
