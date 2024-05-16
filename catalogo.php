@@ -50,7 +50,9 @@ function mostrarModalCarrito()
         echo '<th>Producto</th>';
         echo '<th>Categoría</th>';
         echo '<th>Precio Unitario</th>';
-        echo '<th>Cantidad</th>';
+        echo '<th>';
+        echo 'Cantidad<br><span style="font-weight: normal; font-size: smaller;">(Canastillas)</span>';
+        echo '</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -177,13 +179,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>CATÁLOGO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style_catalogo.css">
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
             top:150px !important;
         }
+
     </style>
-    <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style-catalogo.css">
 
 </head>
 
@@ -222,7 +225,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php } else { ?>
                             <img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">
                         <?php } ?>
-                        <h6>*EL PRECIO DE VENTA ES POR "CANASTILLA = 8KG"</h6>
+                        <h5>*EL PRECIO DE VENTA ES POR CANASTILLA*</h5>
+                        <h6>UNA CANASTILLA = "8KG" </h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>
                 
                         <form method="post" action="">
