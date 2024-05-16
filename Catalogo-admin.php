@@ -67,9 +67,22 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .btn-custom a{
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: black;
+        }
+
         .btn-custom:hover {
+            color: white;
             background-color: #d22c5d;
-            color: #f8eaef;
+            cursor: pointer;
+        }
+
+        .btn-custom a:hover {
+            color: white;
+            background-color: #d22c5d;
             cursor: pointer;
         }
 
@@ -129,7 +142,6 @@
                     die("Error de conexión: " . $conexion->connect_error);
                 }
 
-                // Realizar una consulta para obtener los productos
                 $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
                 $result = $conn->query($sql);
 
@@ -150,7 +162,7 @@
                         echo '</td>';
                         echo '<td>$' . $row["precio_producto"] . '</td>';
                         echo '<td>';
-                        echo '<button type="button" class="btn-custom">Actualizar</button>';
+                        echo '<button type="button" class="btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
                         echo '</td>';
                         echo '</tr>';
                     }
