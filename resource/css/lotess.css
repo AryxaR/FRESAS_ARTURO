@@ -35,7 +35,6 @@ h1 {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 300px;
-    height: 90%; /* Ajustamos la altura */
     max-height: 600px; /* Añadimos una altura máxima */
     text-align: center;
     justify-content: center;

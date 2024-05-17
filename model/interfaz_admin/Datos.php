@@ -179,7 +179,7 @@ $conexion->close();
 </body>
 <?php
 echo "<br><br><br><br><br>";
-include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+include_once '../../view/layout/footer-admin.html';
 ?>
 
 </html>

@@ -24,12 +24,15 @@
             font-size: 24px;
             font-weight: bold;
             text-shadow: 2px 2px 4px #888888;
+            font-family: 'Poppins', sans-serif;
         }
 
         .tabla-container {
-            width: 70%; /* Ajustar el ancho del contenedor de la tabla */
+            width: 70%;
+            /* Ajustar el ancho del contenedor de la tabla */
             margin: 0 auto;
             z-index: -999;
+            font-family: 'Poppins', sans-serif;
         }
 
         .tabla-productos {
@@ -42,6 +45,7 @@
             border: 1px solid #d40748;
             padding: 8px;
             text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         .tabla-productos th {
@@ -51,7 +55,6 @@
 
         .tabla-productos img {
             max-width: 100px;
-            height: auto;
             display: block;
             margin: auto;
         }
@@ -64,12 +67,26 @@
             padding: 2px 2px;
             text-decoration: none;
             transition: background-color 0.3s, color 0.3s;
+            font-size: 1rem;
             font-family: 'Poppins', sans-serif;
         }
 
+        .btn-custom a {
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: black;
+        }
+
         .btn-custom:hover {
+            color: white;
             background-color: #d22c5d;
-            color: #f8eaef;
+            cursor: pointer;
+        }
+
+        .btn-custom a:hover {
+            color: white;
+            background-color: #d22c5d;
             cursor: pointer;
         }
 
@@ -85,17 +102,16 @@
             display: none;
         }
 
-        .dataTables_wrapper .dataTables_filter input{
+        .dataTables_wrapper .dataTables_filter input {
             margin-bottom: 5%;
         }
-
     </style>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
-            top:150px !important;
+            top: 150px !important;
         }
     </style>
-     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
     <title>CATALOGO</title>
 </head>
 
@@ -114,10 +130,10 @@
         <table id="tabla-productos" class="tabla-productos">
             <thead>
                 <tr>
-                    <th>Categoria</th>
+                    <th style="width: 150px;">Categoria</th>
                     <th>Foto</th>
                     <th>Precio</th>
-                    <th>Acciones</th>
+                    <th style="width: 170px;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -129,7 +145,6 @@
                     die("Error de conexión: " . $conexion->connect_error);
                 }
 
-                // Realizar una consulta para obtener los productos
                 $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
                 $result = $conn->query($sql);
 
@@ -150,7 +165,7 @@
                         echo '</td>';
                         echo '<td>$' . $row["precio_producto"] . '</td>';
                         echo '<td>';
-                        echo '<button type="button" class="btn-custom">Actualizar</button>';
+                        echo '<button type="button" class="btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
                         echo '</td>';
                         echo '</tr>';
                     }
@@ -164,21 +179,21 @@
                 $conexion->close();
                 ?>
 
-                </div>
-                </section>
-                <br><br><br>
-                <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-                <script>
-                    $(document).ready(function() {
-                        $('#tabla-productos').DataTable({
-                            "paging": false, // Deshabilitar paginación
-                            "ordering": false // Deshabilitar ordenamiento
-                        });
-                    });
-                </script>
+    </div>
+    </section>
+    <br><br><br>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tabla-productos').DataTable({
+                "paging": false, // Deshabilitar paginación
+                "ordering": false // Deshabilitar ordenamiento
+            });
+        });
+    </script>
 
-                <?php include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
+    <?php include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
 
 </body>
 
