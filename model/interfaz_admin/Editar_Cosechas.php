@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>ACTUALIZACION</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
@@ -17,6 +17,12 @@
             border: solid black 1px;
             margin-top: 50px;
             align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h2{
+            margin-top: -2%;
+            font-family: 'Poppins', sans-serif;
         }
 
         .btn-volver {
@@ -40,14 +46,7 @@
         }
 
         .formulario-cosechas {
-            margin-top: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .formulario-cosechas {
-            margin-top: 5%;
+            margin-top: 2%;
             background-color: #f2f2f2;
             padding: 20px;
             border: solid 2px black;
@@ -55,10 +54,11 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             width: 300px;
             max-height: 600px;
-            /* Añadimos una altura máxima */
             text-align: center;
             justify-content: center;
+            font-family: 'Poppins', sans-serif;
         }
+
     </style>
 
 </head>
@@ -99,7 +99,9 @@
                     <input type="text" name="cantidad_segunda" value="<?php echo $row['cantidad_segunda']; ?>"><br><br>
                     <label for="cantidad_riche">Cantidad riche:</label>
                     <input type="text" name="cantidad_riche" value="<?php echo $row['cantidad_riche']; ?>"><br><br>
-                    <input type="submit" name="actualizar" value="Actualizar">
+                    <button type="submit" name="actualizar" class="btn btn-success">Actualizar</button>
+
+
                 </form>
         <?php
             } else {
@@ -110,6 +112,7 @@
         ?>
     </div>
 </body>
+<br><br><br><br>
 <?php include_once '../../view/layout/footers/footer-admin.php'; ?>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

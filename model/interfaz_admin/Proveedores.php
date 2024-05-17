@@ -34,13 +34,10 @@
         .TITULO {
             margin-top: 60px;
             text-align: center;
-            /* Centra el texto horizontalmente */
             font-size: 24px;
-            /* Tamaño de la fuente */
             font-weight: bold;
-            /* Negrita */
             text-shadow: 2px 2px 4px #888888;
-            /* Aplica relieve al texto */
+            font-family: 'Poppins', sans-serif;
         }
 
 
@@ -103,6 +100,7 @@
             width: 95%;
             max-width: 1200px;
             border-collapse: collapse;
+            font-family: 'Poppins', sans-serif;
         }
 
         .usuarios-table th,
@@ -110,6 +108,7 @@
             padding: 8px;
             text-align: left;
             border: 1px solid #666666;
+            font-family: 'Poppins', sans-serif;
         }
 
         .usuarios-table th {
@@ -122,7 +121,6 @@
             border-radius: 5%;
             border: 1px solid #d22c5d;
             padding: 2px 8px;
-            /* Espaciado interno */
             text-decoration: none;
             transition: background-color 0.3s, color 0.3s;
             font-size: 1rem;
@@ -200,35 +198,26 @@
             .btn-custom {
                 width: 10%;
                 padding: 8px 8px;
-                /* Reducir el relleno para dispositivos más pequeños */
                 margin-left: 30%;
                 margin-top: 10px;
-                /* Agregar un margen superior para separar los botones */
                 display: block;
-                /* Mostrar los botones como bloques para que se apilen verticalmente */
             }
         }
 
-        /* Media query para ajustar el botón "Crear Proveedor" en tamaños de pantalla intermedios */
         @media screen and (min-width: 776px) and (max-width: 1198px) {
             .btn-custom {
                 margin-top: 20px;
-                /* Aumentar el margen superior para separar el botón de la tabla */
                 margin-left: calc(50% - 100px);
-                /* Centrar el botón en la pantalla */
                 max-width: 100px;
-                /* Establecer un ancho máximo para el botón */
             }
         }
 
         @media screen and (min-width: 1200px) {
             .btn-custom {
                 margin-top: 20px;
-                /* Aumentar el margen superior para separar el botón de la tabla */
                 margin-left: calc(50% - 100px);
-                /* Centrar el botón en la pantalla */
                 max-width: 200px;
-                /* Establecer un ancho máximo para el botón */
+
             }
         }
 
@@ -236,11 +225,9 @@
             .btn-icon {
                 font-size: 12px;
                 padding: 6px 10px;
-                /* Reducir el relleno para dispositivos más pequeños */
                 margin-bottom: 5px;
-                /* Agregar un margen inferior para separar los botones */
                 display: inline-block;
-                /* Mostrar los botones en línea para evitar que se apilen verticalmente */
+
             }
         }
     </style>

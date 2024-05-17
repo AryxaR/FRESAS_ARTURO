@@ -18,13 +18,9 @@
 
 
         body {
-            /* Establecer la imagen de fondo */
             background-image: url(../FRESAS_ARTURO/resource/img/index/fondonitido.png);
-            /* Centrar y estirar la imagen para cubrir toda la página */
             background-size: cover;
-            /* Fijar la imagen de fondo para que no se desplace con el contenido */
             background-attachment: fixed;
-            /* Centrar la imagen de fondo */
             background-position: center;
             font-family: 'Poppins', sans-serif;
 
@@ -34,13 +30,10 @@
         .TITULO {
             margin-top: 60px;
             text-align: center;
-            /* Centra el texto horizontalmente */
             font-size: 24px;
-            /* Tamaño de la fuente */
             font-weight: bold;
-            /* Negrita */
             text-shadow: 2px 2px 4px #888888;
-            /* Aplica relieve al texto */
+            font-family: 'Poppins', sans-serif;
         }
 
 
@@ -110,6 +103,7 @@
             padding: 8px;
             text-align: left;
             border: 1px solid #666666;
+            font-family: 'Poppins', sans-serif;
         }
 
         .usuarios-table th {

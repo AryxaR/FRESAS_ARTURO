@@ -36,19 +36,28 @@ $conexion->close();
     <title>Editar Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
         .form-container {
             background-color: #f8f9fa;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             margin-top: 50px;
+            font-family: 'Poppins', sans-serif;
         }
+
+        h2{
+            font-family: 'Poppins', sans-serif;
+        }
+        
         .form-group label {
             font-weight: bold;
         }
         .form-group input[type="text"] {
             width: 100px;
             margin: 0 auto;
+            font-family: 'Poppins', sans-serif;
         }
         .form-group img {
             display: block;
@@ -61,6 +70,7 @@ $conexion->close();
             border-radius: 5px;
             padding: 10px 20px;
             text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
         }
         .btn-custom:hover {
             background-color: #0056b3;
