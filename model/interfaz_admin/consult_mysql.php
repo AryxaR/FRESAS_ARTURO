@@ -30,6 +30,7 @@
             font-size: 24px;
             font-weight: bold;
             text-shadow: 2px 2px 4px #888888;
+            font-family: 'Poppins', sans-serif;
         }
 
         .dataTables_wrapper {
@@ -82,29 +83,23 @@
 
 
         .usuarios-table {
-            width: 95%;
-            /* Ancho de la tabla ajustado */
-            max-width: 1490px;
-            /* Ancho máximo de la tabla */
-            margin: 20px auto;
-            /* Centrar la tabla */
+            width: 95%;       
+            max-width: 1490px;       
+            margin: 20px auto;      
             border-collapse: collapse;
-            /* Colapsar bordes de las celdas */
+            font-family: 'Poppins', sans-serif;
         }
 
         .usuarios-table th,
         .usuarios-table td {
-            padding: 8px;
-            /* Espaciado interno */
-            text-align: left;
-            /* Alineación del texto */
-            border: 1px solid #666666;
-            /* Borde de las celdas */
+            padding: 8px;        
+            text-align: left;        
+            border: 1px solid #666666;    
+            font-family: 'Poppins', sans-serif;   
         }
 
         .usuarios-table th {
             background-color: #f2f2f2;
-            /* Color de fondo de las celdas de encabezado */
         }
 
         .btn-custom {
@@ -349,6 +344,30 @@
                                     doc.styles[key] = styles[key];
                                 }
                             }
+
+                               var columnWidths = [
+                        '7%',  
+                        '12%',  
+                        '22%',
+                        '31%',
+                        '18%',
+                        '10%'
+                    ];
+
+                    // Busca la tabla y ajusta los anchos de las columnas
+                    var table = doc.content[doc.content.length - 1].table;
+
+                    if (table) {
+                        table.widths = columnWidths;
+                        
+                    }
+
+                    // Ajusta la fuente y el tamaño para mejorar la legibilidad
+                    doc.defaultStyle.fontSize = 10; // Ajusta el tamaño de la fuente
+                    doc.styles.tableHeader.fontSize = 12; 
+                        },
+                        exportOptions: {
+                        columns: ':not(:last-child)',
                         }
                     },
                     {

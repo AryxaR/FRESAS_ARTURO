@@ -1,34 +1,55 @@
 <?php
-// Conectar a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "proyecto";
+include_once("../../FRESAS_ARTURO/controller/conexion.php");
 
-$conexion = new mysqli("localhost", "root", "", "proyecto");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recibe los datos del formulario
+    $cantidad_extra = $_POST['cantidad_extra'];
+    $cantidad_primera = $_POST['cantidad_primera'];
+    $cantidad_segunda = $_POST['cantidad_segunda'];
+    $cantidad_riche = $_POST['cantidad_riche'];
 
+    // Prepara la consulta SQL para la inserción de datos en recoleccion_fresas
+    $sql_insert_recoleccion = "INSERT INTO lotes (cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche) VALUES ";
+    $sql_insert_recoleccion .= "(";
+    $sql_insert_recoleccion .= intval($cantidad_extra) . ", ";
+    $sql_insert_recoleccion .= intval($cantidad_primera) . ", ";
+    $sql_insert_recoleccion .= intval($cantidad_segunda) . ", ";
+    $sql_insert_recoleccion .= intval($cantidad_riche) . ")";
 
-// Verificar la conexión
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
+    // Ejecuta la consulta de inserción en recoleccion_fresas
+    if ($conn->query($sql_insert_recoleccion) === TRUE) {
+        echo "Datos de recolección insertados correctamente.";
+        
+        // Actualiza el stock en la tabla productos
+        if ($cantidad_extra > 0) {
+            $sql_update_extra = "UPDATE productos SET Stock = Stock + " . intval($cantidad_extra) . " WHERE categoria_producto = 'Extra'";
+            if ($conn->query($sql_update_extra) !== TRUE) {
+                echo "Error al actualizar el stock de Fresas Extra: " . $conn->error;
+            }
+        }
+        if ($cantidad_primera > 0) {
+            $sql_update_primera = "UPDATE productos SET Stock = Stock + " . intval($cantidad_primera) . " WHERE categoria_producto = 'Primera'";
+            if ($conn->query($sql_update_primera) !== TRUE) {
+                echo "Error al actualizar el stock de Fresas Primera: " . $conn->error;
+            }
+        }
+        if ($cantidad_segunda > 0) {
+            $sql_update_segunda = "UPDATE productos SET Stock = Stock + " . intval($cantidad_segunda) . " WHERE categoria_producto = 'Segunda'";
+            if ($conn->query($sql_update_segunda) !== TRUE) {
+                echo "Error al actualizar el stock de Fresas Segunda: " . $conn->error;
+            }
+        }
+        if ($cantidad_riche > 0) {
+            $sql_update_riche = "UPDATE productos SET Stock = Stock + " . intval($cantidad_riche) . " WHERE categoria_producto = 'Riche'";
+            if ($conn->query($sql_update_riche) !== TRUE) {
+                echo "Error al actualizar el stock de Fresas Riche: " . $conn->error;
+            }
+        }
+    } else {
+        echo "Error al insertar datos de recolección: " . $conn->error;
+    }
 }
-// Recibir datos del formulario
-$cantidad_recogida_extra = $_POST['cantidad_recogida_extra'];
-$cantidad_recogida_primera = $_POST['cantidad_recogida_primera'];
-$cantidad_recogida_segunda = $_POST['cantidad_recogida_segunda'];
-$cantidad_recogida_riche = $_POST['cantidad_recogida_riche'];
 
-// Insertar datos en la tabla "lotes"
-$sql = "INSERT INTO lotes (fecha_recogida, id_producto, cantidad_recogida_extra, cantidad_recogida_primera, cantidad_recogida_segunda, cantidad_recogida_riche) VALUES (CURRENT_TIMESTAMP, 1, $cantidad_recogida_extra, 0, 0, 0),
-                                                                                                                                             (CURRENT_TIMESTAMP, 2, 0, $cantidad_recogida_primera, 0, 0),
-                                                                                                                                             (CURRENT_TIMESTAMP, 3, 0, 0, $cantidad_recogida_segunda, 0),
-                                                                                                                                             (CURRENT_TIMESTAMP, 4, 0, 0, 0, $cantidad_recogida_riche)";
-
-if ($conexion->multi_query($sql) === TRUE) {
-    echo "Datos ingresados correctamente";
-} else {
-    echo "Error: " . $sql . "<br>" . $conexion->error;
-}
-
-$conexion->close();
+// Cierra la conexión
+$conn->close();
 ?>
