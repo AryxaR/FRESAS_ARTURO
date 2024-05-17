@@ -63,40 +63,21 @@ if ($resultado->num_rows > 0) {
         ';
 
         $mail->send();
-        ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Código Enviado',
-                text: 'Revise su correo'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "../../FRESAS_ARTURO/model/login_usuarios.php";
-                }
-            });
-        </script>
-        <?php
+
+        $msj_exito = 'Código Enviado correctamente. Ingrese a su correo';
+        header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_exito= $msj_exito");
+        
     } catch (Exception $e) {
-        ?>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Message could not be sent. Mailer Error: <?php echo $mail->ErrorInfo; ?>'
-            });
-        </script>
-        <?php
+
+        $msj_error = $mail->ErrorInfo;
+        header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_error_2= $msj_error");
+        
     }
 } else {
-    ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Correo Inválido',
-            text: 'El correo ingresado no se encuentra registrado'
-        });
-    </script>
-    <?php  
+
+    $msj_inex = 'Correo Inválido. El correo ingresado no se encuentra registrado';
+        header("Location: ../../FRESAS_ARTURO/model/enviarCorreo.php?msj_inex= $msj_inex");
+
 }
 
 ?>

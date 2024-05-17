@@ -48,7 +48,7 @@
                         $msj_error = $_GET['msj_error'];
                         $mostrar = '<div class= "alert alert-danger" role="alert">' . $msj_error . '</div>';
                         echo $mostrar;
-                        header('refresh:1;url=login_usuarios.php');
+                        header('refresh:2;url=login_usuarios.php');
                     }
 
                     if (isset($_GET['mensaje_inactivo'])) {
@@ -58,6 +58,18 @@
                     if (isset($_GET['msj_registro'])) {
                         $msj_registro = $_GET['msj_registro'];
                     }
+
+                    if (isset($_GET['msj_exito'])) {
+                        $msj_exito = $_GET['msj_exito'];
+                    }
+                    if (isset($_GET['msj_error_2'])) {
+                        $msj_exito = $_GET['msj_error_2'];
+                    }
+
+                    if (isset($_GET['click'])) {
+                        $msj_exito = $_GET['click'];
+                    }
+
                     ?>
                     <input type="text" placeholder="Cedula" name="Cedula" required>
                     <input class="visible" type="password" placeholder="Contraseña" name="Contrasena" required>
@@ -144,7 +156,23 @@
             }
         });
 
+        // CLICK IMAGINARIO PARA REGISTRO
 
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.search.includes('click')) {
+                console.log("si reconoce que existe la variable en js");
+                // Simula el evento de click en lugar de llamar al método click()
+                var btnRegistrarse = document.getElementById('btn__registrarse');
+                if (btnRegistrarse) { // Verifica que el botón exista
+                    btnRegistrarse.dispatchEvent(new MouseEvent('click'));
+                    console.log("se dio el click");
+                } else {
+                    console.error("El botón 'btn__registrarse' no se encontró.");
+                }
+            }
+        });
+
+        // ALERT DE INACTIVAR Y ACTIVAR USUARIO
         if (window.location.search.includes('mensaje_inactivo')) {
             Swal.fire({
                 icon: 'error',
@@ -152,7 +180,7 @@
                 text: 'El usuario ha sido desactivado, para más información comuníquese con nosotros'
             })
         }
-
+        // ALERT DE REGISTRO DE NUEVO USUARRIO
         if (window.location.search.includes('msj_registro')) {
             Swal.fire({
                 position: "center",
@@ -162,6 +190,25 @@
                 timer: 1500
             });
         }
+
+        // ALERT RECUPERAR CONTRASEÑA ENVIADO 
+        if (window.location.search.includes('msj_exito')) {
+            Swal.fire({
+                title: "Ingrese a su correo",
+                text: "Código Enviado correctamente.",
+                icon: "success"
+            });
+        }
+        // ALERT ERROR AL ENVIAR CORREO
+
+        if (window.location.search.includes('msj_error_2')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "<?php $msj_error?>",
+            });
+        }
+
     </script>
 
     <script src="../resource/js/script.js"></script>

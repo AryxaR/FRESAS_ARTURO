@@ -28,8 +28,8 @@ if (isset($_POST['save'])) {
     $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo' WHERE Id_cliente='$id_cliente'";
 
     mysqli_query($conn, $sql);
-
-    header('location: ../model/perfil.php');
+    $msj_actualizado = 'Informacion actualizada';
+    header("location: ../model/perfil.php?msj_actualizado= $msj_actualizado");
 }
 
 ?>
@@ -82,7 +82,7 @@ if (isset($_POST['save'])) {
                     </li>
                 </ul>
                 <div class="contenedor-modificar">
-                    <input class="modificar" type="submit" name="save" value="modificar datos"></input>
+                    <input class="modificar" type="submit" name="save" value="Actualizar datos"></input>
                 </div>
             </form>
         </div>
