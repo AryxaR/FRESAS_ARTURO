@@ -247,12 +247,6 @@ if ($conexion->connect_error) {
          
             echo "<td class='acciones-container'>";
             echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            echo "<div class='btn-icon-container'>";
-            echo "<form action='../../controller/controlers-admin/delete_cosechas.php' method='post' style='display: inline;'>";
-            echo "<input type='hidden' name='eliminar_cosecha' value='" . $row["id"] . "'>";
-            echo "<button type='submit' class='btn-icon eliminar-cosecha' title='Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>";
-            echo "</form>";
-            echo "</div>";
             echo "</td>";
             echo "</tr>";
             
