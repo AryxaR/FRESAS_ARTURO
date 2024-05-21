@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ejecuta la consulta de inserción en recoleccion_fresas
     if ($conn->query($sql_insert_recoleccion) === TRUE) {
         echo "Datos de recolección insertados correctamente.";
+        $msj_cosecha = 'Datos de recolección insertados correctamente.';
+        header("Location: ../model/interfaz_admin/Cosechas.php?msj_cosecha= $msj_cosecha");
         
         // Actualiza el stock en la tabla productos
         if ($cantidad_extra > 0) {

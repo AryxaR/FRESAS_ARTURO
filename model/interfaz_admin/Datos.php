@@ -62,7 +62,6 @@ $conexion->close();
 
         body {
             font-family: 'Poppins', sans-serif;
-            /* padding: 20px; */
             background-image: url(../../../FRESAS_ARTURO//resource//img/index//fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;

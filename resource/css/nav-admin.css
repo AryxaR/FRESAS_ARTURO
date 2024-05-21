@@ -68,6 +68,10 @@
   color: white;
 }
 
+.formContainer {
+  display: none;
+}
+
 @media screen and (max-width: 490px) {
   .cerrar {
     display: none;

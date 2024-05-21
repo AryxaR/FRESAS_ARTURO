@@ -258,7 +258,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $('#modal-carrito').modal('show');
         });
     </script>
+    <section id="section-contacto">
+        <br><br><br><br><br><br>
+        <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+
+    </section>
 </body>
-<br><br><br><br><br><br>
-<?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
 </html>

@@ -102,6 +102,10 @@
             background-color: #f2f2f2;
         }
 
+        .usuarios-table th:nth-child(7) {
+            width: 200px;
+        }
+
         .btn-custom {
             background-color: #f8eaef;
             color: black;

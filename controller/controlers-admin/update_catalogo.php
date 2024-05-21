@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("dsi", $precio_producto, $nombre_imagen, $id_producto);
 
     if ($stmt->execute()) {
-        echo "Producto actualizado exitosamente.";
+        $msj_exito = 'Producto actualizado exitosamente.';
+        header("Location: ../../../FRESAS_ARTURO/Catalogo-admin.php?msj_exito= $msj_exito");
     } else {
         echo "Error al actualizar el producto: " . $stmt->error;
     }

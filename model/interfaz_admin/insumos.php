@@ -20,8 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre_insumo']) && is
         $stmt->bind_param("iisss", $id_proveedor, $id_recurso, $_SESSION['tipo_recurso'], $nombre_insumo, $costo_producto);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Proveedor e Insumo registrado correctamente');</script>";
-            header("Location: Proveedores.php");
+
+            $msj_proveedor = 'Proveedor e Insumo registrado correctamente';
+            header("Location: Proveedores.php?msj_proveedor= $msj_proveedor");
             exit();
         } else {
             echo "Error al guardar el insumo en la base de datos: " . $stmt->error;

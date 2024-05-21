@@ -27,6 +27,10 @@ h1 {
     text-shadow: 2px 2px 4px #888888; /* Aplica relieve al texto */
 }
 
+.contenedor-lotes {
+  border: solid black 1px;
+}
+
 .contenedor{
     margin-top: -15%;
     background-color: #f2f2f2;
