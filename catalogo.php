@@ -260,5 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </body>
 <br><br><br><br><br><br>
+<section class="section-contacto">
 <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+</section>
 </html>
