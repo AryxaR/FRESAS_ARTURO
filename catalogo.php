@@ -114,27 +114,23 @@ function verificarStock($id_producto, $cantidad, $conn)
         $row = $result->fetch_assoc();
         $stock_disponible = $row['Stock'];
         if ($cantidad <= $stock_disponible) {
-            // Si la cantidad ingresada no supera el stock disponible, agregar al carrito
-            return true;
+            return array('suficiente' => true, 'stock_disponible' => $stock_disponible);
         } else {
-            // Si la cantidad ingresada supera el stock disponible, mostrar mensaje de alerta
-            return false;
+            return array('suficiente' => false, 'stock_disponible' => $stock_disponible);
         }
     } else {
-        // Si no se encuentra el producto, mostrar mensaje de alerta
-        return false;
+        return array('suficiente' => false, 'stock_disponible' => 0);
     }
 }
 
-// Procesamiento del formulario para agregar productos al carrito
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['id_producto']) && isset($_POST['cantidad'])) {
         $id_producto = $_POST['id_producto'];
         $cantidad = $_POST['cantidad'];
 
-        // Verificar el stock disponible
-        if (verificarStock($id_producto, $cantidad, $conn)) {
-            // Si hay suficiente stock, agregar el producto al carrito
+        $verificacion = verificarStock($id_producto, $cantidad, $conn);
+
+        if ($verificacion['suficiente']) {
             $sql = "SELECT nombre_producto, categoria_producto, precio_producto FROM productos WHERE id_producto = $id_producto";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -143,32 +139,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $categoria = $row['categoria_producto'];
                 $precio = $row['precio_producto'];
 
-                // Agregar el producto al carrito
                 $_SESSION['carrito'][$id_producto] = array(
                     'nombre' => $nombre,
                     'categoria' => $categoria,
                     'precio' => $precio,
                     'cantidad' => $cantidad
                 );
-
-                // Redireccionar o mostrar mensaje de éxito
             } else {
-                // Si no se encuentra el producto, mostrar mensaje de error
             }
         } else {
+            $stock_disponible = $verificacion['stock_disponible'] . " Kg";
             echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
             echo '<script>';
             echo "Swal.fire({
-                        icon: 'error',
-                        title: '¡No se puede agregar el producto!',
-                        text: 'Stock insuficiente en la bodega',
-                        confirmButtonText: 'OK'
-                    });";
+            icon: 'error',
+            title: '¡No se puede agregar el producto!',
+            html: 'Stock insuficiente en la bodega.<br>Cantidad disponible: $stock_disponible',
+            confirmButtonText: 'OK'
+        });";
             echo '</script>';
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -261,6 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 <br><br><br><br><br><br>
 <section class="section-contacto">
-<?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+    <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
 </section>
+
 </html>
