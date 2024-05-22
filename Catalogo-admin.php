@@ -117,70 +117,68 @@
 
 <body>
 
-    <?php
-    require_once '../FRESAS_ARTURO/controller/conexion.php';
-    include_once '../FRESAS_ARTURO/View/layout/navs/nav-admin-redirect.php';
-    echo "<br><br><br>";
-    ?>
+<?php
+require_once '../FRESAS_ARTURO/controller/conexion.php';
+include_once '../FRESAS_ARTURO/View/layout/navs/nav-admin-redirect.php';
+echo "<br><br><br>";
+?>
 
-    <div class="TITULO">CATÁLOGO</div>
-    <br><br>
+<div class="TITULO">CATÁLOGO</div>
+<br><br>
 
-    <div class="tabla-container">
-        <table id="tabla-productos" class="tabla-productos">
-            <thead>
-                <tr>
-                    <th style="width: 150px;">Categoria</th>
-                    <th>Foto</th>
-                    <th>Precio</th>
-                    <th style="width: 170px;">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+<div class="tabla-container">
+    <table id="tabla-productos" class="tabla-productos">
+        <thead>
+            <tr>
+                <th style="width: 150px;">Categoria</th>
+                <th>Foto</th>
+                <th>Precio</th>
+                <th style="width: 170px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
 
-                $conexion = new mysqli("localhost", "root", "", "proyecto");
+            $conexion = new mysqli("localhost", "root", "", "proyecto");
 
-                if ($conexion->connect_error) {
-                    die("Error de conexión: " . $conexion->connect_error);
-                }
+            if ($conexion->connect_error) {
+                die("Error de conexión: " . $conexion->connect_error);
+            }
 
-                $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
-                $result = $conn->query($sql);
+            $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
+            $result = $conexion->query($sql);
 
-                if ($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
 
-                    while ($row = $result->fetch_assoc()) {
-                        $nombre_imagen = 'FRESA_' . strtoupper($row['categoria_producto']) . '.jpeg';
-                        $ruta_imagen = './model/uploads/' . $nombre_imagen;
-
-                        echo '<tr>';
-                        echo '<td>' . $row["categoria_producto"] . '</td>';
-                        echo '<td>';
-                        if (file_exists($ruta_imagen)) {
-                            echo '<img src="' . $ruta_imagen . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
-                        } else {
-                            echo '<img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">';
-                        }
-                        echo '</td>';
-                        echo '<td>$' . $row["precio_producto"] . '</td>';
-                        echo '<td>';
-                        echo '<button type="button" class="btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
-                        echo '</td>';
-                        echo '</tr>';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<tr>';
+                    echo '<td>' . $row["categoria_producto"] . '</td>';
+                    echo '<td>';
+                    if (!empty($row['imagen'])) {
+                        echo '<img src="' . $row['imagen'] . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
+                    } else {
+                        echo '<img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">';
                     }
-
-                    echo '</tbody>';
-                    echo '</table>';
-                } else {
-                    echo "<p>No se encontraron productos.</p>";
+                    echo '</td>';
+                    echo '<td>$' . $row["precio_producto"] . '</td>';
+                    echo '<td>';
+                    echo '<button type="button" class="btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
+                    echo '</td>';
+                    echo '</tr>';
                 }
 
-                $conexion->close();
-                ?>
+                echo '</tbody>';
+                echo '</table>';
+            } else {
+                echo "<p>No se encontraron productos.</p>";
+            }
 
-    </div>
-    </section>
+            $conexion->close();
+            ?>
+
+</div>
+</section>
+
     <br><br><br>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
