@@ -247,6 +247,10 @@ if ($conexion->connect_error) {
 if (isset($_GET['msj_exito'])) {
     $mensaje_exito = $_GET['msj_exito'];
 }
+
+if (isset($_GET['msj_proveedor'])) {
+    $mensaje_exito = $_GET['msj_proveedor'];
+}
 ?>
 
 <body>
@@ -460,6 +464,15 @@ if (isset($_GET['msj_exito'])) {
                 position: "center",
                 icon: "success",
                 title: "Registro actualizado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        if (window.location.search.includes('msj_proveedor')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Proveedor e Insumo registrado correctamente",
                 showConfirmButton: false,
                 timer: 1500
             });

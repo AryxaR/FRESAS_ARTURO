@@ -38,6 +38,15 @@ $conexion->close();
     <style>
          @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
+
+         body {
+            background-image: url(../../resource/img/index/fondoborroso.png);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
         .form-container {
             background-color: #f8f9fa;
             padding: 30px;

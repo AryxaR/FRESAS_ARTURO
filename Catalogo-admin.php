@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
+    <!-- sweerAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
@@ -121,6 +124,10 @@
     require_once '../FRESAS_ARTURO/controller/conexion.php';
     include_once '../FRESAS_ARTURO/View/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br>";
+
+    if (isset($_GET['msj_exito'])) {
+        $msj_exito = $_GET['msj_exito'];
+    }
     ?>
 
     <div class="TITULO">CATÁLOGO</div>
@@ -180,7 +187,7 @@
                 ?>
 
     </div>
-    </section>
+    <br><br><br>
     <br><br><br>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -191,6 +198,16 @@
                 "ordering": false // Deshabilitar ordenamiento
             });
         });
+
+        if (window.location.search.includes('msj_exito')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Producto actualizado exitosamente",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
 
     <?php include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>

@@ -41,6 +41,10 @@ if ($id_proveedor) {
 $conexion->close();
 ?>
 
+<?php
+// include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+?>
 <br><br><br><br><br>
 
 <!DOCTYPE html>
@@ -58,7 +62,6 @@ $conexion->close();
 
         body {
             font-family: 'Poppins', sans-serif;
-            /* padding: 20px; */
             background-image: url(../../../FRESAS_ARTURO//resource//img/index//fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
@@ -179,7 +182,7 @@ $conexion->close();
 </body>
 <?php
 echo "<br><br><br><br><br>";
-include_once '../../view/layout/footer-admin.html';
+include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
 ?>
 
 </html>

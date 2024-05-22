@@ -62,8 +62,8 @@
                     if (isset($_GET['msj_exito'])) {
                         $msj_exito = $_GET['msj_exito'];
                     }
-                    if (isset($_GET['msj_error_2'])) {
-                        $msj_exito = $_GET['msj_error_2'];
+                    if (isset($_GET['msj_error_mail'])) {
+                        $msj_exito = $_GET['msj_error_mail'];
                     }
 
                     if (isset($_GET['click'])) {
@@ -71,7 +71,7 @@
                     }
 
                     ?>
-                    <input type="text" placeholder="Cedula" name="Cedula" required>
+                    <input type="number" pattern="\d{3,8}" min="99" max="9999999999" placeholder="Cedula" name="Cedula" required>
                     <input class="visible" type="password" placeholder="Contraseña" name="Contrasena" required>
                     <span class="material-symbols-outlined">
                         visibility
@@ -141,7 +141,7 @@
                 });
             });
         });
-
+// ALERT DE CORREO Y CEDULA
         document.addEventListener('DOMContentLoaded', function() {
             if (window.location.search.includes('msj_error_2')) {
                 console.log("si reconoce que existe la variable en js");
@@ -201,11 +201,11 @@
         }
         // ALERT ERROR AL ENVIAR CORREO
 
-        if (window.location.search.includes('msj_error_2')) {
+        if (window.location.search.includes('msj_error_mail')) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "<?php $msj_error?>",
+                text: "<",
             });
         }
 

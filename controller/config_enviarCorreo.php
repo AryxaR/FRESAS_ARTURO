@@ -69,8 +69,8 @@ if ($resultado->num_rows > 0) {
         
     } catch (Exception $e) {
 
-        $msj_error = $mail->ErrorInfo;
-        header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_error_2= $msj_error");
+        $msj_error_mail = $mail->ErrorInfo;
+        header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_error_mail= $msj_error_mail");
         
     }
 } else {

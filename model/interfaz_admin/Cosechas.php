@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
 
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <!-- Agregar CSS de DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css">
 
@@ -18,12 +21,11 @@
 
 
         body {
-            background-image: url(../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(../../resource/img/index/fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             font-family: 'Poppins', sans-serif;
-
         }
 
 
@@ -110,6 +112,10 @@
             background-color: #f2f2f2;
         }
 
+        .usuarios-table th:nth-child(7) {
+            width: 200px;
+        }
+
         .btn-icon {
             background-color: #f8eaef;
             color: black;
@@ -137,15 +143,14 @@
         .btn-icon-container {
             padding: 12px;
             display: flex;
-            justify-content: space-between;
-            /* height: 100%; */
+            justify-content: center;
             font-size: 0.4em;
         }
 
         .contenedor-cosechas {
-            border: #666666 solid 1px;
             background-color: while;
             z-index: -1000;
+            margin-bottom: 30px;
         }
 
         .btn-subtitle {
@@ -210,6 +215,15 @@ if ($conexion->connect_error) {
     require_once '../../controller/conexion.php';
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br>";
+
+    if (isset($_GET['msj_exito'])) {
+        $mensaje_exito = $_GET['msj_exito'];
+    }
+    
+    if (isset($_GET['msj_cosecha'])) {
+        $mensaje_exito = $_GET['msj_cosecha'];
+    }
+
     ?>
 <div class="contenedor-cosechas">
     <div class="TITULO">COSECHAS</div>
@@ -247,12 +261,6 @@ if ($conexion->connect_error) {
          
             echo "<td class='acciones-container'>";
             echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            echo "<div class='btn-icon-container'>";
-            echo "<form action='../../controller/controlers-admin/delete_cosechas.php' method='post' style='display: inline;'>";
-            echo "<input type='hidden' name='eliminar_cosecha' value='" . $row["id"] . "'>";
-            echo "<button type='submit' class='btn-icon eliminar-cosecha' title='Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>";
-            echo "</form>";
-            echo "</div>";
             echo "</td>";
             echo "</tr>";
             
@@ -407,6 +415,25 @@ if ($conexion->connect_error) {
 
             });
         });
+
+        if (window.location.search.includes('msj_exito')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registro actualizado",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        if (window.location.search.includes('msj_cosecha')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Datos de recolección insertados correctamente.",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     </script>
 
 </body>

@@ -9,24 +9,33 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
+
+        body {
+            background-image: url(../../resource/img/index/fondoborroso.png);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
         .container-editar-cosechas {
             height: 100vh;
             display: flex;
+            justify-content: center;
             flex-direction: column;
-            padding: 60px;
-            border: solid black 1px;
-            margin-top: 50px;
+            /* border: solid black 1px; */
+            padding: 40px;
             align-items: center;
             font-family: 'Poppins', sans-serif;
         }
 
-        h2{
+        h2 {
             margin-top: -2%;
             font-family: 'Poppins', sans-serif;
         }
 
         .btn-volver {
-            
+
             margin-left: -58%;
             color: white;
             background-color: #d22c5d;
@@ -58,7 +67,6 @@
             justify-content: center;
             font-family: 'Poppins', sans-serif;
         }
-
     </style>
 
 </head>
@@ -70,9 +78,9 @@
     use SebastianBergmann\Environment\Console;
 
     include_once '../../view/layout/navs/nav-admin-redirect.php'; ?>
-    <h1>Pruebaaaaaa</h1>
+
     <div class="container-editar-cosechas">
-    <button class="btn-volver" onclick="history.back()">&#8592;</button>
+        <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <h2>MODIFICAR COSECHAS</h2>
         <?php
         require_once '../../../FRESAS_ARTURO/controller/conexion.php';
@@ -115,4 +123,5 @@
 <br><br><br><br>
 <?php include_once '../../view/layout/footers/footer-admin.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </html>

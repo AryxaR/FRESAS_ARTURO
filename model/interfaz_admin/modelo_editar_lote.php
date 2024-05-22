@@ -12,6 +12,7 @@ if (isset($_POST['id'])){
     // Prepara la consulta SQL para actualizar los datos en la base de datos
     $sql = "UPDATE lotes SET cantidad_extra = ?, cantidad_primera = ?, cantidad_segunda = ?, cantidad_riche = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
+    
     // Vincula los parámetros
     $stmt->bind_param("iiiii", $cantidad_extra, $cantidad_primera, $cantidad_segunda, $cantidad_riche, $id);
     // Ejecuta la consulta
@@ -21,7 +22,8 @@ if (isset($_POST['id'])){
     $stmt->close();
 
     // Redirecciona a la página de la tabla inicial
-    header("Location: Cosechas.php");
+    $mensaje_exito = "mensaje";
+    header("Location: ../interfaz_admin/Cosechas.php?msj_exito= $mensaje_exito");
     exit();
 }
 ?>

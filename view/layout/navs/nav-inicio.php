@@ -16,17 +16,17 @@
             <i id="icono" class="fa-solid fa-bars"></i>
         </label>
         <div class="logo-resopnsive">
-            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo-dos" />
+            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo-dos" />
         </div>
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo" />
+                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index.php">Inicio</a></li>
-                    <li><a href="#section-carrito">Catálogo</a></li>
-                    <li><a href="#section-contacto">Contacto</a></li>
+                    <li><a href="../FRESAS_ARTURO/index.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="#section-carrito">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">
