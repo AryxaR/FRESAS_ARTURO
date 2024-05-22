@@ -16,11 +16,11 @@
             <i id="icono" class="fa-solid fa-bars"></i>
         </label>
         <div class="logo-resopnsive">
-            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo-dos" />
+            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo-dos" />
         </div>
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.png" alt="logo don ramiro" class="logo" />
+                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
             </div>
             <nav class="nav">
                 <ul class="lista-nav" id="nav-lista">

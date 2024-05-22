@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backup y Restore</title>
+  </head>
+  <body>
+
+    <h1>Prueba</h1>
+    <!-- <button id="penModalBtn">Backup</button> -->
+    <div id="myModal" class="contenedor-copia">
+      <div class="contenedor-contenido">
+        <span class="close">&times;</span>
+        <h2>Generar Copia de seguridad</h2>
+        <form action="backup.php" method="post">
+          <button class="button" type="submit" name="backup">Generar</button>
+        </form>
+
+        <h2>Restaurar Copia de seguridad</h2>
+        <form
+          class="form-restaurar"
+          action="restore.php"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input class="archivo" type="file" name="file" />
+          <button class="button" type="submit" name="restore">Restaurar</button>
+        </form>
+      </div>
+    </div>
+
+
+  </body>
+</html>
