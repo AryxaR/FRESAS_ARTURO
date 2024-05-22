@@ -9,7 +9,7 @@
 <body>
 <footer class="footer">
     <div class="footer-copyright">
-        <p>&copy; 2024 Fresas Arturo. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Fresas Arturo. Desarrollado por SONAK.</p>
     </div>
 </footer>
 
