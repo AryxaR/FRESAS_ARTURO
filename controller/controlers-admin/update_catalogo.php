@@ -1,5 +1,4 @@
 <?php
-// Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "", "proyecto");
 
 if ($conexion->connect_error) {
@@ -11,25 +10,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precio_producto = $_POST['precio_producto'];
     $categoria_producto = $_POST['categoria_producto'];
 
-    // Obtener datos actuales del producto
-    $sql = "SELECT imagen FROM productos WHERE id_producto = ?";
+    
+    $sql = "SELECT precio_producto, imagen FROM productos WHERE id_producto = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $id_producto);
     $stmt->execute();
     $result = $stmt->get_result();
     $producto = $result->fetch_assoc();
+    $precio_anterior = $producto['precio_producto'];
 
-    // Manejar la carga de la nueva imagen
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
         $nombre_imagen = 'FRESA_' . strtoupper($categoria_producto) . '.jpeg';
         $ruta_destino = '../../model/uploads/' . $nombre_imagen;
         move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino);
     } else {
-        // Si no se subió una nueva imagen, mantener la imagen existente
+       
         $nombre_imagen = $producto['imagen'];
     }
 
-    // Actualizar los datos en la base de datos
     $sql = "UPDATE productos SET precio_producto = ?, imagen = ? WHERE id_producto = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("dsi", $precio_producto, $nombre_imagen, $id_producto);
@@ -37,6 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         $msj_exito = 'Producto actualizado exitosamente.';
         header("Location: ../../../FRESAS_ARTURO/Catalogo-admin.php?msj_exito= $msj_exito");
+        // Insertar en historial_precios
+        $sql_historial = "INSERT INTO historial_precios (id_producto, precio_anterior, precio_nuevo) VALUES (?, ?, ?)";
+        $stmt_historial = $conexion->prepare($sql_historial);
+        $stmt_historial->bind_param("idd", $id_producto, $precio_anterior, $precio_producto);
+        $stmt_historial->execute();
+
+        echo "Producto actualizado exitosamente.";
     } else {
         echo "Error al actualizar el producto: " . $stmt->error;
     }
