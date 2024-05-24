@@ -30,60 +30,24 @@ if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
         $respuesta = mysqli_query($conn, $sqlClave);
 
         if (mysqli_affected_rows($conn) > 0) {
-            ?>
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Contraseña modificada',
-                    text: 'La contraseña ha sido actualizada'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "../../FRESAS_ARTURO/model/login_usuarios.php";
-                    }
-                });
-            </script>
-            <?php
+
+            $msj_clave = 'Contraseña modificada. La contraseña ha sido actualizada';
+            header("Location: ../model/login_usuarios.php?msj_clave= $msj_clave");
         } else {
-            ?>
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'No se pudo realizar el cambio',
-                    text: 'Ha habido un error al intentar cambiar la contraseña'
-                });
-            </script>
-            <?php
+            
+            $msj_error_clave = 'No se pudo realizar el cambio de contraseña';
+            header("Location: ../model/login_usuarios.php?msj_error_clave= $msj_error_clave");
+            
         }
     } else {
-        ?>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Se agotó el tiempo de espera',
-                text: 'Su cambio de contraseña ya ha expirado'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "../../FRESAS_ARTURO/model/login_usuarios.php"; 
-                }
-            });
-        </script>
-        <?php
+        $msj_tiempo_clave = 'Su tiempo para cambio de contraseña ya ha expirado';
+        header("Location: ../model/login_usuarios.php?msj_tiempo_clave= $msj_tiempo_clave");
     }
 
 } else {
-    ?>
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Contraseña Inválida',
-            text: 'Las contraseñas ingresadas no coinciden'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = "../../FRESAS_ARTURO/controller/config_guardarClave.php"; 
-            }
-        });
-    </script>
-    <?php
+    $msj_validar_clave = 'Las contraseñas ingresadas no coinciden';
+    header("Location: ../model/login_usuarios.php?msj_validar_clave= $msj_validar_clave");
+  
 }
 
 ?>

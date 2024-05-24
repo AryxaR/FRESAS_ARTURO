@@ -109,6 +109,22 @@
         </div>
 
     </main>
+    <?php
+    // RECEPCION DE VARIABLES DE OLVIDO CONTRASEÑA
+    if (isset($_GET['msj_clave'])) {
+        $msj_clave = $_GET['msj_clave'];
+    }
+    if (isset($_GET['msj_error_clave'])) {
+        $msj_error_clave = $_GET['msj_error_clave'];
+    }
+    if (isset($_GET['msj_tiempo_clave'])) {
+        $msj_tiempo_clave = $_GET['msj_tiempo_clave'];
+    }
+    if (isset($_GET['msj_validar_clave'])) {
+        $msj_validar_clave = $_GET['msj_validar_clave'];
+    }
+    ?>
+
     <script>
         var icons = document.querySelectorAll('.material-symbols-outlined');
         var password = document.querySelectorAll('.visible');
@@ -141,7 +157,7 @@
                 });
             });
         });
-// ALERT DE CORREO Y CEDULA
+        // ALERT DE CORREO Y CEDULA
         document.addEventListener('DOMContentLoaded', function() {
             if (window.location.search.includes('msj_error_2')) {
                 console.log("si reconoce que existe la variable en js");
@@ -205,10 +221,46 @@
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "<",
+                text: "Hubo un error al enviar el correo",
             });
         }
 
+        // ALERTA DE MODIFICACION DE CONTRASEÑA
+
+        if (window.location.search.includes('msj_clave')) {
+            Swal.fire({
+                title: "Contraseña modificada.",
+                text: "Su nueva contraseña ha sido guardada con exito",
+                icon: "success"
+            });
+
+        }
+        // ALERTA DE ERROR AL MOFIFICAR CONTRASEÑA
+        if (window.location.search.includes('msj_error_clave')) {
+            Swal.fire({
+                icon: "error",
+                title: "Ha ocurrido un error",
+                text: "Intente nuevamente",
+            });
+        }
+
+        //ALERTA DE CONTRASEÑAS NO COINSIDEN
+
+        if (window.location.search.includes('msj_validar_clave')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops... Las contraseñas no coinciden",
+                text: "Ingrese desde su correo nuevamente",
+            });
+        }
+        // ALERTA DE EXPIRACION DEL TOKEN 
+        if (window.location.search.includes('msj_tiempo_clave')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Su tiempo para cambio de contraseña ya ha expirado",
+            });
+        }
     </script>
 
     <script src="../resource/js/script.js"></script>
