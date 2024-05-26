@@ -209,6 +209,8 @@ if ($conexion->connect_error) {
 }
 ?>
 
+<script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+
 <body>
 
     <?php
@@ -226,7 +228,7 @@ if ($conexion->connect_error) {
 
     ?>
 <div class="contenedor-cosechas">
-    <div class="TITULO">COSECHAS</div>
+    <div class="TITULO">REGISTRO DE COSECHAS</div>
     <?php
 
     $sqselect = "SELECT id, fecha, cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche  FROM lotes";
@@ -254,10 +256,10 @@ if ($conexion->connect_error) {
             echo "<tr>";
             echo "<td>" . $row["id"] . "</td>";
             echo "<td>" . $row["fecha"] . "</td>";
-            echo "<td>" . $row["cantidad_extra"] . "</td>";
-            echo "<td>" . $row["cantidad_primera"] . "</td>";
-            echo "<td>" . $row["cantidad_segunda"] . "</td>";
-            echo "<td>" . $row["cantidad_riche"] . "</td>";  
+            echo "<td>" . $row["cantidad_extra"] . " Kg" . "</td>";
+            echo "<td>" . $row["cantidad_primera"] .  " Kg" . "</td>";
+            echo "<td>" . $row["cantidad_segunda"] .  " Kg" . "</td>";
+            echo "<td>" . $row["cantidad_riche"] .   " Kg" . "</td>";  
          
             echo "<td class='acciones-container'>";
             echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";

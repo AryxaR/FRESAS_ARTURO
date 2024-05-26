@@ -1,28 +1,24 @@
 <?php
-include_once("../../FRESAS_ARTURO/controller/conexion.php");
+include_once("../../../FRESAS_ARTURO/controller/conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recibe los datos del formulario
+
     $cantidad_extra = $_POST['cantidad_extra'];
     $cantidad_primera = $_POST['cantidad_primera'];
     $cantidad_segunda = $_POST['cantidad_segunda'];
     $cantidad_riche = $_POST['cantidad_riche'];
-
-    // Prepara la consulta SQL para la inserción de datos en recoleccion_fresas
+;
     $sql_insert_recoleccion = "INSERT INTO lotes (cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche) VALUES ";
     $sql_insert_recoleccion .= "(";
     $sql_insert_recoleccion .= intval($cantidad_extra) . ", ";
     $sql_insert_recoleccion .= intval($cantidad_primera) . ", ";
     $sql_insert_recoleccion .= intval($cantidad_segunda) . ", ";
     $sql_insert_recoleccion .= intval($cantidad_riche) . ")";
-
-    // Ejecuta la consulta de inserción en recoleccion_fresas
     if ($conn->query($sql_insert_recoleccion) === TRUE) {
         echo "Datos de recolección insertados correctamente.";
         $msj_cosecha = 'Datos de recolección insertados correctamente.';
-        header("Location: ../model/interfaz_admin/Cosechas.php?msj_cosecha= $msj_cosecha");
-        
-        // Actualiza el stock en la tabla productos
+        header("Location: ../../model/interfaz_admin/Cosechas.php?msj_cosecha= $msj_cosecha");
+
         if ($cantidad_extra > 0) {
             $sql_update_extra = "UPDATE productos SET Stock = Stock + " . intval($cantidad_extra) . " WHERE categoria_producto = 'Extra'";
             if ($conn->query($sql_update_extra) !== TRUE) {
@@ -52,6 +48,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Cierra la conexión
 $conn->close();
 ?>

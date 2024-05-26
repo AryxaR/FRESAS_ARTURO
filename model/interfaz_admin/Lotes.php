@@ -32,7 +32,7 @@
 
 <body>
     <h1>REGISTRO DE COSECHA</h1>
-    <form class="contenedor" action="../../../FRESAS_ARTURO/controller/lotes.php" method="post">
+    <form class="contenedor" action="../../../FRESAS_ARTURO/controller/controlers-admin/procesar_lotes.php" method="post">
     <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <label for="cantidad_extra">Fresas Extra: </label>
         <input type="number" id="cantidad_extra" name="cantidad_extra" min="0" required placeholder="Kg"><br><br>

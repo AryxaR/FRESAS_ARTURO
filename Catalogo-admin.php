@@ -118,6 +118,8 @@
     <title>CATALOGO</title>
 </head>
 
+<script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+
 <body>
 
     <?php
