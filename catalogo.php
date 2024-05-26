@@ -98,7 +98,7 @@ function mostrarModalCarrito()
         echo '</form>';
     }
 
-    echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
+    echo '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Compra</button>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
