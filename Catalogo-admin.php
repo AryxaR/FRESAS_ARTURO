@@ -115,7 +115,7 @@
         }
     </style>
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
-    <title>CATALOGO</title>
+    <title>CATALOGO | FRESAS DON ARTURO</title>
 </head>
 
 <script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
