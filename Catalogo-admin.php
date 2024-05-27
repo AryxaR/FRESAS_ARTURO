@@ -108,6 +108,38 @@
         .dataTables_wrapper .dataTables_filter input {
             margin-bottom: 5%;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            justify-content: flex-start; 
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 5px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
     </style>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
@@ -131,6 +163,17 @@
         $msj_exito = $_GET['msj_exito'];
     }
     ?>
+    <br>
+
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
+            </ol>
+        </nav>
+    </div>
 
     <div class="TITULO">CATÁLOGO</div>
     <br><br>

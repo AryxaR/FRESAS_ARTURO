@@ -138,6 +138,8 @@
         .btn-custom:hover .btn-subtitle {
             display: inline;
         }
+
+        
     </style>
 
     <script>
@@ -204,10 +206,20 @@
 
     <?php
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
-    echo "<br><br>";
+    echo "<br><br><br><br>";
     ?>
     <div class="container">
+    <div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+            </ol>
+        </nav>
+    </div>
         <div class="TITULO">USUARIOS REGISTRADOS</div>
+
         <div class="table-responsive">
             <?php
             include_once '../../../FRESAS_ARTURO/controller/conexion.php';

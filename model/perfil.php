@@ -40,6 +40,7 @@ if ($resultado->num_rows == 1) {
 </head>
 
 <body>
+  
   <a class="volver" href="../Index_usuarios.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
   <span class="f-roja"></span>
   <div class="contenedor">
