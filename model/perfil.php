@@ -37,9 +37,44 @@ if ($resultado->num_rows == 1) {
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <!-- Sweetalert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <style>
+    .breadcrumbs-container{
+      position: absolute;
+      margin-left: 130px;
+      margin-top: 48px;
+      width: max-content;
+      font-size: larger;
+    }
+    
+    .breadcrumb {
+      list-style: none;
+      display: flex;
+      font-weight: 600;
+      color: white;
+    }
+
+    .breadcrumb li {
+      margin: 0 20px;
+    }
+
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: white;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="breadcrumbs-container">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index_usuarios.php">Inicio</a></li>/
+        <li class="breadcrumb-item active" aria-current="page"><a href="perfil.php">Perfil</a></li>
+      </ol>
+    </nav>
+  </div>
   <a class="volver" href="../Index_usuarios.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
   <span class="f-roja"></span>
   <div class="contenedor">
@@ -82,14 +117,14 @@ if ($resultado->num_rows == 1) {
 
   <script>
     if (window.location.search.includes('msj_actualizado')) {
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Informacion Actualizada",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Informacion Actualizada",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   </script>
 </body>
 

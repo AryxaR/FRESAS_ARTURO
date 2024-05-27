@@ -48,9 +48,46 @@ if (isset($_POST['save'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .breadcrumbs-container{
+      position: absolute;
+      margin-left: 130px;
+      margin-top: 48px;
+      width: max-content;
+      font-size: larger;
+    }
+    
+    .breadcrumb {
+      list-style: none;
+      display: flex;
+      font-weight: 600;
+      color: white;
+    }
+
+    .breadcrumb li {
+      margin: 0 20px;
+    }
+    
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: white;
+    }
+
+    </style>
 </head>
 
 <body>
+<div class="breadcrumbs-container">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index_usuarios.php">Inicio</a></li>/
+        <li class="breadcrumb-item active" aria-current="page"><a href="perfil.php">Perfil</a></li>/
+        <li class="breadcrumb-item active" aria-current="page">
+            <a href="modificarPerfil.php">Modificar Perfil</a></li>
+      </ol>
+    </nav>
+  </div>
     <a class="volver" href="../model/perfil.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
     <span class="f-roja"></span>
     <div class="contenedor">

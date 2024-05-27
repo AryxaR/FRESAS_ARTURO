@@ -28,7 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_registrar_perdida->bind_param("isi", $id_cosecha, $categoria_fresa, $cantidad_perdida);
 
         if (!$stmt_registrar_perdida->execute()) {
+            $msj_error_registrar = "Error al registrar la pérdida: " . $stmt_registrar_perdida->error;
             throw new Exception("Error al registrar la pérdida: " . $stmt_registrar_perdida->error);
+            header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_registrar= $msj_error_registrar");
         }
 
         // Actualizar la cantidad en la tabla de lotes
@@ -46,14 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql_update_lotes = "UPDATE lotes SET cantidad_riche = cantidad_riche - ? WHERE id = ?";
                 break;
             default:
+            $msj_error_categoria = "Categoría de fresa no válida.";
                 throw new Exception("Categoría de fresa no válida.");
+                header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_categoria= $msj_error_categoria");
+
         }
 
         $stmt_update_lotes = $conexion->prepare($sql_update_lotes);
         $stmt_update_lotes->bind_param("di", $cantidad_perdida, $id_cosecha);
 
         if (!$stmt_update_lotes->execute()) {
+            $msj_error_lotes = "Error al actualizar la cantidad en lotes: " . $stmt_update_lotes->error;
             throw new Exception("Error al actualizar la cantidad en lotes: " . $stmt_update_lotes->error);
+            header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_lotes= $msj_error_lotes");
+
         }
 
         // Actualizar el stock en la tabla de productos
@@ -62,12 +70,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_update_productos->bind_param("dis", $cantidad_perdida, $id_cosecha, $categoria_fresa);
 
         if (!$stmt_update_productos->execute()) {
+            $msj_error_producto = "Error al actualizar el stock en productos: " . $stmt_update_productos->error;
             throw new Exception("Error al actualizar el stock en productos: " . $stmt_update_productos->error);
+            header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_producto= $msj_error_producto");
         }
 
         // Si todo está bien, commit la transacción
         $conexion->commit();
-        echo "Pérdida registrada, cantidad actualizada en lotes y stock actualizado en productos exitosamente.";
+        $msj_exito = "Pérdida registrada, cantidad actualizada en lotes y stock actualizado en productos exitosamente.";
+        header("Location: ../../model/interfaz_admin/Perdidas.php?msj_exito= $msj_exito");
     } catch (Exception $e) {
         // Si ocurre un error, rollback la transacción
         $conexion->rollback();
