@@ -93,7 +93,7 @@ function mostrarModalCarrito()
     echo '<div class="modal-footer">';
 
     if (!empty($_SESSION['carrito'])) {
-        echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/factura.php" target="_blank">';
+        echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/orden_compra.php" target="_blank">';
         echo '<button type="submit" class="btn btn-primary">Confirmar</button>';
         echo '</form>';
     }
@@ -258,12 +258,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </section>
 </body>
-<<<<<<< HEAD
-=======
-<br><br><br><br><br><br>
-<section class="section-contacto">
-    <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
-</section>
-
->>>>>>> 036faafd9c17c32dfafd7b20a7fdaa865f5a86d8
 </html>

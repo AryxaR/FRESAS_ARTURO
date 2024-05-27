@@ -5,18 +5,18 @@ require_once('../../FRESAS_ARTURO/controller/conexion.php');
 if (isset($_GET['id_factura'])) {
     $id_factura = $_GET['id_factura'];
 
-    $sql_detalle_factura = "SELECT detalle_factura.*, productos.nombre_producto, productos.categoria_producto
-                            FROM detalle_factura 
-                            INNER JOIN productos ON detalle_factura.id_producto = productos.id_producto 
-                            WHERE detalle_factura.id_factura = $id_factura";
-    $result_detalle = $conn->query($sql_detalle_factura);
+    $sql_detalle_venta = "SELECT Detalle_venta.*, productos.nombre_producto, productos.categoria_producto
+                            FROM Detalle_venta 
+                            INNER JOIN productos ON Detalle_venta.id_producto = productos.id_producto 
+                            WHERE Detalle_venta.id_factura = $id_factura";
+    $result_detalle = $conn->query($sql_detalle_venta);
 
-    $sql_total_factura = "SELECT total FROM facturas WHERE id_factura = $id_factura";
+    $sql_total_factura = "SELECT total FROM ventas WHERE id_factura = $id_factura";
     $result_total = $conn->query($sql_total_factura);
     $total_factura = ($result_total->num_rows > 0) ? $result_total->fetch_assoc()['total'] : 0;
 
     // Obtener los datos del cliente desde la tabla "usuarios"
-    $sql_cliente = "SELECT cedula, nombre, correo FROM usuarios WHERE Id_cliente = (SELECT id_cliente FROM facturas WHERE id_factura = $id_factura)";
+    $sql_cliente = "SELECT cedula, nombre, correo FROM usuarios WHERE Id_cliente = (SELECT id_cliente FROM ventas WHERE id_factura = $id_factura)";
     $result_cliente = $conn->query($sql_cliente);
     if ($result_cliente->num_rows > 0) {
         $row_cliente = $result_cliente->fetch_assoc();
@@ -201,7 +201,7 @@ if (isset($_GET['id_factura'])) {
             var element = document.querySelector('.invoice-content');
             html2pdf()
                 .from(element)
-                .save('factura.pdf')
+                .save('orden_pedido.pdf')
                 .then(function() {
                     // Volver a mostrar botones después de guardar el PDF
                     document.getElementById('btnExportarPdf').style.display = 'inline-block';
