@@ -5,9 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/lotess.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <title>Ingreso de Cantidades Recogidas</title>
+    <title>COSECHA | REGISTRO</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+        .TITULO {
+            margin-top: -10%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #888888;
+            font-family: 'Poppins', sans-serif;
+            z-index: 1;
+        }
+
         .btn-volver {
             
             margin-left: -480%;
@@ -27,11 +38,58 @@
             color: #d22c5d;
             background-color: white;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -2%;
+            margin-left: -77%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            content: "/";
+            margin: 0 10px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
     </style>
+
+
 </head>
 
+    <div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Cosechas.php">Cosechas</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Nueva Cosecha</li>
+            </ol>
+        </nav>
+    </div>
 <body>
-    <h1>REGISTRO DE COSECHA</h1>
+<div class="TITULO">REGISTRO DE COSECHAS</div>
     <form class="contenedor" action="../../../FRESAS_ARTURO/controller/controlers-admin/procesar_lotes.php" method="post">
     <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <label for="cantidad_extra">Fresas Extra: </label>
