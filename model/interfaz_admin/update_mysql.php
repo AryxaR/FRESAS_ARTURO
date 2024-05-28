@@ -110,7 +110,7 @@
 
         .breadcrumbs-container {
             display: flex;
-            margin-top: 4%;
+            margin-top: 1%;
             margin-left: 7%;
             padding: 10px;
             font-family: 'Poppins', sans-serif;
@@ -145,7 +145,10 @@
 </head>
 
 <body>
-    <br>
+<?php
+    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    echo "<br><br><br><br>";
+    ?>
     <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">

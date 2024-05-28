@@ -35,6 +35,17 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br><br><br>
 
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
+                <li class="breadcrumb-item breadcrumb-item-dos" aria-current="page">Nuevo proveedor</li>
+            </ol>
+        </nav>
+    </div>
+    
 <!DOCTYPE html>
 <html lang="es">
 
@@ -68,13 +79,11 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 
         h2 {
             color: black;
-            margin-top: 3%;
+            margin-top: 1%;
+            margin-bottom: 2%;
             text-align: center;
-            /* Centra el texto horizontalmente */
             font-size: 24px;
-            /* Tamaño de la fuente */
             font-weight: bold;
-            /* Negrita */
             text-shadow: 2px 2px 4px #888888;
         }
 
@@ -83,7 +92,6 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
             justify-content: center;
             align-items: center;
             flex-grow: 1;
-            /* Hace que el formulario ocupe todo el espacio disponible verticalmente */
         }
 
         form {
@@ -93,7 +101,6 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             width: 300px;
             margin: 0 auto;
-            /* Centra el formulario horizontalmente */
             text-align: center;
         }
 
@@ -134,27 +141,24 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
             color: #d22c5d;
             background-color: white;
         }
-
-        .back-button {
-            position: absolute;
-            top: 130px;
-            left: 120px;
-            font-size: 24px;
-            padding: 5px;
-            height: 7%;
-            border: none;
-            border-radius: 5px;
-            background-color: #d22c5d;
+        .btn-volver {
+            margin: 3% 0 0 8%;
             color: white;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
+            width: 3.2%;
+            background-color: #d22c5d;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.6s, color 0.6s;
         }
 
-        .back-button:hover {
-            background-color: white;
-            /* Color de fondo blanco al pasar el mouse */
+
+        .btn-volver:hover {
+            border: 1px solid #d22c5d;
             color: #d22c5d;
-            /* Color de la letra rojo al pasar el mouse */
+            background-color: white;
         }
 
         .footer-bottom {
@@ -179,14 +183,57 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
             display: flex;
             gap: 7px;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -2%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: white;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: black;
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-item-dos{
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
     </style>
 
 <body>
 
-    <a href="javascript:history.go(-1)" class="back-button">&#8592;</a>
+<button class="btn-volver" onclick="history.back()">&#8592;</button>
 
     <div class="title-container">
-        <h2>PROVEEDORES</h2>
+        <h2>REGISTRO DE PROVEEDORES</h2>
     </div>
 
     <div class="form-container">

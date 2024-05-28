@@ -25,7 +25,7 @@
         }
 
         .TITULO {
-            margin-top: 80px;
+            margin-top: 60px;
             text-align: center;
             font-size: 24px;
             font-weight: bold;

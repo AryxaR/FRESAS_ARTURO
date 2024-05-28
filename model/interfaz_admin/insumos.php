@@ -41,7 +41,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre_insumo']) && is
 include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br>
-
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
+                <li class="breadcrumb-item"><a href="../../model/interfaz_admin/insert_proveedor.php">Nuevo proveedor</a></li>
+                <li class="breadcrumb-item dos" aria-current="page"><a href="insert_proveedor.php">Recurso proveedor</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Insumo proveedor</li>
+            </ol>
+        </nav>
+    </div>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -79,6 +90,43 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
             font-size: 24px; /* Tamaño de la fuente */
             font-weight: bold; /* Negrita */
             text-shadow: 2px 2px 4px #888888;
+        }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: 1%;
+            margin-left: 4.5%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            color: black;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
         }
 
         .form-container {

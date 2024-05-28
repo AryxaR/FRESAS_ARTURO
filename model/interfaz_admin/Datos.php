@@ -45,7 +45,18 @@ $conexion->close();
 // include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
  include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
-<br><br><br><br><br>
+<br><br><br>
+
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Información</li>
+            </ol>
+        </nav>
+    </div>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -82,22 +93,61 @@ $conexion->close();
             padding: 2% 6%;
         }
 
-        .back-button {
-            align-self: self-start;
-            font-size: 26px;
-            padding: 3px 3px 9px 3px;
-            border-radius: 5px;
-            background-color: #d22c5d;
-            color: white;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
+        
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: 1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .back-button:hover {
+        .breadcrumb {
             background-color: white;
-            /* Color de fondo blanco al pasar el mouse */
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .btn-volver {
+            
+            margin-left: -92%;
+            margin-top: 1%;
+            color: white;
+            background-color: #d22c5d;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.6s, color 0.6s;
+        }
+
+
+        .btn-volver:hover {
+            border: 1px solid #d22c5d;
             color: #d22c5d;
-            /* Color de la letra rojo al pasar el mouse */
+            background-color: white;
         }
 
         table {
@@ -143,7 +193,7 @@ $conexion->close();
     <div class="contenedor-datos">
 
 
-        <a href="javascript:history.go(-1)" class="back-button">&#8592;</a>
+    <button class="btn-volver" onclick="history.back()">&#8592;</button>
 
         <h1 class="TITULO">INFORMACIÓN PROVEEDOR</h1>
         <?php if ($id_proveedor && isset($nombre_proveedor)) : ?>
@@ -181,7 +231,7 @@ $conexion->close();
     </div>
 </body>
 <?php
-echo "<br><br><br><br><br>";
+echo "<br><br>";
 include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
 ?>
 

@@ -107,7 +107,7 @@ $conexion->close();
 
         .breadcrumbs-container {
             display: flex;
-            margin-top: -1%;
+            margin-top: -2.5%;
             margin-left: 7%;
             padding: 10px;
             font-family: 'Poppins', sans-serif;
