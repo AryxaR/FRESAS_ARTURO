@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
-            top: 150px !important;
+            top: 250px;
         }
 
         .input-cantidad {
@@ -255,15 +255,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section id="section-contacto">
         <br><br><br><br><br><br>
         <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
-
     </section>
 </body>
-<<<<<<< HEAD
-=======
-<br><br><br><br><br><br>
-<section class="section-contacto">
-    <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
-</section>
-
->>>>>>> 036faafd9c17c32dfafd7b20a7fdaa865f5a86d8
 </html>
