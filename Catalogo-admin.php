@@ -108,6 +108,40 @@
         .dataTables_wrapper .dataTables_filter input {
             margin-bottom: 5%;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
     </style>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
@@ -115,7 +149,7 @@
         }
     </style>
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
-    <title>CATALOGO</title>
+    <title>CATALOGO | FRESAS DON ARTURO</title>
 </head>
 
 <script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
@@ -131,6 +165,17 @@
         $msj_exito = $_GET['msj_exito'];
     }
     ?>
+    <br>
+
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
+            </ol>
+        </nav>
+    </div>
 
     <div class="TITULO">CATÁLOGO</div>
     <br><br>

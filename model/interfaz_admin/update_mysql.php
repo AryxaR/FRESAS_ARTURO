@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,8 +21,9 @@
             background-attachment: fixed;
             /* background-position: center; */
         }
-        
+
         .container-usuarios {
+            margin-top: -3%;
             display: flex;
             align-items: center;
             text-align: center;
@@ -32,7 +34,7 @@
         }
 
         .btn-volver {
-            margin: 5% 8%;
+            margin: 2% 8%;
             color: white;
             background-color: #d22c5d;
             border: none;
@@ -44,9 +46,9 @@
         }
 
 
-        .btn-volver:hover{
+        .btn-volver:hover {
             border: 1px solid #d22c5d;
-            color:#d22c5d;
+            color: #d22c5d;
             background-color: white;
         }
 
@@ -64,7 +66,7 @@
         form label {
             display: block;
             margin-bottom: 5px;
-            text-align: center; 
+            text-align: center;
         }
 
         form input[type="text"],
@@ -95,7 +97,7 @@
 
         form input[type="submit"]:hover {
             border: 1px solid #d22c5d;
-            color:#d22c5d;
+            color: #d22c5d;
             background-color: white;
         }
 
@@ -105,9 +107,55 @@
             font-weight: bold;
             text-shadow: 2px 2px 4px #888888;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: 4%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            content: "/";
+            margin: 0 10px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
+
 <body>
+    <br>
+    <div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/consult_mysql.php">Usuarios</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Editar Usuarios</li>
+            </ol>
+        </nav>
+    </div>
 
     <button class="btn-volver" onclick="history.back()">&#8592;</button>
     <div class="container-usuarios">
@@ -116,32 +164,31 @@
         require_once '../../../FRESAS_ARTURO/controller/conexion.php';
 
         // Verificar si se ha enviado un formulario para actualizar
-        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $id = $_GET['id'];
 
-        $sql_select = "SELECT * FROM usuarios WHERE Id_cliente= $id";
-        $result = $conn->query($sql_select);
+            $sql_select = "SELECT * FROM usuarios WHERE Id_cliente= $id";
+            $result = $conn->query($sql_select);
 
-        if($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
         ?>
-        <form action="../../../FRESAS_ARTURO/controller/controlers-admin/update_process.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $row['Id_cliente']; ?>">
-            <label for="Nombre">Nombre:</label>
-            <input type="text" name="Nombre" value="<?php echo $row['Nombre']; ?>"><br><br>
-            <label for="Correo">Correo:</label>
-            <input type="email" name="Correo" value="<?php echo $row['Correo']; ?>"><br><br>
-            <label for="Rol">Rol:</label>
-            <input type="text" name="Rol" value="<?php echo $row['Rol']; ?>"><br><br>
-            <input type="submit" name="actualizar" value="Actualizar">
-        </form>
+                <form action="../../../FRESAS_ARTURO/controller/controlers-admin/update_process.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $row['Id_cliente']; ?>">
+                    <label for="Nombre">Nombre:</label>
+                    <input type="text" name="Nombre" value="<?php echo $row['Nombre']; ?>"><br><br>
+                    <label for="Correo">Correo:</label>
+                    <input type="email" name="Correo" value="<?php echo $row['Correo']; ?>"><br><br>
+                    <label for="Rol">Rol:</label>
+                    <input type="text" name="Rol" value="<?php echo $row['Rol']; ?>"><br><br>
+                    <input type="submit" name="actualizar" value="Actualizar">
+                </form>
         <?php
-        } else {
-            echo "Usuario no encontrado.";
-        }
+            } else {
+                echo "Usuario no encontrado.";
+            }
         }
         $conn->close();
-
         ?>
     </div>
 
@@ -149,5 +196,5 @@
     include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php')
     ?>
 </body>
-</html>
 
+</html>

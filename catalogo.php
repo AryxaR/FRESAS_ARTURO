@@ -93,7 +93,7 @@ function mostrarModalCarrito()
     echo '<div class="modal-footer">';
 
     if (!empty($_SESSION['carrito'])) {
-        echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/factura.php" target="_blank">';
+        echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/orden_compra.php" target="_blank">';
         echo '<button type="submit" class="btn btn-primary">Confirmar</button>';
         echo '</form>';
     }
@@ -163,7 +163,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -183,16 +182,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .input-cantidad {
             width: 190px;
         }
+
+        .breadcrumbs-container {
+            margin-top: -1%;
+            margin-left: 90%;
+        }
+
+        .breadcrumbs-container .breadcrumb {
+            margin-bottom: 0;
+        }
+
+        .breadcrumbs-container .breadcrumb-item a {
+            text-decoration: none;
+        }
     </style>
 
 </head>
 
 <body>
+    <br><br><br><br>
 
-    <div class="TITULO">
-        <h1>CATÁLOGO</h1>
+    <div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index_usuarios.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
+            </ol>
+        </nav>
     </div>
-    <br><br>
+
+    <br>
+
     <button type="button" class="btn btn-primary ms-4 position-relative" id="carritoBtn" data-bs-toggle="modal" data-bs-target="#modal-carrito" style="z-index: 1;">
         <i class="bi bi-cart"></i>
 
@@ -257,4 +278,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
     </section>
 </body>
+
 </html>

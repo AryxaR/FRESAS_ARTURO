@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLIENTES</title>
+    <title>CLIENTES | FRESAS DON ARTURO</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -138,6 +138,16 @@
         .btn-custom:hover .btn-subtitle {
             display: inline;
         }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+        
     </style>
 
     <script>
@@ -204,10 +214,20 @@
 
     <?php
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
-    echo "<br><br>";
+    echo "<br><br><br><br>";
     ?>
     <div class="container">
+    <div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+            </ol>
+        </nav>
+    </div>
         <div class="TITULO">USUARIOS REGISTRADOS</div>
+
         <div class="table-responsive">
             <?php
             include_once '../../../FRESAS_ARTURO/controller/conexion.php';
