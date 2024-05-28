@@ -111,14 +111,14 @@
 
         .breadcrumbs-container {
             display: flex;
-            justify-content: flex-start; 
+            margin-top: -1%;
+            margin-left: 7%;
             padding: 10px;
             font-family: 'Poppins', sans-serif;
         }
 
         .breadcrumb {
             display: flex;
-            list-style: none;
             padding: 0;
             margin: 0;
         }
@@ -130,11 +130,13 @@
 
         .breadcrumb-item + .breadcrumb-item::before {
             content: "/";
-            margin: 0 5px;
+            margin: 0 7px;
         }
 
         .breadcrumb-item a {
             text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
         }
 
         .breadcrumb-item a:hover {
@@ -169,7 +171,7 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="inicio_admin.php">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
             </ol>
         </nav>

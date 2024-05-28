@@ -139,6 +139,14 @@
             display: inline;
         }
 
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
         
     </style>
 

@@ -36,7 +36,7 @@ if ($resultado->num_rows > 0) {
 } else {
     echo "No se encontraron pedidos.";
 }
-echo "<br><br><br>";
+echo "<br><br><br><br>";
 $conn->close();
 ?>
 
@@ -96,10 +96,56 @@ $conn->close();
         .pedido.finalizado {
             opacity: 0.6;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: white;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 
 <body>
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
+            </ol>
+        </nav>
+    </div>
+
     <div class="container">
         <div class="TITULO">ORDENES DE COMPRA</div>
         <br><br><br><br>

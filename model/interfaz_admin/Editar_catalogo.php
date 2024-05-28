@@ -105,9 +105,57 @@ $conexion->close();
             color: #d22c5d;
             background-color: white;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: white;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
+
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../../FRESAS_ARTURO/Catalogo-admin.php">Catálogo</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Actualización</li>
+            </ol>
+        </nav>
+    </div>
+
     <div class="container">
     <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <div class="row justify-content-center">

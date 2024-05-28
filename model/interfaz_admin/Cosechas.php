@@ -171,6 +171,40 @@
             height: 100%;
         }
 
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 5px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
         @media screen and (max-width: 1024px) {
             .TITULO {
                 font-size: 20px;
@@ -216,7 +250,7 @@ if ($conexion->connect_error) {
     <?php
     require_once '../../controller/conexion.php';
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
-    echo "<br><br><br>";
+    echo "<br><br><br><br>";
 
     if (isset($_GET['msj_exito'])) {
         $mensaje_exito = $_GET['msj_exito'];
@@ -227,6 +261,17 @@ if ($conexion->connect_error) {
     }
 
     ?>
+
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cosechas</li>
+            </ol>
+        </nav>
+    </div>
+
 <div class="contenedor-cosechas">
     <div class="TITULO">REGISTRO DE COSECHAS</div>
     <?php

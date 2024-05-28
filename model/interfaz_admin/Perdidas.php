@@ -100,12 +100,57 @@ $conexion->close();
         .access{
             margin-top: 10%;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: white;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 7px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <?php
 include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
-    echo "<br><br><br>";
+    echo "<br><br><br><br>";
     ?>
+
+<div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Pérdidas</li>
+            </ol>
+        </nav>
+    </div>
 <body>
     <div class="container">
     <div class="TITULO">REGISTRO DE PÉRDIDAS</div>
