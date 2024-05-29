@@ -52,7 +52,7 @@ $conexion->close();
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
+            margin-top: 10px;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -87,12 +87,12 @@ $conexion->close();
 
         .btn-volver {
             
-            margin-left: 5%;
-            margin-top: 5%;
+            margin-left: -7%;
+            margin-top: 4%;
             color: white;
             background-color: #d22c5d;
             border: none;
-            font-size: 24px;
+            font-size: 20px;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
@@ -128,7 +128,7 @@ $conexion->close();
 
         .breadcrumb-item + .breadcrumb-item::before {
             content: "/";
-            margin: 0 7px;
+            margin: 0 3px;
         }
 
         .breadcrumb-item a {
@@ -144,6 +144,11 @@ $conexion->close();
     </style>
 </head>
 <body>
+
+<?php
+    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    echo "<br><br><br><br>";
+    ?>
 
 <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->

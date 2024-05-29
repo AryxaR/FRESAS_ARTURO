@@ -35,8 +35,8 @@
         }
 
         .btn-volver {
-
-            margin-left: -58%;
+            margin-top: 3%;
+            margin-left: -85%;
             color: white;
             background-color: #d22c5d;
             border: none;
@@ -67,6 +67,42 @@
             justify-content: center;
             font-family: 'Poppins', sans-serif;
         }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: 3%;
+            margin-left: -68%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            background-color: white;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            margin: 0 3px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 
 </head>
@@ -80,6 +116,18 @@
     include_once '../../view/layout/navs/nav-admin-redirect.php'; ?>
 
     <div class="container-editar-cosechas">
+
+    <div class="breadcrumbs-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Cosechas.php">Cosechas</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Editar Cosechas</li>
+            </ol>
+        </nav>
+    </div>
+    
         <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <h2>MODIFICAR COSECHAS</h2>
         <?php
@@ -97,6 +145,7 @@
             if ($result->num_rows == 1) {
                 $row = $result->fetch_assoc();
         ?>
+
                 <form class="formulario-cosechas" action="../../../FRESAS_ARTURO/model/interfaz_admin/modelo_editar_lote.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     <label for="cantidad_extra">Cantidad Extra:</label>
