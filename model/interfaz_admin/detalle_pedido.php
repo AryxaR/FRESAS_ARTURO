@@ -7,7 +7,13 @@ if(isset($_GET['id_factura'])) {
     require_once '../../controller/conexion.php';
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     // Consulta para obtener los detalles del pedido con el ID proporcionado
-    $sql = "SELECT * FROM detalle_venta WHERE id_factura = $id_pedido";
+    $sql = "
+        SELECT dv.*, p.categoria_producto AS nombre_producto
+        FROM detalle_venta dv
+        INNER JOIN productos p ON dv.id_producto = p.id_producto
+        WHERE dv.id_factura = $id_pedido
+    ";
+
     $resultado = $conn->query($sql);
     
     if ($resultado->num_rows > 0) {
@@ -51,7 +57,7 @@ if(isset($_GET['id_factura'])) {
                 <tbody>
                     <?php foreach ($detalles_pedido as $detalle): ?>
                         <tr>
-                            <td><?php echo $detalle['id_producto']; ?></td>
+                           <td><?php echo $detalle['nombre_producto']; ?> (ID: <?php echo $detalle['id_producto']; ?>)</td>
                             <td><?php echo $detalle['cantidad']; ?></td>
                             <td><?php echo $detalle['precio_unitario']; ?></td>
                             <td><?php echo $detalle['subtotal']; ?></td>
