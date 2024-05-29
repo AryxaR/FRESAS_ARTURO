@@ -125,7 +125,7 @@ $conexion->close();
             align-items: center;
         }
 
-        .breadcrumb-item + .breadcrumb-item::before {
+        .breadcrumb-item+.breadcrumb-item::before {
             content: "/";
             margin: 0 7px;
         }
@@ -147,14 +147,15 @@ echo "<br><br><br><br><br>";
 ?>
 
 <div class="breadcrumbs-container">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Pérdidas</li>
-            </ol>
-        </nav>
-    </div>
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pérdidas</li>
+        </ol>
+    </nav>
+</div>
+
 <body>
     <div class="container">
         <div class="TITULO">REGISTRO DE PÉRDIDAS</div>
@@ -172,8 +173,36 @@ echo "<br><br><br><br><br>";
                             <?php endforeach; ?>
                         </select>
                     </div>
+
+                    <!-- Información relacionada con la fecha seleccionada -->
+                    <div class="form-group" id="info_cosecha" style="display:none;">
+                        <label for="info_lote">Información del Lote:</label>
+                        <div class="row">
+                            <div class="col">
+                                <p>Cosecha N° : <span id="id_lote" class="d-inline-block text-center"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Cantidad_Extra: <span id="cantidad_extra"></span></p>
+                            </div>
+                            <div class="col">
+                                <p>Cantidad_Primera: <span id="cantidad_primera"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Cantidad_Segunda: <span id="cantidad_segunda"></span></p>
+                            </div>
+                            <div class="col">
+                                <p>Cantidad_Riche: <span id="cantidad_riche"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin de la información relacionada -->
+
                     <div class="form-group">
-                        <label for="categoria_fresa">Categoria de Fresa:</label>
+                        <label for="categoria_fresa">Categoría de Fresa:</label>
                         <select class="form-control" id="categoria_fresa" name="categoria_fresa" required>
                             <option value="">Seleccione una categoría</option>
                             <option value="extra">Extra</option>
@@ -187,7 +216,7 @@ echo "<br><br><br><br><br>";
                         <input type="number" class="form-control" id="cantidad_perdida" name="cantidad_perdida" min="1" max="99" oninput="this.value = this.value.slice(0, 2)" required>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-custom">Registrar Perdida</button>
+                        <button type="submit" class="btn btn-custom">Registrar Pérdida</button>
                     </div>
                 </form>
             </div>
@@ -201,7 +230,6 @@ echo "<br><br><br><br><br>";
     <br><br><br><br><br><br><br><br>
     <script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
     <br><br><br><br><br><br><br><br>
-
 
     <?php
     if (isset($_GET['msj_exito'])) {
@@ -219,6 +247,33 @@ echo "<br><br><br><br><br>";
     include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
 
     <script>
+        document.getElementById('fecha_cosecha').addEventListener('change', function() {
+            var idCosecha = this.value;
+            if (idCosecha) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../../../FRESAS_ARTURO/controller/controlers-admin/obtener_cosecha.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (!response.error) {
+                            document.getElementById('id_lote').innerText = response.id;
+                            document.getElementById('cantidad_extra').innerText = response.cantidad_extra + " kg";
+                            document.getElementById('cantidad_primera').innerText = response.cantidad_primera + " kg";
+                            document.getElementById('cantidad_segunda').innerText = response.cantidad_segunda + " kg";
+                            document.getElementById('cantidad_riche').innerText = response.cantidad_riche + " kg";
+                            document.getElementById('info_cosecha').style.display = 'block';
+                        } else {
+                            alert(response.error);
+                        }
+                    }
+                };
+                xhr.send('fecha_cosecha=' + idCosecha);
+            } else {
+                document.getElementById('info_cosecha').style.display = 'none';
+            }
+        });
+
         if (window.location.search.includes('msj_exito')) {
             Swal.fire({
                 position: "center",
@@ -250,7 +305,6 @@ echo "<br><br><br><br><br>";
                 text: "Error al actualizar la cantidad en lotes",
             });
         }
-
     </script>
 </body>
 
