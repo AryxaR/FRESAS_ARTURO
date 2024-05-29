@@ -17,7 +17,6 @@ $Cedula = $_POST['Cedula'];
 $Contrasena = $_POST['Contrasena'];
 $Rol = $_POST['Rol'];
 
-
 // Verificación de la longitud de la cédula
 if (strlen($Cedula) < 8 || strlen($Cedula) > 10) {
     $msj_error_cedula = 'La cédula debe tener entre 8 y 10 dígitos.';
@@ -59,8 +58,8 @@ if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
     header("Location: ../model/login_usuarios.php?msj_confirm_clave= $msj_confirm_clave");
 }
 
-
 $verificar_cedula = mysqli_query($conn, "SELECT * FROM usuarios WHERE Cedula = '$Cedula'");
+
 
 
 if (mysqli_num_rows($verificar_cedula) > 0) {
@@ -74,8 +73,8 @@ $verificar_correo = mysqli_query($conn, "SELECT * FROM usuarios WHERE Correo = '
 
 if (mysqli_num_rows($verificar_correo) > 0) {
 
-    $mensaje_error_3 = 'Usuario Inválido. Este correo ya se encuentra registrado con otro usuario';
-    header("Location: ../model/login_usuarios.php?msj_error_3= $mensaje_error_3");
+    $mensaje_error_2 = 'Usuario Inválido. Este correo ya se encuentra registrado con otro usuario';
+    header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
     exit();
 }
 
@@ -85,7 +84,6 @@ if ($ejecutar) {
 
     $msj_registro = 'Usuario registrado con éxito';
     header("Location: ../model/login_usuarios.php?msj_registro= $msj_registro");
-
 }
 ?>
 </body>

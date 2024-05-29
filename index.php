@@ -199,7 +199,6 @@
 
     </section>
     <script defer src="resource/js/index/main.js"></script>
-    <script defer src="resource/js/layout/nav.js"></script>
 
 </body>
 

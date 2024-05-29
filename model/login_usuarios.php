@@ -351,7 +351,7 @@
                         $msj_error = $_GET['msj_error'];
                         $mostrar = '<div class= "alert alert-danger" role="alert">' . $msj_error . '</div>';
                         echo $mostrar;
-                        header('refresh:2;url=login_usuarios.php');
+                        // header("refresh:2;url=login_usuarios.php");
                     }
                     ?>
                     <input type="number" pattern="\d{3,8}" min="99" max="9999999999" placeholder="Cedula" name="Cedula" required>
