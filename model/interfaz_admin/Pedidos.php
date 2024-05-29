@@ -20,8 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Selecciona todos los pedidos
-$sql = "SELECT v.*, u.Nombre as nombre_cliente FROM ventas v INNER JOIN usuarios u ON v.id_cliente = u.id_cliente";
+// Selecciona todos los pedidos o filtra por término de búsqueda
+if (isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    $sql = "SELECT v.*, u.Nombre as nombre_cliente FROM ventas v INNER JOIN usuarios u ON v.id_cliente = u.id_cliente WHERE id_cliente LIKE '%$searchTerm%'";
+} else {
+    $sql = "SELECT v.*, u.Nombre as nombre_cliente FROM ventas v INNER JOIN usuarios u ON v.id_cliente = u.id_cliente";
+}
+
 $resultado = $conn->query($sql);
 
 // Verificar si hay resultados
@@ -36,6 +42,7 @@ if ($resultado->num_rows > 0) {
 } else {
     echo "No se encontraron pedidos.";
 }
+
 echo "<br><br><br><br>";
 $conn->close();
 ?>
@@ -149,6 +156,18 @@ $conn->close();
     <div class="container">
         <div class="TITULO">ORDENES DE COMPRA</div>
         <br><br><br><br>
+
+             <!-- Formulario de búsqueda -->
+    <form action="" method="GET" class="form-inline float-right">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="searchTerm" class="sr-only">Buscar</label>
+            <input type="text" class="form-control" id="searchTerm" name="search" placeholder="Buscar">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+
+    <br><br><br>
+
         <div class="row">
             <?php foreach ($pedidos as $pedido) : ?>
                 <div class="col-md-6">
@@ -159,7 +178,7 @@ $conn->close();
                         <p><strong>Total:</strong> <?php echo $pedido['total']; ?></p>
                         <div class="btn-group" role="group" aria-label="Acciones">
                             <?php if ($pedido['estado'] == 'activo') : ?>
-                                <a href="detalle_pedido.php?id=<?php echo $pedido['id_factura']; ?>" class="btn btn-primary">Ver Detalles</a>
+                                <a href="detalle_pedido.php?id_factura=<?php echo $pedido['id_factura']; ?>" class="btn btn-primary">Ver Detalles</a>
                                 <a href="generar_pdf.php?id=<?php echo $pedido['id_factura']; ?>" class="btn btn-success">PDF</a>
                                 <form method="post" style="display: inline;">
                                     <input type="hidden" name="id_pedido" value="<?php echo $pedido['id_factura']; ?>">
