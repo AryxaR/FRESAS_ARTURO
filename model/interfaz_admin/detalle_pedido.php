@@ -1,36 +1,27 @@
 <?php
 // Verificar si se recibió un ID de pedido válido
-if(isset($_GET['id'])) {
+if(isset($_GET['id_factura'])) {
     // Obtener el ID del pedido de la URL
-    $id_pedido = $_GET['id'];
+    $id_pedido = $_GET['id_factura'];
     session_start();
     require_once '../../controller/conexion.php';
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     // Consulta para obtener los detalles del pedido con el ID proporcionado
     $sql = "SELECT * FROM detalle_venta WHERE id_factura = $id_pedido";
     $resultado = $conn->query($sql);
-
-    // Verificar si hay resultados
+    
     if ($resultado->num_rows > 0) {
-        // Array para almacenar los detalles del pedido
         $detalles_pedido = array();
-
-        // Iterar sobre los resultados y guardarlos en el array
         while ($fila = $resultado->fetch_assoc()) {
             $detalles_pedido[] = $fila;
         }
     } else {
         echo "No se encontraron detalles para este pedido.";
     }
-
-    // Cerrar la conexión
+    var_dump($detalles_pedido);
     $conn->close();
 } else {
-    // Si no se proporcionó un ID de pedido válido, puedes mostrar un mensaje de error o redirigir a otra página
     echo "ID de pedido inválido";
-    // O puedes redirigir a otra página
-    // header("Location: pagina_error.php");
-    // exit();
 }
 ?>
 
