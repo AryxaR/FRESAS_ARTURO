@@ -165,9 +165,9 @@
         .btn-custom {
             background-color: #f8eaef;
             color: black;
-            border-radius: 10px;
+            /* border-radius: 10px; */
             border: 1px solid #d22c5d;
-            padding: 10px;
+            padding: 3px 9px;
             text-decoration: none;
             transition: background-color 0.3s, color 0.3s;
         }
@@ -268,6 +268,58 @@
             }
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var botonesToggle = document.querySelectorAll('.toggle-usuario');
+            botonesToggle.forEach(function(boton) {
+                boton.addEventListener('click', function() {
+                    var idProveedor = this.getAttribute('data-id');
+                    var nuevoEstado = this.getAttribute('data-estado');
+                    if (true) {
+                        toggleUsuario(idProveedor, nuevoEstado);
+                    }
+                });
+            });
+
+            function toggleUsuario(idProveedor, nuevoEstado) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../../controller/controlers-admin/inactivarProveedor.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Acción Realizada',
+                            text: ' Estado de usuario actualizado con éxito'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location = "consult_mysql.php";
+                            }
+                        });
+                    } else {
+                        alert('Error al actualizar el estado del usuario');
+                    }
+                };
+                xhr.onerror = function() {
+                    alert('Error de red, no se pudo comunicar con el servidor');
+                };
+                xhr.send('id=' + idProveedor + '&estado=' + nuevoEstado);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabla = document.getElementById('miTabla');
+            var filas = tabla.querySelectorAll('tr');
+
+            filas.forEach(function(fila) {
+                var estado = fila.querySelector('td:nth-child(6)').textContent.trim();
+                if (estado === 'INACTIVO') {
+                    fila.classList.add('fila-inactiva');
+                }
+            });
+        });
+    </script>
 </head>
 
 <?php
@@ -310,7 +362,7 @@ if (isset($_GET['msj_proveedor'])) {
     <DIV class="TITULO">PROVEEDORES REGISTRADOS</DIV>
     <?php
 
-    $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor FROM proveedores";
+    $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor, Estado FROM proveedores";
     $result = $conexion->query($sqselect);
 
     if ($result->num_rows > 0) {
@@ -326,18 +378,25 @@ if (isset($_GET['msj_proveedor'])) {
         </thead>";
         echo "<tbody>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
+            echo "<tr id='" . ($row["Estado"] == 'INACTIVO' ? 'inactivo' : 'activo') . "'>";
             echo "<td>" . $row["Id_proveedor"] . "</td>";
             echo "<td>" . $row["Nombre_proveedor"] . "</td>";
             echo "<td>" . $row["Telefono_proveedor"] . "</td>";
-            echo "<td class='acciones-container'>";
-            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver detalles</span></a></div>";
-            echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            echo "<div class='btn-icon-container'><form method='post' style='display: inline;'>
-                  <input type='hidden' name='eliminar_proveedor' value='" . $row["Id_proveedor"] . "'>
-                  <button type='submit' class='btn-icon eliminar-proveedor' title=' Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>
-                  </form></div>";
-            echo "</td>";
+            echo "<td style='text-align: center;'>";
+                    if ($row["Estado"] == 'INACTIVO') {
+                       echo "<a href='#' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a>";
+                        echo "<a href='#' class='btn-custom' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
+                    } else {
+                       echo "<a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a>";
+                        echo "<a href='update_proveedor.php?id=" . $row["Id_proveedor"] ."' class='btn-custom btn-actualizar' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
+
+                    }
+                    if ($row["Estado"] == 'ACTIVO') {
+                        echo "<a class='btn-custom toggle-usuario' data-id='" . ($row["Id_proveedor"]) . "' data-estado='INACTIVO'><i class='bi bi-check-circle-fill'></i><span class='btn-subtitle'>Inactivar</span></a>";
+                    } else {
+                        echo "<a class='btn-custom toggle-usuario' data-id='" . ($row["Id_proveedor"]) . "' data-estado='ACTIVO'><i class='bi bi-x-circle-fill'></i><span class='btn-subtitle'>Activar</span></a>";
+                    }
+                    echo "</td>";
             echo "</tr>";
         }
         echo "</tbody>";
@@ -349,6 +408,9 @@ if (isset($_GET['msj_proveedor'])) {
     } else {
         echo "No se encontraron resultados";
     }
+
+
+
 
     $conexion->close();
     ?>
