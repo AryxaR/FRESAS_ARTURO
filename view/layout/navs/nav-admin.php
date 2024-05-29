@@ -22,6 +22,7 @@
   width: 100vw;
   position: fixed;
   z-index: 1000;
+  top: 0;
   /* position: relative; */
 }
 
@@ -57,7 +58,11 @@
 }
 
 .fa-arrow-right-to-bracket {
-  transform: translate(6px, 2px);
+  transform: translate(6px, 1px);
+}
+
+.cerrar {
+  margin-right: 9px;
 }
 
 .lista-ingreso li a {
@@ -80,7 +85,7 @@
   display: none;
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 548px) {
   .cerrar {
     display: none;
   }
@@ -201,7 +206,7 @@ h2 {
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">
                     <li>
-                        <a id="openModalBtn" class="ingresar" href="#"><span class="cerrar">Backup</span></a>
+                        <a id="openModalBtn" class="ingresar" href="#"><span class="cerrar">Backup</span><i class="fa-regular fa-floppy-disk"></i></a>
                     </li>
                     <li>
                         <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php"><span class="cerrar">Cerrar Sesion</span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>

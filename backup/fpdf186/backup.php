@@ -5,24 +5,22 @@ $username = "root";
 $password = "";
 $database = "proyecto";
 
-
 // Nombre del archivo de copia de seguridad
-$backup_file = 'backup_' . date("Y-m-d_H-i-s") . '.sql';
+$backup_file = 'C:/Users/USUARIO/Downloads/backup_' . date("Y-m-d_H-i-s") . '.sql';
+
+// Ruta completa a mysqldump (modifica según tu instalación)
+$mysqldump = 'C:/Program Files/MySQL/MySQL Server 8.0/bin/mysqldump';
 
 // Comando para generar la copia de seguridad
-$command = "mysqldump --user={$username} --password={$password} --host={$servername} {$database} > {$backup_file}";
+$command = "{$mysqldump} --user={$username} --password={$password} --host={$servername} {$database} > {$backup_file}";
 
-// Ejecutar el comando
-system($command, $output);
+// Ejecutar el comando y capturar el resultado
+exec($command, $output, $return_var);
 
 // Verificar si la copia de seguridad se generó correctamente
-if ($output === 1) {
-    $msj_copia = "Copia de seguridad generada exitosamente como: " . $backup_file;
-    header("Location: ../../inicio_admin.php?msj_copia=  $msj_copia");
+if ($return_var === 0) {
+    echo "Copia de seguridad generada exitosamente como: " . $backup_file;
 } else {
-    $msj_error_copia = "Error al generar la copia de seguridad";
-    header("Location: ../../inicio_admin.php?msj_copia=  $msj_error_copia");
-
+    echo "Error al generar la copia de seguridad. Código de error: " . $return_var;
 }
 ?>
-

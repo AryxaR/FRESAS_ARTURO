@@ -1,9 +1,12 @@
 <?php
 // Conexión a la base de datos (modifica con tus datos)
-$servername = "localhost";
+$servername = "localhost"; // Cambia esto si tu servidor de base de datos está en otro lugar
 $username = "root";
 $password = "";
-$database = "proyecto";
+$dbname = "proyecto";
+
+// Crear la conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 
 // Verificar si se ha enviado un archivo para restaurar
