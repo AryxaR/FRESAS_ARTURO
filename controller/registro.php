@@ -45,7 +45,24 @@ if (!validarContrasena($Contrasena)) {
     header("Location:../model/login_usuarios.php?msj_error_caracter=$mensaje_error_caracter");
     exit();
 }
+?>
+<script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            const emailInput = document.getElementById('email');
+            const emailValue = emailInput.value;
+            const allowedDomains = ['gmail.com', 'hotmail.com'];
+            
+            // Extraer el dominio del correo
+            const emailDomain = emailValue.substring(emailValue.lastIndexOf('@') + 1);
 
+            // Verificar si el dominio está permitido
+            if (!allowedDomains.includes(emailDomain)) {
+                event.preventDefault();  // Prevenir el envío del formulario
+                alert('Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com');
+            }
+        });
+    </script>
+<?php
 if ($_POST['Contrasena'] == $_POST['confirmar_contrasena']) {
 
     $contraseña_confirmada = $_POST['confirmar_contrasena'];
