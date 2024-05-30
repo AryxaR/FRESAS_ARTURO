@@ -100,23 +100,20 @@
             cursor: pointer;
         }
 
-        .usuarios-table {
-            width: 95%;
-            max-width: 1200px;
-            border-collapse: collapse;
-            font-family: 'Poppins', sans-serif;
+        .table-compact {
+            max-width: 70%;
+            width: auto;
+            table-layout: auto;
         }
 
-        .usuarios-table th,
-        .usuarios-table td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #666666;
-            font-family: 'Poppins', sans-serif;
+        .table-compact th,
+        .table-compact td {
+            white-space: nowrap;
         }
 
-        .usuarios-table th {
-            background-color: #f2f2f2;
+        .btn-compact {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
         }
 
         .btn-icon {
@@ -137,17 +134,6 @@
         }
 
 
-        .acciones-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        .btn-icon-container {
-            padding: 5px;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
         .btn-subtitle {
             display: none;
             margin-left: 5px;
@@ -155,21 +141,6 @@
 
         .btn-icon:hover .btn-subtitle {
             display: inline-block;
-        }
-
-        .btn-custom {
-            margin-top: -20%;
-            margin-left: calc(50% - 600px);
-        }
-
-        .btn-custom {
-            background-color: #f8eaef;
-            color: black;
-            /* border-radius: 10px; */
-            border: 1px solid #d22c5d;
-            padding: 3px 9px;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
         }
 
         .btn-custom:hover {
@@ -213,59 +184,6 @@
 
         .breadcrumb-item a:hover {
             text-decoration: underline;
-        }
-
-        @media screen and (max-width: 1024px) {
-            .TITULO {
-                font-size: 20px;
-                margin-top: 50px;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-
-
-            .usuarios-table th,
-            .usuarios-table td {
-                padding: 5px;
-            }
-        }
-
-        @media screen and (min-width: 440px)and (max-width: 768px) {
-            .btn-custom {
-                width: 10%;
-                padding: 8px 8px;
-                margin-left: 30%;
-                margin-top: 10px;
-                display: block;
-            }
-        }
-
-        @media screen and (min-width: 776px) and (max-width: 1198px) {
-            .btn-custom {
-                margin-top: 20px;
-                margin-left: calc(50% - 100px);
-                max-width: 100px;
-            }
-        }
-
-        @media screen and (min-width: 1200px) {
-            .btn-custom {
-                margin-top: 20px;
-                margin-left: calc(50% - 100px);
-                max-width: 200px;
-
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .btn-icon {
-                font-size: 12px;
-                padding: 6px 10px;
-                margin-bottom: 5px;
-                display: inline-block;
-
-            }
         }
     </style>
 
@@ -367,13 +285,14 @@ if (isset($_GET['msj_proveedor'])) {
 
     if ($result->num_rows > 0) {
         echo "<br><br>";
-        echo "<table id='proveedores-table' class='usuarios-table'>";
+        echo "<div class='table-responsive'>";
+        echo "<table id='proveedores-table' class='table table-striped table-compact'>";
         echo "<thead>
             <tr>
-                <th><i class='bi bi-person-badge-fill'></i>Id </th>
-                <th><i class='bi bi-person-check-fill'></i>Nombre </th>
-                <th><i class='bi bi-telephone-fill'></i>Telefono </th>
-                <th style='text-align: center;'><i class='bi bi-shield-lock'></i>Acciones</th>
+                <th><i class='bi bi-person-badge-fill'></i> Id</th>
+                <th><i class='bi bi-person-check-fill'></i> Nombre</th>
+                <th><i class='bi bi-telephone-fill'></i> Telefono</th>
+                <th class='text-center'><i class='bi bi-shield-lock'></i> Acciones</th>
             </tr>
         </thead>";
         echo "<tbody>";
@@ -382,38 +301,36 @@ if (isset($_GET['msj_proveedor'])) {
             echo "<td>" . $row["Id_proveedor"] . "</td>";
             echo "<td>" . $row["Nombre_proveedor"] . "</td>";
             echo "<td>" . $row["Telefono_proveedor"] . "</td>";
-            echo "<td style='text-align: center;'>";
-                    if ($row["Estado"] == 'INACTIVO') {
-                       echo "<a href='#' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a>";
-                        echo "<a href='#' class='btn-custom' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
-                    } else {
-                       echo "<a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a>";
-                        echo "<a href='update_proveedor.php?id=" . $row["Id_proveedor"] ."' class='btn-custom btn-actualizar' style='margin-right: 10px;'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a>";
-
-                    }
-                    if ($row["Estado"] == 'ACTIVO') {
-                        echo "<a class='btn-custom toggle-usuario' data-id='" . ($row["Id_proveedor"]) . "' data-estado='INACTIVO'><i class='bi bi-check-circle-fill'></i><span class='btn-subtitle'>Inactivar</span></a>";
-                    } else {
-                        echo "<a class='btn-custom toggle-usuario' data-id='" . ($row["Id_proveedor"]) . "' data-estado='ACTIVO'><i class='bi bi-x-circle-fill'></i><span class='btn-subtitle'>Activar</span></a>";
-                    }
-                    echo "</td>";
+            echo "<td class='text-center'>";
+            if ($row["Estado"] == 'INACTIVO') {
+                echo "<a href='#' class='btn btn-icon btn-compact' title='Ver detalles'><i class='bi bi-eye-fill'></i> Detalles</a>";
+                echo "<a href='#' class='btn btn-warning btn-compact' style='margin-right: 5px;'><i class='bi bi-pencil-square'></i> Editar</a>";
+            } else {
+                echo "<a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn btn-icon btn-compact' title='Ver detalles'><i class='bi bi-eye-fill'></i> Detalles</a>";
+                echo "<a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn btn-warning btn-compact' style='margin-right: 5px;'><i class='bi bi-pencil-square'></i> Editar</a>";
+            }
+            if ($row["Estado"] == 'ACTIVO') {
+                echo "<a class='btn btn-danger btn-compact toggle-usuario' data-id='" . ($row["Id_proveedor"]) . "' data-estado='INACTIVO'><i class='bi bi-check-circle-fill'></i> Inactivar</a>";
+            } else {
+                echo "<a class='btn btn-success btn-compact toggle-usuario' data-id='" . ($row["Id_proveedor"]) . "' data-estado='ACTIVO'><i class='bi bi-x-circle-fill'></i> Activar</a>";
+            }
+            echo "</td>";
             echo "</tr>";
         }
         echo "</tbody>";
         echo "</table>";
-
+        echo "</div>"; // Cierra el div.table-responsive
+    
         echo "<div class='text-center mt-4'>
-            <a href='insert_proveedor.php' class='btn btn-success' title='Crear Proveedor'><i class='bi bi-person-plus-fill'></i> Crear Proveedor</a>
+            <a href='insert_proveedor.php' class='btn btn-success btn-compact' title='Crear Proveedor'><i class='bi bi-person-plus-fill'></i> Crear Proveedor</a>
         </div>";
     } else {
         echo "No se encontraron resultados";
     }
-
-
-
-
+    
     $conexion->close();
     ?>
+    
 
     <?php
     echo "<br><br><br><br>";
