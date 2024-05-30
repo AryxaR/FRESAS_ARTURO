@@ -7,7 +7,6 @@
     <title>PEDIDOS | FRESAS DON ARTURO</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <?php
-session_start();
 require_once '../../controller/conexion.php';
 include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 
@@ -45,13 +44,6 @@ if ($resultado->num_rows > 0) {
     echo "No se encontraron pedidos.";
 }
 echo "<br><br><br><br>";
-$conn->close();
-?>
-
-    <?php
-    session_start();
-    require_once '../../controller/conexion.php';
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 
     // Actualiza el estado de los pedidos si se reciben datos POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
