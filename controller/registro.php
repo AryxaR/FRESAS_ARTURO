@@ -15,6 +15,7 @@ $Nombre = $_POST['Nombre'];
 $Correo = $_POST['Correo'];
 $Cedula = $_POST['Cedula'];
 $Contrasena = $_POST['Contrasena'];
+$contraseña_confirmada = $_POST['confirmar_contrasena'];
 $Rol = $_POST['Rol'];
 
 // Verificación de la longitud de la cédula
@@ -45,7 +46,7 @@ if (!validarContrasena($Contrasena)) {
     exit();
 }
 
-if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
+if ($_POST['Contrasena'] == $_POST['confirmar_contrasena']) {
 
     $contraseña_confirmada = $_POST['confirmar_contrasena'];
     $pass_segura = password_hash($Contrasena, PASSWORD_DEFAULT);
@@ -53,38 +54,40 @@ if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
     $query = "INSERT INTO usuarios (Cedula, Nombre, Correo, Contrasena, Rol) 
         VALUES('$Cedula', '$Nombre', '$Correo', '$pass_segura', '$Rol')";
     
+    $verificar_cedula = mysqli_query($conn, "SELECT * FROM usuarios WHERE Cedula = '$Cedula'");
+
+
+
+    if (mysqli_num_rows($verificar_cedula) > 0) {
+    
+        $mensaje_error_2 = 'Usuario Inválido. Esta Cédula ya se encuentra registrada';
+                header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
+        exit();
+    }
+    
+    $verificar_correo = mysqli_query($conn, "SELECT * FROM usuarios WHERE Correo = '$Correo' ");
+    
+    if (mysqli_num_rows($verificar_correo) > 0) {
+    
+        $mensaje_error_2 = 'Usuario Inválido. Este correo ya se encuentra registrado con otro usuario';
+        header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
+        exit();
+    }
+    
+    $ejecutar = mysqli_query($conn, $query);
+    
+    if ($ejecutar) {
+    
+        $msj_registro = 'Usuario registrado con éxito';
+        header("Location: ../model/login_usuarios.php?msj_registro= $msj_registro");
+    }
 } else {
     $msj_confirm_clave = 'Las contraseñas ingresadas no coinciden';
     header("Location: ../model/login_usuarios.php?msj_confirm_clave= $msj_confirm_clave");
 }
 
-$verificar_cedula = mysqli_query($conn, "SELECT * FROM usuarios WHERE Cedula = '$Cedula'");
 
-
-
-if (mysqli_num_rows($verificar_cedula) > 0) {
-
-    $mensaje_error_2 = 'Usuario Inválido. Esta Cédula ya se encuentra registrada';
-            header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
-    exit();
-}
-
-$verificar_correo = mysqli_query($conn, "SELECT * FROM usuarios WHERE Correo = '$Correo' ");
-
-if (mysqli_num_rows($verificar_correo) > 0) {
-
-    $mensaje_error_2 = 'Usuario Inválido. Este correo ya se encuentra registrado con otro usuario';
-    header("Location: ../model/login_usuarios.php?msj_error_2= $mensaje_error_2");
-    exit();
-}
-
-$ejecutar = mysqli_query($conn, $query);
-
-if ($ejecutar) {
-
-    $msj_registro = 'Usuario registrado con éxito';
-    header("Location: ../model/login_usuarios.php?msj_registro= $msj_registro");
-}
 ?>
+
 </body>
 </html>

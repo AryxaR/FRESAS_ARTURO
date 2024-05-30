@@ -280,7 +280,7 @@
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">
                     <li>
-                        <a id="click-regictro" class="registro" href="../Fresas_Arturo/model/login_usuarios.php?click">Registro </a>
+                        <a class="registro" href="../Fresas_Arturo/model/login_usuarios.php?click">Registro </a>
                     </li>
                     <li>
                         <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php">Ingresar <i class="fa-solid fa-arrow-right-to-bracket"></i></a>

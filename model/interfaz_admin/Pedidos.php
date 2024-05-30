@@ -6,44 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PEDIDOS | FRESAS DON ARTURO</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<?php
-require_once '../../controller/conexion.php';
-include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 
-// Actualiza el estado de los pedidos si se reciben datos POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['id_pedido']) && isset($_POST['accion'])) {
-        $idPedido = $_POST['id_pedido'];
-        $accion = $_POST['accion'];
+    <?php
+    require_once '../../controller/conexion.php';
+    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 
-        if ($accion == 'finalizar') {
-            $nuevoEstado = 'finalizado';
-        } elseif ($accion == 'activar') {
-            $nuevoEstado = 'activo';
+    // Actualiza el estado de los pedidos si se reciben datos POST
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['id_pedido']) && isset($_POST['accion'])) {
+            $idPedido = $_POST['id_pedido'];
+            $accion = $_POST['accion'];
+
+            if ($accion == 'finalizar') {
+                $nuevoEstado = 'finalizado';
+            } elseif ($accion == 'activar') {
+                $nuevoEstado = 'activo';
+            }
+
+            $sql = "UPDATE ventas SET estado = '$nuevoEstado' WHERE id_factura = $idPedido";
+            $conn->query($sql);
         }
-
-        $sql = "UPDATE ventas SET estado = '$nuevoEstado' WHERE id_factura = $idPedido";
-        $conn->query($sql);
     }
-}
 
-// Selecciona todos los pedidos
-$sql = "SELECT v.*, u.Nombre as nombre_cliente FROM ventas v INNER JOIN usuarios u ON v.id_cliente = u.id_cliente";
-$resultado = $conn->query($sql);
+    // Selecciona todos los pedidos
+    $sql = "SELECT v.*, u.Nombre as nombre_cliente FROM ventas v INNER JOIN usuarios u ON v.id_cliente = u.id_cliente";
+    $resultado = $conn->query($sql);
 
-// Verificar si hay resultados
-if ($resultado->num_rows > 0) {
-    // Array para almacenar los pedidos
-    $pedidos = array();
+    // Verificar si hay resultados
+    if ($resultado->num_rows > 0) {
+        // Array para almacenar los pedidos
+        $pedidos = array();
 
-    // Iterar sobre los resultados y guardarlos en el array
-    while ($fila = $resultado->fetch_assoc()) {
-        $pedidos[] = $fila;
+        // Iterar sobre los resultados y guardarlos en el array
+        while ($fila = $resultado->fetch_assoc()) {
+            $pedidos[] = $fila;
+        }
+    } else {
+        echo "No se encontraron pedidos.";
     }
-} else {
-    echo "No se encontraron pedidos.";
-}
-echo "<br><br><br><br>";
+    echo "<br><br><br><br>";
 
     // Actualiza el estado de los pedidos si se reciben datos POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -124,11 +125,19 @@ echo "<br><br><br><br>";
             font-family: 'Poppins', sans-serif;
         }
 
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 120px !important;
+            right: auto;
+            bottom: auto;
+            left: calc(100vw - 21px);
+            transform: translate(-100%);
+        }
+
         .pedido {
             margin-top: -10%;
             position: relative;
             width: 90%;
-            border: 1px solid #ccc; 
+            border: 1px solid #ccc;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -211,11 +220,12 @@ echo "<br><br><br><br>";
             position: relative;
             z-index: 0;
         }
-
     </style>
 </head>
 
 <body>
+    <script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+
     <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">

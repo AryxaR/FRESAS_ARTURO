@@ -291,6 +291,7 @@
                 transform: translate(270px, -35px);
             }
         }
+
         @media screen and (max-width: 375px) {
 
             span#ojo-registro,
@@ -369,7 +370,7 @@
                 </form>
 
                 <!--Register-->
-                <form action="../controller/registro.php" method="POST" class="formulario__register">
+                <form id="emailForm" action="../controller/registro.php" method="POST" class="formulario__register">
                     <h2>Regístrarse</h2>
                     <!-- LOGICA PARA MOSTRAR UNA ALERTA CON BOOTSTRAP -->
                     <?php
@@ -399,7 +400,7 @@
                     }
                     ?>
                     <input type="number" placeholder="Cedula" name="Cedula" required>
-                    <input type="email" placeholder="Correo Electronico" name="Correo" required>
+                    <input id="email" type="email" placeholder="Correo Electronico" name="Correo" required>
 
                     <!-- LOGICA PARA MOSTRAR UNA ALERTA CON BOOTSTRAP -->
                     <?php
@@ -431,7 +432,7 @@
                         <option value="Minorista">Minorista</option>
                     </select>
                     <div class="contenedor-btn-registro">
-                        <button>Regístrarse</button>
+                        <button type="submit">Regístrarse</button>
                     </div>
                     <div class="contenedor-volver">
                         <a class="volver" href="../Index.php">Volver al Inicio</a>
@@ -441,6 +442,28 @@
         </div>
 
     </main>
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            const emailInput = document.getElementById('email');
+            const emailValue = emailInput.value;
+            const allowedDomains = ['gmail.com', 'hotmail.com'];
+
+            // Extraer el dominio del correo
+            const emailDomain = emailValue.substring(emailValue.lastIndexOf('@') + 1);
+
+            // Verificar si el dominio está permitido
+            if (!allowedDomains.includes(emailDomain)) {
+                event.preventDefault(); // Prevenir el envío del formulario
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com",
+                    // footer: '<a href="#">Why do I have this issue?</a>'
+                });
+                // alert('Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com');
+            }
+        });
+    </script>
     <?php
     // RECEPCION DE VARIABLES DE OLVIDO CONTRASEÑA
     if (isset($_GET['msj_clave'])) {

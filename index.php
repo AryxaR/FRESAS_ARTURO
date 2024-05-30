@@ -84,7 +84,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/1.jpeg" alt="Image" />
                             </picture>
@@ -94,7 +94,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/2.jpeg" alt="Image" />
                             </picture>
@@ -104,7 +104,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/3.jpeg" alt="Image" />
                             </picture>
@@ -114,7 +114,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/4.jpeg" alt="Image" />
                             </picture>
@@ -124,7 +124,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Muestra tu mensaje</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/5.jpeg" alt="Image" />
                             </picture>
@@ -134,7 +134,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/6.jpeg" alt="Image" />
                             </picture>
@@ -144,7 +144,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/1.jpeg" alt="Image" />
                             </picture>
@@ -154,7 +154,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/8.jpeg" alt="Image" />
                             </picture>
@@ -164,7 +164,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/9.jpeg" alt="Image" />
                             </picture>
@@ -174,7 +174,7 @@
                 <div class="slick">
                     <div>
                         <a href="/">
-                            <h4><small>Share Your Message</small>Watch</h4>
+                            <h4>Recetas</h4>
                             <picture>
                                 <img src="resource/img/index/10.jpeg" alt="Image" />
                             </picture>
@@ -193,7 +193,7 @@
     </section>
 
     <div id="section-contacto">
-        <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+        <?php include_once('../FRESAS_ARTURO/view/layout/footers/footerUsuariosInicio.php') ?>
     </div>
 
 

@@ -34,6 +34,14 @@
 
         }
 
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 120px !important;
+            right: auto;
+            bottom: auto;
+            left: calc(100vw - 21px);
+            transform: translate(-100%);
+        }
+
 
         .TITULO {
             margin-top: 60px;
@@ -320,17 +328,17 @@ if (isset($_GET['msj_proveedor'])) {
         echo "</tbody>";
         echo "</table>";
         echo "</div>"; // Cierra el div.table-responsive
-    
+
         echo "<div class='text-center mt-4'>
             <a href='insert_proveedor.php' class='btn btn-success btn-compact' title='Crear Proveedor'><i class='bi bi-person-plus-fill'></i> Crear Proveedor</a>
         </div>";
     } else {
         echo "No se encontraron resultados";
     }
-    
+
     $conexion->close();
     ?>
-    
+
 
     <?php
     echo "<br><br><br><br>";

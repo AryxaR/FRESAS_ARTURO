@@ -43,6 +43,14 @@ $conexion->close();
             font-family: 'Poppins', sans-serif;
         }
 
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 120px !important;
+            right: auto;
+            bottom: auto;
+            left: calc(100vw - 21px);
+            transform: translate(-100%);
+        }
+
         .TITULO {
             margin-top: 60px;
             text-align: center;
