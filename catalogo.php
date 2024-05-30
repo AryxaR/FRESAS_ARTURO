@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
     
     <head>
         <meta charset="UTF-8">
@@ -34,7 +33,6 @@
     </style>
 
 </head>
-=======
 
 <head>
     <meta charset="UTF-8">
@@ -45,7 +43,6 @@
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style_catalogo.css">
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
 
->>>>>>> 399f914a7c2f4c12b1c6b26859bb64e6abaf7966
 <?php
 session_start();
 require_once('../FRESAS_ARTURO/controller/conexion.php');
