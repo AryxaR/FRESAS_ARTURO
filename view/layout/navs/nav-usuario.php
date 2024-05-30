@@ -103,7 +103,7 @@
   display: none;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 930px) {
   .lista-ingreso,
   .lista-nav {
     font-size: 0.8em;
