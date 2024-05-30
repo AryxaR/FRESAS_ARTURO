@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEDIDOS | FRESAS DON ARTURO</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <?php
 session_start();
 require_once '../../controller/conexion.php';
@@ -40,13 +47,6 @@ echo "<br><br><br><br>";
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEDIDOS | FRESAS DON ARTURO</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-image: url(../../resource/img/index/fondoborroso.png);
@@ -59,7 +59,7 @@ $conn->close();
         .pedido {
             position: relative;
             width: 90%;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; 
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

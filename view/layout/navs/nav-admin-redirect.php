@@ -168,6 +168,7 @@
                 background-color: #ce2761f5;
                 /* background-color: #4ece27f5; */
                 flex-direction: column;
+                display: flex;
                 top: 80px;
                 left: -200%;
                 padding: 0;
@@ -181,7 +182,7 @@
             }
 
             .nav {
-                height: 50%;
+                height: 90%;
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -190,10 +191,10 @@
 
             .btn-ingreso {
                 width: 100%;
-                height: 50%;
+                height: 20%;
                 display: flex;
                 flex-wrap: wrap;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: center;
             }
 
@@ -253,7 +254,7 @@
             }
 
             .lista-ingreso {
-                margin-top: 200px;
+                /* margin-top: 200px; */
                 display: flex;
                 flex-wrap: wrap;
             }
