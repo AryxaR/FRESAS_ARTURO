@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         unset($_SESSION['carrito']);
 
-        header("Location: ../../FRESAS_ARTURO/model/pedido.php?id_factura=$id_factura");
+        header("Location: ../../FRESAS_ARTURO/model/factura.php?id_factura=$id_factura");
         exit();
     } else {
         echo "Error al procesar el pedido: " . $conn->error;
