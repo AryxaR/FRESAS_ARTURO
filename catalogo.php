@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
     
     <head>
         <meta charset="UTF-8">
@@ -33,6 +34,18 @@
     </style>
 
 </head>
+=======
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATÁLOGO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style_catalogo.css">
+    <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
+
+>>>>>>> 399f914a7c2f4c12b1c6b26859bb64e6abaf7966
 <?php
 session_start();
 require_once('../FRESAS_ARTURO/controller/conexion.php');
@@ -198,6 +211,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<<<<<<< HEAD
+=======
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 250px;
+        }
+
+        .input-cantidad {
+            width: 190px;
+        }
+
+        .breadcrumbs-container {
+            margin-top: -1%;
+            margin-left: 90%;
+        }
+
+        .breadcrumbs-container .breadcrumb {
+            margin-bottom: 0;
+        }
+
+        .breadcrumbs-container .breadcrumb-item a {
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+>>>>>>> 399f914a7c2f4c12b1c6b26859bb64e6abaf7966
 
 <body>
     <br><br><br><br>

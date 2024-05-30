@@ -148,7 +148,7 @@
         }
 
         .contenedor-cosechas {
-            background-color: while;
+            background-color: white;
             z-index: -1000;
             margin-bottom: 30px;
         }
