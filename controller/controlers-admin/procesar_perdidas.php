@@ -1,39 +1,57 @@
 <?php
-// Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "", "proyecto");
 
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
 
-// Verificar si los datos del formulario han sido enviados
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_cosecha = $_POST['fecha_cosecha']; // Aquí obtenemos el id de la cosecha
+    $id_cosecha = $_POST['fecha_cosecha']; 
     $categoria_fresa = $_POST['categoria_fresa'];
     $cantidad_perdida = $_POST['cantidad_perdida'];
 
-    // Validar datos
     if (empty($id_cosecha) || empty($categoria_fresa) || empty($cantidad_perdida)) {
         die("Error: Todos los campos son obligatorios.");
     }
 
-    // Comenzar una transacción
     $conexion->begin_transaction();
 
     try {
+        // Verificar el stock antes de realizar la operación
+        $sql_verificar_stock = "SELECT Stock FROM productos WHERE id_producto IN (SELECT id_producto FROM lotes WHERE id = ?) AND categoria_producto = ?";
+        $stmt_verificar_stock = $conexion->prepare($sql_verificar_stock);
+        $stmt_verificar_stock->bind_param("is", $id_cosecha, $categoria_fresa);
 
-        // Registrar la pérdida en la tabla de pérdidas
+        if (!$stmt_verificar_stock->execute()) {
+            throw new Exception("Error al verificar el stock: " . $stmt_verificar_stock->error);
+        }
+
+        $resultado_verificar_stock = $stmt_verificar_stock->get_result();
+        if ($resultado_verificar_stock->num_rows > 0) {
+            $fila = $resultado_verificar_stock->fetch_assoc();
+            $stock_actual = $fila['Stock'];
+
+            if ($stock_actual <= 0) {
+                throw new Exception("Error: El stock del producto ya está en cero. No se puede registrar más pérdidas.");
+            }
+
+            if ($cantidad_perdida > $stock_actual) {
+                throw new Exception("Error: La cantidad de pérdida supera el stock actual del producto.");
+            }
+        } else {
+            throw new Exception("Error: No se encontró el producto correspondiente en el stock.");
+        }
+
+        // Insertar la pérdida
         $sql_registrar_perdida = "INSERT INTO perdidas (id_cosecha, categoria_fresa, cantidad_perdida) VALUES (?, ?, ?)";
         $stmt_registrar_perdida = $conexion->prepare($sql_registrar_perdida);
         $stmt_registrar_perdida->bind_param("isi", $id_cosecha, $categoria_fresa, $cantidad_perdida);
 
         if (!$stmt_registrar_perdida->execute()) {
-            $msj_error_registrar = "Error al registrar la pérdida: " . $stmt_registrar_perdida->error;
             throw new Exception("Error al registrar la pérdida: " . $stmt_registrar_perdida->error);
-            header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_registrar= $msj_error_registrar");
         }
 
-        // Actualizar la cantidad en la tabla de lotes
+        // Actualizar la cantidad en lotes según la categoría de fresa
         switch ($categoria_fresa) {
             case 'extra':
                 $sql_update_lotes = "UPDATE lotes SET cantidad_extra = cantidad_extra - ? WHERE id = ?";
@@ -48,48 +66,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql_update_lotes = "UPDATE lotes SET cantidad_riche = cantidad_riche - ? WHERE id = ?";
                 break;
             default:
-            $msj_error_categoria = "Categoría de fresa no válida.";
                 throw new Exception("Categoría de fresa no válida.");
-                header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_categoria= $msj_error_categoria");
-
         }
 
         $stmt_update_lotes = $conexion->prepare($sql_update_lotes);
         $stmt_update_lotes->bind_param("di", $cantidad_perdida, $id_cosecha);
 
         if (!$stmt_update_lotes->execute()) {
-            $msj_error_lotes = "Error al actualizar la cantidad en lotes: " . $stmt_update_lotes->error;
             throw new Exception("Error al actualizar la cantidad en lotes: " . $stmt_update_lotes->error);
-            header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_lotes= $msj_error_lotes");
-
         }
 
-        // Actualizar el stock en la tabla de productos
+        // Actualizar el stock en productos
         $sql_update_productos = "UPDATE productos SET Stock = Stock - ? WHERE id_producto IN (SELECT id_producto FROM lotes WHERE id = ?) AND categoria_producto = ?";
         $stmt_update_productos = $conexion->prepare($sql_update_productos);
         $stmt_update_productos->bind_param("dis", $cantidad_perdida, $id_cosecha, $categoria_fresa);
 
         if (!$stmt_update_productos->execute()) {
-            $msj_error_producto = "Error al actualizar el stock en productos: " . $stmt_update_productos->error;
             throw new Exception("Error al actualizar el stock en productos: " . $stmt_update_productos->error);
-            header("Location: ../../model/interfaz_admin/Perdidas.php?msj_error_producto= $msj_error_producto");
         }
 
-        // Si todo está bien, commit la transacción
         $conexion->commit();
         $msj_exito = "Pérdida registrada, cantidad actualizada en lotes y stock actualizado en productos exitosamente.";
         header("Location: ../../model/interfaz_admin/Perdidas.php?msj_exito= $msj_exito");
     } catch (Exception $e) {
-        // Si ocurre un error, rollback la transacción
         $conexion->rollback();
         echo $e->getMessage();
+    } finally {
+        // Cerrar todas las declaraciones preparadas si están inicializadas
+        if (isset($stmt_registrar_perdida)) {
+            $stmt_registrar_perdida->close();
+        }
+        if (isset($stmt_update_lotes)) {
+            $stmt_update_lotes->close();
+        }
+        if (isset($stmt_update_productos)) {
+            $stmt_update_productos->close();
+        }
+        if (isset($stmt_verificar_stock)) {
+            $stmt_verificar_stock->close();
+        }
+        $conexion->close();
     }
-
-    // Cerrar las declaraciones y la conexión
-    $stmt_registrar_perdida->close();
-    $stmt_update_lotes->close();
-    $stmt_update_productos->close();
-    $conexion->close();
 } else {
     echo "Error: Método de solicitud no válido.";
 }
+?>
