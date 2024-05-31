@@ -10,44 +10,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precio_producto = $_POST['precio_producto'];
     $categoria_producto = $_POST['categoria_producto'];
 
-    
-    $sql = "SELECT precio_producto, imagen FROM productos WHERE id_producto = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $id_producto);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $producto = $result->fetch_assoc();
-    $precio_anterior = $producto['precio_producto'];
-
+    // Verificar si se proporcionó una imagen y si no hubo errores
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
-        $nombre_imagen = 'FRESA_' . strtoupper($categoria_producto) . '.jpeg';
+        // Generar un nombre de archivo único para la imagen
+        $nombre_imagen = uniqid('FRESA_' . strtoupper($categoria_producto)) . '.jpeg';
         $ruta_destino = '../../model/uploads/' . $nombre_imagen;
-        move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino);
-    } else {
-       
-        $nombre_imagen = $producto['imagen'];
+
+        // Mover la imagen cargada al directorio de destino
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
+            // Actualizar la ruta de la imagen en la base de datos
+            $ruta_imagen_actualizada = '../../../FRESAS_ARTURO/model/uploads/' . $nombre_imagen;
+            $sql_update_imagen = "UPDATE productos SET imagen = ? WHERE id_producto = ?";
+            $stmt_update_imagen = $conexion->prepare($sql_update_imagen);
+            $stmt_update_imagen->bind_param("si", $ruta_imagen_actualizada, $id_producto);
+            $stmt_update_imagen->execute();
+            $stmt_update_imagen->close();
+        } else {
+            echo "Error al mover la imagen al directorio de destino.";
+        }
     }
 
-    $sql = "UPDATE productos SET precio_producto = ?, imagen = ? WHERE id_producto = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("dsi", $precio_producto, $nombre_imagen, $id_producto);
+    $sql_update_precio = "UPDATE productos SET precio_producto = ? WHERE id_producto = ?";
+    $stmt_update_precio = $conexion->prepare($sql_update_precio);
+    $stmt_update_precio->bind_param("di", $precio_producto, $id_producto);
 
-    if ($stmt->execute()) {
+    if ($stmt_update_precio->execute()) {
         $msj_exito = 'Producto actualizado exitosamente.';
-        header("Location: ../../../FRESAS_ARTURO/Catalogo-admin.php?msj_exito= $msj_exito");
-        // Insertar en historial_precios
-        $sql_historial = "INSERT INTO historial_precios (id_producto, precio_anterior, precio_nuevo) VALUES (?, ?, ?)";
-        $stmt_historial = $conexion->prepare($sql_historial);
-        $stmt_historial->bind_param("idd", $id_producto, $precio_anterior, $precio_producto);
-        $stmt_historial->execute();
-
-        echo "Producto actualizado exitosamente.";
+        header("Location: ../../../FRESAS_ARTURO/Catalogo-admin.php?msj_exito=$msj_exito");
     } else {
-        echo "Error al actualizar el producto: " . $stmt->error;
+        echo "Error al actualizar el producto: " . $stmt_update_precio->error;
     }
 
-    $stmt->close();
+    $stmt_update_precio->close();
 }
 
 $conexion->close();
-?>
