@@ -134,6 +134,7 @@
         }
     }
 
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['id_producto']) && isset($_POST['cantidad'])) {
             $id_producto = $_POST['id_producto'];
@@ -142,33 +143,53 @@
             $verificacion_stock = verificarStock($id_producto, $cantidad, $conn);
 
             if ($verificacion_stock['suficiente']) {
-                // Verificar si el producto ya está en el carrito
-                if (isset($_SESSION['carrito'][$id_producto])) {
-                    // Si ya está en el carrito, sumar la cantidad, verificando el stock
-                    $cantidad_actual_carrito = $_SESSION['carrito'][$id_producto]['cantidad'];
-                    $cantidad_total = $cantidad_actual_carrito + $cantidad;
-                    if ($cantidad_total <= $verificacion_stock['stock_disponible']) {
-                        $_SESSION['carrito'][$id_producto]['cantidad'] = $cantidad_total;
+                $sql = "SELECT nombre_producto, categoria_producto, precio_producto FROM productos WHERE id_producto = $id_producto";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $nombre = $row['nombre_producto'];
+                    $categoria = $row['categoria_producto'];
+                    $precio = $row['precio_producto'];
+
+                    // Verificar si el producto ya está en el carrito
+                    if (isset($_SESSION['carrito'][$id_producto])) {
+                        // Si ya está en el carrito, sumar la cantidad, verificando el stock
+                        $cantidad_actual_carrito = $_SESSION['carrito'][$id_producto]['cantidad'];
+                        $cantidad_total = $cantidad_actual_carrito + $cantidad;
+                        if ($cantidad_total <= $verificacion_stock['stock_disponible']) {
+                            $_SESSION['carrito'][$id_producto]['cantidad'] = $cantidad_total;
+                        } else {
+                            // No se puede agregar más de lo disponible en stock
+                            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
+                            echo '<script>';
+                            echo "Swal.fire({
+                                icon: 'error',
+                                title: '¡No se puede agregar más cantidad!',
+                                html: 'No hay suficiente stock disponible para continuar con este pedido.',
+                                confirmButtonText: 'OK'
+                            });";
+                            echo '</script>';
+                        }
                     } else {
-                        // No se puede agregar más de lo disponible en stock
-                        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
-                        echo '<script>';
-                        echo "Swal.fire({
-                            icon: 'error',
-                            title: '¡No se puede agregar más cantidad!',
-                            html: 'No hay suficiente stock disponible para continuar con este pedido.',
-                            confirmButtonText: 'OK'
-                        });";
-                        echo '</script>';
+                        // Si no está en el carrito, agregarlo normalmente
+                        $_SESSION['carrito'][$id_producto] = array(
+                            'nombre' => $nombre,
+                            'categoria' => $categoria,
+                            'precio' => $precio,
+                            'cantidad' => $cantidad
+                        );
                     }
                 } else {
-                    // Si no está en el carrito, agregarlo normalmente
-                    $_SESSION['carrito'][$id_producto] = array(
-                        'nombre' => $nombre,
-                        'categoria' => $categoria,
-                        'precio' => $precio,
-                        'cantidad' => $cantidad
-                    );
+                    // No se encontró el producto en la base de datos
+                    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
+                    echo '<script>';
+                    echo "Swal.fire({
+                        icon: 'error',
+                        title: '¡Error!',
+                        text: 'El producto seleccionado no está disponible actualmente.',
+                        confirmButtonText: 'OK'
+                    });";
+                    echo '</script>';
                 }
             } else {
                 $stock_disponible = $verificacion_stock['stock_disponible'] . " Kg";
@@ -185,6 +206,8 @@
         }
     }
     ?>
+
+
 
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
