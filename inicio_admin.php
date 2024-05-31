@@ -164,42 +164,74 @@
         <div class="contenedor-contenido">
             <span class="close">&times;</span>
             <h2>Generar Copia de seguridad</h2>
-            <form action="../FRESAS_ARTURO/backup/fpdf186/backup.php" method="post">
+            <p class="texto_info">Haga click en el boton <b>Generar</b> para descargar el backup en .sql</p>
+            <form class="generar" action="../FRESAS_ARTURO/backup/backup.php" method="post">
                 <button class="button" type="submit" name="backup">Generar</button>
             </form>
-
+            
             <h2>Restaurar Copia de seguridad</h2>
-            <form class="form-restaurar" action="../FRESAS_ARTURO/backup/fpdf186/restore.php" method="post" enctype="multipart/form-data">
-                <input class="archivo" type="file" name="file" />
+            <p class="texto_info">Para que funcione correctamente antes debe eliminar la informacion actual de la base de datos</p>
+            <form class="form-restaurar"  action="../FRESAS_ARTURO/backup/restore.php" method="post" enctype="multipart/form-data">
+                <input class="archivo" type="file" id="restoreFile" name="restoreFile"/>
                 <button class="button" type="submit" name="restore">Restaurar</button>
-            </form>
-
-            <h2>Eliminar Copia de seguridad</h2>
-            <form class="form-restaurar" action="" method="post" enctype="multipart/form-data">
-                <input class="archivo" type="file" id="myFile">
-                <button class="button" onclick="eliminarArchivo()">Eliminar archivo</button>
             </form>
 
         </div>
     </div>
+    <script>
+        document.querySelector("form[action='../FRESAS_ARTURO/backup/Restore.php']").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById("restoreFile");
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("restoreFile", file);
+
+            fetch("restore.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Restauración exitosa!',
+                    text: result
+                }).then(() => {
+                    window.location.reload();
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de restauración',
+                    text: error.message
+                });
+            });
+        });
+    </script>
     <?php
 
     use PhpParser\Node\Expr\Include_;
 
-    if (isset($_GET['msj_copia'])) {
-        $msj_copia = $_GET['msj_copia'];
-    }
-    if (isset($_GET['msj_error_copia'])) {
-        $msj_error_copia = $_GET['msj_error_copia'];
-    }
+    // if (isset($_GET['msj_copia'])) {
+    //     $msj_copia = $_GET['msj_copia'];
+    // }
+    // if (isset($_GET['msj_error_copia'])) {
+    //     $msj_error_copia = $_GET['msj_error_copia'];
+    // }
+    // if (isset($_GET['msj_restaurar'])) {
+    //     $msj_restaurar = $_GET['msj_restaurar'];
+    // }
+    // if (isset($_GET['msj_error_restaurar'])) {
+    //     $msj_error_restaurar = $_GET['msj_error_restaurar'];
+    // }
+    
     if (isset($_GET['msj_restaurar'])) {
         $msj_restaurar = $_GET['msj_restaurar'];
     }
-    if (isset($_GET['msj_error_restaurar'])) {
-        $msj_error_restaurar = $_GET['msj_error_restaurar'];
+    if (isset($_GET['msj_file'])) {
+        $msj_file = $_GET['msj_file'];
     }
-
-
 
     include_once('../FRESAS_ARTURO/view/layout/navs/nav-admin.php');
     require_once('./controller/conexion.php');
