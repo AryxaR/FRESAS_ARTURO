@@ -205,17 +205,14 @@
                 if ($result->num_rows > 0) {
 
                     while ($row = $result->fetch_assoc()) {
-                        $nombre_imagen = 'FRESA_' . strtoupper($row['categoria_producto']) . '.jpeg';
-                        $ruta_imagen = './model/uploads/' . $nombre_imagen;
+                       
 
                         echo '<tr>';
                         echo '<td>' . $row["categoria_producto"] . '</td>';
                         echo '<td>';
-                        if (file_exists($ruta_imagen)) {
-                            echo '<img src="' . $ruta_imagen . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
-                        } else {
-                            echo '<img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">';
-                        }
+                    
+                            echo '<img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
+                            
                         echo '</td>';
                         echo '<td>$' . $row["precio_producto"] . '</td>';
                         echo '<td>';

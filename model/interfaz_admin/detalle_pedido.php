@@ -116,21 +116,7 @@
             border-radius: 0.25rem;
         }
 
-        .btn-exportar-pdf {
 
-            margin-top: -2%;
-            margin-left: 87%;
-            margin-bottom: 2%;
-
-        }
-
-        #contenido-pdf {
-            display: inline-block;
-            width: auto;
-            max-width: 150%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
 
     </style>
 </head>
@@ -150,8 +136,6 @@
 
         <div class="TITULO">DETALLES DEL PEDIDO #<?php echo $id_pedido; ?></div>
 
-        <button class="btn btn-success btn-exportar-pdf" onclick="generarPDF()">Exportar PDF</button>
-        <div id="contenido-pdf">
             <div class="row">
 
                 <div class="col-md-4">
@@ -208,7 +192,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <!-- Bootstrap JS -->

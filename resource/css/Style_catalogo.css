@@ -41,12 +41,6 @@ body {
   .titulo-item{
     font-family: 'Poppins', sans-serif;
   }
-
-  .img-item {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
   
   .precio-item {
     display: flex;
