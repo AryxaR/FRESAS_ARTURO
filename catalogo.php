@@ -251,10 +251,10 @@
             position: absolute;
             top: 40%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
+            transform: translate(-50%, -50%) rotate(-55deg);
             background: rgba(255, 0, 0, 0.8);
             color: white;
-            font-size: 3.5em;
+            font-size: 4em;
             font-weight: bold;
             padding: 10px 20px;
             border-radius: 5px;
@@ -267,6 +267,14 @@
             margin-top: 10px;
             display: block;
         }
+
+        .item img {
+            background-color: aqua;
+            width: 100%;
+            height: 450px;
+            border-radius: 1px;
+        }
+
     </style>
 </head>
 
@@ -298,21 +306,18 @@
     <section class="contenedor-general">
         <div class="contenedor-items">
             <?php
-            $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, Stock FROM productos";
+            $sql = "SELECT * FROM productos";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $ruta_imagen = obtenerRutaImagen($row['categoria_producto']);
                     $agotado = $row['Stock'] <= 0;
             ?>
                     <div class="item <?php echo $agotado ? 'agotado' : ''; ?>">
                         <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
                         <span class="titulo-item"><?php echo $row['categoria_producto']; ?></span>
-                        <?php if (file_exists($ruta_imagen)) { ?>
-                            <img src="<?php echo $ruta_imagen; ?>" alt="<?php echo $row['categoria_producto']; ?>" class="img-item">
-                        <?php } else { ?>
-                            <img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">
-                        <?php } ?>
+
+                        <img class="img-item" src="<?php echo $row['imagen']; ?>" alt="<?php echo $row['categoria_producto']; ?>">
+
                         <h5>*EL PRECIO DE VENTA ES POR CANASTILLA*</h5>
                         <h6>UNA CANASTILLA = "8KG"</h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>

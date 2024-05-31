@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precio_producto = $_POST['precio_producto'];
     $categoria_producto = $_POST['categoria_producto'];
 
-    // Verificar si se proporcionó una imagen y si no hubo errores
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
         // Generar un nombre de archivo único para la imagen
         $nombre_imagen = uniqid('FRESA_' . strtoupper($categoria_producto)) . '.jpeg';
@@ -18,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Mover la imagen cargada al directorio de destino
         if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
-            // Actualizar la ruta de la imagen en la base de datos
+            
             $ruta_imagen_actualizada = '../../../FRESAS_ARTURO/model/uploads/' . $nombre_imagen;
             $sql_update_imagen = "UPDATE productos SET imagen = ? WHERE id_producto = ?";
             $stmt_update_imagen = $conexion->prepare($sql_update_imagen);
