@@ -341,7 +341,7 @@ if ($conn === null) {
 
                         <img class="img-item" src="<?php echo $row['imagen']; ?>" alt="<?php echo $row['categoria_producto']; ?>">
 
-                        <h5>*EL PRECIO DE VENTA ES POR CANASTILLA*</h5>
+                        <h5>*EL PRECIO DE VENTA ES POR CANASTILLAS*</h5>
                         <h6>UNA CANASTILLA = "8KG"</h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>
 
