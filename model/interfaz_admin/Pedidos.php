@@ -169,7 +169,7 @@ echo "<br><br><br><br>";
 
         .breadcrumbs-container {
             display: flex;
-            margin-top: -1%;
+            margin-top: -7%;
             margin-left: 7%;
             padding: 10px;
             font-family: 'Poppins', sans-serif;
@@ -253,7 +253,7 @@ echo "<br><br><br><br>";
                         <div class="btn-group" role="group" aria-label="Acciones">
 
                             <?php if ($pedido['estado'] == 'activo') : ?>
-                                <a href="detalle_pedido.php?id_factura=<?php echo $pedido['id_factura']; ?>" class="btn btn-primary">Ver Detalles</a>
+                                <a href="detalle_pedido.php?id_factura=<?php echo $pedido['id_factura']; ?>" class="btn btn-primary">Detalles</a>
 
                                 <form method="post" style="display: inline;">
                                     <input type="hidden" name="id_pedido" value="<?php echo $pedido['id_factura']; ?>">
