@@ -1,39 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CATÁLOGO</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATÁLOGO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style_catalogo.css">
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
-    <style>
-        body .uwy.userway_p1 .userway_buttons_wrapper {
-            top: 250px;
-        }
 
-        .input-cantidad {
-            width: 190px;
-        }
-
-        .breadcrumbs-container {
-            position: absolute;
-            margin-top: 3%;
-            margin-left: 10%;
-        }
-
-        .breadcrumbs-container .breadcrumb {
-            margin-bottom: 0;
-        }
-
-        .breadcrumbs-container .breadcrumb-item a {
-            text-decoration: none;
-        }
-    </style>
-
-</head>
 <?php
 session_start();
 require_once('../FRESAS_ARTURO/controller/conexion.php');
@@ -141,7 +117,6 @@ function mostrarModalCarrito()
     echo '</div>';
 }
 
-// Función para verificar el stock disponible de un producto
 function verificarStock($id_producto, $cantidad, $conn)
 {
     $sql = "SELECT Stock FROM productos WHERE id_producto = $id_producto";
@@ -199,10 +174,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+    <style>
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 250px;
+        }
+
+        .input-cantidad {
+            width: 190px;
+        }
+
+        .breadcrumbs-container {
+            position: absolute;
+            margin-top: 3%;
+            margin-left: 10%;
+        }
+
+        .breadcrumbs-container .breadcrumb {
+            margin-bottom: 0;
+        }
+
+        .breadcrumbs-container .breadcrumb-item a {
+            text-decoration: none;
+        }
+
+        .item.agotado {
+            position: relative;
+            opacity: 0.5;
+        }
+
+        .item.agotado .btn {
+            pointer-events: none;
+        }
+
+        .item.agotado::after {
+            content: "AGOTADO";
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            font-size: 3.5em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        
+    </style>
+</head>
 
 <body>
     <br><br><br><br>
-    
+
     <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
@@ -214,29 +238,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <br>
-    
+
     <button type="button" class="btn btn-primary ms-4 position-relative" id="carritoBtn" data-bs-toggle="modal" data-bs-target="#modal-carrito" style="z-index: 1;">
         <i class="bi bi-cart"></i>
-        
         <?php
         $numArticulosCarrito = count($_SESSION['carrito']);
         ?>
         <?php if ($numArticulosCarrito > 0) : ?>
             <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><?php echo $numArticulosCarrito; ?></span>
-            <?php endif; ?>
-        </button>
-        
-        <section class="contenedor-general">
-            <div class="contenedor-items">
-                <?php
+        <?php endif; ?>
+    </button>
 
-$sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto FROM productos";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $ruta_imagen = obtenerRutaImagen($row['categoria_producto']);
-        ?>
-                    <div class="item">
+    <section class="contenedor-general">
+        <div class="contenedor-items">
+            <?php
+            $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, Stock FROM productos";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $ruta_imagen = obtenerRutaImagen($row['categoria_producto']);
+                    $agotado = $row['Stock'] <= 0;
+                    ?>
+                    <div class="item <?php echo $agotado ? 'agotado' : ''; ?>">
                         <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
                         <span class="titulo-item"><?php echo $row['categoria_producto']; ?></span>
                         <?php if (file_exists($ruta_imagen)) { ?>
@@ -245,16 +268,19 @@ if ($result->num_rows > 0) {
                             <img src="ruta/imagen/por/defecto.jpg" alt="Imagen por defecto" class="img-item">
                         <?php } ?>
                         <h5>*EL PRECIO DE VENTA ES POR CANASTILLA*</h5>
-                        <h6>UNA CANASTILLA = "8KG" </h6>
+                        <h6>UNA CANASTILLA = "8KG"</h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>
 
                         <form method="post" action="">
                             <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
-                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3 input-cantidad" min="1" max="99" oninput="this.value = this.value.slice(0, 2)">
-                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                            <input type="number" name="cantidad" placeholder="Cantidad (Canastilla)" required class="ms-2 mb-3 input-cantidad" min="1" max="99" oninput="this.value = this.value.slice(0, 2)" <?php echo $agotado ? 'disabled' : ''; ?>>
+                            <button type="submit" class="btn btn-primary" <?php echo $agotado ? 'disabled' : ''; ?>>Agregar al carrito</button>
                         </form>
+                        <?php if ($agotado) { ?>
+                            <div class="stock-agotado">AGOTADO</div>
+                        <?php } ?>
                     </div>
-            <?php
+                    <?php
                 }
             } else {
                 echo "No se encontraron productos.";
@@ -276,7 +302,7 @@ if ($result->num_rows > 0) {
     </script>
     <section id="section-contacto">
         <br><br><br><br><br><br>
-        <?php include_once ('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+        <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
     </section>
 </body>
 
