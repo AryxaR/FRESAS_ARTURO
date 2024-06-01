@@ -119,6 +119,18 @@
             white-space: nowrap;
         }
 
+        .encabezado-tabla {
+            background-color: #f2f2f2;
+        }
+
+        .usuarios-table th,
+        .usuarios-table td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #666666;
+            font-family: 'Poppins', sans-serif;
+        }
+
         .btn-compact {
             padding: 0.25rem 0.5rem;
             font-size: 0.875rem;
@@ -306,14 +318,17 @@ if (isset($_GET['msj_proveedor'])) {
         echo "<br><br>";
         echo "<div class='table-responsive'>";
         echo "<table id='proveedores-table' class='table table-striped table-compact usuarios-table'>";
+
         echo "<thead>
-        <tr>
-            <th><i class='bi bi-person-badge-fill'></i> Id</th>
-            <th><i class='bi bi-person-check-fill'></i> Nombre</th>
-            <th><i class='bi bi-telephone-fill'></i> Telefono</th>
-            <th class='text-center'><i class='bi bi-shield-lock'></i> Acciones</th>
-        </tr>
-    </thead>";
+            <tr>
+                <th class='encabezado-tabla'><i class='bi bi-person-badge-fill'></i> Id</th>
+                <th class='encabezado-tabla'><i class='bi bi-person-check-fill'></i> Nombre</th>
+                <th class='encabezado-tabla'><i class='bi bi-telephone-fill'></i> Telefono</th>
+                <th class='encabezado-tabla text-center'><i class='bi bi-shield-lock'></i> Acciones</th>
+            </tr>
+        </thead>";
+
+
         echo "<tbody>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr id='" . ($row["Estado"] == 'INACTIVO' ? 'inactivo' : 'activo') . "'>";

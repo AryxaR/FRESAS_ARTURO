@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
-    <!-- sweerAlert2 -->
+    <!-- sweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <style>
@@ -31,10 +32,8 @@
         }
 
         .tabla-container {
-            width: 70%;
-            /* Ajustar el ancho del contenedor de la tabla */
+            width: 90%;
             margin: 0 auto;
-            z-index: -999;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -45,14 +44,14 @@
 
         .tabla-productos th,
         .tabla-productos td {
-            border: 1px solid #d40748;
             padding: 8px;
-            text-align: center;
+            text-align: left;
+            border: 1px solid #666666;
             font-family: 'Poppins', sans-serif;
         }
 
         .tabla-productos th {
-            background-color: #f8eaef;
+      
             color: black;
         }
 
@@ -142,6 +141,24 @@
         .breadcrumb-item a:hover {
             text-decoration: underline;
         }
+
+        #tabla-productos th:nth-child(1),
+        #tabla-productos td:nth-child(1),
+        #tabla-productos th:nth-child(3),
+        #tabla-productos td:nth-child(3),
+        #tabla-productos th:nth-child(4),
+        #tabla-productos td:nth-child(4) {
+            text-align: center;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        #tabla-productos th:nth-child(2) {
+            text-align: center;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
     </style>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
@@ -167,7 +184,7 @@
     ?>
     <br>
 
-<div class="breadcrumbs-container">
+    <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -180,66 +197,73 @@
     <div class="TITULO">CATÁLOGO</div>
     <br><br>
 
-    <div class="tabla-container">
-        <table id="tabla-productos" class="tabla-productos">
-            <thead>
-                <tr>
-                    <th style="width: 150px;">Categoria</th>
-                    <th>Foto</th>
-                    <th>Precio</th>
-                    <th style="width: 170px;">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="tabla-container">
+                    <table id="tabla-productos" class="table table-striped tabla-productos">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Foto</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $conexion = new mysqli("localhost", "root", "", "proyecto");
 
-                $conexion = new mysqli("localhost", "root", "", "proyecto");
+                            if ($conexion->connect_error) {
+                                die("Error de conexión: " . $conexion->connect_error);
+                            }
 
-                if ($conexion->connect_error) {
-                    die("Error de conexión: " . $conexion->connect_error);
-                }
+                            $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
+                            $result = $conn->query($sql);
 
-                $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
-                $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<tr>';
+                                    echo '<td>' . $row["categoria_producto"] . '</td>';
+                                    echo '<td><img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
+                                    echo '<td>$' . $row["precio_producto"] . '</td>';
+                                    echo '<td>';
+                                    echo '<button type="button" class="btn btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
+                                    echo '</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>No se encontraron productos.</td></tr>";
+                            }
 
-                if ($result->num_rows > 0) {
-
-                    while ($row = $result->fetch_assoc()) {
-                       
-
-                        echo '<tr>';
-                        echo '<td>' . $row["categoria_producto"] . '</td>';
-                        echo '<td>';
-                    
-                            echo '<img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item">';
-                            
-                        echo '</td>';
-                        echo '<td>$' . $row["precio_producto"] . '</td>';
-                        echo '<td>';
-                        echo '<button type="button" class="btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
-                        echo '</td>';
-                        echo '</tr>';
-                    }
-
-                    echo '</tbody>';
-                    echo '</table>';
-                } else {
-                    echo "<p>No se encontraron productos.</p>";
-                }
-
-                $conexion->close();
-                ?>
-
+                            $conexion->close();
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <br><br><br>
-    <br><br><br>
+
+    <br><br><br><br><br>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#tabla-productos').DataTable({
-                "paging": false, // Deshabilitar paginación
-                "ordering": false // Deshabilitar ordenamiento
+                "paging": false,
+                "ordering": false,
+                "language": {
+                    "search": "Buscar:"
+                },
+                "columnDefs": [
+                    { "width": "20%", "targets": 0 }, // Ancho de la primera columna (Categoria)
+                    { "width": "35%", "targets": 1 }, // Ancho de la segunda columna (Foto)
+                    { "width": "25%", "targets": 2 }, // Ancho de la tercera columna (Precio)
+                    { "width": "25%", "targets": 3 } // Ancho de la cuarta columna (Acciones)
+                ]
             });
         });
 
