@@ -210,6 +210,7 @@ echo "<br><br><br><br>";
                                 <p><strong>Fecha:</strong> <?php echo $pedido['fecha']; ?></p>
                                 <p><strong>Cliente:</strong> <?php echo $pedido['nombre_cliente']; ?></p>
                                 <p><strong>Total:</strong> <?php echo $pedido['total']; ?></p>
+                                
                                 <div class="btn-group" role="group" aria-label="Acciones">
                                     <?php if ($pedido['estado'] == 'activo') : ?>
                                         <a href="detalle_pedido.php?id_factura=<?php echo $pedido['id_factura']; ?>" class="btn btn-primary">Detalles</a>
@@ -226,6 +227,7 @@ echo "<br><br><br><br>";
                                         </form>
                                     <?php endif; ?>
                                 </div>
+
                             </div>
                         </div>
                 <?php
