@@ -240,7 +240,7 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Acción Realizada',
-                            text: ' Estado de usuario actualizado con éxito'
+                            text: ' Estado de proveedor actualizado con éxito'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location = "Proveedores.php";
