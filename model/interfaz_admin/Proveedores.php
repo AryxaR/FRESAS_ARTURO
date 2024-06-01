@@ -119,75 +119,7 @@
             background-color: #f2f2f2;
         }
 
-        .btn-icon {
-            background-color: #f8eaef;
-            color: black;
-            border-radius: 5%;
-            border: 1px solid #d22c5d;
-            padding: 2px 8px;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .btn-icon:hover {
-            background-color: #d22c5d;
-            color: #f8eaef;
-        }
-
-
-        .acciones-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        .btn-icon-container {
-            padding: 5px;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .btn-subtitle {
-            display: none;
-            margin-left: 5px;
-        }
-
-        .btn-icon:hover .btn-subtitle {
-            display: inline-block;
-        }
-
-        .btn-custom {
-            margin-top: -20%;
-            margin-left: calc(50% - 600px);
-        }
-
-        .btn-custom {
-            background-color: #f8eaef;
-            color: black;
-            border-radius: 10px;
-            border: 1px solid #d22c5d;
-            padding: 10px;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .btn-custom:hover {
-            background-color: #d22c5d;
-            color: #f8eaef;
-        }
-
-        .btn-custom:hover .btn-subtitle {
-            display: inline-block;
-        }
-
-        .breadcrumbs-container {
-            display: flex;
-            margin-top: -1%;
-            margin-left: 7%;
-            padding: 10px;
-            font-family: 'Poppins', sans-serif;
-        }
+      
 
         .breadcrumb {
             display: flex;
@@ -215,47 +147,41 @@
             text-decoration: underline;
         }
 
-        @media screen and (max-width: 1024px) {
-            .TITULO {
-                font-size: 20px;
-                margin-top: 50px;
-            }
+        .btn-icon {
+            background-color: #f8eaef;
+            color: black;
+            border-radius: 5%;
+            border: 1px solid #d22c5d;
+            padding: 2px 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 1rem;
+            cursor: pointer;
         }
 
-        @media screen and (max-width: 768px) {
-
-
-            .usuarios-table th,
-            .usuarios-table td {
-                padding: 5px;
-            }
+        .btn-icon:hover {
+            background-color: #d22c5d;
+            color: #f8eaef;
         }
 
-        @media screen and (min-width: 440px)and (max-width: 768px) {
-            .btn-custom {
-                width: 10%;
-                padding: 8px 8px;
-                margin-left: 30%;
-                margin-top: 10px;
-                display: block;
-            }
+        .acciones-container {
+            display: flex;
+            justify-content: center;
         }
 
-        @media screen and (min-width: 776px) and (max-width: 1198px) {
-            .btn-custom {
-                margin-top: 20px;
-                margin-left: calc(50% - 100px);
-                max-width: 100px;
-            }
+        .btn-icon-container {
+            padding: 5px;
+            border-radius: 5px;
+            margin-right: 10px;
         }
 
-        @media screen and (min-width: 1200px) {
-            .btn-custom {
-                margin-top: 20px;
-                margin-left: calc(50% - 100px);
-                max-width: 200px;
+        .btn-subtitle {
+            display: none;
+            margin-left: 5px;
+        }
 
-            }
+        .btn-icon:hover .btn-subtitle {
+            display: inline-block;
         }
 
         @media screen and (max-width: 768px) {
@@ -264,10 +190,10 @@
                 padding: 6px 10px;
                 margin-bottom: 5px;
                 display: inline-block;
-
             }
         }
     </style>
+
 </head>
 
 <?php
@@ -310,48 +236,58 @@ if (isset($_GET['msj_proveedor'])) {
     <DIV class="TITULO">PROVEEDORES REGISTRADOS</DIV>
     <?php
 
-    $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor FROM proveedores";
+    $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor, estado FROM proveedores";
     $result = $conexion->query($sqselect);
+
 
     if ($result->num_rows > 0) {
         echo "<br><br>";
-        echo "<table id='proveedores-table' class='usuarios-table'>";
+        echo "<div class='table-responsive'>";
+        echo "<table id='proveedores-table' class='table table-striped table-compact usuarios-table'>";
         echo "<thead>
-            <tr>
-                <th><i class='bi bi-person-badge-fill'></i>Id </th>
-                <th><i class='bi bi-person-check-fill'></i>Nombre </th>
-                <th><i class='bi bi-telephone-fill'></i>Telefono </th>
-                <th style='text-align: center;'><i class='bi bi-shield-lock'></i>Acciones</th>
-            </tr>
-        </thead>";
+        <tr>
+            <th><i class='bi bi-person-badge-fill'></i> Id</th>
+            <th><i class='bi bi-person-check-fill'></i> Nombre</th>
+            <th><i class='bi bi-telephone-fill'></i> Telefono</th>
+            <th class='text-center'><i class='bi bi-shield-lock'></i> Acciones</th>
+        </tr>
+    </thead>";
         echo "<tbody>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
+            echo "<tr id='" . ($row["Estado"] == 'INACTIVO' ? 'inactivo' : 'activo') . "'>";
             echo "<td>" . $row["Id_proveedor"] . "</td>";
             echo "<td>" . $row["Nombre_proveedor"] . "</td>";
             echo "<td>" . $row["Telefono_proveedor"] . "</td>";
-            echo "<td class='acciones-container'>";
-            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver detalles</span></a></div>";
-            echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            echo "<div class='btn-icon-container'><form method='post' style='display: inline;'>
-                  <input type='hidden' name='eliminar_proveedor' value='" . $row["Id_proveedor"] . "'>
-                  <button type='submit' class='btn-icon eliminar-proveedor' title=' Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>
-                  </form></div>";
+            echo "<td class='text-center acciones-container'>";
+            if ($row["Estado"] == 'INACTIVO') {
+                echo "<div class='btn-icon-container'><a href='#' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a></div>";
+                echo "<div class='btn-icon-container'><a href='#' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+            } else {
+                echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a></div>";
+                echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+            }
+            if ($row["Estado"] == 'ACTIVO') {
+                echo "<div class='btn-icon-container'><a href='#' class='btn-icon eliminar-proveedor' title='Inactivar' data-id='" . $row["Id_proveedor"] . "' data-estado='INACTIVO'><i class='bi bi-check-circle-fill'></i><span class='btn-subtitle'>Inactivar</span></a></div>";
+            } else {
+                echo "<div class='btn-icon-container'><a href='#' class='btn-icon eliminar-proveedor' title='Activar' data-id='" . $row["Id_proveedor"] . "' data-estado='ACTIVO'><i class='bi bi-x-circle-fill'></i><span class='btn-subtitle'>Activar</span></a></div>";
+            }
             echo "</td>";
             echo "</tr>";
         }
         echo "</tbody>";
         echo "</table>";
+        echo "</div>"; // Cierra el div.table-responsive
 
         echo "<div class='text-center mt-4'>
-            <a href='insert_proveedor.php' class='btn btn-success' title='Crear Proveedor'><i class='bi bi-person-plus-fill'></i> Crear Proveedor</a>
-        </div>";
+        <a href='insert_proveedor.php' class='btn btn-success' title='Crear Proveedor'><i class='bi bi-person-plus-fill'></i> Crear Proveedor</a>
+    </div>";
     } else {
         echo "No se encontraron resultados";
     }
 
     $conexion->close();
     ?>
+
 
     <?php
     echo "<br><br><br><br>";
