@@ -211,7 +211,57 @@ if (isset($_GET['msj_proveedor'])) {
     $mensaje_exito = $_GET['msj_proveedor'];
 }
 ?>
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var botonesToggle = document.querySelectorAll('.toggle-usuario');
+            botonesToggle.forEach(function(boton) {
+                boton.addEventListener('click', function() {
+                    var idProveedor = this.getAttribute('data-id');
+                    var nuevoEstado = this.getAttribute('data-estado');
+                    if (true) {
+                        toggleUsuario(idProveedor, nuevoEstado);
+                    }
+                });
+            });
 
+            function toggleUsuario(idProveedor, nuevoEstado) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../../controller/controlers-admin/inactivarProveedor.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Acción Realizada',
+                            text: ' Estado de usuario actualizado con éxito'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location = "consult_mysql.php";
+                            }
+                        });
+                    } else {
+                        alert('Error al actualizar el estado del usuario');
+                    }
+                };
+                xhr.onerror = function() {
+                    alert('Error de red, no se pudo comunicar con el servidor');
+                };
+                xhr.send('id=' + idProveedor + '&estado=' + nuevoEstado);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabla = document.getElementById('miTabla');
+            var filas = tabla.querySelectorAll('tr');
+
+            filas.forEach(function(fila) {
+                var estado = fila.querySelector('td:nth-child(6)').textContent.trim();
+                if (estado === 'INACTIVO') {
+                    fila.classList.add('fila-inactiva');
+                }
+            });
+        });
+    </script>
 
 <script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
 
@@ -236,7 +286,7 @@ if (isset($_GET['msj_proveedor'])) {
     <DIV class="TITULO">PROVEEDORES REGISTRADOS</DIV>
     <?php
 
-    $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor, estado FROM proveedores";
+    $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor, Estado FROM proveedores";
     $result = $conexion->query($sqselect);
 
 
