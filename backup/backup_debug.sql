@@ -2,7 +2,7 @@
 -- Database Backup --
 -- Ver. : 1.0.1
 -- Host : 127.0.0.1
--- Generating Time : May 31, 2024 at 20:07:44:PM
+-- Generating Time : Jun 01, 2024 at 01:01:09:AM
 
 
 
@@ -24,8 +24,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO usuarios VALUES
 ("23","123456","Admin","admin@gmail.com","$2y$10$oDNuA25uDZixJNrrJKg/d.0F7ES/vqZtQU3ell6A2tpWdVv9hO8Q2","Mayorista","1",NULL,NULL,"ACTIVO"),
 ("26","9516975","Nicolasitooo","avellaprietonicolas@gmail.com","$2y$10$bBLGZ.v8IF59mXyuB59WhuagjF2iF6NmjkWb.EBBj3VqzdJdf9Eqm","Minorista","2",NULL,NULL,"INACTIVO"),
-("27","123456789","Juan Pérez","juan@example.com","$2y$10$2dqHbcIoc8erC6TnVmZ7UucOoPS0yJSJkYBzYzVpGedK8LuDasLCG","Minorista","2",NULL,NULL,"ACTIVO"),
-("29","1002740932","Nicolas Avella","nicoandresavella09@gmail.com","$2y$10$yROEUMs0VMtraMolrIM9IuA5pwPlFGMxS4ooeuax1TRw9mIAWepg.","Minorista","2","126b31d9992aadb3192f795f607746d2","1715460321","ACTIVO"),
+("27","123456789","Juan Peerecito","juan@example.com","","Minorista","2",NULL,NULL,"INACTIVO"),
+("29","1002740932","Nicolas Avella","nicoandresavella09@gmail.com","$2y$10$yROEUMs0VMtraMolrIM9IuA5pwPlFGMxS4ooeuax1TRw9mIAWepg.","Minorista","2","126b31d9992aadb3192f795f607746d2","1715460321","INACTIVO"),
 ("35","4638556","Pepe","pepe@gmail.com","pepe2040","Mayorista","2",NULL,NULL,"INACTIVO"),
 ("38","333","Juliana Ariza","juliz.fut1712@gmail.com","$2y$10$S0hwg/mpO2YiRVGi0b42F.fLspeymaEnV4/NwBl/eoniBpP7Yh0KW","Mayorista","2","e7756429c4205eda5a8919acadce290b","1713653953","ACTIVO"),
 ("39","666","nose","666@gmail.com","$2y$10$upFf7v4eZkPLJkCrhK/kaOBnN4PDZh15TqR1DBQDnOUSAbmD0cqre","Mayorista","2",NULL,NULL,"ACTIVO"),
@@ -63,7 +63,7 @@ CREATE TABLE `proveedores` (
 
 
 INSERT INTO proveedores VALUES
-("33","Ale Morales","3259874561","ACTIVO"),
+("33","Ale Morale","3259874561","ACTIVO"),
 ("35","Juan","3285963214","ACTIVO"),
 ("36","Camilo","3204561238","ACTIVO"),
 ("37","Daniel","365655614561","ACTIVO"),
@@ -86,10 +86,10 @@ CREATE TABLE `productos` (
 
 
 INSERT INTO productos VALUES
-("1","FRESA","55000","../../../FRESAS_ARTURO/model/uploads/FRESA_EXTRA.jpeg","12","EXTRA"),
-("2","FRESA","40000","../../../FRESAS_ARTURO/model/uploads/FRESA_PRIMERA6659eeea59a8e.jpeg","0","PRIMERA"),
-("3","FRESA","30000","../../../FRESAS_ARTURO/model/uploads/FRESA_SEGUNDA.jpeg","11","SEGUNDA"),
-("4","FRESA","20000","../../../FRESAS_ARTURO/model/uploads/FRESA_RICHE.jpeg","13","RICHE");
+("1","FRESA","60000","../../../FRESAS_ARTURO/model/uploads/FRESA_EXTRA665a258f2aa83.jpeg","27","EXTRA"),
+("2","FRESA","40000","../../../FRESAS_ARTURO/model/uploads/FRESA_PRIMERA665a71d1786ad.jpeg","10","PRIMERA"),
+("3","FRESA","30000","../../../FRESAS_ARTURO/model/uploads/FRESA_SEGUNDA.jpeg","29","SEGUNDA"),
+("4","FRESA","20000","../../../FRESAS_ARTURO/model/uploads/FRESA_RICHE.jpeg","29","RICHE");
 
 
 
@@ -127,7 +127,7 @@ CREATE TABLE `ventas` (
   PRIMARY KEY (`id_factura`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`Id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 INSERT INTO ventas VALUES
@@ -137,7 +137,9 @@ INSERT INTO ventas VALUES
 ("8","2024-05-29 19:41:58","29","120000","activo"),
 ("9","2024-05-29 19:43:20","29","75000","activo"),
 ("10","2024-05-30 17:30:22","29","90000","activo"),
-("12","2024-05-31 09:24:09","38","120000","activo");
+("12","2024-05-31 09:24:09","38","120000","activo"),
+("13","2024-05-31 15:05:34","38","400000","activo"),
+("14","2024-05-31 16:31:34","38","140000","activo");
 
 
 
@@ -178,7 +180,7 @@ CREATE TABLE `lotes` (
   `cantidad_segunda` int DEFAULT NULL,
   `cantidad_riche` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 INSERT INTO lotes VALUES
@@ -186,7 +188,9 @@ INSERT INTO lotes VALUES
 ("6","2024-05-14 15:05:05","40","30","50","35"),
 ("7","2024-05-26 15:59:19","1","4","5","2"),
 ("11","2024-05-26 17:01:10","4","9","6","5"),
-("12","2024-05-29 19:41:17","9","10","10","10");
+("12","2024-05-29 19:41:17","9","10","10","10"),
+("13","2024-05-31 15:03:55","10","10","10","10"),
+("14","2024-05-31 16:28:32","5","10","10","10");
 
 
 
@@ -200,7 +204,7 @@ CREATE TABLE `perdidas` (
   PRIMARY KEY (`id`),
   KEY `id_cosecha` (`id_cosecha`),
   CONSTRAINT `perdidas_ibfk_1` FOREIGN KEY (`id_cosecha`) REFERENCES `lotes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 INSERT INTO perdidas VALUES
@@ -223,7 +227,8 @@ INSERT INTO perdidas VALUES
 ("24","11","primera","2","2024-05-29 10:46:05"),
 ("25","12","primera","10","2024-05-31 07:53:35"),
 ("26","7","extra","1","2024-05-31 08:26:39"),
-("27","12","extra","1","2024-05-31 08:32:19");
+("27","12","extra","1","2024-05-31 08:32:19"),
+("28","14","extra","5","2024-05-31 16:39:12");
 
 
 
@@ -238,7 +243,7 @@ CREATE TABLE `detalle_venta` (
   PRIMARY KEY (`id_detalle`),
   KEY `id_factura` (`id_factura`),
   CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `ventas` (`id_factura`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 INSERT INTO detalle_venta VALUES
@@ -250,7 +255,10 @@ INSERT INTO detalle_venta VALUES
 ("14","9","2","1","45000","45000"),
 ("15","9","3","1","30000","30000"),
 ("16","10","2","2","45000","90000"),
-("18","12","3","4","30000","120000");
+("18","12","3","4","30000","120000"),
+("19","13","2","10","40000","400000"),
+("20","14","3","2","30000","60000"),
+("21","14","4","4","20000","80000");
 
 
 
