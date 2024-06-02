@@ -257,17 +257,17 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var tabla = document.getElementById('miTabla');
-            var filas = tabla.querySelectorAll('tr');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var tabla = document.getElementById('proveedores-table');
+        //     var filas = tabla.querySelectorAll('tr');
 
-            filas.forEach(function(fila) {
-                var estado = fila.querySelector('td:nth-child(6)').textContent.trim();
-                if (estado === 'INACTIVO') {
-                    fila.classList.add('fila-inactiva');
-                }
-            });
-        });
+        //     filas.forEach(function(fila) {
+        //         var estado = fila.querySelector('td:nth-child(6)').textContent.trim();
+        //         if (estado === 'INACTIVO') {
+        //             fila.classList.add('fila-inactiva');
+        //         }
+        //     });
+        // });
     </script>
 </head>
 

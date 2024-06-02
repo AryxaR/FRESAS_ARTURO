@@ -69,7 +69,7 @@ if ($resultado->num_rows == 1) {
     }
 
     body {
-      background-image: url("../img/index/fondoborroso.png");
+      background-image: url("../resource/img/index/fondoborroso.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
