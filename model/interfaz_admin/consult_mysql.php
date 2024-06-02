@@ -239,7 +239,8 @@
             <?php
             include_once '../../../FRESAS_ARTURO/controller/conexion.php';
 
-            $sqselect = "SELECT Id_cliente, Cedula, Nombre, Correo, Rol, Estado FROM usuarios";
+            $sqselect = "SELECT Id_cliente, Cedula, Nombre, Correo, Rol, Estado FROM usuarios WHERE Id_cliente NOT IN (
+                SELECT Id_cliente FROM usuarios WHERE Id_cliente = 23)";
             $result = $conn->query($sqselect);
 
             if ($result->num_rows > 0) {
