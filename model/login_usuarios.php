@@ -355,8 +355,8 @@
                         // header("refresh:2;url=login_usuarios.php");
                     }
                     ?>
-                    <input type="number" pattern="\d{3,8}" min="99" max="9999999999" placeholder="Cedula" name="Cedula" required>
-                    <input id="pass-inicio" class="visible" type="password" placeholder="Contraseña" name="Contrasena" required>
+                    <input type="number" id="cedulaIni" placeholder="Cedula" name="Cedula" required>
+                    <input id="pass-inicio" class="visible" type="password" placeholder="Contraseña" name="Contrasena" maxlength="16" required>
                     <span class="material-symbols-outlined" id="ojo-inicio">
                         visibility
                     </span>
@@ -399,7 +399,8 @@
                         echo $mostrar;
                     }
                     ?>
-                    <input type="number" placeholder="Cedula" name="Cedula" required>
+
+                    <input type="number" id="cedulaReg" placeholder="Cedula" name="Cedula" required>
                     <input id="email" type="email" placeholder="Correo Electronico" name="Correo" required>
 
                     <!-- LOGICA PARA MOSTRAR UNA ALERTA CON BOOTSTRAP -->
@@ -411,7 +412,7 @@
                         echo $mostrar;
                     }
                     ?>
-                    <input id="pass-registro" class="visible" type="password" placeholder="Contraseña" name="Contrasena" required>
+                    <input id="pass-registro" class="visible" type="password" placeholder="Contraseña" name="Contrasena" maxlength="16" required>
                     <span class="material-symbols-outlined" id="ojo-registro">
                         visibility
                     </span>
@@ -423,7 +424,7 @@
                         echo $mostrar;
                     }
                     ?>
-                    <input id="pass-confirm" class="visible" type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar Contraseña" required>
+                    <input id="pass-confirm" class="visible" type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar Contraseña" maxlength="16" required>
                     <span class="material-symbols-outlined" id="ojo-confirm">
                         visibility
                     </span>
@@ -443,6 +444,19 @@
 
     </main>
     <script>
+        document.getElementById('cedulaReg').addEventListener('input', function(e) {
+            var x = e.target.value;
+            if (x.length > 10) {
+                e.target.value = x.slice(0, 10);
+            }
+        });
+        document.getElementById('cedulaIni').addEventListener('input', function(e) {
+            var x = e.target.value;
+            if (x.length > 10) {
+                e.target.value = x.slice(0, 10);
+            }
+        });
+
         document.getElementById('emailForm').addEventListener('submit', function(event) {
             const emailInput = document.getElementById('email');
             const emailValue = emailInput.value;

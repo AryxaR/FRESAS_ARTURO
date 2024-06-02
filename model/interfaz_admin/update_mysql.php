@@ -141,11 +141,19 @@
         .breadcrumb-item a:hover {
             text-decoration: underline;
         }
+
+        .select {
+            border-radius: 6px;
+            border: solid 1px black;
+            width: 70%;
+            padding: 10px;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
-<?php
+    <?php
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
     ?>
@@ -183,7 +191,10 @@
                     <label for="Correo">Correo:</label>
                     <input type="email" name="Correo" value="<?php echo $row['Correo']; ?>"><br><br>
                     <label for="Rol">Rol:</label>
-                    <input type="text" name="Rol" value="<?php echo $row['Rol']; ?>"><br><br>
+                    <select class="select" class="text" name="Rol" required>
+                        <option value="Mayorista" <?php echo $row['Rol'] === 'Mayorista' ? 'selected' : ''; ?>>Mayorista</option>
+                        <option value="Minorista" <?php echo $row['Rol'] === 'Minorista' ? 'selected' : ''; ?>>Minorista</option>
+                    </select><br><br>
                     <input type="submit" name="actualizar" value="Actualizar">
                 </form>
         <?php
