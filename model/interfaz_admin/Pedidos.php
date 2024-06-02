@@ -1,7 +1,6 @@
     <!DOCTYPE html>
     <html lang="es">
 
-<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,151 +8,83 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <?php
-    require_once '../../controller/conexion.php';
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+require_once '../../controller/conexion.php';
+include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 
-    // Actualiza el estado de los pedidos si se reciben datos POST
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['id_pedido']) && isset($_POST['accion'])) {
-            $idPedido = $_POST['id_pedido'];
-            $accion = $_POST['accion'];
+ // Actualiza el estado de los pedidos si se reciben datos POST
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['id_pedido']) && isset($_POST['accion'])) {
+        $idPedido = $_POST['id_pedido'];
+        $accion = $_POST['accion'];
 
-            if ($accion == 'finalizar') {
-                $nuevoEstado = 'finalizado';
-            } elseif ($accion == 'activar') {
-                $nuevoEstado = 'activo';
-            }
-
-            $sql = "UPDATE ventas SET estado = '$nuevoEstado' WHERE id_factura = $idPedido";
-            $conn->query($sql);
+        if ($accion == 'finalizar') {
+            $nuevoEstado = 'finalizado';
+        } elseif ($accion == 'activar') {
+            $nuevoEstado = 'activo';
         }
+
+        $sql = "UPDATE ventas SET estado = '$nuevoEstado' WHERE id_factura = $idPedido";
+        $conn->query($sql);
     }
+}
 
-    // Selecciona todos los pedidos
-    $sql = "SELECT v.*, u.Nombre as nombre_cliente FROM ventas v INNER JOIN usuarios u ON v.id_cliente = u.id_cliente";
-    $resultado = $conn->query($sql);
+// Función para obtener el total de pedidos
+function getTotalPedidos()
+{
+    global $conn;
+    $sql = "SELECT COUNT(*) as total_pedidos FROM ventas";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['total_pedidos'];
+}
 
-    // Verificar si hay resultados
-    if ($resultado->num_rows > 0) {
-        // Array para almacenar los pedidos
-        $pedidos = array();
+$tarjetasPorPagina = 4;
 
-        // Iterar sobre los resultados y guardarlos en el array
-        while ($fila = $resultado->fetch_assoc()) {
-            $pedidos[] = $fila;
-        }
-    } else {
-        echo "No se encontraron pedidos.";
-    }
-    echo "<br><br><br><br>";
+// Calcula el número total de páginas
+$totalPedidos = getTotalPedidos();
+$totalPaginas = ceil($totalPedidos / $tarjetasPorPagina);
 
-    // Actualiza el estado de los pedidos si se reciben datos POST
-=======
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PEDIDOS | FRESAS DON ARTURO</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <?php
-        require_once '../../controller/conexion.php';
-        include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+// Obtiene el número de página actual
+$paginaActual = isset($_GET['page']) ? $_GET['page'] : 1;
 
-          // Actualiza el estado de los pedidos si se reciben datos POST
->>>>>>> 4e8700052602e8995df34eb70e5b78b45c07ffc7
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['id_pedido']) && isset($_POST['accion'])) {
-            $idPedido = $_POST['id_pedido'];
-            $accion = $_POST['accion'];
-    
-            if ($accion == 'finalizar') {
-                $nuevoEstado = 'finalizado';
-            } elseif ($accion == 'activar') {
-                $nuevoEstado = 'activo';
-            }
-    
-            $sql = "UPDATE ventas SET estado = '$nuevoEstado' WHERE id_factura = $idPedido";
-            $conn->query($sql);
-        }
-    }
+// Calcula el desplazamiento para la consulta SQL
+$offset = ($paginaActual - 1) * $tarjetasPorPagina;
 
-        // Función para obtener el total de pedidos
-        function getTotalPedidos()
-        {
-            global $conn;
-            $sql = "SELECT COUNT(*) as total_pedidos FROM ventas";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            return $row['total_pedidos'];
-        }
-
-<<<<<<< HEAD
-        body .uwy.userway_p1 .userway_buttons_wrapper {
-            top: 120px !important;
-            right: auto;
-            bottom: auto;
-            left: calc(100vw - 21px);
-            transform: translate(-100%);
-        }
-
-        .pedido {
-            margin-top: -10%;
-            position: relative;
-            width: 90%;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            transition: box-shadow 0.3s ease-in-out;
-            margin-bottom: 17%;
-=======
-        $tarjetasPorPagina = 4;
-
-        // Calcula el número total de páginas
-        $totalPedidos = getTotalPedidos();
-        $totalPaginas = ceil($totalPedidos / $tarjetasPorPagina);
-
-        // Obtiene el número de página actual
-        $paginaActual = isset($_GET['page']) ? $_GET['page'] : 1;
-
-        // Calcula el desplazamiento para la consulta SQL
-        $offset = ($paginaActual - 1) * $tarjetasPorPagina;
-
-        // Consulta predeterminada sin términos de búsqueda
-        if (!isset($_GET['search'])) {
-            $sql = "SELECT v.*, u.Nombre as nombre_cliente 
+// Consulta predeterminada sin términos de búsqueda
+if (!isset($_GET['search'])) {
+    $sql = "SELECT v.*, u.Nombre as nombre_cliente 
             FROM ventas v 
             INNER JOIN usuarios u ON v.id_cliente = u.id_cliente 
             LIMIT $offset, $tarjetasPorPagina";
->>>>>>> 4e8700052602e8995df34eb70e5b78b45c07ffc7
-        }
+}
 
-        // Realizar búsqueda si se ha enviado un término de búsqueda
-        if (isset($_GET['search'])) {
-            $searchTerm = $_GET['search'];
-            $sql = "SELECT v.*, u.Nombre as nombre_cliente 
+// Realizar búsqueda si se ha enviado un término de búsqueda
+if (isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    $sql = "SELECT v.*, u.Nombre as nombre_cliente 
             FROM ventas v 
             INNER JOIN usuarios u ON v.id_cliente = u.id_cliente 
             WHERE u.Nombre LIKE '%$searchTerm%' OR v.total LIKE '%$searchTerm%'
             LIMIT $offset, $tarjetasPorPagina";
-        }
+}
 
-        $resultado = $conn->query($sql);
+$resultado = $conn->query($sql);
 
-        // Verificar si hay resultados
-        if ($resultado->num_rows > 0) {
-            // Array para almacenar los pedidos
-            $pedidos = array();
+// Verificar si hay resultados
+if ($resultado->num_rows > 0) {
+    // Array para almacenar los pedidos
+    $pedidos = array();
 
-            // Iterar sobre los resultados y guardarlos en el array
-            while ($fila = $resultado->fetch_assoc()) {
-                $pedidos[] = $fila;
-            }
-        } else {
-            echo "No se encontraron pedidos.";
-        }
-        echo "<br><br><br><br>";
-        ?>
+    // Iterar sobre los resultados y guardarlos en el array
+    while ($fila = $resultado->fetch_assoc()) {
+        $pedidos[] = $fila;
+    }
+} else {
+    echo "No se encontraron pedidos.";
+}
+echo "<br><br><br><br>";
+?>
+
 
 
         <style>
@@ -223,58 +154,21 @@
                 margin: 0;
             }
 
-<<<<<<< HEAD
         .pagination-container {
             position: relative;
             z-index: 0;
         }
+
+        .search-form {
+                margin-top: -5%;
+                margin-right: 5%;
+            }
+            
     </style>
 </head>
 
 <body>
     <script class="access" src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
-
-    <div class="breadcrumbs-container">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
-            </ol>
-        </nav>
-    </div>
-=======
-            .breadcrumb-item {
-                display: flex;
-                align-items: center;
-            }
-
-            .breadcrumb-item+.breadcrumb-item::before {
-                content: "/";
-                margin: 0 7px;
-            }
-
-            .breadcrumb-item a {
-                text-decoration: none;
-                font-family: 'Poppins', sans-serif;
-                font-size: 1.1rem;
-            }
->>>>>>> 4e8700052602e8995df34eb70e5b78b45c07ffc7
-
-            .breadcrumb-item a:hover {
-                text-decoration: underline;
-            }
-
-            .search-form {
-                margin-top: -5%;
-                margin-right: 5%;
-            }
-
-            .pagination-container {
-                position: relative;
-                z-index: 0;
-            }
-        </style>
 
     </head>
 
@@ -316,6 +210,7 @@
                                 <p><strong>Fecha:</strong> <?php echo $pedido['fecha']; ?></p>
                                 <p><strong>Cliente:</strong> <?php echo $pedido['nombre_cliente']; ?></p>
                                 <p><strong>Total:</strong> <?php echo $pedido['total']; ?></p>
+                                
                                 <div class="btn-group" role="group" aria-label="Acciones">
                                     <?php if ($pedido['estado'] == 'activo') : ?>
                                         <a href="detalle_pedido.php?id_factura=<?php echo $pedido['id_factura']; ?>" class="btn btn-primary">Detalles</a>
@@ -332,6 +227,7 @@
                                         </form>
                                     <?php endif; ?>
                                 </div>
+
                             </div>
                         </div>
                 <?php

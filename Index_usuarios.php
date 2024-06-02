@@ -77,28 +77,7 @@
             <div class="slick-track" id="track">
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
-                            <picture>
-                                <img src="resource/img/index/1.jpeg" alt="Image" />
-                            </picture>
-                        </a>
-                    </div>
-                </div>
-                <div class="slick">
-                    <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
-                            <picture>
-                                <img src="resource/img/index/2.jpeg" alt="Image" />
-                            </picture>
-                        </a>
-                    </div>
-                </div>
-                <div class="slick">
-                    <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/3.jpeg" alt="Image" />
                             </picture>
@@ -107,8 +86,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/4.jpeg" alt="Image" />
                             </picture>
@@ -117,8 +95,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/5.jpeg" alt="Image" />
                             </picture>
@@ -127,8 +104,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/6.jpeg" alt="Image" />
                             </picture>
@@ -137,8 +113,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/1.jpeg" alt="Image" />
                             </picture>
@@ -147,8 +122,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/8.jpeg" alt="Image" />
                             </picture>
@@ -157,8 +131,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/9.jpeg" alt="Image" />
                             </picture>
@@ -167,8 +140,7 @@
                 </div>
                 <div class="slick">
                     <div>
-                        <a href="/">
-                            <h4>Recetas</h4>
+                        <a href="#">
                             <picture>
                                 <img src="resource/img/index/10.jpeg" alt="Image" />
                             </picture>

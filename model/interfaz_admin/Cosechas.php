@@ -120,9 +120,7 @@
             background-color: #f2f2f2;
         }
 
-        .usuarios-table th:nth-child(7) {
-            width: 200px;
-        }
+        
 
         .btn-icon {
             background-color: #f8eaef;
@@ -214,33 +212,7 @@
             text-decoration: underline;
         }
 
-        @media screen and (max-width: 1024px) {
-            .TITULO {
-                font-size: 20px;
-                margin-top: 50px;
-            }
-        }
 
-        @media screen and (max-width: 768px) {
-
-
-            .usuarios-table th,
-            .usuarios-table td {
-                padding: 5px;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .btn-icon {
-                font-size: 12px;
-                padding: 6px 10px;
-                /* Reducir el relleno para dispositivos más pequeños */
-                margin-bottom: 5px;
-                /* Agregar un margen inferior para separar los botones */
-                display: inline-block;
-                /* Mostrar los botones en línea para evitar que se apilen verticalmente */
-            }
-        }
     </style>
 </head>
 
@@ -282,61 +254,58 @@ if ($conexion->connect_error) {
     </div>
 
     <div class="contenedor-cosechas">
-        <div class="TITULO">REGISTRO DE COSECHAS</div>
-        <?php
+    <div class="TITULO">REGISTRO DE COSECHAS</div>
+    <?php
 
-        $sqselect = "SELECT id, fecha, cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche  FROM lotes";
-        $result = $conexion->query($sqselect);
+    $sqselect = "SELECT id, fecha, cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche  FROM lotes";
+    $result = $conexion->query($sqselect);
 
-        if ($result->num_rows > 0) {
-            echo "<br><br>";
-            echo "<table id='proveedores-table' class='usuarios-table'>";
-            echo "<thead>
+    if ($result->num_rows > 0) {
+        echo "<br><br>";
+        echo "<div class='table-responsive'>";
+        echo "<table id='proveedores-table' class='usuarios-table table'>";
+        echo "<thead>
         <tr>
-        <th><i class='bi bi-person-badge-fill'></i> ID</th>
-        <th><i class='bi bi-calendar-check'></i> Fecha de Recogida</th>
-        <th><i class='bi bi-basket'></i> Cantidad Recogida Extra</th>
-        <th><i class='bi bi-basket'></i> Cantidad Recogida Primera</th>
-        <th><i class='bi bi-basket'></i> Cantidad Recogida Segunda</th>
-        <th><i class='bi bi-basket'></i> Cantidad Recogida Riche</th>
-        <th style='text-align: center;'><i class='bi bi-shield-lock'></i> Acciones</th>
-    </tr>
-    
-    
-    
+            <th><i class='bi bi-person-badge-fill'></i> ID</th>
+            <th><i class='bi bi-calendar-check'></i> Fecha de Recogida</th>
+            <th><i class='bi bi-basket'></i> Cantidad Recogida Extra</th>
+            <th><i class='bi bi-basket'></i> Cantidad Recogida Primera</th>
+            <th><i class='bi bi-basket'></i> Cantidad Recogida Segunda</th>
+            <th><i class='bi bi-basket'></i> Cantidad Recogida Riche</th>
+            <th style='text-align: center;'><i class='bi bi-shield-lock'></i> Acciones</th>
+        </tr>
         </thead>";
-            echo "<tbody>";
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["id"] . "</td>";
-                echo "<td>" . $row["fecha"] . "</td>";
-                echo "<td>" . $row["cantidad_extra"] . " Kg" . "</td>";
-                echo "<td>" . $row["cantidad_primera"] .  " Kg" . "</td>";
-                echo "<td>" . $row["cantidad_segunda"] .  " Kg" . "</td>";
-                echo "<td>" . $row["cantidad_riche"] .   " Kg" . "</td>";
+        echo "<tbody>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["fecha"] . "</td>";
+            echo "<td>" . $row["cantidad_extra"] . " Kg" . "</td>";
+            echo "<td>" . $row["cantidad_primera"] .  " Kg" . "</td>";
+            echo "<td>" . $row["cantidad_segunda"] .  " Kg" . "</td>";
+            echo "<td>" . $row["cantidad_riche"] .   " Kg" . "</td>";
+            echo "<td class='acciones-container'>";
+            echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+            echo "</td>";
+            echo "</tr>";
+        }
+        echo "</tbody>";
+        echo "</table>";
+        echo "</div>"; // Cierre de la clase table-responsive
 
-                echo "<td class='acciones-container'>";
-                echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            echo "</tbody>";
-            echo "</table>";
-
-            echo "<div class='text-center mt-4'>
+        echo "<div class='text-center mt-4'>
         <a href='../interfaz_admin/Lotes.php' class='btn btn-success' title='Añadir cosecha'>
             <i class='bi bi-basket'></i> Añadir cosecha
         </a>
     </div>";
-        } else {
-            echo "No se encontraron resultados";
-        }
+    } else {
+        echo "No se encontraron resultados";
+    }
 
+    $conexion->close();
+    ?>
+</div>
 
-
-        $conexion->close();
-        ?>
-    </div>
     <?php
     echo "<br><br><br><br>";
     include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
