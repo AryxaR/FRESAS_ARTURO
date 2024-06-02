@@ -149,6 +149,17 @@
             padding: 10px;
             color: black;
         }
+
+        @media screen and (max-width: 950px) {
+            form {
+                width: 90%;
+            }
+        }
+        @media screen and (max-width: 450px) {
+            form {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 

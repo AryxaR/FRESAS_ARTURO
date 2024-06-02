@@ -22,7 +22,7 @@ if ($resultado->num_rows == 1) {
 
 if (isset($_POST['save'])) {
     $newNombre = $_POST['nombre'];
-    $newRol = $_POST['rol'];
+    $newRol = $_POST['Rol'];
     $newCorreo = $_POST['correo'];
 
     // Validación del dominio del correo
@@ -246,6 +246,14 @@ if (isset($_POST['save'])) {
             padding-right: 10px;
         }
 
+        .select {
+            border-radius: 6px;
+            border: solid 1px rgba(220, 86, 86, 0.733);
+            width: 100%;
+            padding: 10px;
+            color: black;
+        }
+
         /* Responsive */
 
         @media screen and (max-width: 400px) {
@@ -279,10 +287,10 @@ if (isset($_POST['save'])) {
             }
 
             .breadcrumbs-container {
-            margin-left: 90px;
-            margin-top: 35px;
+                margin-left: 90px;
+                margin-top: 35px;
 
-        }
+            }
         }
     </style>
 </head>
@@ -322,7 +330,10 @@ if (isset($_POST['save'])) {
                     <li><span class="material-symbols-outlined">
                             supervisor_account
                         </span><span class="descripcion">Rol</span>
-                        <div class="contenedor-input"><input type="text" name="rol" value="<?php echo $info["Rol"]; ?>">
+                        <div class="contenedor-input"><select class="select" class="text" name="Rol" required>
+                                <option value="Mayorista" <?php echo $info['Rol'] === 'Mayorista' ? 'selected' : ''; ?>>Mayorista</option>
+                                <option value="Minorista" <?php echo $info['Rol'] === 'Minorista' ? 'selected' : ''; ?>>Minorista</option>
+                            </select></div>
                     </li>
                     </li>
                     <li><span class="material-symbols-outlined"> mail </span><span class="descripcion">Correo</span>
