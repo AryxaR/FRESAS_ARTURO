@@ -268,8 +268,8 @@
             </div>
             <nav class="nav">
                 <ul id="lista-nav" class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../FRESAS_ARTURO/catalogo.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="..//../../../FRESAS_ARTURO/Index_usuarios.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../../FRESAS_ARTURO/catalogo.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="../../../../FRESAS_ARTURO/model/Guia_usuario.php">Ayuda</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
@@ -277,11 +277,11 @@
             <div class="btn-ingreso">
                 <ul id="lista-ingreso" class="lista-ingreso">
                     <li>
-                        <a class="perfil" href="../FRESAS_ARTURO/model/perfil.php">Perfil <i class="fa-solid fa-circle-user"></i></a>
+                        <a class="perfil" href="../../../../FRESAS_ARTURO/model/perfil.php">Perfil <i class="fa-solid fa-circle-user"></i></a>
                     </li>
                     <li>
                     <li>
-                        <a class="salir" href="../FRESAS_ARTURO/controller/logout.php">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
+                        <a class="salir" href="../../../../FRESAS_ARTURO/controller/logout.php">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
                     </li>
 
                     </li>

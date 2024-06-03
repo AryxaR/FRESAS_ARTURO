@@ -286,6 +286,9 @@
         </a>
 
     </section>
+    <section class="ayuda">
+        
+    </section>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

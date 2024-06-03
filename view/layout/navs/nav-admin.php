@@ -85,7 +85,7 @@
       display: none;
     }
 
-    @media screen and (max-width: 548px) {
+    @media screen and (max-width: 600px) {
       .cerrar {
         display: none;
       }
@@ -194,6 +194,10 @@
       .contenedor-contenido {
         width: 80%;
       }
+
+      .lista-ingreso {
+        font-size: 0.8rem;
+      }
     }
 
     @media screen and (max-width: 510px) {
@@ -231,6 +235,7 @@
           <li>
             <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php"><span class="cerrar">Cerrar Sesion</span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </li>
+          <li><a class="ingresar" href="../../../../FRESAS_ARTURO/model/interfaz_admin/Guia_admin.php"><span class="cerrar">Ayuda</span><i class="fa-regular fa-circle-question"></i></a></i></li>
         </ul>
       </div>
     </div>
