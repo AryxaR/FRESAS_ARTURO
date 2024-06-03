@@ -68,6 +68,11 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .formulario-cosechas input {
+            width: 100%;
+            text-align: center;
+        }
+
         .breadcrumbs-container {
             display: flex;
             margin-top: 3%;
@@ -149,13 +154,13 @@
                 <form class="formulario-cosechas" action="../../../FRESAS_ARTURO/model/interfaz_admin/modelo_editar_lote.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     <label for="cantidad_extra">Cantidad Extra:</label>
-                    <input type="text" name="cantidad_extra" value="<?php echo $row['cantidad_extra']; ?>"><br><br>
-                    <label for="cantidad_primera">Cantidas Primera:</label>
-                    <input type="number" name="cantidad_primera" value="<?php echo $row['cantidad_primera']; ?>"><br><br>
+                    <input type="text" name="cantidad_extra" value="<?php echo $row['cantidad_extra']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)"><br><br>
+                    <label for="cantidad_primera">Cantidas Primera:</label><br>
+                    <input type="number" name="cantidad_primera" value="<?php echo $row['cantidad_primera']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)"><br><br>
                     <label for="cantidad_segunda">Cantidad segunda:</label>
-                    <input type="text" name="cantidad_segunda" value="<?php echo $row['cantidad_segunda']; ?>"><br><br>
+                    <input type="text" name="cantidad_segunda" value="<?php echo $row['cantidad_segunda']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)"><br><br>
                     <label for="cantidad_riche">Cantidad riche:</label>
-                    <input type="text" name="cantidad_riche" value="<?php echo $row['cantidad_riche']; ?>"><br><br>
+                    <input type="text" name="cantidad_riche" value="<?php echo $row['cantidad_riche']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)"><br><br>
                     <button type="submit" name="actualizar" class="btn btn-success">Actualizar</button>
 
 

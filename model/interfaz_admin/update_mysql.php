@@ -198,9 +198,9 @@
                 <form action="../../../FRESAS_ARTURO/controller/controlers-admin/update_process.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['Id_cliente']; ?>">
                     <label for="Nombre">Nombre:</label>
-                    <input type="text" name="Nombre" value="<?php echo $row['Nombre']; ?>"><br><br>
+                    <input type="text" name="Nombre" value="<?php echo $row['Nombre']; ?>" maxlength="30"><br><br>
                     <label for="Correo">Correo:</label>
-                    <input type="email" name="Correo" value="<?php echo $row['Correo']; ?>"><br><br>
+                    <input type="email" name="Correo" value="<?php echo $row['Correo']; ?>" maxlength="35"><br><br>
                     <label for="Rol">Rol:</label>
                     <select class="select" class="text" name="Rol" required>
                         <option value="Mayorista" <?php echo $row['Rol'] === 'Mayorista' ? 'selected' : ''; ?>>Mayorista</option>

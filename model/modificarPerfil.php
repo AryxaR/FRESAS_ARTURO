@@ -318,7 +318,7 @@ if (isset($_POST['save'])) {
                 <ul class="informacion">
                     <li>
                         <span class="material-symbols-outlined"> account_circle </span><span class="descripcion">Nombre</span>
-                        <div class="contenedor-input"><input type="text" name="nombre" value="<?php echo $info["Nombre"]; ?>">
+                        <div class="contenedor-input"><input type="text" name="nombre" value="<?php echo $info["Nombre"]; ?>" maxlength="30">
                     </li>
                     <li>
                         <span class="material-symbols-outlined">
@@ -337,7 +337,7 @@ if (isset($_POST['save'])) {
                     </li>
                     </li>
                     <li><span class="material-symbols-outlined"> mail </span><span class="descripcion">Correo</span>
-                        <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>">
+                        <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>" maxlength="35">
                     </li>
                     </li>
                 </ul>

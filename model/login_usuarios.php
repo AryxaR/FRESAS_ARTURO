@@ -387,7 +387,7 @@
                         echo $mostrar;
                     }
                     ?>
-                    <input type="text" placeholder="Nombre completo" name="Nombre" required>
+                    <input type="text" placeholder="Nombre completo" name="Nombre" maxlength="30" required>
                     <!-- LOGICA PARA MOSTRAR UNA ALERTA CON BOOTSTRAP -->
 
                     <?php
@@ -401,7 +401,7 @@
                     ?>
 
                     <input type="number" id="cedulaReg" placeholder="Cedula" name="Cedula" required>
-                    <input id="email" type="email" placeholder="Correo Electronico" name="Correo" required>
+                    <input id="email" type="email" placeholder="Correo Electronico" name="Correo" maxlength="35" required>
 
                     <!-- LOGICA PARA MOSTRAR UNA ALERTA CON BOOTSTRAP -->
                     <?php

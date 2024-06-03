@@ -186,9 +186,9 @@
                 <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['Id_proveedor']; ?>">
                     <label for="Nombre_proveedor">Nombre_provedor:</label>
-                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>"><br><br>
+                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>" maxlength="30"><br><br>
                     <label for="Telefono_proveedor">Telefono_proveedor:</label>
-                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>"><br><br>
+                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>" min="1" max="99999999" oninput="this.value = this.value.slice(0, 10)"><br><br>
                     <input type="submit" name="actualizar" value="Actualizar">
                 </form>
         <?php

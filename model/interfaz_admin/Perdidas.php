@@ -221,7 +221,7 @@ echo "<br><br><br><br><br>";
                     </div>
                     <div class="form-group">
                         <label for="cantidad_perdida">Cantidad (Kg):</label>
-                        <input type="number" class="form-control" id="cantidad_perdida" name="cantidad_perdida" min="1" max="99" oninput="this.value = this.value.slice(0, 2)" required>
+                        <input type="number" class="form-control" id="cantidad_perdida" name="cantidad_perdida" min="1" max="999" oninput="this.value = this.value.slice(0, 3)" required>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-custom">Registrar Pérdida</button>
