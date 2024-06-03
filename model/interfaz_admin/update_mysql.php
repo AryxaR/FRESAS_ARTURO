@@ -141,6 +141,25 @@
         .breadcrumb-item a:hover {
             text-decoration: underline;
         }
+
+        .select {
+            border-radius: 6px;
+            border: solid 1px black;
+            width: 70%;
+            padding: 10px;
+            color: black;
+        }
+
+        @media screen and (max-width: 950px) {
+            form {
+                width: 90%;
+            }
+        }
+        @media screen and (max-width: 450px) {
+            form {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 

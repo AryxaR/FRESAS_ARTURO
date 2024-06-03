@@ -277,7 +277,14 @@ if (isset($_POST['save'])) {
             display: flex;
             padding-right: 10px;
         }
-
+        
+        .select {
+            border-radius: 6px;
+            border: solid 1px rgba(220, 86, 86, 0.733);
+            width: 70%;
+            padding: 10px;
+            color: black;
+        }
         /* Responsive */
 
         @media screen and (max-width: 400px) {
@@ -353,7 +360,10 @@ if (isset($_POST['save'])) {
                     <li><span class="material-symbols-outlined">
                             supervisor_account
                         </span><span class="descripcion">Rol</span>
-                        <div class="contenedor-input"><input type="text" name="rol" value="<?php echo $info["Rol"]; ?>">
+                        <select class="select" class="text" name="" required>
+                            <option value="Mayorista" <?php echo $info['Rol'] === 'Mayorista' ? 'selected' : ''; ?>>Mayorista</option>
+                            <option value="Minorista" <?php echo $info['Rol'] === 'Minorista' ? 'selected' : ''; ?>>Minorista</option>
+                        </select><br><br>
                     </li>
                     <li><span class="material-symbols-outlined"> mail </span><span class="descripcion">Correo</span>
                         <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>">
