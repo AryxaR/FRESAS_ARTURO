@@ -138,7 +138,7 @@ if ($resultado->num_rows == 1) {
 
     .imagen_perfil {
       border-radius: 50% ;
-      width: 150px;
+      width: 100px;
       height: 100px;
       border-radius: 50%;
       align-self: center;

@@ -31,36 +31,38 @@ if (isset($_POST['save'])) {
 
     if (in_array($emailDomain, $allowedDomains)) {
         // Manejo de la subida de imagen
-        $imagePath = $info['imagen']; // Ruta actual de la imagen
+$imagePath = $info['imagen']; // Ruta actual de la imagen
 
-        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            $fileTmpPath = $_FILES['imagen']['tmp_name'];
-            $fileName = $_FILES['imagen']['name'];
-            $fileSize = $_FILES['imagen']['size'];
-            $fileType = $_FILES['imagen']['type'];
-            $fileNameCmps = explode(".", $fileName);
-            $fileExtension = strtolower(end($fileNameCmps));
+if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+    $fileTmpPath = $_FILES['imagen']['tmp_name'];
+    $fileName = $_FILES['imagen']['name'];
+    $fileSize = $_FILES['imagen']['size'];
+    $fileType = $_FILES['imagen']['type'];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
 
-            // Verificar si la extensión es permitida
-            $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
-            if (in_array($fileExtension, $allowedfileExtensions)) {
-                // Asignar una nueva ruta para la imagen
-                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-                $uploadFileDir = '../resource/img/';
-                $dest_path = $uploadFileDir . $newFileName;
+    // Verificar si la extensión es permitida
+    $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+    if (in_array($fileExtension, $allowedfileExtensions)) {
+        // Asignar una nueva ruta para la imagen
+        $newFileName = md5(time(). $fileName). '.'. $fileExtension;
+        $uploadFileDir = '../resource/img/';
+        $dest_path = $uploadFileDir. $newFileName;
 
-                if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                    // Borrar la imagen anterior si es diferente a la por defecto
-                    if ($imagePath != '../resource/img/blank-profile-picture-973460_960_720.webp') {
-                        unlink($imagePath);
-                    }
-                    $imagePath = $dest_path; // Actualizar la ruta de la imagen
-                } else {
-                    echo 'Error al mover el archivo subido.';
-                }
-            } else {
-                echo 'Tipo de archivo no permitido.';
-            }
+        // Eliminar la imagen anterior si existe
+        if ($imagePath!= '') {
+            unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
+        }
+
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            $imagePath = $dest_path; // Actualizar la ruta de la imagen
+        } else {
+            echo 'Error al mover el archivo subido.';
+        }
+    } else {
+        echo 'Tipo de archivo no permitido.';
+    }
+
         }
 
         $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
@@ -199,7 +201,7 @@ if (isset($_POST['save'])) {
         }
 
         .imagen_perfil {
-            width: 150px;
+            width: 100px;
             height: 100px;
             border-radius: 50%;
             align-self: center;
