@@ -8,6 +8,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style_catalogo.css">
+    <link rel="icon" href="../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {

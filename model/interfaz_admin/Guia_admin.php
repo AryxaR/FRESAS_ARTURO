@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUIA | FRESAS DON ARTURO</title>
+    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+
     <!-- <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/styles_guia_admin.css"> -->
     <style>
         /* styles.css */

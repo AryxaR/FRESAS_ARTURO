@@ -59,6 +59,8 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proveedores</title>
+    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+
     <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/nav.css" />
     <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/footer.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
