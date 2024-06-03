@@ -28,7 +28,7 @@
         <div class="form-clave">
             <h1 class="titulo">Recuperación de Contraseña</h1>
             <form class="formulario-clave" method="POST" action="../../FRESAS_ARTURO/controller/config_enviarCorreo.php">
-                <input class="input-correo" type="email" name="correo" required>
+                <input class="input-correo" type="email" name="correo" maxlength="35" required>
                 <label class="label-correo" for="correo">Ingrese su correo</label>
                 <input type="submit" value="Enviar" name="enviar" class="btn-enviar">
                 <a href="../../FRESAS_ARTURO/model/login_usuarios.php" class="regresar">Regresar al inicio de sesion</a>

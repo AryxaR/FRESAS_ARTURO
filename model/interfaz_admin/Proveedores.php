@@ -379,31 +379,36 @@ if (isset($_GET['msj_proveedor'])) {
     $sqselect = "SELECT Id_proveedor, Nombre_proveedor, Telefono_proveedor, Estado FROM proveedores";
     $result = $conexion->query($sqselect);
 
-
     if ($result->num_rows > 0) {
         echo "<br><br>";
-        echo "<table id='proveedores-table' class='usuarios-table'>";
+        echo "<div class='table-responsive'>";
+        echo "<table id='proveedores-table' class='table table-striped table-compact usuarios-table'>";
+
         echo "<thead>
             <tr>
-                <th><i class='bi bi-person-badge-fill'></i>Id </th>
-                <th><i class='bi bi-person-check-fill'></i>Nombre </th>
-                <th><i class='bi bi-telephone-fill'></i>Telefono </th>
-                <th style='text-align: center;'><i class='bi bi-shield-lock'></i>Acciones</th>
+                <th class='encabezado-tabla'><i class='bi bi-person-badge-fill'></i> Id</th>
+                <th class='encabezado-tabla'><i class='bi bi-person-check-fill'></i> Nombre</th>
+                <th class='encabezado-tabla'><i class='bi bi-telephone-fill'></i> Telefono</th>
+                <th class='encabezado-tabla text-center'><i class='bi bi-shield-lock'></i> Acciones</th>
             </tr>
         </thead>";
+
+
         echo "<tbody>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr id='" . ($row["Estado"] == 'INACTIVO' ? 'inactivo' : 'activo') . "'>";
             echo "<td>" . $row["Id_proveedor"] . "</td>";
             echo "<td>" . $row["Nombre_proveedor"] . "</td>";
             echo "<td>" . $row["Telefono_proveedor"] . "</td>";
-            echo "<td class='acciones-container'>";
-            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver detalles</span></a></div>";
-            echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            echo "<div class='btn-icon-container'><form method='post' style='display: inline;'>
-                  <input type='hidden' name='eliminar_proveedor' value='" . $row["Id_proveedor"] . "'>
-                  <button type='submit' class='btn-icon eliminar-proveedor' title=' Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>
-                  </form></div>";
+            echo "<td class='text-center acciones-container'>";
+            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a></div>";
+            echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+
+            if ($row["Estado"] == 'ACTIVO') {
+                echo "<div class='btn-icon-container'><a href='#' class='btn-icon toggle-usuario' title='Inactivar' data-id='" . $row["Id_proveedor"] . "' data-estado='INACTIVO'><i class='bi bi-check-circle-fill'></i><span class='btn-subtitle'>Inactivar</span></a></div>";
+            } else {
+                echo "<div class='btn-icon-container'><a href='#' class='btn-icon toggle-usuario' title='Activar' data-id='" . $row["Id_proveedor"] . "' data-estado='ACTIVO'><i class='bi bi-x-circle-fill'></i><span class='btn-subtitle'>Activar</span></a></div>";
+            }
             echo "</td>";
             echo "</tr>";
         }

@@ -22,7 +22,7 @@ if ($resultado->num_rows == 1) {
 
 if (isset($_POST['save'])) {
     $newNombre = $_POST['nombre'];
-    $newRol = $_POST['Rol'];
+    $newRol = $_POST['rol'];
     $newCorreo = $_POST['correo'];
 
     // Validación del dominio del correo
@@ -77,20 +77,16 @@ if (isset($_POST['save'])) {
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modificar Perfil</title>
+    <title>Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Sweetalert -->
@@ -199,9 +195,8 @@ if (isset($_POST['save'])) {
             font-size: larger;
         }
 
-        .imagen_perfil {
+        .card img {
             width: 100px;
-            height: 100px;
             border-radius: 50%;
             align-self: center;
         }
@@ -266,8 +261,6 @@ if (isset($_POST['save'])) {
             padding-left: 0.5rem;
         }
 
-        /*Informacion referencia usuarios*/
-
         .descripcion {
             position: absolute;
             color: rgba(34, 32, 32, 0.691);
@@ -282,15 +275,14 @@ if (isset($_POST['save'])) {
             display: flex;
             padding-right: 10px;
         }
-
+        
         .select {
             border-radius: 6px;
             border: solid 1px rgba(220, 86, 86, 0.733);
-            width: 100%;
+            width: 70%;
             padding: 10px;
             color: black;
         }
-
         /* Responsive */
 
         @media screen and (max-width: 400px) {
@@ -304,8 +296,6 @@ if (isset($_POST['save'])) {
                 margin-top: -230px;
             }
         }
-
-        /*Label*/
 
         .contenedor-input input {
             padding: 0.5rem;
@@ -345,22 +335,17 @@ if (isset($_POST['save'])) {
             </ol>
         </nav>
     </div>
-
     <a class="volver" href="../model/perfil.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
     <span class="f-roja"></span>
     <div class="contenedor">
         <h3 class="titulo">Modificar Informacion</h3>
-
         <div class="card">
-
             <img class="imagen_perfil" src="<?php echo $info['imagen']; ?>" alt="Perfil" />
-
             <form id="" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-
                 <ul class="informacion">
                     <li>
                         <span class="material-symbols-outlined"> account_circle </span><span class="descripcion">Nombre</span>
-                        <div class="contenedor-input"><input type="text" name="nombre" value="<?php echo $info["Nombre"]; ?>" maxlength="30">
+                        <div class="contenedor-input"><input type="text" name="nombre" value="<?php echo $info["Nombre"]; ?>">
                     </li>
                     <li>
                         <span class="material-symbols-outlined">
@@ -371,17 +356,13 @@ if (isset($_POST['save'])) {
                     <li><span class="material-symbols-outlined">
                             supervisor_account
                         </span><span class="descripcion">Rol</span>
-                        <div class="contenedor-input"><input type="text" name="rol" value="<?php echo $info["Rol"]; ?>">
+                        <select class="select" class="text" name="rol" required>
+                            <option value="Mayorista" <?php echo $info['Rol'] === 'Mayorista' ? 'selected' : ''; ?>>Mayorista</option>
+                            <option value="Minorista" <?php echo $info['Rol'] === 'Minorista' ? 'selected' : ''; ?>>Minorista</option>
+                        </select><br><br>
                     </li>
-                    <li><span class="material-symbols-outlined"> mail </span><span class="descripcion">Correo</span>
-                        <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>" maxlength="35">
-                    </li>
-                    <li>
-                        <span class="material-symbols-outlined"> image </span>
-                        <span class="descripcion">Nueva Imagen</span>
-                        <div class="contenedor-input">
-                            <input type="file" class="form-control-file" id="imagen" name="imagen">
-                        </div>
+                    <li><span class="material-symbols-outlined"> Email </span><span class="descripcion">Correo</span>
+                        <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>">
                     </li>
                     <li>
                         <span class="material-symbols-outlined"> image </span>
@@ -390,10 +371,7 @@ if (isset($_POST['save'])) {
                             <input type="file" class="form-control-file" id="imagen" name="imagen">
                         </div>
                     </li>
-
                 </ul>
-
-
                 <div class="contenedor-modificar">
                     <input class="modificar" type="submit" name="save" value="Actualizar datos"></input>
                 </div>
