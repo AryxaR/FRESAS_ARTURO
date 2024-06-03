@@ -119,7 +119,7 @@
             background-color: #f2f2f2;
         }
 
-        
+
 
         .btn-icon {
             background-color: #f8eaef;
@@ -211,7 +211,39 @@
             text-decoration: underline;
         }
 
+        .contenedor_modal{
+            display: flex;
+            flex-direction: column;
+        }
 
+        .modal-body .form-group{
+            margin-right: 2%;
+            text-align: center;
+
+        }
+
+        .modal-body .form-group input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .modal-body .boton {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-body .boton:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 
@@ -242,6 +274,45 @@ if ($conexion->connect_error) {
 
     ?>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalLotes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registro de Cosechas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="contenedor_modal" action="../../../FRESAS_ARTURO/controller/controlers-admin/procesar_lotes.php" method="post">
+                        <div class="form-group">
+                            <label for="cantidad_extra">Fresas Extra: </label>
+                            <input type="number" id="cantidad_extra" name="cantidad_extra" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad_primera">Fresas Primera:</label>
+                            <input type="number" id="cantidad_primera" name="cantidad_primera" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad_segunda">Fresas Segunda:</label>
+                            <input type="number" id="cantidad_segunda" name="cantidad_segunda" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad_riche">Fresas Riche:</label>
+                            <input type="number" id="cantidad_riche" name="cantidad_riche" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <input class="boton" type="submit" value="Enviar">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
@@ -253,17 +324,17 @@ if ($conexion->connect_error) {
     </div>
 
     <div class="contenedor-cosechas">
-    <div class="TITULO">REGISTRO DE COSECHAS</div>
-    <?php
+        <div class="TITULO">REGISTRO DE COSECHAS</div>
+        <?php
 
-    $sqselect = "SELECT id, fecha, cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche  FROM lotes";
-    $result = $conexion->query($sqselect);
+        $sqselect = "SELECT id, fecha, cantidad_extra, cantidad_primera, cantidad_segunda, cantidad_riche  FROM lotes";
+        $result = $conexion->query($sqselect);
 
-    if ($result->num_rows > 0) {
-        echo "<br><br>";
-        echo "<div class='table-responsive'>";
-        echo "<table id='proveedores-table' class='usuarios-table table'>";
-        echo "<thead>
+        if ($result->num_rows > 0) {
+            echo "<br><br>";
+            echo "<div class='table-responsive'>";
+            echo "<table id='proveedores-table' class='usuarios-table table'>";
+            echo "<thead>
         <tr>
             <th><i class='bi bi-person-badge-fill'></i> ID</th>
             <th><i class='bi bi-calendar-check'></i> Fecha de Recogida</th>
@@ -274,36 +345,36 @@ if ($conexion->connect_error) {
             <th style='text-align: center;'><i class='bi bi-shield-lock'></i> Acciones</th>
         </tr>
         </thead>";
-        echo "<tbody>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["id"] . "</td>";
-            echo "<td>" . $row["fecha"] . "</td>";
-            echo "<td>" . $row["cantidad_extra"] . " Kg" . "</td>";
-            echo "<td>" . $row["cantidad_primera"] .  " Kg" . "</td>";
-            echo "<td>" . $row["cantidad_segunda"] .  " Kg" . "</td>";
-            echo "<td>" . $row["cantidad_riche"] .   " Kg" . "</td>";
-            echo "<td class='acciones-container'>";
-            echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            echo "</td>";
-            echo "</tr>";
+            echo "<tbody>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["id"] . "</td>";
+                echo "<td>" . $row["fecha"] . "</td>";
+                echo "<td>" . $row["cantidad_extra"] . " Kg" . "</td>";
+                echo "<td>" . $row["cantidad_primera"] .  " Kg" . "</td>";
+                echo "<td>" . $row["cantidad_segunda"] .  " Kg" . "</td>";
+                echo "<td>" . $row["cantidad_riche"] .   " Kg" . "</td>";
+                echo "<td class='acciones-container'>";
+                echo "<div class='btn-icon-container'><a href='Editar_Cosechas.php?id=" . $row["id"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+                echo "</td>";
+                echo "</tr>";
+            }
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>"; // Cierre de la clase table-responsive
+
+            echo "<div class='text-center mt-4'>
+                <button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalLotes'>
+                  <i class='bi bi-basket'></i> Añadir cosecha
+                </button>
+              </div>";
+        } else {
+            echo "No se encontraron resultados";
         }
-        echo "</tbody>";
-        echo "</table>";
-        echo "</div>"; // Cierre de la clase table-responsive
 
-        echo "<div class='text-center mt-4'>
-        <a href='../interfaz_admin/Lotes.php' class='btn btn-success' title='Añadir cosecha'>
-            <i class='bi bi-basket'></i> Añadir cosecha
-        </a>
-    </div>";
-    } else {
-        echo "No se encontraron resultados";
-    }
-
-    $conexion->close();
-    ?>
-</div>
+        $conexion->close();
+        ?>
+    </div>
 
     <?php
     echo "<br><br><br><br>";
@@ -320,6 +391,29 @@ if ($conexion->connect_error) {
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
+
+    <script>
+        // Función para evitar que se ingresen números negativos manualmente
+        function evitarNumerosNegativos(input) {
+            // Obtener el valor actual del input y convertirlo a un número
+            let valor = parseFloat(input.value);
+
+            // Verificar si el valor es un número válido
+            if (!isNaN(valor)) {
+                // Si el valor es menor que 1 o no es un número, establecerlo como 1
+                if (valor < 1) {
+                    input.value = 1;
+                }
+                // Si el valor es mayor que 99, establecerlo como 99
+                else if (valor > 99) {
+                    input.value = 99;
+                }
+            } else {
+                // Si el valor no es un número válido, establecerlo como 1
+                input.value = 1;
+            }
+        }
+    </script>
 
     <script>
         $(document).ready(function() {
