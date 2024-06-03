@@ -3,15 +3,15 @@
 session_start();
 include('../controller/conexion.php');
 
-//* Obtener la informacion del usuario
+//* Obtener la información del usuario
 $id_cliente = $_SESSION['Id_cliente'];
 //* Se hace la consulta con el id_cliente para obtener sus datos
 $query = "SELECT * FROM usuarios WHERE id_cliente = $id_cliente";
 $resultado = mysqli_query($conn, $query);
 
-//*Se valida si hay resultados de la consulta 
+//* Se valida si hay resultados de la consulta 
 if ($resultado->num_rows == 1) {
-    //* Obtenemos la informacion para guardarlo en un array
+    //* Obtenemos la información para guardarlo en un array
     $info = $resultado->fetch_assoc();
 } else {
     //* Manejar el caso en el que no se encuentra el usuario
@@ -30,7 +30,40 @@ if (isset($_POST['save'])) {
     $emailDomain = substr(strrchr($newCorreo, "@"), 1);
 
     if (in_array($emailDomain, $allowedDomains)) {
-        $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo' WHERE id_cliente='$id_cliente'";
+        // Manejo de la subida de imagen
+        $imagePath = $info['imagen']; // Ruta actual de la imagen
+
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['imagen']['tmp_name'];
+            $fileName = $_FILES['imagen']['name'];
+            $fileSize = $_FILES['imagen']['size'];
+            $fileType = $_FILES['imagen']['type'];
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
+
+            // Verificar si la extensión es permitida
+            $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+            if (in_array($fileExtension, $allowedfileExtensions)) {
+                // Asignar una nueva ruta para la imagen
+                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+                $uploadFileDir = '../resource/img/';
+                $dest_path = $uploadFileDir . $newFileName;
+
+                if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                    // Borrar la imagen anterior si es diferente a la por defecto
+                    if ($imagePath != '../resource/img/blank-profile-picture-973460_960_720.webp') {
+                        unlink($imagePath);
+                    }
+                    $imagePath = $dest_path; // Actualizar la ruta de la imagen
+                } else {
+                    echo 'Error al mover el archivo subido.';
+                }
+            } else {
+                echo 'Tipo de archivo no permitido.';
+            }
+        }
+
+        $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
         if (mysqli_query($conn, $sql)) {
             $msj_actualizado = 'Informacion actualizada';
             header("Location: ../model/perfil.php?msj_actualizado=$msj_actualizado");
@@ -42,9 +75,9 @@ if (isset($_POST['save'])) {
         header("Location: ../model/modificarPerfil.php?msj_dominio=$msj_dominio");
     }
 }
-
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -165,8 +198,9 @@ if (isset($_POST['save'])) {
             font-size: larger;
         }
 
-        .card img {
-            width: 100px;
+        .imagen_perfil {
+            width: 150px;
+            height: 100px;
             border-radius: 50%;
             align-self: center;
         }
@@ -318,9 +352,10 @@ if (isset($_POST['save'])) {
 
         <div class="card">
 
-            <img src="../resource/img/blank-profile-picture-973460_960_720.webp" alt="Perfil" />
+            <img class="imagen_perfil" src="<?php echo $info['imagen']; ?>" alt="Perfil" />
 
-            <form id="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+            <form id="" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+
                 <ul class="informacion">
                     <li>
                         <span class="material-symbols-outlined"> account_circle </span><span class="descripcion">Nombre</span>
@@ -346,6 +381,14 @@ if (isset($_POST['save'])) {
                         <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>" maxlength="35">
                     </li>
                     </li>
+                    <li>
+                        <span class="material-symbols-outlined"> image </span>
+                        <span class="descripcion">Nueva Imagen</span>
+                        <div class="contenedor-input">
+                            <input type="file" class="form-control-file" id="imagen" name="imagen">
+                        </div>
+                    </li>
+
                 </ul>
 
 

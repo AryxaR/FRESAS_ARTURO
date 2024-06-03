@@ -136,8 +136,10 @@ if ($resultado->num_rows == 1) {
       font-size: larger;
     }
 
-    .card img {
-      width: 100px;
+    .imagen_perfil {
+      border-radius: 50% ;
+      width: 150px;
+      height: 100px;
       border-radius: 50%;
       align-self: center;
     }
@@ -240,18 +242,18 @@ if ($resultado->num_rows == 1) {
       border-color: rgba(220, 86, 86, 0.733);
     }
 
-    
+
     @media screen and (max-width: 360px) {
-            .contenedor-input input {
-                width: 13rem;
-            }
+      .contenedor-input input {
+        width: 13rem;
+      }
 
-            .breadcrumbs-container {
-            margin-left: 90px;
-            margin-top: 45px;
+      .breadcrumbs-container {
+        margin-left: 90px;
+        margin-top: 45px;
 
-        }
-        }
+      }
+    }
   </style>
 </head>
 
@@ -271,7 +273,9 @@ if ($resultado->num_rows == 1) {
   <div class="contenedor">
     <h3 class="titulo">Informacion usuario</h3>
     <div class="card">
-      <img src="../resource/img/blank-profile-picture-973460_960_720.webp" alt="Perfil" />
+
+      <img class="imagen_perfil" src="<?php echo $info['imagen']; ?>" alt="Perfil" />
+
       <ul class="informacion">
         <li>
           <span class="material-symbols-outlined"> account_circle </span> <span class="descripcion">Nombre</span>
