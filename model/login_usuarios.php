@@ -495,6 +495,9 @@
     if (isset($_GET['msj_validar_clave'])) {
         $msj_validar_clave = $_GET['msj_validar_clave'];
     }
+    if (isset($_GET['msj_error_caracter_olvido'])) {
+        $msj_error_caracter_olvido = $_GET['msj_error_caracter_olvido'];
+    }
 
     // RECEPCION DE ALERTAS DE INICIO Y REGISTER
     if (isset($_GET['mensaje_inactivo'])) {
@@ -726,6 +729,14 @@
                 icon: "error",
                 title: "Oops...",
                 text: "Su tiempo para cambio de contraseña ya ha expirado",
+            });
+        }
+        // CARACTERES ESPECIALES EN RECUPERAR CONTRASEÑA
+        if (window.location.search.includes('msj_error_caracter_olvido')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La contraseña debe contener al menos un carácter especial, una letra mayúscula y un número.",
             });
         }
     </script>

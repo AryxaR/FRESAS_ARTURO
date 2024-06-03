@@ -55,7 +55,7 @@
         }
 
         .dataTables_filter {
-            margin-right: 11.5%;
+            margin-right: 20%;
             margin-bottom: 1%;
         }
 
@@ -71,7 +71,7 @@
 
         div.dt-buttons {
             margin-top: 3%;
-            margin-left: 12%;
+            margin-left: 19%;
             border: none;
             margin-bottom: -1.5%;
 

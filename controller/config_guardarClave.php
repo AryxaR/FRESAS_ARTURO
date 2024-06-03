@@ -18,6 +18,28 @@ if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
 
     $nueva_contrasena = $_POST['confirmar_contrasena'];
 
+    // Función para validar la contraseña
+    function validarContrasena($nueva_contrasena)
+    {
+        // Expresión regular para validar la presencia de al menos:
+        // - Un carácter especial [@#$%^&*(),.?":{}|<>]
+        // - Una letra mayúscula [A-Z]
+        // - Un número \d
+        $expresionCompleta = '/^(?=.*[@#$%^&*(),.?":{}|<>])(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$%*?&#.$($)$-$_]{8,}$/';
+        if (preg_match($expresionCompleta, $nueva_contrasena)) {
+            return true; // Cumple con todos los requisitos
+        } else {
+            return false; // No cumple con alguno de los requisitos
+        }
+    }
+
+    // Validación de la contraseña
+    if (!validarContrasena($Contrasena)) {
+        $msj_error_caracter_olvido = 'La contraseña debe contener al menos un carácter especial, una letra mayúscula y un número.';
+        header("Location:../model/login_usuarios.php?msj_error_caracter_olvido= $msj_error_caracter_olvido");
+        exit();
+    }
+
     $nueva_pass_segura = password_hash($nueva_contrasena, PASSWORD_DEFAULT);
 
     $fecha_actual = time();
