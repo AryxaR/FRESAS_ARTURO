@@ -29,6 +29,8 @@ $conexion->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PERDIDAS | FRESAS DON ARTURO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+
 
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -41,6 +43,14 @@ $conexion->close();
             background-attachment: fixed;
             background-position: center;
             font-family: 'Poppins', sans-serif;
+        }
+
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 120px !important;
+            right: auto;
+            bottom: auto;
+            left: calc(100vw - 21px);
+            transform: translate(-100%);
         }
 
         .TITULO {
@@ -176,7 +186,7 @@ echo "<br><br><br><br><br>";
 
                     <!-- Información relacionada con la fecha seleccionada -->
                     <div class="form-group" id="info_cosecha" style="display:none;">
-                        <label for="info_lote">Información del Lote:</label>
+                        <label for="informacion_lote">Información del Lote:</label>
                         <div class="row">
                             <div class="col">
                                 <p>Cosecha N° : <span id="id_lote" class="d-inline-block text-center"></span></p>
@@ -213,7 +223,7 @@ echo "<br><br><br><br><br>";
                     </div>
                     <div class="form-group">
                         <label for="cantidad_perdida">Cantidad (Kg):</label>
-                        <input type="number" class="form-control" id="cantidad_perdida" name="cantidad_perdida" min="1" max="99" oninput="this.value = this.value.slice(0, 2)" required>
+                        <input type="number" class="form-control" id="cantidad_perdida" name="cantidad_perdida" min="1" max="999" oninput="this.value = this.value.slice(0, 3)" required>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-custom">Registrar Pérdida</button>

@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/consult.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
 
-    <!-- Agregar CSS de DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css">
 
     <!-- Link de sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -34,6 +33,14 @@
 
         }
 
+        body .uwy.userway_p1 .userway_buttons_wrapper {
+            top: 120px !important;
+            right: auto;
+            bottom: auto;
+            left: calc(100vw - 21px);
+            transform: translate(-100%);
+        }
+
 
         .TITULO {
             margin-top: 60px;
@@ -54,8 +61,8 @@
         }
 
         .dataTables_filter {
-            margin-right: 11.5%;
-            margin-bottom: 1%;
+            margin-right: 15.5%;
+            margin-bottom: 2%;
         }
 
         .dataTables_info {
@@ -64,13 +71,13 @@
 
         .dataTables_paginate {
             margin-top: 0.8%;
-            margin-right: 11%;
+            margin-right: 15%;
         }
 
 
         div.dt-buttons {
             margin-top: 3%;
-            margin-left: 12%;
+            margin-left: 17%;
             border: none;
             margin-bottom: -1.5%;
 
@@ -100,11 +107,19 @@
             cursor: pointer;
         }
 
-        .usuarios-table {
-            width: 95%;
-            max-width: 1200px;
-            border-collapse: collapse;
-            font-family: 'Poppins', sans-serif;
+        .table-compact {
+            max-width: 70%;
+            width: auto;
+            table-layout: auto;
+        }
+
+        .table-compact th,
+        .table-compact td {
+            white-space: nowrap;
+        }
+
+        .encabezado-tabla {
+            background-color: #f2f2f2;
         }
 
         .usuarios-table th,
@@ -115,6 +130,82 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .btn-compact {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .breadcrumbs-container {
+            display: flex;
+            margin-top: -1%;
+            margin-left: 7%;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            content: "/";
+            margin: 0 3px;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
+
+        .btn-icon {
+            background-color: #f8eaef;
+            color: black;
+            border-radius: 5%;
+            border: 1px solid #d22c5d;
+            padding: 2px 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-icon:hover {
+            background-color: #d22c5d;
+            color: #f8eaef;
+        }
+
+        .acciones-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-icon-container {
+            padding: 5px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .btn-subtitle {
+            display: none;
+            margin-left: 5px;
+        }
+
+        .btn-icon:hover .btn-subtitle {
+            display: inline-block;
+        }
         .usuarios-table th {
             background-color: #f2f2f2;
         }
@@ -193,7 +284,6 @@
             }
         }
     </style>
-
 </head>
 
 <?php
@@ -292,35 +382,28 @@ if (isset($_GET['msj_proveedor'])) {
 
     if ($result->num_rows > 0) {
         echo "<br><br>";
-        echo "<div class='table-responsive'>";
-        echo "<table id='proveedores-table' class='table table-striped table-compact usuarios-table'>";
+        echo "<table id='proveedores-table' class='usuarios-table'>";
         echo "<thead>
-        <tr>
-            <th><i class='bi bi-person-badge-fill'></i> Id</th>
-            <th><i class='bi bi-person-check-fill'></i> Nombre</th>
-            <th><i class='bi bi-telephone-fill'></i> Telefono</th>
-            <th class='text-center'><i class='bi bi-shield-lock'></i> Acciones</th>
-        </tr>
-    </thead>";
+            <tr>
+                <th><i class='bi bi-person-badge-fill'></i>Id </th>
+                <th><i class='bi bi-person-check-fill'></i>Nombre </th>
+                <th><i class='bi bi-telephone-fill'></i>Telefono </th>
+                <th style='text-align: center;'><i class='bi bi-shield-lock'></i>Acciones</th>
+            </tr>
+        </thead>";
         echo "<tbody>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr id='" . ($row["Estado"] == 'INACTIVO' ? 'inactivo' : 'activo') . "'>";
             echo "<td>" . $row["Id_proveedor"] . "</td>";
             echo "<td>" . $row["Nombre_proveedor"] . "</td>";
             echo "<td>" . $row["Telefono_proveedor"] . "</td>";
-            echo "<td class='text-center acciones-container'>";
-            if ($row["Estado"] == 'INACTIVO') {
-                echo "<div class='btn-icon-container'><a href='#' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a></div>";
-                echo "<div class='btn-icon-container'><a href='#' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            } else {
-                echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title='Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Detalles</span></a></div>";
-                echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title='Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
-            }
-            if ($row["Estado"] == 'ACTIVO') {
-                echo "<div class='btn-icon-container'><a href='#' class='btn-icon eliminar-proveedor' title='Inactivar' data-id='" . $row["Id_proveedor"] . "' data-estado='INACTIVO'><i class='bi bi-check-circle-fill'></i><span class='btn-subtitle'>Inactivar</span></a></div>";
-            } else {
-                echo "<div class='btn-icon-container'><a href='#' class='btn-icon eliminar-proveedor' title='Activar' data-id='" . $row["Id_proveedor"] . "' data-estado='ACTIVO'><i class='bi bi-x-circle-fill'></i><span class='btn-subtitle'>Activar</span></a></div>";
-            }
+            echo "<td class='acciones-container'>";
+            echo "<div class='btn-icon-container'><a href='Datos.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Ver detalles'><i class='bi bi-eye-fill'></i><span class='btn-subtitle'>Ver detalles</span></a></div>";
+            echo "<div class='btn-icon-container'><a href='update_proveedor.php?id=" . $row["Id_proveedor"] . "' class='btn-icon' title=' Editar'><i class='bi bi-pencil-square'></i><span class='btn-subtitle'>Editar</span></a></div>";
+            echo "<div class='btn-icon-container'><form method='post' style='display: inline;'>
+                  <input type='hidden' name='eliminar_proveedor' value='" . $row["Id_proveedor"] . "'>
+                  <button type='submit' class='btn-icon eliminar-proveedor' title=' Eliminar'><i class='bi bi-trash3-fill'></i><span class='btn-subtitle'>Eliminar</span></button>
+                  </form></div>";
             echo "</td>";
             echo "</tr>";
         }
@@ -337,7 +420,6 @@ if (isset($_GET['msj_proveedor'])) {
 
     $conexion->close();
     ?>
-
 
     <?php
     echo "<br><br><br><br>";

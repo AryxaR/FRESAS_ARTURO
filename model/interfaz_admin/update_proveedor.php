@@ -5,9 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/nav.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <title>ACTUALIZACION</title>
+    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,200;1,300;1,500&display=swap");
 
@@ -187,9 +188,9 @@
                 <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['Id_proveedor']; ?>">
                     <label for="Nombre_proveedor">Nombre_provedor:</label>
-                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>"><br><br>
+                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>" maxlength="30"><br><br>
                     <label for="Telefono_proveedor">Telefono_proveedor:</label>
-                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>"><br><br>
+                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>" min="1" max="99999999" oninput="this.value = this.value.slice(0, 10)"><br><br>
                     <input type="submit" name="actualizar" value="Actualizar">
                 </form>
         <?php
