@@ -177,6 +177,8 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
     <?php
     include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php');
     ?>

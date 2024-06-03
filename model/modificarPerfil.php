@@ -310,12 +310,16 @@ if (isset($_POST['save'])) {
             </ol>
         </nav>
     </div>
+
     <a class="volver" href="../model/perfil.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
     <span class="f-roja"></span>
     <div class="contenedor">
         <h3 class="titulo">Modificar Informacion</h3>
+
         <div class="card">
+
             <img src="../resource/img/blank-profile-picture-973460_960_720.webp" alt="Perfil" />
+
             <form id="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                 <ul class="informacion">
                     <li>
@@ -343,6 +347,8 @@ if (isset($_POST['save'])) {
                     </li>
                     </li>
                 </ul>
+
+
                 <div class="contenedor-modificar">
                     <input class="modificar" type="submit" name="save" value="Actualizar datos"></input>
                 </div>
