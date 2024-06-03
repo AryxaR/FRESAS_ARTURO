@@ -31,38 +31,37 @@ if (isset($_POST['save'])) {
 
     if (in_array($emailDomain, $allowedDomains)) {
         // Manejo de la subida de imagen
-$imagePath = $info['imagen']; // Ruta actual de la imagen
+        $imagePath = $info['imagen']; // Ruta actual de la imagen
 
-if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-    $fileTmpPath = $_FILES['imagen']['tmp_name'];
-    $fileName = $_FILES['imagen']['name'];
-    $fileSize = $_FILES['imagen']['size'];
-    $fileType = $_FILES['imagen']['type'];
-    $fileNameCmps = explode(".", $fileName);
-    $fileExtension = strtolower(end($fileNameCmps));
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['imagen']['tmp_name'];
+            $fileName = $_FILES['imagen']['name'];
+            $fileSize = $_FILES['imagen']['size'];
+            $fileType = $_FILES['imagen']['type'];
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
 
-    // Verificar si la extensión es permitida
-    $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
-    if (in_array($fileExtension, $allowedfileExtensions)) {
-        // Asignar una nueva ruta para la imagen
-        $newFileName = md5(time(). $fileName). '.'. $fileExtension;
-        $uploadFileDir = '../resource/img/';
-        $dest_path = $uploadFileDir. $newFileName;
+            // Verificar si la extensión es permitida
+            $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+            if (in_array($fileExtension, $allowedfileExtensions)) {
+                // Asignar una nueva ruta para la imagen
+                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+                $uploadFileDir = '../resource/img/';
+                $dest_path = $uploadFileDir . $newFileName;
 
-        // Eliminar la imagen anterior si existe
-        if ($imagePath!= '') {
-            unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
-        }
+                // Eliminar la imagen anterior si existe
+                if ($imagePath != '') {
+                    unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
+                }
 
-        if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $imagePath = $dest_path; // Actualizar la ruta de la imagen
-        } else {
-            echo 'Error al mover el archivo subido.';
-        }
-    } else {
-        echo 'Tipo de archivo no permitido.';
-    }
-
+                if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                    $imagePath = $dest_path; // Actualizar la ruta de la imagen
+                } else {
+                    echo 'Error al mover el archivo subido.';
+                }
+            } else {
+                echo 'Tipo de archivo no permitido.';
+            }
         }
 
         $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
@@ -369,19 +368,20 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
                         </span><span class="descripcion">Cedula</span>
                         <div class="contenedor-input"><span class="cedula"><?php echo $info["Cedula"]; ?></span>
                     </li>
-                    </li>
                     <li><span class="material-symbols-outlined">
                             supervisor_account
                         </span><span class="descripcion">Rol</span>
-                        <div class="contenedor-input"><select class="select" class="text" name="Rol" required>
-                                <option value="Mayorista" <?php echo $info['Rol'] === 'Mayorista' ? 'selected' : ''; ?>>Mayorista</option>
-                                <option value="Minorista" <?php echo $info['Rol'] === 'Minorista' ? 'selected' : ''; ?>>Minorista</option>
-                            </select></div>
-                    </li>
+                        <div class="contenedor-input"><input type="text" name="rol" value="<?php echo $info["Rol"]; ?>">
                     </li>
                     <li><span class="material-symbols-outlined"> mail </span><span class="descripcion">Correo</span>
                         <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>" maxlength="35">
                     </li>
+                    <li>
+                        <span class="material-symbols-outlined"> image </span>
+                        <span class="descripcion">Nueva Imagen</span>
+                        <div class="contenedor-input">
+                            <input type="file" class="form-control-file" id="imagen" name="imagen">
+                        </div>
                     </li>
                     <li>
                         <span class="material-symbols-outlined"> image </span>

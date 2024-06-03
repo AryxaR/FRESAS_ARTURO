@@ -273,9 +273,7 @@ if ($resultado->num_rows == 1) {
   <div class="contenedor">
     <h3 class="titulo">Informacion usuario</h3>
     <div class="card">
-
-      <img class="imagen_perfil" src="<?php echo $info['imagen']; ?>" alt="Perfil" />
-
+    <img class="imagen_perfil" src="<?php echo $info['imagen']; ?>" alt="Perfil" />
       <ul class="informacion">
         <li>
           <span class="material-symbols-outlined"> account_circle </span> <span class="descripcion">Nombre</span>

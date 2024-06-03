@@ -211,11 +211,6 @@
             text-decoration: underline;
         }
 
-        .contenedor_modal{
-            display: flex;
-            flex-direction: column;
-        }
-
         .modal-body .form-group{
             margin-right: 2%;
             text-align: center;
@@ -363,7 +358,7 @@ if ($conexion->connect_error) {
             echo "</table>";
             echo "</div>"; // Cierre de la clase table-responsive
 
-            echo "<div class='text-center mt-4'>
+        echo "<div class='text-center mt-4'>
                 <button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalLotes'>
                   <i class='bi bi-basket'></i> Añadir cosecha
                 </button>
@@ -372,9 +367,9 @@ if ($conexion->connect_error) {
             echo "No se encontraron resultados";
         }
 
-        $conexion->close();
-        ?>
-    </div>
+    $conexion->close();
+    ?>
+</div>
 
     <?php
     echo "<br><br><br><br>";

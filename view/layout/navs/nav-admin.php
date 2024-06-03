@@ -241,23 +241,6 @@
     </div>
 
   </header>
-
-  <script>
-    // var menu = document.querySelector('.menu');
-    // var i = document.querySelector('#icono');
-    // var check = document.getElementById('check-btn');
-
-    // check.addEventListener('click', function() {
-
-    //     if (check.checked) {
-    //         i.classList.remove('fa-bars');
-    //         i.classList.add('fa-xmark');
-    //     } else {
-    //         i.classList.remove('fa-xmark');
-    //         i.classList.add('fa-bars');
-    //     }
-    // });
-  </script>
 </body>
 
 </html>
