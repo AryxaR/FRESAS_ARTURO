@@ -186,7 +186,7 @@ echo "<br><br><br><br><br>";
 
                     <!-- Información relacionada con la fecha seleccionada -->
                     <div class="form-group" id="info_cosecha" style="display:none;">
-                        <label for="info_lote">Información del Lote:</label>
+                        <label for="informacion_lote">Información del Lote:</label>
                         <div class="row">
                             <div class="col">
                                 <p>Cosecha N° : <span id="id_lote" class="d-inline-block text-center"></span></p>

@@ -12,9 +12,6 @@
     <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
 
 
-    <!-- Agregar CSS de DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.7/css/jquery.dataTables.min.css">
-
     <!-- Link de sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
