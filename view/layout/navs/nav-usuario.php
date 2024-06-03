@@ -271,6 +271,7 @@
                     <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="../FRESAS_ARTURO/catalogo.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../../FRESAS_ARTURO/model/Guia_usuario.php">Ayuda</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">

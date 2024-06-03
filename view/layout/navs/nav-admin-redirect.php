@@ -312,6 +312,7 @@
                     <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Cosechas.php">Cosechas</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Perdidas.php">Perdidas</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Pedidos.php">Pedidos</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Guia_admin.php">Ayuda</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">
