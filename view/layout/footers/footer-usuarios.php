@@ -20,14 +20,14 @@
             <li><a href="../FRESAS_ARTURO/index_usuarios.php">Inicio</a></li>
             <li><a href="../FRESAS_ARTURO/catalogo.php">Catálogo</a></li>
             <li><a href="#section-contacto">Contacto</a></li>
-            <li><a href="#">Manual de usuraio</a></li>
+            <li><a href="../../../../FRESAS_ARTURO/model/Guia_usuario.php">Manual de usuraio</a></li>
         </ul>
     </div>
     <div class="footer-ingreso">
         <h2>Inicia sesion o registrate</h2>
         <ul>
-            <li><a href="../FRESAS_ARTURO/model/perfil.php">Perfil</a></li>
-            <li><a href="../FRESAS_ARTURO/controller/logout.php">Salir</a></li>
+            <li><a href="../../../../FRESAS_ARTURO/model/perfil.php">Perfil</a></li>
+            <li><a href="../../../../FRESAS_ARTURO/controller/logout.php">Salir</a></li>
         </ul>
     </div>
     <div class="footer-copyright">

@@ -24,6 +24,7 @@
             position: fixed;
             z-index: 100;
             display: inline;
+            top: 0;
             /* position: relative; */
         }
 

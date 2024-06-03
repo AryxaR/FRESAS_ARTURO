@@ -3,15 +3,15 @@
 session_start();
 include('../controller/conexion.php');
 
-//* Obtener la informacion del usuario
+//* Obtener la información del usuario
 $id_cliente = $_SESSION['Id_cliente'];
 //* Se hace la consulta con el id_cliente para obtener sus datos
 $query = "SELECT * FROM usuarios WHERE id_cliente = $id_cliente";
 $resultado = mysqli_query($conn, $query);
 
-//*Se valida si hay resultados de la consulta 
+//* Se valida si hay resultados de la consulta 
 if ($resultado->num_rows == 1) {
-    //* Obtenemos la informacion para guardarlo en un array
+    //* Obtenemos la información para guardarlo en un array
     $info = $resultado->fetch_assoc();
 } else {
     //* Manejar el caso en el que no se encuentra el usuario
@@ -30,7 +30,41 @@ if (isset($_POST['save'])) {
     $emailDomain = substr(strrchr($newCorreo, "@"), 1);
 
     if (in_array($emailDomain, $allowedDomains)) {
-        $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo' WHERE id_cliente='$id_cliente'";
+        // Manejo de la subida de imagen
+        $imagePath = $info['imagen']; // Ruta actual de la imagen
+
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['imagen']['tmp_name'];
+            $fileName = $_FILES['imagen']['name'];
+            $fileSize = $_FILES['imagen']['size'];
+            $fileType = $_FILES['imagen']['type'];
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
+
+            // Verificar si la extensión es permitida
+            $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+            if (in_array($fileExtension, $allowedfileExtensions)) {
+                // Asignar una nueva ruta para la imagen
+                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+                $uploadFileDir = '../resource/img/';
+                $dest_path = $uploadFileDir . $newFileName;
+
+                // Eliminar la imagen anterior si existe
+                if ($imagePath != '') {
+                    unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
+                }
+
+                if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                    $imagePath = $dest_path; // Actualizar la ruta de la imagen
+                } else {
+                    echo 'Error al mover el archivo subido.';
+                }
+            } else {
+                echo 'Tipo de archivo no permitido.';
+            }
+        }
+
+        $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
         if (mysqli_query($conn, $sql)) {
             $msj_actualizado = 'Informacion actualizada';
             header("Location: ../model/perfil.php?msj_actualizado=$msj_actualizado");
@@ -42,8 +76,6 @@ if (isset($_POST['save'])) {
         header("Location: ../model/modificarPerfil.php?msj_dominio=$msj_dominio");
     }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -279,10 +311,10 @@ if (isset($_POST['save'])) {
             }
 
             .breadcrumbs-container {
-            margin-left: 90px;
-            margin-top: 35px;
+                margin-left: 90px;
+                margin-top: 35px;
 
-        }
+            }
         }
     </style>
 </head>
@@ -305,8 +337,8 @@ if (isset($_POST['save'])) {
     <div class="contenedor">
         <h3 class="titulo">Modificar Informacion</h3>
         <div class="card">
-            <img src="../resource/img/blank-profile-picture-973460_960_720.webp" alt="Perfil" />
-            <form id="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+            <img class="imagen_perfil" src="<?php echo $info['imagen']; ?>" alt="Perfil" />
+            <form id="" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
                 <ul class="informacion">
                     <li>
                         <span class="material-symbols-outlined"> account_circle </span><span class="descripcion">Nombre</span>
@@ -318,16 +350,20 @@ if (isset($_POST['save'])) {
                         </span><span class="descripcion">Cedula</span>
                         <div class="contenedor-input"><span class="cedula"><?php echo $info["Cedula"]; ?></span>
                     </li>
-                    </li>
                     <li><span class="material-symbols-outlined">
                             supervisor_account
                         </span><span class="descripcion">Rol</span>
                         <div class="contenedor-input"><input type="text" name="rol" value="<?php echo $info["Rol"]; ?>">
                     </li>
-                    </li>
                     <li><span class="material-symbols-outlined"> mail </span><span class="descripcion">Correo</span>
                         <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>">
                     </li>
+                    <li>
+                        <span class="material-symbols-outlined"> image </span>
+                        <span class="descripcion">Nueva Imagen</span>
+                        <div class="contenedor-input">
+                            <input type="file" class="form-control-file" id="imagen" name="imagen">
+                        </div>
                     </li>
                 </ul>
                 <div class="contenedor-modificar">

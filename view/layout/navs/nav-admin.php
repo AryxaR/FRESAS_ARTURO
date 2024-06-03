@@ -231,28 +231,12 @@
           <li>
             <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php"><span class="cerrar">Cerrar Sesion</span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </li>
+          <li><a class="ingresar" href="../../../../FRESAS_ARTURO/model/interfaz_admin/Guia_admin.php"><span class="cerrar">Ayuda</span><i class="fa-regular fa-circle-question"></i></a></i></li>
         </ul>
       </div>
     </div>
 
   </header>
-
-  <script>
-    // var menu = document.querySelector('.menu');
-    // var i = document.querySelector('#icono');
-    // var check = document.getElementById('check-btn');
-
-    // check.addEventListener('click', function() {
-
-    //     if (check.checked) {
-    //         i.classList.remove('fa-bars');
-    //         i.classList.add('fa-xmark');
-    //     } else {
-    //         i.classList.remove('fa-xmark');
-    //         i.classList.add('fa-bars');
-    //     }
-    // });
-  </script>
 </body>
 
 </html>

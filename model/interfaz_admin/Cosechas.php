@@ -212,7 +212,34 @@
             text-decoration: underline;
         }
 
+        .modal-body .form-group{
+            margin-right: 2%;
+            text-align: center;
 
+        }
+
+        .modal-body .form-group input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .modal-body .boton {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-body .boton:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 
@@ -242,6 +269,43 @@ if ($conexion->connect_error) {
     }
 
     ?>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLotes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Registro de Cosechas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="contenedor_modal" action="../../../FRESAS_ARTURO/controller/controlers-admin/procesar_lotes.php" method="post">
+                        <div class="form-group">
+                            <label for="cantidad_extra">Fresas Extra: </label>
+                            <input type="number" id="cantidad_extra" name="cantidad_extra" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad_primera">Fresas Primera:</label>
+                            <input type="number" id="cantidad_primera" name="cantidad_primera" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad_segunda">Fresas Segunda:</label>
+                            <input type="number" id="cantidad_segunda" name="cantidad_segunda" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad_riche">Fresas Riche:</label>
+                            <input type="number" id="cantidad_riche" name="cantidad_riche" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
+                        </div>
+                        <div class="form-group">
+                            <input class="boton" type="submit" value="Enviar">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
@@ -294,16 +358,16 @@ if ($conexion->connect_error) {
         echo "</div>"; // Cierre de la clase table-responsive
 
         echo "<div class='text-center mt-4'>
-        <a href='../interfaz_admin/Lotes.php' class='btn btn-success' title='Añadir cosecha'>
-            <i class='bi bi-basket'></i> Añadir cosecha
-        </a>
-    </div>";
-    } else {
-        echo "No se encontraron resultados";
-    }
+                <button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modalLotes'>
+                  <i class='bi bi-basket'></i> Añadir cosecha
+                </button>
+              </div>";
+        } else {
+            echo "No se encontraron resultados";
+        }
 
-    $conexion->close();
-    ?>
+        $conexion->close();
+        ?>
 </div>
 
     <?php

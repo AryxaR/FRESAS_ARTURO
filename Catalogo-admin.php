@@ -200,46 +200,52 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <div class="tabla-container">
-                    <table id="tabla-productos" class="table table-striped tabla-productos">
-                        <thead>
-                            <tr>
-                                <th>Categoria</th>
-                                <th>Foto</th>
-                                <th>Precio</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $conexion = new mysqli("localhost", "root", "", "proyecto");
+                <div class="table-responsive">
+                    <div class="tabla-container">
 
-                            if ($conexion->connect_error) {
-                                die("Error de conexión: " . $conexion->connect_error);
-                            }
+                        <table id="tabla-productos" class="table table-striped tabla-productos">
 
-                            $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
-                            $result = $conn->query($sql);
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Foto</th>
+                                    <th>Precio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $conexion = new mysqli("localhost", "root", "", "proyecto");
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<tr>';
-                                    echo '<td>' . $row["categoria_producto"] . '</td>';
-                                    echo '<td><img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
-                                    echo '<td>$' . $row["precio_producto"] . '</td>';
-                                    echo '<td>';
-                                    echo '<button type="button" class="btn btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
-                                    echo '</td>';
-                                    echo '</tr>';
+                                if ($conexion->connect_error) {
+                                    die("Error de conexión: " . $conexion->connect_error);
                                 }
-                            } else {
-                                echo "<tr><td colspan='4'>No se encontraron productos.</td></tr>";
-                            }
 
-                            $conexion->close();
-                            ?>
-                        </tbody>
-                    </table>
+                                $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<tr>';
+                                        echo '<td>' . $row["categoria_producto"] . '</td>';
+                                        echo '<td><img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
+                                        echo '<td>$' . $row["precio_producto"] . '</td>';
+                                        echo '<td>';
+                                        echo '<button type="button" class="btn btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
+                                        echo '</td>';
+                                        echo '</tr>';
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='4'>No se encontraron productos.</td></tr>";
+                                }
+
+                                $conexion->close();
+                                ?>
+                            </tbody>
+
+
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

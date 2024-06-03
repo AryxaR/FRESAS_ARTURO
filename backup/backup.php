@@ -80,8 +80,8 @@ $content_ .= "-- Generating Time : ". date("M d"). ", ". date("Y"). " at ". date
 $content_ .= $content;
 
 // Guardar el contenido en un archivo para revisar
-file_put_contents("backup_debug.sql", $content_);
-file_put_contents("backup_error_log.txt", $error_log);
+// file_put_contents("backup_debug.sql", $content_);
+// file_put_contents("backup_error_log.txt", $error_log);
 
 //save the file
 $backup_file_name = $db_name. " ". date("Y-m-d H-i-s"). ".sql";
