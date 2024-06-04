@@ -59,6 +59,10 @@ $conexion->close();
         }
 
         h2{
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #888888;
             font-family: 'Poppins', sans-serif;
         }
         

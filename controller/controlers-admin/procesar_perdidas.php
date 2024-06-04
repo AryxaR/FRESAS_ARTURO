@@ -32,14 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stock_actual = $fila['Stock'];
 
             if ($stock_actual <= 0) {
-                throw new Exception("Error: El stock del producto ya está en cero. No se puede registrar más pérdidas.");
+                header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock=' . urlencode('El stock del producto ya está en cero. No se puede registrar más pérdidas.'));
+                exit;
             }
-
+        
             if ($cantidad_perdida > $stock_actual) {
-                throw new Exception("Error: La cantidad de pérdida supera el stock actual del producto.");
+                header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock_sup=' . urlencode('La cantidad de pérdida supera el stock actual del producto.'));
+                exit;
             }
         } else {
-            throw new Exception("Error: No se encontró el producto correspondiente en el stock.");
+            header('Location: ../../model/interfaz_admin/Perdidas.php?error=' . urlencode('No se encontró el producto correspondiente en el stock.'));
+            exit;
         }
 
         // Insertar la pérdida

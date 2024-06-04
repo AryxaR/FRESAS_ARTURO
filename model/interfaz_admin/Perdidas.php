@@ -254,6 +254,13 @@ echo "<br><br><br><br><br>";
     if (isset($_GET['msj_error_lotes'])) {
         $msj_error_lotes = $_GET['msj_error_lotes'];
     }
+    if (isset($_GET['msj_stock_sup'])) {
+        $msj_stock_sup = $_GET['msj_stock_sup'];
+    }
+    if (isset($_GET['msj_stock'])) {
+        $msj_stock = $_GET['msj_stock'];
+    }
+
     include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
 
     <script>
@@ -313,6 +320,20 @@ echo "<br><br><br><br><br>";
                 icon: "error",
                 title: "Oops...",
                 text: "Error al actualizar la cantidad en lotes",
+            });
+        }
+        if (window.location.search.includes('msj_stock')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "El stock del producto ya está en cero. No se puede registrar más pérdidas.s",
+            });
+        }
+        if (window.location.search.includes('msj_stock_sup')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La cantidad de pérdida supera el stock actual del producto.",
             });
         }
     </script>

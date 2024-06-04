@@ -326,7 +326,7 @@ if (isset($_GET['msj_proveedor'])) {
                             text: ' Estado de usuario actualizado con éxito'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location = "consult_mysql.php";
+                                window.location = "Proveedores.php";
                             }
                         });
                     } else {

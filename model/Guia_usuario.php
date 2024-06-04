@@ -124,22 +124,22 @@
         <div class="card-grid">
             <div class="card">
                 <h2>¿Como registrarme e iniciar sesión?</h2>
-                <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor quos laborum necessitatibus rerum.</h4>
+                <h4>Para poder interactuar con la pagina, priemro necesitas estar registrado. ¿No sabes como hacerlo? tranquilo aca te explicamos.</h4>
                 <a href="../../FRESAS_ARTURO/resource/PDF/MANUAL REGISTRO_INICIO.pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
                 <h2>¿Como modificar mis datos de perfil?</h2>
-                <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor quos laborum necessitatibus rerum.</h4>
+                <h4>Si ya te encuentras registrado en nuestra pagina web, Puedes administrar tu infomacion personal desde el apartado de perfil. Aca te explicamos como.</h4>
                 <a href="../../FRESAS_ARTURO/resource/PDF/Modificación de datos .pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
                 <h2>¿Como realizar una compra en el catalogo?</h2>
-                <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor quos laborum necessitatibus rerum.</h4>
+                <h4>Si compras deseas realizar el catalogo debes saber usar. Observa el paso a paso.</h4>
                 <a href="../../FRESAS_ARTURO/resource/PDF/COMPRA Y ELIMINACIÓN .pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
                 <h2>¿Como recuperar mi contraseña?</h2>
-                <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor quos laborum necessitatibus rerum.</h4>
+                <h4>¿Has olvidado tu contraseña? , no te preocupes te tenemos la solución. Revisa la documentación.</h4>
                 <a href="../../FRESAS_ARTURO/resource/PDF/Recuperación de contraseña .pdf" class="btn" download>Descargar PDF</a>
             </div>
         </div>

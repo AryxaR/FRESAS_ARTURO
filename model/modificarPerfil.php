@@ -31,38 +31,39 @@ if (isset($_POST['save'])) {
 
     if (in_array($emailDomain, $allowedDomains)) {
         // Manejo de la subida de imagen
-        $imagePath = $info['imagen']; // Ruta actual de la imagen
+$imagePath = $info['imagen']; // Ruta actual de la imagen
 
-        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            $fileTmpPath = $_FILES['imagen']['tmp_name'];
-            $fileName = $_FILES['imagen']['name'];
-            $fileSize = $_FILES['imagen']['size'];
-            $fileType = $_FILES['imagen']['type'];
-            $fileNameCmps = explode(".", $fileName);
-            $fileExtension = strtolower(end($fileNameCmps));
+if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+    $fileTmpPath = $_FILES['imagen']['tmp_name'];
+    $fileName = $_FILES['imagen']['name'];
+    $fileSize = $_FILES['imagen']['size'];
+    $fileType = $_FILES['imagen']['type'];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
 
-            // Verificar si la extensión es permitida
-            $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
-            if (in_array($fileExtension, $allowedfileExtensions)) {
-                // Asignar una nueva ruta para la imagen
-                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-                $uploadFileDir = '../resource/img/';
-                $dest_path = $uploadFileDir . $newFileName;
+    // Verificar si la extensión es permitida
+    $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+    if (in_array($fileExtension, $allowedfileExtensions)) {
+        // Asignar una nueva ruta para la imagen
+        $newFileName = md5(time(). $fileName). '.'. $fileExtension;
+        $uploadFileDir = '../resource/img/';
+        $dest_path = $uploadFileDir. $newFileName;
 
-                // Eliminar la imagen anterior si existe
-                if ($imagePath != '') {
-                    unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
-                }
-
-                if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                    $imagePath = $dest_path; // Actualizar la ruta de la imagen
-                } else {
-                    echo 'Error al mover el archivo subido.';
-                }
-            } else {
-                echo 'Tipo de archivo no permitido.';
-            }
+        // Eliminar la imagen anterior si existe
+        if ($imagePath!= '') {
+            unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
         }
+
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            $imagePath = $dest_path; // Actualizar la ruta de la imagen
+        } else {
+            echo 'Error al mover el archivo subido.';
+        }
+    } else {
+        echo 'Tipo de archivo no permitido.';
+    }
+}
+
 
         $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
         if (mysqli_query($conn, $sql)) {
@@ -83,7 +84,7 @@ if (isset($_POST['save'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil</title>
+    <title>Modificar Perfil</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,6 +92,7 @@ if (isset($_POST['save'])) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="icon" href="../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
     <style>
         * {
             box-sizing: border-box;
@@ -345,7 +347,7 @@ if (isset($_POST['save'])) {
                 <ul class="informacion">
                     <li>
                         <span class="material-symbols-outlined"> account_circle </span><span class="descripcion">Nombre</span>
-                        <div class="contenedor-input"><input type="text" name="nombre" value="<?php echo $info["Nombre"]; ?>">
+                        <div class="contenedor-input"><input type="text" name="nombre" value="<?php echo $info["Nombre"]; ?>" maxlength="30">
                     </li>
                     <li>
                         <span class="material-symbols-outlined">
@@ -362,7 +364,7 @@ if (isset($_POST['save'])) {
                         </select><br><br>
                     </li>
                     <li><span class="material-symbols-outlined"> Email </span><span class="descripcion">Correo</span>
-                        <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>">
+                        <div class="contenedor-input"><input type="email" name="correo" value="<?php echo $info["Correo"]; ?>" maxlength="30">
                     </li>
                     <li>
                         <span class="material-symbols-outlined"> image </span>
