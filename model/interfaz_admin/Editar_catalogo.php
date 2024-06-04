@@ -30,18 +30,20 @@ $conexion->close();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
-
+    <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
-         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
 
-         body {
+        body {
             background-image: url(../../resource/img/index/fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
@@ -58,27 +60,30 @@ $conexion->close();
             font-family: 'Poppins', sans-serif;
         }
 
-        h2{
+        h2 {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
             text-shadow: 2px 2px 4px #888888;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .form-group label {
             font-weight: bold;
         }
+
         .form-group input[type="text"] {
             width: 100px;
             margin: 0 auto;
             font-family: 'Poppins', sans-serif;
         }
+
         .form-group img {
             display: block;
             margin: 0 auto;
             max-width: 200px;
         }
+
         .btn-custom {
             background-color: #007bff;
             color: white;
@@ -87,12 +92,13 @@ $conexion->close();
             text-transform: uppercase;
             font-family: 'Poppins', sans-serif;
         }
+
         .btn-custom:hover {
             background-color: #0056b3;
         }
 
         .btn-volver {
-            
+
             margin-left: -7%;
             margin-top: 4%;
             color: white;
@@ -132,7 +138,7 @@ $conexion->close();
             align-items: center;
         }
 
-        .breadcrumb-item + .breadcrumb-item::before {
+        .breadcrumb-item+.breadcrumb-item::before {
             content: "/";
             margin: 0 3px;
         }
@@ -146,17 +152,17 @@ $conexion->close();
         .breadcrumb-item a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
+
 <body>
 
-<?php
+    <?php
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
     ?>
 
-<div class="breadcrumbs-container">
+    <div class="breadcrumbs-container">
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -168,7 +174,7 @@ $conexion->close();
     </div>
 
     <div class="container">
-    <button class="btn-volver" onclick="history.back()">&#8592;</button>
+        <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
                 <h2 class="text-center mb-4">Editar Producto</h2>
@@ -183,6 +189,7 @@ $conexion->close();
                     <div class="form-group text-center">
                         <label for="imagen_actual">Imagen Actual:</label><br>
                         <?php
+
                         $ruta_imagen = "../../model/uploads/" . $producto['imagen'];
                         if (file_exists($ruta_imagen) && !empty($producto['imagen'])) {
                             echo '<img src="' . $ruta_imagen . '" alt="' . $producto['categoria_producto'] . '" class="img-thumbnail mb-3">';
@@ -194,7 +201,7 @@ $conexion->close();
 
                     <div class="form-group">
                         <label for="imagen">Nueva Imagen:</label>
-                        <input type="file" class="form-control-file" id="imagen" name="imagen">
+                        <input type="file" class="form-control-file" id="imagen" name="imagen" onchange="validarImagen()">
                     </div>
 
                     <div class="text-center">
@@ -204,6 +211,27 @@ $conexion->close();
             </div>
         </div>
     </div>
+    <script>
+        function validarImagen() {
+            var fileInput = document.getElementById('imagen');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+            // Extraer la extensión del archivo
+            var fileExtension = filePath.split('.').pop().toLowerCase();
+
+            if (!allowedExtensions.test(fileExtension)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Por favor, sube solo archivos de imagen (JPEG o PNG).',
+                });
+
+                // Si todo está bien, establecer un valor en el campo oculto para indicar que la imagen es válida
+                document.getElementsByName('imagen_valida')[0].value = 'true';
+            }
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -211,4 +239,5 @@ $conexion->close();
 </body>
 <br><br><br><br><br><br><br><br>
 <?php include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
+
 </html>

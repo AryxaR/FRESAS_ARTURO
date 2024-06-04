@@ -31,38 +31,32 @@ if (isset($_POST['save'])) {
 
     if (in_array($emailDomain, $allowedDomains)) {
         // Manejo de la subida de imagen
-$imagePath = $info['imagen']; // Ruta actual de la imagen
+        $imagePath = $info['imagen']; // Ruta actual de la imagen
 
-if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-    $fileTmpPath = $_FILES['imagen']['tmp_name'];
-    $fileName = $_FILES['imagen']['name'];
-    $fileSize = $_FILES['imagen']['size'];
-    $fileType = $_FILES['imagen']['type'];
-    $fileNameCmps = explode(".", $fileName);
-    $fileExtension = strtolower(end($fileNameCmps));
+        // Parte relevante del código PHP
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['imagen']['tmp_name'];
+            $fileName = $_FILES['imagen']['name'];
+            $fileSize = $_FILES['imagen']['size'];
+            $fileType = $_FILES['imagen']['type'];
+            $fileNameCmps = explode(".", $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
 
-    // Verificar si la extensión es permitida
-    $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
-    if (in_array($fileExtension, $allowedfileExtensions)) {
-        // Asignar una nueva ruta para la imagen
-        $newFileName = md5(time(). $fileName). '.'. $fileExtension;
-        $uploadFileDir = '../resource/img/';
-        $dest_path = $uploadFileDir. $newFileName;
+            // Lista de tipos MIME permitidos para imágenes
+            $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png'];
 
-        // Eliminar la imagen anterior si existe
-        if ($imagePath!= '') {
-            unlink($imagePath); // Asegúrate de que la ruta de la imagen exista antes de llamar a unlink()
+            // Verificar si la extensión y el tipo MIME son permitidos
+            if (in_array($fileExtension, ['jpg', 'gif', 'png', 'jpeg']) && in_array($fileType, $allowedMimeTypes)) {
+                // Procesamiento del archivo...
+            } else {
+                echo 'Tipo de archivo no permitido.';
+                // Redirige al usuario de vuelta a la página de edición
+                $msj_img = "Por favor, sube solo archivos de imagen (JPEG o PNG).";
+                header("Location: modificarPerfil.php?msj_img= $msj_img"); // Asegúrate de actualizar la URL según sea necesario
+                exit();
+            }
         }
 
-        if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $imagePath = $dest_path; // Actualizar la ruta de la imagen
-        } else {
-            echo 'Error al mover el archivo subido.';
-        }
-    } else {
-        echo 'Tipo de archivo no permitido.';
-    }
-}
 
 
         $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
@@ -277,7 +271,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             display: flex;
             padding-right: 10px;
         }
-        
+
         .select {
             border-radius: 6px;
             border: solid 1px rgba(220, 86, 86, 0.733);
@@ -285,6 +279,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             padding: 10px;
             color: black;
         }
+
         /* Responsive */
 
         @media screen and (max-width: 400px) {
@@ -385,6 +380,9 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     if (isset($_GET['msj_dominio'])) {
         $msj_dominio = $_GET['msj_dominio'];
     }
+    if (isset($_GET['msj_img'])) {
+        $msj_img = $_GET['msj_img'];
+    }
     ?>
     <script>
         // ALERT DE INACTIVAR Y ACTIVAR USUARIO
@@ -394,6 +392,16 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
                 icon: "error",
                 title: "Oops...",
                 text: "Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com",
+                // footer: '<a href="#">Why do I have this issue?</a>'
+            });
+            // alert('Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com');
+        }
+        if (window.location.search.includes('msj_img')) {
+            // Prevenir el envío del formulario
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Por favor, sube solo archivos de imagen (JPEG o PNG).",
                 // footer: '<a href="#">Why do I have this issue?</a>'
             });
             // alert('Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com');

@@ -224,6 +224,7 @@
 
                                 $sql = "SELECT id_producto, nombre_producto, categoria_producto, precio_producto, imagen FROM productos";
                                 $result = $conn->query($sql);
+                                
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
