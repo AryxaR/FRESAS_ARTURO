@@ -86,9 +86,17 @@ if (isset($_GET['id_factura'])) {
             max-width: 150px;
         }
 
+        .factura{
+            margin-top: 5%;
+        }
+
         .float-right {
             float: right;
             font-size: 1.2rem;
+        }
+
+        #id {
+            transform: translate(0, -120px);
         }
     </style>
 </head>
@@ -105,11 +113,13 @@ if (isset($_GET['id_factura'])) {
                             <!-- title row -->
                             <div class="row">
                                 <div class="col-12">
-                                    <h4>
+                                    <h4 class="id">
                                         <div class="logo-container">
                                             <img src="../../FRESAS_ARTURO/resource/img/logo/FONDO_LOGO.jpeg" alt="Logo de Kepler S.A.S." class="logo-img">
                                         </div>
                                         <small class="float-right">Fecha: <?php echo date('d/m/Y'); ?></small>
+                                        <br>
+                                        <small id="id" class="float-right">Id Factura: <?php echo $id_factura; ?></small>
                                     </h4>
                                 </div>
                                 <!-- /.col -->
@@ -122,7 +132,7 @@ if (isset($_GET['id_factura'])) {
                                         Cuitiva-Boyacá <br>
                                         Vereda llano de Alarcón<br>
                                         Teléfono: 3118226066<br>
-                                        Correo:
+                                       
                                     </address>
                                 </div>
                                 <!-- /.col -->
