@@ -88,7 +88,7 @@ if ($conn === null) {
             echo '<th>Categoría</th>';
             echo '<th>Precio Unitario</th>';
             echo '<th>';
-            echo 'Cantidad<br><span style="font-weight: normal; font-size: smaller;">(Canastillas)</span>';
+            echo 'Cantidad<br><span style="font-weight: normal; font-size: smaller;"></span>';
             echo '</th>';
             echo '</tr>';
             echo '</thead>';
@@ -343,8 +343,8 @@ if ($conn === null) {
 
                         <img class="img-item" src="<?php echo $row['imagen']; ?>" alt="<?php echo $row['categoria_producto']; ?>">
 
-                        <h5>*EL PRECIO DE VENTA ES POR CANASTILLAS*</h5>
-                        <h6>UNA CANASTILLA = "8KG"</h6>
+                        <h5>*EL PRECIO DE VENTA ES POR KG*</h5>
+                        <h6></h6>
                         <span class="precio-item">$<?php echo $row['precio_producto']; ?></span>
 
                         <?php if ($agotado) { ?>
