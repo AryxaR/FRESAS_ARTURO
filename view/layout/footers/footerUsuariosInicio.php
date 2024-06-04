@@ -10,8 +10,8 @@
 <footer class="footer">
     <div class="footer-info">
         <h2>Contacto</h2>
-        <p><b>Dirección:</b> </p>
-        <p><b>Teléfono:</b> +123456789</p>
+        <p><b>Dirección: </b>Cuitiva vereda llano de Alarcon </p>
+        <p><b>Teléfono:</b> 3118226066</p>
         <p><b>Correo electrónico:</b> fresasarturo@gmail.com</p>
     </div>
     <div class="footer-links">
