@@ -672,7 +672,8 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Su usuario no esta activo',
-                text: 'Revise su correo para activar '
+                text: 'Comuniquese con nosotros',
+                footer: '<a href="../index.php#section-contacto">Donde encontrarnos?</a>'
             })
         }
         // ALERT DE REGISTRO DE NUEVO USUARRIO
