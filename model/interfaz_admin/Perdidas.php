@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['Id_cliente'])) {
+    // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+    header("Location: ../login_usuarios.php");
+    exit();
+}
+?>
+
+<?php
 // Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "", "proyecto");
 

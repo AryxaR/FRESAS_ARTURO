@@ -58,8 +58,7 @@
         $mensaje_error = 'Revise los datos ingresados. Intente nuevamente';
             header("Location: ../model/login_usuarios.php?msj_error= $mensaje_error");
             exit();
-        ?>
-        
+        ?>   
 </body>
 
 </html>

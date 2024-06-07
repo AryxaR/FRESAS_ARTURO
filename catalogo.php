@@ -11,52 +11,26 @@
     <link rel="icon" href="../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
 
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
-    <style>
-        body .uwy.userway_p1 .userway_buttons_wrapper {
-            top: 250px;
-        }
 
-        .input-cantidad {
-            width: 190px;
-        }
-
-        .breadcrumbs-container {
-            margin-top: -1%;
-            margin-left: 90%;
-        }
-
-        .breadcrumbs-container .breadcrumb {
-            margin-bottom: 0;
-        }
-
-        .breadcrumbs-container .breadcrumb-item a {
-            text-decoration: none;
-        }
-    </style>
-
-</head>
 <?php
+
 session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['Id_cliente'])) {
+    // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+    header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php");
+    exit();
+}
+?>
+
+<?php
 require_once('../FRESAS_ARTURO/controller/conexion.php');
 include_once('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php');
-if ($conn === null) {
-    die("Error de conexión: " . mysqli_connect_error());
-}
+?>
 
-    if (isset($_SESSION['Id_cliente'])) {
-        $Id_cliente = $_SESSION['Id_cliente'];
-        $sql = "SELECT Nombre FROM Usuarios WHERE Id_cliente = $Id_cliente";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $nombreCliente = $row['Nombre'];
-        } else {
-            $nombreCliente = "Nombre no disponible";
-        }
-    } else {
-        $nombreCliente = "Nombre no disponible";
-    }
-
+    <?php
+    
     if (!isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = array();
     }
@@ -232,7 +206,7 @@ if ($conn === null) {
     }
     ?>
 
-
+</head>
 
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
