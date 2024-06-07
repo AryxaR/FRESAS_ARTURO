@@ -178,7 +178,7 @@ $conexion->close();
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
                 <h2 class="text-center mb-4">Editar Producto</h2>
-                <form action="../../controller/controlers-admin/update_catalogo.php" method="post" enctype="multipart/form-data">
+                <form action="../../controller/controlers-admin/update_catalogo.php" method="post" enctype="multipart/form-data" onsubmit="return validarImagen()">
                     <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
                     <input type="hidden" name="categoria_producto" value="<?php echo $producto['categoria_producto']; ?>">
                     <div class="form-group text-center">
@@ -212,26 +212,24 @@ $conexion->close();
         </div>
     </div>
     <script>
-        function validarImagen() {
-            var fileInput = document.getElementById('imagen');
-            var filePath = fileInput.value;
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    function validarImagen() {
+        var fileInput = document.getElementById('imagen');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
-            // Extraer la extensión del archivo
-            var fileExtension = filePath.split('.').pop().toLowerCase();
-
-            if (!allowedExtensions.test(fileExtension)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Por favor, sube solo archivos de imagen (JPEG o PNG).',
-                });
-
-                // Si todo está bien, establecer un valor en el campo oculto para indicar que la imagen es válida
-                document.getElementsByName('imagen_valida')[0].value = 'true';
-            }
+        if (!allowedExtensions.exec(filePath)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, sube solo archivos de imagen (JPEG o PNG).',
+            });
+            fileInput.value = ''; // Limpiar el campo de archivo
+            return false; // Impedir el envío del formulario
         }
-    </script>
+        return true; // Permitir el envío del formulario
+    }
+</script>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
