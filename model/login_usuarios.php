@@ -518,6 +518,15 @@
     if (isset($_GET['click'])) {
         $msj_exito = $_GET['click'];
     }
+
+    // RECEPCION DE ACTIVACION DE USUARIO
+
+    if (isset($_GET['msj_usuario_activo'])) {
+        $msj_usuario_activo = $_GET['msj_usuario_activo'];
+    }
+    if (isset($_GET['msj_usuario_eliminado'])) {
+        $msj_usuario_eliminado = $_GET['msj_usuario_eliminado'];
+    }
     ?>
 
     <script>
@@ -662,18 +671,16 @@
         if (window.location.search.includes('mensaje_inactivo')) {
             Swal.fire({
                 icon: 'error',
-                title: 'Usuario Inhabilitado',
-                text: 'El usuario ha sido desactivado, para más información comuníquese con nosotros'
+                title: 'Su usuario no esta activo',
+                text: 'Revise su correo para activar '
             })
         }
         // ALERT DE REGISTRO DE NUEVO USUARRIO
         if (window.location.search.includes('msj_registro')) {
             Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Usuario registrado con éxito",
-                showConfirmButton: false,
-                timer: 1500
+                title: "Genial!",
+                text: "Revisa tu correo para activar tu cuenta",
+                icon: "success"
             });
         }
 
@@ -737,6 +744,24 @@
                 icon: "error",
                 title: "Oops...",
                 text: "La contraseña debe contener al menos un carácter especial, una letra mayúscula y un número.",
+            });
+        }
+
+        //USUARIO ACTIVO CORRECTAMENTE
+        if (window.location.search.includes('msj_usuario_activo')) {
+            Swal.fire({
+                title: "Genial!",
+                text: "Su usario esat activo. Inicie sesion",
+                icon: "success"
+            });
+        }
+        //USUARIO ELIMINADO POR NO ACTIVAR EL USUARIO EN EL LIMITE DE TIEMPO
+        if (window.location.search.includes('msj_usuario_eliminado')) {
+            Swal.fire({
+                icon: "error",
+                title: "Exedio el limite de tiempo",
+                text: "Su activacion de usuario ya expiro, registrese nuevamente",
+                footer: '<a href="login_usuarios.php?click">Intenta registrarte nuevamenete</a>'
             });
         }
     </script>
