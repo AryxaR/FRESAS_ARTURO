@@ -11,21 +11,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $categoria_producto = $_POST['categoria_producto'];
 
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
-        // Generar un nombre de archivo único para la imagen
-        $nombre_imagen = uniqid('FRESA_' . strtoupper($categoria_producto)) . '.jpeg';
-        $ruta_destino = '../../model/uploads/' . $nombre_imagen;
+        $fileType = mime_content_type($_FILES['imagen']['tmp_name']);
+        $allowedTypes = ['image/jpeg', 'image/png'];
 
-        // Mover la imagen cargada al directorio de destino
-        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
-            
-            $ruta_imagen_actualizada = '../../../FRESAS_ARTURO/model/uploads/' . $nombre_imagen;
-            $sql_update_imagen = "UPDATE productos SET imagen = ? WHERE id_producto = ?";
-            $stmt_update_imagen = $conexion->prepare($sql_update_imagen);
-            $stmt_update_imagen->bind_param("si", $ruta_imagen_actualizada, $id_producto);
-            $stmt_update_imagen->execute();
-            $stmt_update_imagen->close();
+        if (in_array($fileType, $allowedTypes)) {
+            // Generar un nombre de archivo único para la imagen
+            $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+            $nombre_imagen = uniqid('FRESA_' . strtoupper($categoria_producto)) . '.' . $extension;
+            $ruta_destino = '../../model/uploads/' . $nombre_imagen;
+
+            // Mover la imagen cargada al directorio de destino
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
+                $ruta_imagen_actualizada = '../../../FRESAS_ARTURO/model/uploads/' . $nombre_imagen;
+                $sql_update_imagen = "UPDATE productos SET imagen = ? WHERE id_producto = ?";
+                $stmt_update_imagen = $conexion->prepare($sql_update_imagen);
+                $stmt_update_imagen->bind_param("si", $ruta_imagen_actualizada, $id_producto);
+                $stmt_update_imagen->execute();
+                $stmt_update_imagen->close();
+            } else {
+                echo "Error al mover la imagen al directorio de destino.";
+            }
         } else {
-            echo "Error al mover la imagen al directorio de destino.";
+            echo "El archivo subido no es una imagen válida.";
+            exit;
         }
     }
 
@@ -44,3 +52,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conexion->close();
+?>
