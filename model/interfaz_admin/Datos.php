@@ -22,7 +22,7 @@ $id_proveedor = isset($_GET['id']) ? $_GET['id'] : null;
 if ($id_proveedor) {
     $sql = "SELECT p.Id_proveedor, p.Nombre_proveedor, p.Telefono_proveedor, 
     r.Tipo AS Tipo_recurso, 
-    i.Nombre_insumo, r.Stock, i.Fecha_ingreso
+    i.Nombre_insumo, i.Costo_producto, r.Stock, i.Fecha_ingreso
         FROM proveedores p
         INNER JOIN recursos r ON p.Id_proveedor = r.Id_proveedor
         INNER JOIN insumos i ON r.Id_recursos = i.Id_recurso
@@ -38,6 +38,7 @@ if ($id_proveedor) {
         $telefono_proveedor = $row['Telefono_proveedor'];
         $tipo_recurso = $row['Tipo_recurso'];
         $nombre_insumo = $row['Nombre_insumo'];
+        $costo_producto = $row['Costo_producto'];
         $stock = $row['Stock'];
         $fecha_ingreso = $row['Fecha_ingreso'];
     } else {
@@ -217,6 +218,10 @@ $conexion->close();
                 <tr>
                     <th>Cantidad (Stock)</th>
                     <td><?php echo $stock; ?> kg</td>
+                </tr>
+                <tr>
+                    <th>Costo (Insumo)</th>
+                    <td>$<?php echo $costo_producto; ?></td>
                 </tr>
                 <tr>
                     <th>Fecha de Ingreso</th>

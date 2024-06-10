@@ -1,14 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <title>ACTUALIZACION</title>
     <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
-
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,200;1,300;1,500&display=swap");
 
@@ -32,9 +29,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* height: 100vh; */
             padding-top: 5%;
-
         }
 
         .btn-volver {
@@ -48,7 +43,6 @@
             cursor: pointer;
             transition: background-color 0.6s, color 0.6s;
         }
-
 
         .btn-volver:hover {
             border: 1px solid #d22c5d;
@@ -64,7 +58,6 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             box-sizing: border-box;
             width: 40%;
-            /* margin: auto; */
         }
 
         form label {
@@ -146,62 +139,73 @@
         .breadcrumb-item a:hover {
             text-decoration: underline;
         }
-
     </style>
-
 </head>
-
 <body>
 
 <?php
     include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
-    ?>
+?>
 
 <div class="breadcrumbs-container">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
-                <li class="breadcrumb-item dos" aria-current="page">Editar Proveedores</li>
-            </ol>
-        </nav>
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
+            <li class="breadcrumb-item dos" aria-current="page">Editar Proveedores</li>
+        </ol>
+    </nav>
+</div>
 
-    <button class="btn-volver" onclick="history.back()">&#8592;</button>
-    <div class="container-proveedor">
-        <h2>MODIFICACIÓN DE PROVEEDORES</h2>
-        <?php
-        require_once '../../controller/conexion.php';
+<button class="btn-volver" onclick="history.back()">&#8592;</button>
+<div class="container-proveedor">
+    <h2>MODIFICACIÓN DE PROVEEDORES</h2>
+    <?php
+    require_once '../../controller/conexion.php';
 
-        // Verificar si se ha enviado un formulario para actualizar
-        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-            $id = $_GET['id'];
+    // Verificar si se ha enviado un formulario para actualizar
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+        $id = $_GET['id'];
 
-            $sql_select = "SELECT * FROM proveedores WHERE Id_proveedor= $id";
-            $result = $conn->query($sql_select);
+        $sql_select = "
+            SELECT p.Nombre_proveedor, p.Telefono_proveedor, r.Tipo AS Nombre_recurso, r.Stock, i.Nombre_insumo, i.Costo_producto
+            FROM proveedores p
+            JOIN recursos r ON p.Id_proveedor = r.Id_proveedor
+            JOIN insumos i ON r.Id_Recursos = i.Id_recurso
+            WHERE p.Id_proveedor = $id";
+        
+        $result = $conn->query($sql_select);
 
-            if ($result->num_rows == 1) {
-                $row = $result->fetch_assoc();
-        ?>
-                <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
-                    <input type="hidden" name="id" value="<?php echo $row['Id_proveedor']; ?>">
-                    <label for="Nombre_proveedor">Nombre_provedor:</label>
-                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>" maxlength="30"><br><br>
-                    <label for="Telefono_proveedor">Telefono_proveedor:</label>
-                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>" min="1" max="99999999" oninput="this.value = this.value.slice(0, 10)"><br><br>
-                    <input type="submit" name="actualizar" value="Actualizar">
-                </form>
-        <?php
-            } else {
-                echo "Usuario no encontrado.";
-            }
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+    ?>
+            <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <label for="Nombre_proveedor">Nombre del proveedor:</label>
+                <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>" maxlength="30"><br><br>
+                <label for="Telefono_proveedor">Telefono del proveedor:</label>
+                <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>" min="1" max="9999999999" oninput="this.value = this.value.slice(0, 10)"><br><br>
+                <label for="Nombre_recurso">Recurso:</label>
+                <input type="text" name="Nombre_recurso" value="<?php echo $row['Nombre_recurso']; ?>" readonly><br><br>
+                <label for="Stock">Stock:</label>
+                <input type="number" name="Stock" value="<?php echo $row['Stock']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)" ><br><br>
+                <label for="Nombre_insumo">Insumo:</label>
+                <input type="text" name="Nombre_insumo" value="<?php echo $row['Nombre_insumo']; ?>"><br><br>
+                <label for="Costo_producto">Precio del Insumo:</label>
+                <input type="number" name="Costo_producto" value="<?php echo $row['Costo_producto']; ?>"min="1" max="9999999" oninput="this.value = this.value.slice(0, 7)"><br><br>
+                <input type="submit" name="actualizar" value="Actualizar">
+            </form>
+    <?php
+        } else {
+            echo "Proveedor no encontrado.";
         }
-        $conn->close();
-        ?>
-    </div>
+    }
+    $conn->close();
+    ?>
+</div>
 </body>
+<br><br><br><br><br><br>
 <?php
 include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
 ?>

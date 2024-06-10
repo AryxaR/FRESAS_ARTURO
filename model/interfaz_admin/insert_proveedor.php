@@ -30,6 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO | PROVEEDOR</title>
+    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/nav.css" />
+    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/footer.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+
+
 <?php
 include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
 ?>
@@ -46,17 +59,6 @@ include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
         </nav>
     </div>
     
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedores</title>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/nav.css" />
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/footer.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");

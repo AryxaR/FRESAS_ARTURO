@@ -1,23 +1,34 @@
-<?php 
+<?php
 require_once '../../controller/conexion.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
-    $nombre_proveedor = mysqli_real_escape_string($conn,$_POST['Nombre_proveedor']);
-    $telefono_proveedor = mysqli_real_escape_string($conn,$_POST['Telefono_proveedor']);
+    $nombre_proveedor = $_POST['Nombre_proveedor'];
+    $telefono_proveedor = $_POST['Telefono_proveedor'];
+    $nombre_insumo = $_POST['Nombre_insumo'];
+    $costo_producto = $_POST['Costo_producto'];
+    $stock = $_POST['Stock'];
 
-    $sqlUpdate = "UPDATE proveedores SET Nombre_proveedor= '$nombre_proveedor', Telefono_proveedor= '$telefono_proveedor' WHERE Id_proveedor=$id";
-    
-    if ($conn->query($sqlUpdate) == TRUE) {
-        $msj_exito = 'Registro actualizado';
-        header("Location: ../../../FRESAS_ARTURO/model/interfaz_admin/Proveedores.php?msj_exito= $msj_exito");
-        exit(); 
-    }else{
-        echo "Error al actualizar el registro: " . $conn->error;
+    // Actualizar datos en la tabla Proveedores
+    $sql_update_proveedor = "UPDATE proveedores SET Nombre_proveedor = '$nombre_proveedor', Telefono_proveedor = '$telefono_proveedor' WHERE Id_proveedor = $id";
+    if ($conn->query($sql_update_proveedor) === TRUE) {
+        // Actualizar datos en la tabla Insumos
+        $sql_update_insumo = "UPDATE insumos SET Nombre_insumo = '$nombre_insumo', Costo_producto = $costo_producto WHERE Id_proveedor = $id";
+        if ($conn->query($sql_update_insumo) === TRUE) {
+            // Actualizar datos en la tabla Recursos
+            $sql_update_recurso = "UPDATE recursos SET Stock = $stock WHERE Id_proveedor = $id";
+            if ($conn->query($sql_update_recurso) === TRUE) {
+                echo "Datos actualizados correctamente.";
+            } else {
+                echo "Error al actualizar datos en la tabla Recursos: " . $conn->error;
+            }
+        } else {
+            echo "Error al actualizar datos en la tabla Insumos: " . $conn->error;
+        }
+    } else {
+        echo "Error al actualizar datos en la tabla Proveedores: " . $conn->error;
     }
-}else{
-    echo "Acceso inválido. ";
+
+    $conn->close();
 }
-$conn->close();
 ?>
