@@ -225,7 +225,7 @@
   <header class="header">
     <div class="contenedor">
       <div class="contenedor-logo">
-        <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
+        <img src="../../../resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
       </div>
       <div class="btn-ingreso">
         <ul class="lista-ingreso">
@@ -233,9 +233,9 @@
             <a id="openModalBtn" class="ingresar" href="#"><span class="cerrar">Backup</span><i class="fa-regular fa-floppy-disk"></i></a>
           </li>
           <li>
-            <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php"><span class="cerrar">Cerrar Sesion</span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+            <a class="ingresar" href="../../../model/login_usuarios.php"><span class="cerrar">Cerrar Sesion</span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </li>
-          <li><a class="ingresar" href="../../../../FRESAS_ARTURO/model/interfaz_admin/Guia_admin.php"><span class="cerrar">Ayuda</span><i class="fa-regular fa-circle-question"></i></a></i></li>
+          <li><a class="ingresar" href="../../../model/interfaz_admin/Guia_admin.php"><span class="cerrar">Ayuda</span><i class="fa-regular fa-circle-question"></i></a></i></li>
         </ul>
       </div>
     </div>
