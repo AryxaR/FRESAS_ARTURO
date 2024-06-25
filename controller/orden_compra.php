@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../../FRESAS_ARTURO/controller/conexion.php');
+require_once('conexion.php');
 
 if ($conn === null) {
     die("Error de conexión: " . mysqli_connect_error());
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         unset($_SESSION['carrito']);
 
-        header("Location: ../../FRESAS_ARTURO/model/factura.php?id_factura=$id_factura");
+        header("Location: ../model/factura.php?id_factura=$id_factura");
         exit();
     } else {
         echo "Error al procesar el pedido: " . $conn->error;
