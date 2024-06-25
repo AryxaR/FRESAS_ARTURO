@@ -35,7 +35,7 @@
                 exit();
             } else if ($fila['cargos'] == 2) {
                 if ($fila['Estado'] == 'ACTIVO') {
-                    header("location: ../index_usuarios.php");
+                    header("location: ../../index_usuarios.php");
                     exit();
                 } else {
 
