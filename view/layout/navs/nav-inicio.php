@@ -283,7 +283,7 @@
                         <a class="registro" href="../../../model/login_usuarios.php?click">Registro </a>
                     </li>
                     <li>
-                        <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php">Ingresar <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                        <a class="ingresar" href="../../../model/login_usuarios.php">Ingresar <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
                     </li>
                 </ul>
             </div>
