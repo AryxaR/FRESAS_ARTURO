@@ -261,28 +261,28 @@
             <i id="icono" class="fa-solid fa-bars"></i>
         </label>
         <div class="logo-resopnsive">
-            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo-dos" />
+            <img src="../../../resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo-dos" />
         </div>
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
+                <img src="../../../resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
             </div>
             <nav class="nav">
                 <ul id="lista-nav" class="lista-nav">
-                    <li><a href="..//../../../FRESAS_ARTURO/Index_usuarios.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../../FRESAS_ARTURO/catalogo.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../Index_usuarios.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../catalogo.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../../FRESAS_ARTURO/model/Guia_usuario.php">Ayuda</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../model/Guia_usuario.php">Ayuda</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">
                 <ul id="lista-ingreso" class="lista-ingreso">
                     <li>
-                        <a class="perfil" href="../../../../FRESAS_ARTURO/model/perfil.php">Perfil <i class="fa-solid fa-circle-user"></i></a>
+                        <a class="perfil" href="../../../model/perfil.php">Perfil <i class="fa-solid fa-circle-user"></i></a>
                     </li>
                     <li>
                     <li>
-                        <a class="salir" href="../../../../FRESAS_ARTURO/controller/logout.php">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
+                        <a class="salir" href="../../../controller/logout.php">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
                     </li>
 
                     </li>
