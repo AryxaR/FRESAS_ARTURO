@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../../FRESAS_ARTURO/controller/conexion.php');
+require_once('../controller/conexion.php');
 
 if (isset($_GET['id_factura'])) {
     $id_factura = $_GET['id_factura'];
@@ -30,7 +30,7 @@ if (isset($_GET['id_factura'])) {
         $correo_cliente = '';
     }
 } else {
-    header("Location: catalogo.php");
+    header("Location: ../catalogo.php");
     exit();
 }
 ?>
@@ -44,7 +44,7 @@ if (isset($_GET['id_factura'])) {
     <title>Confirmación de Pedido</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
 
 
 
@@ -61,7 +61,7 @@ if (isset($_GET['id_factura'])) {
 
     <style>
         .invoice-card {
-            background-image: url("../../FRESAS_ARTURO/resource/img/index/fondonitido.png");
+            background-image: url("../resource/img/index/fondonitido.png");
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -115,7 +115,7 @@ if (isset($_GET['id_factura'])) {
                                 <div class="col-12">
                                     <h4 class="id">
                                         <div class="logo-container">
-                                            <img src="../../FRESAS_ARTURO/resource/img/logo/FONDO_LOGO.jpeg" alt="Logo de Kepler S.A.S." class="logo-img">
+                                            <img src="../resource/img/logo/FONDO_LOGO.jpeg" alt="Logo de Kepler S.A.S." class="logo-img">
                                         </div>
                                         <small class="float-right">Fecha: <?php echo date('d/m/Y'); ?></small>
                                         <br>
@@ -191,7 +191,7 @@ if (isset($_GET['id_factura'])) {
                                 </div>
                             </div>
 
-                            <a href="../../FRESAS_ARTURO/catalogo.php" id="btnVolverCatalogo" class="btn btn-primary" onclick="return closeAndReload();">Volver al Catálogo</a>
+                            <a href="../catalogo.php" id="btnVolverCatalogo" class="btn btn-primary" onclick="return closeAndReload();">Volver al Catálogo</a>
 
                             <button onclick="exportToPdf()" id="btnExportarPdf" class="btn btn-success float-end me-2">Exportar a PDF</button>
                         </div>
