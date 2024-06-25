@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERROR</title>
+    <title>LOGIN</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
@@ -14,7 +14,7 @@
 
     session_start();
 
-    include '../../FRESAS_ARTURO/controller/conexion.php';
+    include '../controller/conexion.php';
 
     $Cedula = $_POST['Cedula'];
     $Contrasena = $_POST['Contrasena'];
@@ -58,10 +58,7 @@
         $mensaje_error = 'Revise los datos ingresados. Intente nuevamente';
             header("Location: ../model/login_usuarios.php?msj_error= $mensaje_error");
             exit();
-        ?>   
-</body>
-
-</html>
+        ?>
 <?php
 
     }
@@ -73,3 +70,5 @@
     header("location: ../model/login_usuarios.php");
     exit();
 ?>
+</body>
+</html>

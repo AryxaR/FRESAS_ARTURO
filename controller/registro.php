@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
 
     <title>REGISTRO</title>
 </head>
@@ -17,7 +17,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    include '../../FRESAS_ARTURO/controller/conexion.php';
+    include '../controller/conexion.php';
 
     $Nombre = $_POST['Nombre'];
     $Correo = $_POST['Correo'];
@@ -109,9 +109,9 @@
         if ($ejecutar) {
 
 
-            require '../../FRESAS_ARTURO/PhpMailer/Exception.php';
-            require '../../FRESAS_ARTURO/PhpMailer/PHPMailer.php';
-            require '../../FRESAS_ARTURO/PhpMailer/SMTP.php';
+            require '../PhpMailer/Exception.php';
+            require '../PhpMailer/PHPMailer.php';
+            require '../PhpMailer/SMTP.php';
 
             $mail = new PHPMailer(true);
 
