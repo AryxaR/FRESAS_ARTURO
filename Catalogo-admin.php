@@ -186,8 +186,8 @@ if (!isset($_SESSION['Id_cliente'])) {
 <body>
 
     <?php
-    require_once '../FRESAS_ARTURO/controller/conexion.php';
-    include_once '../FRESAS_ARTURO/View/layout/navs/nav-admin-redirect.php';
+    require_once 'controller/conexion.php';
+    include_once 'view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br>";
 
     if (isset($_GET['msj_exito'])) {
@@ -244,7 +244,7 @@ if (!isset($_SESSION['Id_cliente'])) {
                                         echo '<td><img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
                                         echo '<td>$' . $row["precio_producto"] . '</td>';
                                         echo '<td>';
-                                        echo '<button type="button" class="btn btn-custom"><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
+                                        echo '<button type="button" class="btn btn-custom"><a href="model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
                                         echo '</td>';
                                         echo '</tr>';
                                     }
