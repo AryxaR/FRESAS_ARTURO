@@ -23,14 +23,14 @@ if (!isset($_SESSION['Id_cliente'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
         body {
-            background-image: url(../../../FRESAS_ARTURO//resource//img/index/fondoborroso.png);
+            background-image: url(../../resource//img/index/fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
             /* background-position: center; */
@@ -233,7 +233,7 @@ if (!isset($_SESSION['Id_cliente'])) {
     ?>
 
     <?php
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
     ?>
     <div class="container">
@@ -250,7 +250,7 @@ if (!isset($_SESSION['Id_cliente'])) {
 
         <div class="table-responsive">
             <?php
-            include_once '../../../FRESAS_ARTURO/controller/conexion.php';
+            include_once '../../controller/conexion.php';
 
             $sqselect = "SELECT Id_cliente, Cedula, Nombre, Correo, Rol, Estado FROM usuarios WHERE Id_cliente NOT IN (
                 SELECT Id_cliente FROM usuarios WHERE Id_cliente = 23)";
@@ -306,7 +306,7 @@ if (!isset($_SESSION['Id_cliente'])) {
     </div>
     <?php
     echo "<br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php');
+    include_once('../../view/layout/footers/footer-admin.php');
     ?>
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
