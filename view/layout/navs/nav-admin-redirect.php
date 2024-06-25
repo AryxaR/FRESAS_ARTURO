@@ -318,10 +318,10 @@
             <div class="btn-ingreso">
                 <ul class="lista-ingreso" id="ingreso">
                     <li>
-                        <a class="registro" href="../../../inicio_admin.php">Inicio <i class="fa-solid fa-house"></i></a>
+                        <a class="registro" href="../../../FRESAS_ARTURO/inicio_admin.php">Inicio <i class="fa-solid fa-house"></i></a>
                     </li>
                     <li>
-                        <a class="ingresar" href="../../../controller/logout.php">Cerrar <span class="sesion">Sesion </span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                        <a class="ingresar" href="../../../FRESAS_ARTURO/controller/logout.php">Cerrar <span class="sesion">Sesion </span><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
                     </li>
                 </ul>
             </div>
