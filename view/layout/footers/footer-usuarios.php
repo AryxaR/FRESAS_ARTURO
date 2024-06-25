@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../../FRESAS_ARTURO//resource/css/footer-usuarios.css">
+    <link rel="stylesheet" href="../../../resource/css/footer-usuarios.css">
 </head>
 <body>
 <footer class="footer">

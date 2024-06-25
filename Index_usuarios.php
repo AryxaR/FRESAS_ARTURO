@@ -38,7 +38,7 @@ if (!isset($_SESSION['Id_cliente'])) {
 </head>
 
 <body>
-    <?php include_once ('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php') ?>
+    <?php include_once ('view/layout/navs/nav-usuario.php') ?>
     <section class="section-inicio">
         <div class="contenedor-inicio">
             <h1 class='titulo-inicio'>Fresas Don Arturo</h1>
