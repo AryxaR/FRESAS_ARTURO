@@ -177,7 +177,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             <span class="close">&times;</span>
             <h2>Generar Copia de seguridad</h2>
             <p class="texto_info">Haga click en el boton <b>Generar</b> para descargar el backup en .sql</p>
-            <form class="generar" action="backup/backup.php" method="post">
+            <form class="generar" action="/backup/backup.php" method="post">
                 <button class="button" type="submit" name="backup">Generar</button>
             </form>
             
