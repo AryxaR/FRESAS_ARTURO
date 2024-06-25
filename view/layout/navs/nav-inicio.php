@@ -268,11 +268,11 @@
         </div>
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
+                <img src="../../../../resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
             </div>
             <nav class="nav">
                 <ul class="lista-nav">
-                    <li><a href="../FRESAS_ARTURO/index.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../index.php">Inicio</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="#section-carrito">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
                     <li><a href="#section-contacto">Contacto</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
@@ -280,7 +280,7 @@
             <div class="btn-ingreso">
                 <ul class="lista-ingreso">
                     <li>
-                        <a class="registro" href="../FRESAS_ARTURO/model/login_usuarios.php?click">Registro </a>
+                        <a class="registro" href="../../../model/login_usuarios.php?click">Registro </a>
                     </li>
                     <li>
                         <a class="ingresar" href="../Fresas_Arturo/model/login_usuarios.php">Ingresar <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
