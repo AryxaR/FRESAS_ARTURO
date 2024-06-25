@@ -7,8 +7,8 @@
         <title>CATÁLOGO</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="../FRESAS_ARTURO/resource/css/Style_catalogo.css">
-    <link rel="icon" href="../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="stylesheet" href="resource/css/Style_catalogo.css">
+    <link rel="icon" href="resource/img/icons/strawberry.png" type="image/png">
 
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
 
@@ -19,14 +19,14 @@ session_start();
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['Id_cliente'])) {
     // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
-    header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php");
+    header("Location: model/login_usuarios.php");
     exit();
 }
 ?>
 
 <?php
-require_once('../FRESAS_ARTURO/controller/conexion.php');
-include_once('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php');
+require_once('controller/conexion.php');
+include_once('view/layout/navs/nav-usuario.php');
 ?>
 
     <?php
@@ -353,7 +353,7 @@ include_once('../FRESAS_ARTURO/view/layout/navs/nav-usuario.php');
     </script>
     <section id="section-contacto">
         <br><br><br><br><br><br>
-        <?php include_once('../FRESAS_ARTURO/view/layout/footers/footer-usuarios.php') ?>
+        <?php include_once('view/layout/footers/footer-usuarios.php') ?>
     </section>
 </body>
 
