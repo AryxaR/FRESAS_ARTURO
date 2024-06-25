@@ -4,7 +4,7 @@ session_start();
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['Id_cliente'])) {
     // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
-    header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php");
+    header("Location: model/login_usuarios.php");
     exit();
 }
 ?>
@@ -17,7 +17,7 @@ if (!isset($_SESSION['Id_cliente'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="resource/img/icons/strawberry.png" type="image/png">
 
     <!-- sweetalert 2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -177,13 +177,13 @@ if (!isset($_SESSION['Id_cliente'])) {
             <span class="close">&times;</span>
             <h2>Generar Copia de seguridad</h2>
             <p class="texto_info">Haga click en el boton <b>Generar</b> para descargar el backup en .sql</p>
-            <form class="generar" action="../FRESAS_ARTURO/backup/backup.php" method="post">
+            <form class="generar" action="backup/backup.php" method="post">
                 <button class="button" type="submit" name="backup">Generar</button>
             </form>
             
             <h2>Restaurar Copia de seguridad</h2>
             <p class="texto_info">Para que funcione correctamente antes debe eliminar la informacion actual de la base de datos</p>
-            <form class="form-restaurar"  action="../FRESAS_ARTURO/backup/restore.php" method="post" enctype="multipart/form-data">
+            <form class="form-restaurar"  action="backup/restore.php" method="post" enctype="multipart/form-data">
                 <input class="archivo" type="file" id="restoreFile" name="restoreFile"/>
                 <button class="button" type="submit" name="restore">Restaurar</button>
             </form>
@@ -191,7 +191,7 @@ if (!isset($_SESSION['Id_cliente'])) {
         </div>
     </div>
     <script>
-        document.querySelector("form[action='../FRESAS_ARTURO/backup/Restore.php']").addEventListener("submit", function(event) {
+        document.querySelector("form[action='backup/Restore.php']").addEventListener("submit", function(event) {
             event.preventDefault();
             const fileInput = document.getElementById("restoreFile");
             const file = fileInput.files[0];
@@ -245,12 +245,12 @@ if (!isset($_SESSION['Id_cliente'])) {
         $msj_file = $_GET['msj_file'];
     }
 
-    include_once('../FRESAS_ARTURO/view/layout/navs/nav-admin.php');
-    require_once('./controller/conexion.php');
+    include_once('view/layout/navs/nav-admin.php');
+    require_once('controller/conexion.php');
     ?>
 
     <section class="container-cards">
-        <a class="card" href="../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php">
+        <a class="card" href="model/interfaz_admin/consult_mysql.php">
             <div class="card-text">
                 <h3> USUARIOS </h3>
                 <p>Clientes registrados</p>
@@ -262,7 +262,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             </div>
         </a>
 
-        <a class="card" href="./Catalogo-admin.php">
+        <a class="card" href="Catalogo-admin.php">
             <div class="card-text">
                 <h3> CATALOGO</h3>
                 <p>Categoria y precios</p>
@@ -274,7 +274,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             </div>
         </a>
 
-        <a class="card" href="./model/interfaz_admin/Proveedores.php">
+        <a class="card" href="model/interfaz_admin/Proveedores.php">
             <div class="card-text">
                 <h3> PROVEEDORES</h3>
                 <p>Listado de registros</p>
@@ -287,7 +287,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             </div>
         </a>
 
-        <a class="card" href="../FRESAS_ARTURO/model/interfaz_admin/Cosechas.php">
+        <a class="card" href="model/interfaz_admin/Cosechas.php">
             <div class="card-text">
                 <h3> COSECHAS </h3>
                 <p>Registro de recolección</p>
@@ -299,7 +299,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             </div>
         </a>
 
-        <a class="card" href="../FRESAS_ARTURO/model/interfaz_admin/Perdidas.php">
+        <a class="card" href="model/interfaz_admin/Perdidas.php">
             <div class="card-text">
                 <h3> PERDIDAS</h3>
                 <p>Registro de perdidas</p>
@@ -311,7 +311,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             </div>
         </a>
 
-        <a class="card" href="../FRESAS_ARTURO/model/interfaz_admin/Pedidos.php">
+        <a class="card" href="model/interfaz_admin/Pedidos.php">
             <div class="card-text">
                 <h3> PEDIDOS</h3>
                 <p>Gestión de pedidos</p>
@@ -350,11 +350,11 @@ if (!isset($_SESSION['Id_cliente'])) {
             document.getElementById('myFile').value = '';
         }
     </script>
-    <script src="../FRESAS_ARTURO/resource/js/adminAlerts.js"></script>
+    <script src="resource/js/adminAlerts.js"></script>
     <?php
     $conn->close();
     echo "<br><br><br><br>";
-    include_once '../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+    include_once 'view/layout/footers/footer-admin.php';
     ?>
 </body>
 
