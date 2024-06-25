@@ -299,20 +299,20 @@
             <i id="icono" class="fa-solid fa-bars"></i>
         </label>
         <div class="logo-resopnsive">
-            <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo-dos" />
+            <img src="../../../resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo-dos" />
         </div>
         <div class="contenedor">
             <div class="contenedor-logo">
-                <img src="../../../../FRESAS_ARTURO/resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
+                <img src="../../../resource/img/logo/logofresas.jpeg" alt="logo don ramiro" class="logo" />
             </div>
             <nav class="nav">
                 <ul class="lista-nav" id="nav-lista">
-                    <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php">Usuarios</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../FRESAS_ARTURO/Catalogo-admin.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../FRESAS_ARTURO/model/interfaz_admin/Proveedores.php">Proveedores</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Cosechas.php">Cosechas</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Perdidas.php">Perdidas</a><i class="fa-solid fa-arrow-right"></i></li>
-                    <li><a href="../../../../FRESAS_ARTURO/model/interfaz_admin/Pedidos.php">Pedidos</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../model/interfaz_admin/consult_mysql.php">Usuarios</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../Catalogo-admin.php">Catálogo</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../model/interfaz_admin/Proveedores.php">Proveedores</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../model/interfaz_admin/Cosechas.php">Cosechas</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../model/interfaz_admin/Perdidas.php">Perdidas</a><i class="fa-solid fa-arrow-right"></i></li>
+                    <li><a href="../../../model/interfaz_admin/Pedidos.php">Pedidos</a><i class="fa-solid fa-arrow-right"></i></li>
                 </ul>
             </nav>
             <div class="btn-ingreso">

@@ -31,7 +31,7 @@
 </head>
 
 <body>
-    <?php include_once('../FRESAS_ARTURO/view/layout/navs/nav-inicio.php') ?>
+    <?php include_once('view/layout/navs/nav-inicio.php') ?>
 
     <section id="section-inicio" class="section-inicio">
         <div class="contenedor-inicio">
@@ -191,7 +191,7 @@
     </section>
 
     <div id="section-contacto">
-        <?php include_once('../FRESAS_ARTURO/view/layout/footers/footerUsuariosInicio.php') ?>
+        <?php include_once('view/layout/footers/footerUsuariosInicio.php') ?>
     </div>
 
 
