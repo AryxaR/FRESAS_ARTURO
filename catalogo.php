@@ -78,7 +78,7 @@ include_once('view/layout/navs/nav-usuario.php');
                 echo '<td>$' . $producto['precio'] . '</td>';
                 echo '<td>' . $producto['cantidad'] . '</td>';
 
-                echo '<td><form method="post" action="../FRESAS_ARTURO/controller/eliminar_producto.php">';
+                echo '<td><form method="post" action="controller/eliminar_producto.php">';
                 echo '<input type="hidden" name="id_producto" value="' . $id_producto . '">';
                 echo '<button type="submit" class="btn btn-link"><i class="bi bi-trash"></i></button>';
                 echo '</form></td>';
@@ -104,7 +104,7 @@ include_once('view/layout/navs/nav-usuario.php');
         echo '<div class="modal-footer">';
 
         if (!empty($_SESSION['carrito'])) {
-            echo '<form id="form-factura" method="post" action="../../FRESAS_ARTURO/controller/orden_compra.php" target="_blank">';
+            echo '<form id="form-factura" method="post" action="controller/orden_compra.php" target="_blank">';
             echo '<button type="submit" class="btn btn-primary">Confirmar</button>';
             echo '</form>';
         }

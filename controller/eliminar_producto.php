@@ -8,10 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_producto'])) {
         unset($_SESSION['carrito'][$id_producto]); 
     }
 
-    header("Location: ../../FRESAS_ARTURO/catalogo.php");
+    header("Location: ../../catalogo.php");
     exit();
 } else {
-    header("Location: ../../FRESAS_ARTURO/catalogo.php");
+    header("Location: ../../catalogo.php");
     exit();
 }
 ?>
