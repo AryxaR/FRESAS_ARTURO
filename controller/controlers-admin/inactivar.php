@@ -1,7 +1,7 @@
 <?php 
 $servidor = "localhost"; // Nombre del servidor de la base de datos
-$usuario = "sonnak"; // Nombre de usuario de la base de datos
-$password = "sonnak2024"; // Contraseña de la base de datos
+$usuario = "root"; // Nombre de usuario de la base de datos
+$password = ""; // Contraseña de la base de datos
 $base_datos = "proyecto"; // Nombre de la base de datos
 
 // Crear una nueva conexión
