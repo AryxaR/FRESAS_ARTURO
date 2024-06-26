@@ -227,7 +227,7 @@ if (!isset($_SESSION['Id_cliente'])) {
                             </thead>
                             <tbody>
                                 <?php
-                                $conexion = new mysqli("localhost", "root", "", "proyecto");
+                                $conexion = new mysqli("localhost", "sonnak", "sonnak2024", "proyecto");
 
                                 if ($conexion->connect_error) {
                                     die("Error de conexión: " . $conexion->connect_error);
