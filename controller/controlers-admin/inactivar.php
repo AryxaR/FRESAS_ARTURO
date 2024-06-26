@@ -1,11 +1,5 @@
 <?php 
-$servidor = "localhost"; // Nombre del servidor de la base de datos
-$usuario = "root"; // Nombre de usuario de la base de datos
-$password = ""; // Contraseña de la base de datos
-$base_datos = "proyecto"; // Nombre de la base de datos
-
-// Crear una nueva conexión
-$conexion = new mysqli($servidor, $usuario, $password, $base_datos);
+require_once '../../controller/conexion.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['id']) && is_numeric($_POST['id'])){
