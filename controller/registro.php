@@ -151,7 +151,7 @@
                     //Content
                     $mail->isHTML(true);                                  //Set email format to HTML
                     $mail->Subject = 'Activacion de usuario';
-                    $url_activacion = "http://localhost/FRESAS_ARTURO/controller/config_activar_usuario.php?correo=" . urlencode($Correo) . "&tokenActivar=" . urldecode($tokenActivar);
+                    $url_activacion = "https://sonnak.appimrc2024.site/controller/config_activar_usuario.php?correo=" . urlencode($Correo) . "&tokenActivar=" . urldecode($tokenActivar);
                     $mail->Body    = 'Para activar tu usuario, haz clic en el siguiente enlace: <br><br>
         <a href="' . $url_activacion . '">Click aqui</a> <br><br>
         ';
