@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <title>ACTUALIZACION</title>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,200;1,300;1,500&display=swap");
 
@@ -17,7 +17,7 @@
         }
 
         body {
-            background-image: url("../../../FRESAS_ARTURO/resource/img/index/fondoborroso.png");
+            background-image: url("../../resource/img/index/fondoborroso.png");
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -144,7 +144,7 @@
 <body>
 
 <?php
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
 ?>
 
@@ -207,6 +207,6 @@
 </body>
 <br><br><br><br><br><br>
 <?php
-include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+include_once '../../view/layout/footers/footer-admin.php';
 ?>
 </html>
