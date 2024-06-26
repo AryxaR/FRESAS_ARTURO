@@ -12,7 +12,7 @@
 
 $confirmarToken = $_POST['token'];
 
-include '../../FRESAS_ARTURO/controller/conexion.php';
+include 'conexion.php';
 
 if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
 
@@ -36,7 +36,7 @@ if ($_POST['contrasena'] == $_POST['confirmar_contrasena']) {
     // Validación de la contraseña
     if (!validarContrasena($nueva_contrasena)) {
         $msj_error_caracter_olvido = 'La contraseña debe contener al menos un carácter especial, una letra mayúscula y un número.';
-        header("Location:../model/login_usuarios.php?msj_error_caracter_olvido= $msj_error_caracter_olvido");
+        header("Location: ../model/login_usuarios.php?msj_error_caracter_olvido= $msj_error_caracter_olvido");
         exit();
     }
 

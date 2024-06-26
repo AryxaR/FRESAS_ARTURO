@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar contraseña</title>
-    <link rel="stylesheet" href="../../FRESAS_ARTURO/resource/css/guardarClave.css">
-    <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="stylesheet" href="../resource/css/guardarClave.css">
+    <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -25,7 +25,7 @@
         </div>
         <div class="form-guardar">
             <h1>Crear contraseña</h1>
-            <form class="formulario-guardar" action="../../../FRESAS_ARTURO/controller/config_guardarClave.php" method="post">
+            <form class="formulario-guardar" action="../controller/config_guardarClave.php" method="post">
                 <input class="visible" type="password" name="contrasena" id="contrasena"  maxlength="30" required>
                 <label class="contrasena" for="contrasena">Nueva contraseña</label>
                 <span id="ojo" class="material-symbols-outlined">
@@ -37,7 +37,7 @@
                 <input type="hidden" name="token" value="<?php echo $_GET['token']; ?>">
                 <button class="btn-guardar" type="submit">Guardar contraseña</button>
             </form>
-            <a href="../../FRESAS_ARTURO/model/login_usuarios.php" class="regresar">Inicio de sesion</a>
+            <a href="login_usuarios.php" class="regresar">Inicio de sesion</a>
         </div>
     </section>
 
