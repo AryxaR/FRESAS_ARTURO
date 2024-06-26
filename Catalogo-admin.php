@@ -4,7 +4,7 @@ session_start();
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['Id_cliente'])) {
     // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
-    header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php");
+    header("Location: model/login_usuarios.php");
     exit();
 }
 ?>
@@ -18,7 +18,7 @@ if (!isset($_SESSION['Id_cliente'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-    <link rel="icon" href="../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="resource/img/icons/strawberry.png" type="image/png">
 
 
     <!-- sweetAlert2 -->
@@ -28,7 +28,7 @@ if (!isset($_SESSION['Id_cliente'])) {
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
         body {
-            background-image: url(../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(resource/img/index/fondonitido.png);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
