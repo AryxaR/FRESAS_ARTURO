@@ -23,7 +23,6 @@ if (isset($_POST['save'])) {
     $newNombre = $_POST['nombre'];
     $newRol = $_POST['rol'];
     $newCorreo = $_POST['correo'];
-    $newImagen = $_POST['imagen'];
 
     // Validación del dominio del correo
     $allowedDomains = ['gmail.com', 'hotmail.com'];
