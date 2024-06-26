@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
     <title>DATOS | PROVEEDOR</title>
 <?php
@@ -54,7 +54,7 @@ $conexion->close();
 
 <?php
 // include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
- include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+ include_once '../../view/layout/navs/nav-admin-redirect.php';
 ?>
 <br><br><br>
 
@@ -74,7 +74,7 @@ $conexion->close();
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-image: url(../../../FRESAS_ARTURO//resource//img/index//fondoborroso.png);
+            background-image: url(../../resource/img/index/fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
         }
@@ -237,7 +237,7 @@ $conexion->close();
 </body>
 <?php
 echo "<br><br>";
-include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+include_once '../../view/layout/footers/footer-admin.php';
 ?>
 
 </html>

@@ -17,10 +17,10 @@ if (!isset($_SESSION['Id_cliente'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROVEEDORES | FRESAS DON ARTURO</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/consult.css">
+    <link rel="stylesheet" href="../../resource/css/consult.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
 
     <!-- Link de sweetalert2 -->
@@ -33,7 +33,7 @@ if (!isset($_SESSION['Id_cliente'])) {
 
         body {
             /* Establecer la imagen de fondo */
-            background-image: url(../../../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(../../resource/img/index/fondonitido.png);
             /* Centrar y estirar la imagen para cubrir toda la página */
             background-size: cover;
             /* Fijar la imagen de fondo para que no se desplace con el contenido */
