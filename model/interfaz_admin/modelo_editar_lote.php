@@ -1,5 +1,5 @@
 <?php 
-include_once("../../../FRESAS_ARTURO/controller/conexion.php");
+include_once("../../controller/conexion.php");
 // Verifica si se han enviado los datos del formulario
 if (isset($_POST['id'])){
     // Recupera los datos del formulario
@@ -23,7 +23,7 @@ if (isset($_POST['id'])){
 
     // Redirecciona a la página de la tabla inicial
     $mensaje_exito = "mensaje";
-    header("Location: ../interfaz_admin/Cosechas.php?msj_exito= $mensaje_exito");
+    header("Location: Cosechas.php?msj_exito= $mensaje_exito");
     exit();
 }
 ?>
