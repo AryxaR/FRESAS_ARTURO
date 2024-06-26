@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <title>ACTUALIZACION</title>
     <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
+    <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,200;1,300;1,500&display=swap");
 
@@ -125,7 +128,7 @@
             align-items: center;
         }
 
-        .breadcrumb-item + .breadcrumb-item::before {
+        .breadcrumb-item+.breadcrumb-item::before {
             content: "/";
             margin: 0 7px;
         }
@@ -141,72 +144,91 @@
         }
     </style>
 </head>
+
 <body>
 
-<?php
+    <?php
     include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
-?>
 
-<div class="breadcrumbs-container">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
-            <li class="breadcrumb-item dos" aria-current="page">Editar Proveedores</li>
-        </ol>
-    </nav>
-</div>
+    if (isset($_GET['msj_exito'])) {
+        $msj_exito = $_GET['msj_exito'];
+    }
+    ?>
 
-<button class="btn-volver" onclick="history.back()">&#8592;</button>
-<div class="container-proveedor">
-    <h2>MODIFICACIÓN DE PROVEEDORES</h2>
-    <?php
-    require_once '../../controller/conexion.php';
+    <div class="breadcrumbs-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../model/interfaz_admin/Proveedores.php">Proveedores</a></li>
+                <li class="breadcrumb-item dos" aria-current="page">Editar Proveedores</li>
+            </ol>
+        </nav>
+    </div>
 
-    // Verificar si se ha enviado un formulario para actualizar
-    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-        $id = $_GET['id'];
+    <button class="btn-volver" onclick="history.back()">&#8592;</button>
+    <div class="container-proveedor">
+        <h2>MODIFICACIÓN DE PROVEEDORES</h2>
+        <?php
+        require_once '../../controller/conexion.php';
 
-        $sql_select = "
+        // Verificar si se ha enviado un formulario para actualizar
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $sql_select = "
             SELECT p.Nombre_proveedor, p.Telefono_proveedor, r.Tipo AS Nombre_recurso, r.Stock, i.Nombre_insumo, i.Costo_producto
             FROM proveedores p
             JOIN recursos r ON p.Id_proveedor = r.Id_proveedor
             JOIN insumos i ON r.Id_Recursos = i.Id_recurso
             WHERE p.Id_proveedor = $id";
-        
-        $result = $conn->query($sql_select);
 
-        if ($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-    ?>
-            <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <label for="Nombre_proveedor">Nombre del proveedor:</label>
-                <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>" maxlength="30"><br><br>
-                <label for="Telefono_proveedor">Telefono del proveedor:</label>
-                <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>" min="1" max="9999999999" oninput="this.value = this.value.slice(0, 10)"><br><br>
-                <label for="Nombre_recurso">Recurso:</label>
-                <input type="text" name="Nombre_recurso" value="<?php echo $row['Nombre_recurso']; ?>" readonly><br><br>
-                <label for="Stock">Stock:</label>
-                <input type="number" name="Stock" value="<?php echo $row['Stock']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)" ><br><br>
-                <label for="Nombre_insumo">Insumo:</label>
-                <input type="text" name="Nombre_insumo" value="<?php echo $row['Nombre_insumo']; ?>"><br><br>
-                <label for="Costo_producto">Precio del Insumo:</label>
-                <input type="number" name="Costo_producto" value="<?php echo $row['Costo_producto']; ?>"min="1" max="9999999" oninput="this.value = this.value.slice(0, 7)"><br><br>
-                <input type="submit" name="actualizar" value="Actualizar">
-            </form>
-    <?php
-        } else {
-            echo "Proveedor no encontrado.";
+            $result = $conn->query($sql_select);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+        ?>
+                <form action="../../controller/controlers-admin/updateprov_process.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <label for="Nombre_proveedor">Nombre del proveedor:</label>
+                    <input type="text" name="Nombre_proveedor" value="<?php echo $row['Nombre_proveedor']; ?>" maxlength="30"><br><br>
+                    <label for="Telefono_proveedor">Telefono del proveedor:</label>
+                    <input type="number" name="Telefono_proveedor" value="<?php echo $row['Telefono_proveedor']; ?>" min="1" max="9999999999" oninput="this.value = this.value.slice(0, 10)"><br><br>
+                    <label for="Nombre_recurso">Recurso:</label>
+                    <input type="text" name="Nombre_recurso" value="<?php echo $row['Nombre_recurso']; ?>" readonly><br><br>
+                    <label for="Stock">Stock:</label>
+                    <input type="number" name="Stock" value="<?php echo $row['Stock']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)"><br><br>
+                    <label for="Nombre_insumo">Insumo:</label>
+                    <input type="text" name="Nombre_insumo" value="<?php echo $row['Nombre_insumo']; ?>"><br><br>
+                    <label for="Costo_producto">Precio del Insumo:</label>
+                    <input type="number" name="Costo_producto" value="<?php echo $row['Costo_producto']; ?>" min="1" max="9999999" oninput="this.value = this.value.slice(0, 7)"><br><br>
+                    <input type="submit" name="actualizar" value="Actualizar">
+                </form>
+        <?php
+            } else {
+                echo "Proveedor no encontrado.";
+            }
         }
-    }
-    $conn->close();
-    ?>
-</div>
+        $conn->close();
+        ?>
+    </div>
+
+    <script>
+        if (window.location.search.includes('msj_exito')) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Informacion Actualizada",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    </script>
 </body>
+
 <br><br><br><br><br><br>
 <?php
 include_once '../../view/layout/footers/footer-admin.php';
 ?>
+
 </html>
