@@ -36,7 +36,7 @@ $conexion->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
@@ -158,7 +158,7 @@ $conexion->close();
 <body>
 
     <?php
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
     ?>
 
@@ -167,7 +167,7 @@ $conexion->close();
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="../../inicio_admin.php">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="../../../FRESAS_ARTURO/Catalogo-admin.php">Catálogo</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="../../Catalogo-admin.php">Catálogo</a></li>
                 <li class="breadcrumb-item dos" aria-current="page">Actualización</li>
             </ol>
         </nav>
@@ -190,7 +190,7 @@ $conexion->close();
                         <label for="imagen_actual">Imagen Actual:</label><br>
                         <?php
 
-                        $ruta_imagen = "../../model/uploads/" . $producto['imagen'];
+                        $ruta_imagen = "../uploads/" . $producto['imagen'];
                         if (file_exists($ruta_imagen) && !empty($producto['imagen'])) {
                             echo '<img src="' . $ruta_imagen . '" alt="' . $producto['categoria_producto'] . '" class="img-thumbnail mb-3">';
                         } else {
@@ -236,6 +236,6 @@ $conexion->close();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 <br><br><br><br><br><br><br><br>
-<?php include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
+<?php include_once '../../view/layout/footers/footer-admin.php'; ?>
 
 </html>
