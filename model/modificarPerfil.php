@@ -45,7 +45,7 @@ if (isset($_POST['save'])) {
 
             // Verificar si la extensión y el tipo MIME son permitidos
             if (in_array($fileExtension, ['jpg', 'gif', 'png', 'jpeg']) && in_array($fileType, $allowedMimeTypes)) {
-                $uploadFileDir = '../Resource/Img/';
+                $uploadFileDir = '../resource/Img/';
                 $dest_path = $uploadFileDir . $fileName;
 
                 if (move_uploaded_file($fileTmpPath, $dest_path)) {
