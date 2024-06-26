@@ -1,5 +1,5 @@
 <?php
-include_once("../../../FRESAS_ARTURO/controller/conexion.php");
+include_once("../conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
