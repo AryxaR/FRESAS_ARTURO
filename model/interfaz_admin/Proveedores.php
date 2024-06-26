@@ -370,7 +370,7 @@ if (isset($_GET['msj_proveedor'])) {
 
     <?php
     require_once '../../controller/conexion.php';
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
     ?>
 
@@ -439,7 +439,7 @@ if (isset($_GET['msj_proveedor'])) {
 
     <?php
     echo "<br><br><br><br>";
-    include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+    include_once '../../view/layout/footers/footer-admin.php';
     ?>
 
     <!-- JavaScript -->
