@@ -40,7 +40,7 @@ $conexion->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PERDIDAS | FRESAS DON ARTURO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
 
     <!-- Sweetalert -->
@@ -163,7 +163,7 @@ $conexion->close();
     </style>
 </head>
 <?php
-include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+include_once '../../view/layout/navs/nav-admin-redirect.php';
 echo "<br><br><br><br><br>";
 ?>
 
@@ -182,7 +182,7 @@ echo "<br><br><br><br><br>";
         <div class="TITULO">REGISTRO DE PÉRDIDAS</div>
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <form action="../../../FRESAS_ARTURO/controller/controlers-admin/procesar_perdidas.php" method="post">
+                <form action="../../controller/controlers-admin/procesar_perdidas.php" method="post">
                     <div class="form-group">
                         <label for="fecha_cosecha">Fecha de la Cosecha:</label>
                         <select class="form-control" id="fecha_cosecha" name="fecha_cosecha" required>
@@ -272,14 +272,14 @@ echo "<br><br><br><br><br>";
         $msj_stock = $_GET['msj_stock'];
     }
 
-    include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
+    include_once '../../view/layout/footers/footer-admin.php'; ?>
 
     <script>
         document.getElementById('fecha_cosecha').addEventListener('change', function() {
             var idCosecha = this.value;
             if (idCosecha) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '../../../FRESAS_ARTURO/controller/controlers-admin/obtener_cosecha.php', true);
+                xhr.open('POST', '../../controller/controlers-admin/obtener_cosecha.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
