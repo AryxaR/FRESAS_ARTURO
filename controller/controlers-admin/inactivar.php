@@ -1,7 +1,7 @@
 <?php
 $servidor = "localhost";
-$usuario = "root";
-$password = "";
+$usuario = "sonnak";
+$password = "sonnak2024";
 $base_datos = "proyecto";
 
 // Crear conexión
