@@ -20,7 +20,7 @@
             <li><a href="../../../Index_usuarios.php">Inicio</a></li>
             <li><a href="../../../catalogo.php">Catálogo</a></li>
             <li><a href="#section-contacto">Contacto</a></li>
-            <li><a href="../../../model/Guia_usuario.php">Manual de usuraio</a></li>
+            <li><a href="../../../model/Guia_usuario.php">Manual de usuario</a></li>
         </ul>
     </div>
     <div class="footer-ingreso">

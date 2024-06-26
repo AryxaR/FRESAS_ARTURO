@@ -135,7 +135,7 @@ if (!isset($_SESSION['Id_cliente'])) {
         <div class="card-grid">
             <div class="card">
                 <h2>¿Como registrarme e iniciar sesión?</h2>
-                <h4>Para poder interactuar con la pagina, priemro necesitas estar registrado. ¿No sabes como hacerlo? tranquilo aca te explicamos.</h4>
+                <h4>Para poder interactuar con la pagina, primero necesitas estar registrado. ¿No sabes como hacerlo? tranquilo aca te explicamos.</h4>
                 <a href="../resource/PDF/MANUAL REGISTRO_INICIO.pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
