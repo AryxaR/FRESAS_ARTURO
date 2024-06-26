@@ -190,8 +190,9 @@ $conexion->close();
                         <label for="imagen_actual">Imagen Actual:</label><br>
                         <?php
 
-                        if (!empty($producto['imagen'])) {
-                            echo '<td><img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
+                        $ruta_imagen = "../uploads" . $producto['imagen'];
+                        if (file_exists($ruta_imagen) && !empty($producto['imagen'])) {
+                            echo '<img src="' . $ruta_imagen . '" alt="' . $producto['categoria_producto'] . '" class="img-thumbnail mb-3">';
                         } else {
                             echo 'No hay imagen disponible.<br>';
                         }
