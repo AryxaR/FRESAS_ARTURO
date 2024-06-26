@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Mover la imagen cargada al directorio de destino
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
-                $ruta_imagen_actualizada = '../../../FRESAS_ARTURO/model/uploads/' . $nombre_imagen;
+                $ruta_imagen_actualizada = '../../../model/uploads/' . $nombre_imagen;
                 $sql_update_imagen = "UPDATE productos SET imagen = ? WHERE id_producto = ?";
                 $stmt_update_imagen = $conexion->prepare($sql_update_imagen);
                 $stmt_update_imagen->bind_param("si", $ruta_imagen_actualizada, $id_producto);
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt_update_precio->execute()) {
         $msj_exito = 'Producto actualizado exitosamente.';
-        header("Location: ../../../FRESAS_ARTURO/Catalogo-admin.php?msj_exito=$msj_exito");
+        header("Location: ../../../Catalogo-admin.php?msj_exito=$msj_exito");
     } else {
         echo "Error al actualizar el producto: " . $stmt_update_precio->error;
     }
