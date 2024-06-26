@@ -90,7 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $conexion->commit();
         $msj_exito = "Pérdida registrada, cantidad actualizada en lotes y stock actualizado en productos exitosamente.";
-        header("Location: ../../model/interfaz_admin/Perdidas.php?msj_exito= $msj_exito");
+        header("Location: ../../model/interfaz_admin/Perdidas.php?msj_exito=" . urlencode($msj_exito));
+        exit;
     } catch (Exception $e) {
         $conexion->rollback();
         echo $e->getMessage();
