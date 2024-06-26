@@ -138,7 +138,7 @@
         <button class="btn-volver" onclick="history.back()">&#8592;</button>
         <h2>MODIFICAR COSECHAS</h2>
         <?php
-        require_once '../../../FRESAS_ARTURO/controller/conexion.php';
+        require_once '../../controller/conexion.php';
 
         // Verificar si se ha enviado un formulario para actualizar
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -153,7 +153,7 @@
                 $row = $result->fetch_assoc();
         ?>
 
-                <form class="formulario-cosechas" action="../../../FRESAS_ARTURO/model/interfaz_admin/modelo_editar_lote.php" method="post">
+                <form class="formulario-cosechas" action="../../model/interfaz_admin/modelo_editar_lote.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     <label for="cantidad_extra">Cantidad Extra:</label>
                     <input type="text" name="cantidad_extra" value="<?php echo $row['cantidad_extra']; ?>" min="1" max="999" oninput="this.value = this.value.slice(0, 3)"><br><br>
