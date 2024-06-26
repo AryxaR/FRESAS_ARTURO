@@ -16,9 +16,9 @@ if (!isset($_SESSION['Id_cliente'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUIA | FRESAS DON ARTURO</title>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
-    <!-- <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/styles_guia_admin.css"> -->
+    <!-- <link rel="stylesheet" href="../../resource/css/styles_guia_admin.css"> -->
     <style>
         /* styles.css */
 
@@ -40,7 +40,7 @@ if (!isset($_SESSION['Id_cliente'])) {
         }
 
         body {
-            background-image: url(../../../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(../../resource/img/index/fondonitido.png);
             background-size: cover;
             /* background-attachment: fixed; */
             /* margin: 0;
@@ -165,7 +165,7 @@ if (!isset($_SESSION['Id_cliente'])) {
 
     <br>
     <?php
-    include_once('../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php');
+    include_once('../../view/layout/navs/nav-admin-redirect.php');
     ?>
     <div class="contenedor-manual">
 
