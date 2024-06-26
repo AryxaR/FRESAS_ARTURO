@@ -284,7 +284,7 @@ include_once('view/layout/navs/nav-usuario.php');
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index_usuarios.php">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="Index_usuarios.php">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Catálogo</li>
             </ol>
         </nav>
