@@ -439,7 +439,7 @@
                         <button type="submit">Regístrarse</button>
                     </div>
                     <div class="contenedor-volver">
-                        <a class="volver" href="../Index.php">Volver al Inicio</a>
+                        <a class="volver" href="../../index.php">Volver al Inicio</a>
                     </div>
                 </form>
             </div>
