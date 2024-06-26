@@ -62,13 +62,13 @@ if (isset($_POST['save'])) {
         $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
         if (mysqli_query($conn, $sql)) {
             $msj_actualizado = 'Informacion actualizada';
-            header("Location: ../model/perfil.php?msj_actualizado=$msj_actualizado");
+            header("Location: perfil.php?msj_actualizado=$msj_actualizado");
         } else {
             echo "Error actualizando los datos: " . mysqli_error($conn);
         }
     } else {
         $msj_dominio = 'Por favor, use un correo electrónico con dominio @gmail.com o @hotmail.com';
-        header("Location: ../model/modificarPerfil.php?msj_dominio=$msj_dominio");
+        header("Location: modificarPerfil.php?msj_dominio=$msj_dominio");
     }
 }
 ?>
@@ -332,7 +332,7 @@ if (isset($_POST['save'])) {
             </ol>
         </nav>
     </div>
-    <a class="volver" href="../model/perfil.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
+    <a class="volver" href="perfil.php"><span class="material-symbols-outlined"> arrow_circle_left</span></a>
     <span class="f-roja"></span>
     <div class="contenedor">
         <h3 class="titulo">Modificar Informacion</h3>
