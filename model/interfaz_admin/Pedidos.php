@@ -17,12 +17,12 @@ if (!isset($_SESSION['Id_cliente'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PEDIDOS | FRESAS DON ARTURO</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+        <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
 
         <?php
         require_once '../../controller/conexion.php';
-        include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+        include_once '../../view/layout/navs/nav-admin-redirect.php';
 
         // Actualiza el estado de los pedidos si se reciben datos POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -272,7 +272,7 @@ if (!isset($_SESSION['Id_cliente'])) {
             </div>
 
             <br><br><br><br>
-            <?php include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php'; ?>
+            <?php include_once '../../view/layout/footers/footer-admin.php'; ?>
 
             <!-- Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
