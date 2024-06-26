@@ -364,7 +364,7 @@
                         visibility
                     </span>
                     <div class="contenedor-olvidar">
-                        <a class="olvidar" href="../../FRESAS_ARTURO/model/enviarCorreo.php">¿Has olvidado tu contraseña?</a>
+                        <a class="olvidar" href="enviarCorreo.php">¿Has olvidado tu contraseña?</a>
                     </div>
                     <button>Entrar</button>
                     <div class="contenedor-volver">

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recover pasword</title>
-    <link rel="stylesheet" href="../../FRESAS_ARTURO/resource/css/envioCorreo.css">
+    <link rel="stylesheet" href="../resource/css/envioCorreo.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
 
 
     <!-- Sweetalert -->
@@ -27,7 +27,7 @@
         </div>
         <div class="form-clave">
             <h1 class="titulo">Recuperación de Contraseña</h1>
-            <form class="formulario-clave" method="POST" action="../../FRESAS_ARTURO/controller/config_enviarCorreo.php">
+            <form class="formulario-clave" method="POST" action="../controller/config_enviarCorreo.php">
                 <input class="input-correo" type="email" name="correo" maxlength="35" required>
                 <label class="label-correo" for="correo">Ingrese su correo</label>
                 <input type="submit" value="Enviar" name="enviar" class="btn-enviar">
