@@ -30,7 +30,7 @@ if (isset($_GET['id_factura'])) {
         $correo_cliente = '';
     }
 } else {
-    header("Location: ../catalogo.php");
+    header("Location: ../../catalogo.php");
     exit();
 }
 ?>
@@ -191,7 +191,7 @@ if (isset($_GET['id_factura'])) {
                                 </div>
                             </div>
 
-                            <a href="../catalogo.php" id="btnVolverCatalogo" class="btn btn-primary" onclick="return closeAndReload();">Volver al Catálogo</a>
+                            <a href="../../catalogo.php" id="btnVolverCatalogo" class="btn btn-primary" onclick="return closeAndReload();">Volver al Catálogo</a>
 
                             <button onclick="exportToPdf()" id="btnExportarPdf" class="btn btn-success float-end me-2">Exportar a PDF</button>
                         </div>
