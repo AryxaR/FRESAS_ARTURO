@@ -22,7 +22,7 @@
                 lock
             </span>
             <span class="material-symbols-outlined">
-                password
+          password
             </span>
         </div>
         <div class="form-clave">

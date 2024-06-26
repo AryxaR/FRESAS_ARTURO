@@ -13,13 +13,13 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../FRESAS_ARTURO/PhpMailer/Exception.php';
-require '../../FRESAS_ARTURO/PhpMailer/PHPMailer.php';
-require '../../FRESAS_ARTURO/PhpMailer/SMTP.php';
+require '../PhpMailer/Exception.php';
+require '../PhpMailer/PHPMailer.php';
+require '../PhpMailer/SMTP.php';
 
 $mail = new PHPMailer(true);
 
-include_once '../../FRESAS_ARTURO/controller/conexion.php';
+include_once 'conexion.php';
 $correo = $_POST['correo'];
 
 $sql = "SELECT * FROM usuarios WHERE Correo = '$correo'";
@@ -55,7 +55,7 @@ if ($resultado->num_rows > 0) {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Recuperacion de clave';
-        $url_recuperacion = "http://localhost/FRESAS_ARTURO/model/guardarClave.php?token=" . urlencode($token); 
+        $url_recuperacion = "https://sonnak.appimrc2024.site/model/guardarClave.php?token=" . urlencode($token); 
         $mail->Body    = 'Para recuperar tu contraseña, haz clic en el siguiente enlace: <br><br>
         <a href="' . $url_recuperacion . '">Click aqui</a> <br><br>
         Este enlace es válido por 1 hora. <br><br>
@@ -65,18 +65,18 @@ if ($resultado->num_rows > 0) {
         $mail->send();
 
         $msj_exito = 'Código Enviado correctamente. Ingrese a su correo';
-        header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_exito= $msj_exito");
+        header("Location: ../model/login_usuarios.php?msj_exito= $msj_exito");
         
     } catch (Exception $e) {
 
         $msj_error_mail = $mail->ErrorInfo;
-        header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_error_mail= $msj_error_mail");
+        header("Location: ../model/login_usuarios.php?msj_error_mail= $msj_error_mail");
         
     }
 } else {
 
     $msj_inex = 'Correo Inválido. El correo ingresado no se encuentra registrado';
-        header("Location: ../../FRESAS_ARTURO/model/enviarCorreo.php?msj_inex= $msj_inex");
+        header("Location: ../model/enviarCorreo.php?msj_inex= $msj_inex");
 
 }
 
