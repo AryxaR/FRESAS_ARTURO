@@ -16,9 +16,9 @@ if (!isset($_SESSION['Id_cliente'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COSECHAS | FRESAS DON ARTURO</title>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="../../../FRESAS_ARTURO/resource/css/consult.css">
+    <link rel="stylesheet" href="../../resource/css/consult.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
 
@@ -267,7 +267,7 @@ if ($conexion->connect_error) {
 
     <?php
     require_once '../../controller/conexion.php';
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
 
     if (isset($_GET['msj_exito'])) {
@@ -290,7 +290,7 @@ if ($conexion->connect_error) {
                 </div>
 
                 <div class="modal-body">
-                    <form class="contenedor_modal" action="../../../FRESAS_ARTURO/controller/controlers-admin/procesar_lotes.php" method="post">
+                    <form class="contenedor_modal" action="../../controller/controlers-admin/procesar_lotes.php" method="post">
                         <div class="form-group">
                             <label for="cantidad_extra">Fresas Extra: </label>
                             <input type="number" id="cantidad_extra" name="cantidad_extra" placeholder="Kg" required class="ms-2 mb-3 input-cantidad" min="1" max="999" oninput="this.value = this.value.slice(0, 3)">
@@ -384,7 +384,7 @@ if ($conexion->connect_error) {
 
     <?php
     echo "<br><br><br><br>";
-    include_once '../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php';
+    include_once '../../view/layout/footers/footer-admin.php';
     ?>
 
     <!-- JavaScript -->
