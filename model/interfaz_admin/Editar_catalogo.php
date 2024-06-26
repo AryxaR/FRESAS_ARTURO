@@ -190,7 +190,7 @@ $conexion->close();
                         <label for="imagen_actual">Imagen Actual:</label><br>
                         <?php
 
-                        $ruta_imagen = "../../uploads" . $producto['imagen'];
+                        $ruta_imagen = "../uploads" . $producto['imagen'];
                         if (file_exists($ruta_imagen) && !empty($producto['imagen'])) {
                             echo '<img src="' . $ruta_imagen . '" alt="' . $producto['categoria_producto'] . '" class="img-thumbnail mb-3">';
                         } else {
