@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACTUALIZACION</title>
-    <link rel="icon" href="../../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../../resource/img/icons/strawberry.png" type="image/png">
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
@@ -18,7 +18,7 @@
         }
 
         body {
-            background-image: url(../../../FRESAS_ARTURO//resource//img//index//fondoborroso.png);
+            background-image: url(../../resource/img/index/fondoborroso.png);
             background-size: cover;
             background-attachment: fixed;
             /* background-position: center; */
@@ -167,7 +167,7 @@
 
 <body>
     <?php
-    include_once '../../../FRESAS_ARTURO/view/layout/navs/nav-admin-redirect.php';
+    include_once '../../view/layout/navs/nav-admin-redirect.php';
     echo "<br><br><br><br>";
     ?>
     <div class="breadcrumbs-container">
@@ -185,7 +185,7 @@
     <div class="container-usuarios">
         <h2>MODIFICACIÓN DE USUARIOS</h2>
         <?php
-        require_once '../../../FRESAS_ARTURO/controller/conexion.php';
+        require_once '../../controller/conexion.php';
 
         // Verificar si se ha enviado un formulario para actualizar
         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -197,7 +197,7 @@
             if ($result->num_rows == 1) {
                 $row = $result->fetch_assoc();
         ?>
-                <form action="../../../FRESAS_ARTURO/controller/controlers-admin/update_process.php" method="post">
+                <form action="../../controller/controlers-admin/update_process.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['Id_cliente']; ?>">
                     <label for="Nombre">Nombre:</label>
                     <input type="text" name="Nombre" value="<?php echo $row['Nombre']; ?>" maxlength="30"><br><br>
@@ -220,7 +220,7 @@
     </div>
 
     <?php
-    include_once('../../../FRESAS_ARTURO/view/layout/footers/footer-admin.php')
+    include_once('../../view/layout/footers/footer-admin.php')
     ?>
 </body>
 

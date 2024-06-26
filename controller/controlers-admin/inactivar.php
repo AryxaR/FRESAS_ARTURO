@@ -1,5 +1,5 @@
 <?php 
-require_once '../../controller/conexion.php';
+require_once '../conexion.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['id']) && is_numeric($_POST['id'])){

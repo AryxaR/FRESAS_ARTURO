@@ -1,5 +1,5 @@
 <?php 
-require_once '../../../FRESAS_ARTURO/controller/conexion.php';
+require_once '../../controller/conexion.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($conn->query($sqlUpdate) == TRUE) {
         $mensaje_exito = "Registro actualizado";
-        header( "Location: ../../../FRESAS_ARTURO/model/interfaz_admin/consult_mysql.php?mensaje_exito= $mensaje_exito" );
+        header( "Location: ../../model/interfaz_admin/consult_mysql.php?mensaje_exito= $mensaje_exito" );
         exit(); 
     }else{
         echo "Error al actualizar el registro: " . $conn->error;
