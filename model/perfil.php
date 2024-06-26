@@ -26,7 +26,7 @@ if ($resultado->num_rows == 1) {
 } else {
   //* Manejar el caso en el que no se encuentra el usuario
   //* (podría ser un intento de manipulación de la URL)
-  header("Location: index.php");
+  header("Location: ../index.php");
   exit();
 }
 
@@ -43,7 +43,7 @@ if ($resultado->num_rows == 1) {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+  <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <!-- Sweetalert -->
@@ -272,7 +272,7 @@ if ($resultado->num_rows == 1) {
     <!-- Breadcrumbs -->
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../index_usuarios.php">Inicio</a></li>/
+        <li class="breadcrumb-item"><a href="../Index_usuarios.php">Inicio</a></li>/
         <li class="breadcrumb-item active" aria-current="page"><a href="perfil.php">Perfil</a></li>
       </ol>
     </nav>
@@ -305,7 +305,7 @@ if ($resultado->num_rows == 1) {
         </li>
       </ul>
 
-      <a href="../model/modificarPerfil.php"><button class="modificar">Modificar datos</button></a>
+      <a href="modificarPerfil.php"><button class="modificar">Modificar datos</button></a>
       <div class="exit">
         <!-- <a href="./settings/logout.php">Salir</a> -->
       </div>
