@@ -1,12 +1,11 @@
 <?php
-
 session_start();
 include('../controller/conexion.php');
 
 //* Obtener la información del usuario
 $id_cliente = $_SESSION['Id_cliente'];
 //* Se hace la consulta con el id_cliente para obtener sus datos
-$query = "SELECT * FROM usuarios WHERE id_cliente = $id_cliente";
+$query = "SELECT * FROM usuarios WHERE Id_cliente = $id_cliente";
 $resultado = mysqli_query($conn, $query);
 
 //* Se valida si hay resultados de la consulta 
@@ -33,7 +32,6 @@ if (isset($_POST['save'])) {
         // Manejo de la subida de imagen
         $imagePath = $info['imagen']; // Ruta actual de la imagen
 
-        // Parte relevante del código PHP
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['imagen']['tmp_name'];
             $fileName = $_FILES['imagen']['name'];
@@ -43,23 +41,28 @@ if (isset($_POST['save'])) {
             $fileExtension = strtolower(end($fileNameCmps));
 
             // Lista de tipos MIME permitidos para imágenes
-            $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png'];
+            $allowedMimeTypes = ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'];
 
             // Verificar si la extensión y el tipo MIME son permitidos
             if (in_array($fileExtension, ['jpg', 'gif', 'png', 'jpeg']) && in_array($fileType, $allowedMimeTypes)) {
-                // Procesamiento del archivo...
+                $uploadFileDir = '../Resource/Img/';
+                $dest_path = $uploadFileDir . $fileName;
+
+                if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                    $imagePath = $dest_path;
+                } else {
+                    echo 'Hubo un problema moviendo el archivo al directorio de destino.';
+                    exit();
+                }
             } else {
                 echo 'Tipo de archivo no permitido.';
-                // Redirige al usuario de vuelta a la página de edición
                 $msj_img = "Por favor, sube solo archivos de imagen (JPEG o PNG).";
-                header("Location: modificarPerfil.php?msj_img= $msj_img"); // Asegúrate de actualizar la URL según sea necesario
+                header("Location: modificarPerfil.php?msj_img=$msj_img");
                 exit();
             }
         }
 
-
-
-        $sql = "UPDATE usuarios SET nombre='$newNombre', rol='$newRol', correo='$newCorreo', imagen='$imagePath' WHERE id_cliente='$id_cliente'";
+        $sql = "UPDATE usuarios SET Nombre='$newNombre', Rol='$newRol', Correo='$newCorreo', imagen='$imagePath' WHERE Id_cliente='$id_cliente'";
         if (mysqli_query($conn, $sql)) {
             $msj_actualizado = 'Informacion actualizada';
             header("Location: perfil.php?msj_actualizado=$msj_actualizado");
@@ -72,6 +75,7 @@ if (isset($_POST['save'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
