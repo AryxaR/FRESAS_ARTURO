@@ -18,7 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Verificar el stock antes de realizar la operación
-        $sql_verificar_stock = "SELECT Stock FROM productos WHERE id_producto IN (SELECT id_producto FROM lotes WHERE id = ?) AND categoria_producto = ?";
+        $sql_verificar_stock = "SELECT p.Stock 
+                                FROM productos p
+                                JOIN lotes l ON p.id_producto = l.id_producto
+                                WHERE l.id = ? AND p.categoria_producto = ?";
         $stmt_verificar_stock = $conexion->prepare($sql_verificar_stock);
         $stmt_verificar_stock->bind_param("is", $id_cosecha, $categoria_fresa);
 
@@ -32,15 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stock_actual = $fila['Stock'];
 
             if ($stock_actual <= 0) {
+                $conexion->rollback();
                 header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock=' . urlencode('El stock del producto ya está en cero. No se puede registrar más pérdidas.'));
                 exit;
             }
-        
+
             if ($cantidad_perdida > $stock_actual) {
+                $conexion->rollback();
                 header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock_sup=' . urlencode('La cantidad de pérdida supera el stock actual del producto.'));
                 exit;
             }
         } else {
+            $conexion->rollback();
             header('Location: ../../model/interfaz_admin/Perdidas.php?error=' . urlencode('No se encontró el producto correspondiente en el stock.'));
             exit;
         }
@@ -80,7 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Actualizar el stock en productos
-        $sql_update_productos = "UPDATE productos SET Stock = Stock - ? WHERE id_producto IN (SELECT id_producto FROM lotes WHERE id = ?) AND categoria_producto = ?";
+        $sql_update_productos = "UPDATE productos SET Stock = Stock - ? 
+                                 WHERE id_producto IN (SELECT id_producto FROM lotes WHERE id = ?) 
+                                 AND categoria_producto = ?";
         $stmt_update_productos = $conexion->prepare($sql_update_productos);
         $stmt_update_productos->bind_param("dis", $cantidad_perdida, $id_cosecha, $categoria_fresa);
 
@@ -94,21 +102,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } catch (Exception $e) {
         $conexion->rollback();
-        echo $e->getMessage();
+        echo "Error: " . $e->getMessage();
     } finally {
-        // Cerrar todas las declaraciones preparadas si están inicializadas
-        if (isset($stmt_registrar_perdida)) {
-            $stmt_registrar_perdida->close();
-        }
-        if (isset($stmt_update_lotes)) {
-            $stmt_update_lotes->close();
-        }
-        if (isset($stmt_update_productos)) {
-            $stmt_update_productos->close();
-        }
-        if (isset($stmt_verificar_stock)) {
-            $stmt_verificar_stock->close();
-        }
+        if (isset($stmt_registrar_perdida)) $stmt_registrar_perdida->close();
+        if (isset($stmt_update_lotes)) $stmt_update_lotes->close();
+        if (isset($stmt_update_productos)) $stmt_update_productos->close();
+        if (isset($stmt_verificar_stock)) $stmt_verificar_stock->close();
         $conexion->close();
     }
 } else {
