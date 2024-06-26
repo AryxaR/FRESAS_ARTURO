@@ -86,7 +86,7 @@ if (isset($_POST['save'])) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link rel="icon" href="../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
     <style>
         * {
             box-sizing: border-box;
