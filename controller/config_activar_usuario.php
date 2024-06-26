@@ -1,5 +1,5 @@
 <?php
-include_once ('../controller/conexion.php');
+include_once ('conexion.php');
 
 if(isset($_GET['correo']) && isset($_GET['tokenActivar'])) {
     $correo = $_GET['correo'];
@@ -17,7 +17,7 @@ if(isset($_GET['correo']) && isset($_GET['tokenActivar'])) {
        
         if ($respuesta) {
             $msj_usuario_activo = 'Su usuario esta activo. Inicie sesion';
-            header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_usuario_activo= $msj_usuario_activo");
+            header("Location: ../model/login_usuarios.php?msj_usuario_activo= $msj_usuario_activo");
         } else {
             // Manejar el error en caso de fallo en la consulta
             echo "Error en la consulta: " . mysqli_error($conn);
@@ -28,7 +28,7 @@ if(isset($_GET['correo']) && isset($_GET['tokenActivar'])) {
 
          if ($res) {
             $msj_usuario_eliminado = 'Su usuario se elimino por exeder el limite';
-            header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php?msj_usuario_eliminado= $msj_usuario_eliminado");
+            header("Location: ../model/login_usuarios.php?msj_usuario_eliminado= $msj_usuario_eliminado");
         } else {
             // Manejar el error en caso de fallo en la consulta
             echo "Error en la consulta: " . mysqli_error($conn);
