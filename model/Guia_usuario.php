@@ -4,7 +4,7 @@ session_start();
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['Id_cliente'])) {
     // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
-    header("Location: ../../FRESAS_ARTURO/model/login_usuarios.php");
+    header("Location: login_usuarios.php");
     exit();
 }
 ?>
@@ -16,9 +16,9 @@ if (!isset($_SESSION['Id_cliente'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRESAS DON ARTURO | GUIA</title>
-    <link rel="icon" href="../../FRESAS_ARTURO/resource/img/icons/strawberry.png" type="image/png">
+    <link rel="icon" href="../resource/img/icons/strawberry.png" type="image/png">
 
-    <!-- <link rel="stylesheet" href="../../FRESAS_ARTURO/resource/css/style_guia_usuario.css"> -->
+    <!-- <link rel="stylesheet" href="../resource/css/style_guia_usuario.css"> -->
     <style>
         body .uwy.userway_p1 .userway_buttons_wrapper {
             top: 120px !important;
@@ -29,7 +29,7 @@ if (!isset($_SESSION['Id_cliente'])) {
         }
 
         body {
-            background-image: url(../../../FRESAS_ARTURO/resource/img/index/fondonitido.png);
+            background-image: url(../resource/img/index/fondonitido.png);
             background-size: cover;
             /* background-attachment: fixed; */
             font-family: 'Poppins', sans-serif;
@@ -136,22 +136,22 @@ if (!isset($_SESSION['Id_cliente'])) {
             <div class="card">
                 <h2>¿Como registrarme e iniciar sesión?</h2>
                 <h4>Para poder interactuar con la pagina, priemro necesitas estar registrado. ¿No sabes como hacerlo? tranquilo aca te explicamos.</h4>
-                <a href="../../FRESAS_ARTURO/resource/PDF/MANUAL REGISTRO_INICIO.pdf" class="btn" download>Descargar PDF</a>
+                <a href="../resource/PDF/MANUAL REGISTRO_INICIO.pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
                 <h2>¿Como modificar mis datos de perfil?</h2>
                 <h4>Si ya te encuentras registrado en nuestra pagina web, Puedes administrar tu infomacion personal desde el apartado de perfil. Aca te explicamos como.</h4>
-                <a href="../../FRESAS_ARTURO/resource/PDF/Modificación de datos .pdf" class="btn" download>Descargar PDF</a>
+                <a href="../resource/PDF/Modificación de datos .pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
                 <h2>¿Como realizar una compra en el catalogo?</h2>
                 <h4>Si compras deseas realizar el catalogo debes saber usar. Observa el paso a paso.</h4>
-                <a href="../../FRESAS_ARTURO/resource/PDF/COMPRA Y ELIMINACIÓN .pdf" class="btn" download>Descargar PDF</a>
+                <a href="../resource/PDF/COMPRA Y ELIMINACIÓN .pdf" class="btn" download>Descargar PDF</a>
             </div>
             <div class="card">
                 <h2>¿Como recuperar mi contraseña?</h2>
                 <h4>¿Has olvidado tu contraseña? , no te preocupes te tenemos la solución. Revisa la documentación.</h4>
-                <a href="../../FRESAS_ARTURO/resource/PDF/Recuperación de contraseña .pdf" class="btn" download>Descargar PDF</a>
+                <a href="../resource/PDF/Recuperación de contraseña .pdf" class="btn" download>Descargar PDF</a>
             </div>
         </div>
     </section>
