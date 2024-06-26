@@ -17,37 +17,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conexion->begin_transaction();
 
     try {
-        // Verificar el stock antes de realizar la operación
-        $sql_verificar_stock = "SELECT p.Stock 
-                                FROM productos p
-                                JOIN lotes l ON p.id_producto = l.id_producto
-                                WHERE l.id = ? AND p.categoria_producto = ?";
-        $stmt_verificar_stock = $conexion->prepare($sql_verificar_stock);
-        $stmt_verificar_stock->bind_param("is", $id_cosecha, $categoria_fresa);
-
-        if (!$stmt_verificar_stock->execute()) {
-            throw new Exception("Error al verificar el stock: " . $stmt_verificar_stock->error);
+        // Verificar la cantidad disponible en la tabla lotes antes de registrar la pérdida
+        $sql_verificar_cantidad = "";
+        switch ($categoria_fresa) {
+            case 'extra':
+                $sql_verificar_cantidad = "SELECT cantidad_extra AS cantidad_disponible FROM lotes WHERE id = ?";
+                break;
+            case 'primera':
+                $sql_verificar_cantidad = "SELECT cantidad_primera AS cantidad_disponible FROM lotes WHERE id = ?";
+                break;
+            case 'segunda':
+                $sql_verificar_cantidad = "SELECT cantidad_segunda AS cantidad_disponible FROM lotes WHERE id = ?";
+                break;
+            case 'riche':
+                $sql_verificar_cantidad = "SELECT cantidad_riche AS cantidad_disponible FROM lotes WHERE id = ?";
+                break;
+            default:
+                throw new Exception("Categoría de fresa no válida.");
         }
 
-        $resultado_verificar_stock = $stmt_verificar_stock->get_result();
-        if ($resultado_verificar_stock->num_rows > 0) {
-            $fila = $resultado_verificar_stock->fetch_assoc();
-            $stock_actual = $fila['Stock'];
+        $stmt_verificar_cantidad = $conexion->prepare($sql_verificar_cantidad);
+        $stmt_verificar_cantidad->bind_param("i", $id_cosecha);
 
-            if ($stock_actual <= 0) {
-                $conexion->rollback();
-                header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock=' . urlencode('El stock del producto ya está en cero. No se puede registrar más pérdidas.'));
+        if (!$stmt_verificar_cantidad->execute()) {
+            throw new Exception("Error al verificar la cantidad disponible: " . $stmt_verificar_cantidad->error);
+        }
+
+        $resultado_verificar_cantidad = $stmt_verificar_cantidad->get_result();
+        if ($resultado_verificar_cantidad->num_rows > 0) {
+            $fila = $resultado_verificar_cantidad->fetch_assoc();
+            $cantidad_disponible = $fila['cantidad_disponible'];
+
+            if ($cantidad_disponible <= 0) {
+                header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock=' . urlencode('No hay cantidad disponible en la cosecha seleccionada. No se puede registrar más pérdidas.'));
                 exit;
             }
 
-            if ($cantidad_perdida > $stock_actual) {
-                $conexion->rollback();
-                header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock_sup=' . urlencode('La cantidad de pérdida supera el stock actual del producto.'));
+            if ($cantidad_perdida > $cantidad_disponible) {
+                header('Location: ../../model/interfaz_admin/Perdidas.php?msj_stock_sup=' . urlencode('La cantidad de pérdida supera la cantidad disponible en la cosecha seleccionada.'));
                 exit;
             }
         } else {
-            $conexion->rollback();
-            header('Location: ../../model/interfaz_admin/Perdidas.php?error=' . urlencode('No se encontró el producto correspondiente en el stock.'));
+            header('Location: ../../model/interfaz_admin/Perdidas.php?error=' . urlencode('No se encontró el registro de la cosecha seleccionada.'));
             exit;
         }
 
@@ -86,11 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Actualizar el stock en productos
-        $sql_update_productos = "UPDATE productos SET Stock = Stock - ? 
-                                 WHERE id_producto IN (SELECT id_producto FROM lotes WHERE id = ?) 
-                                 AND categoria_producto = ?";
+        $sql_update_productos = "UPDATE productos SET Stock = Stock - ? WHERE categoria_producto = ?";
         $stmt_update_productos = $conexion->prepare($sql_update_productos);
-        $stmt_update_productos->bind_param("dis", $cantidad_perdida, $id_cosecha, $categoria_fresa);
+        $stmt_update_productos->bind_param("is", $cantidad_perdida, $categoria_fresa);
 
         if (!$stmt_update_productos->execute()) {
             throw new Exception("Error al actualizar el stock en productos: " . $stmt_update_productos->error);
@@ -102,12 +111,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } catch (Exception $e) {
         $conexion->rollback();
-        echo "Error: " . $e->getMessage();
+        echo $e->getMessage();
     } finally {
-        if (isset($stmt_registrar_perdida)) $stmt_registrar_perdida->close();
-        if (isset($stmt_update_lotes)) $stmt_update_lotes->close();
-        if (isset($stmt_update_productos)) $stmt_update_productos->close();
-        if (isset($stmt_verificar_stock)) $stmt_verificar_stock->close();
+        // Cerrar todas las declaraciones preparadas si están inicializadas
+        if (isset($stmt_registrar_perdida)) {
+            $stmt_registrar_perdida->close();
+        }
+        if (isset($stmt_update_lotes)) {
+            $stmt_update_lotes->close();
+        }
+        if (isset($stmt_update_productos)) {
+            $stmt_update_productos->close();
+        }
+        if (isset($stmt_verificar_cantidad)) {
+            $stmt_verificar_cantidad->close();
+        }
         $conexion->close();
     }
 } else {
