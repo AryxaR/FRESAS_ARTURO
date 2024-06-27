@@ -237,11 +237,23 @@ if (!isset($_SESSION['Id_cliente'])) {
                                 $result = $conn->query($sql);
                                 
 
+                                $ruta_base_imagenes = "../uploads/";
+
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo '<tr>';
                                         echo '<td>' . $row["categoria_producto"] . '</td>';
-                                        echo '<td><img src="' . $row["imagen"] . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
+                                
+                                        // Construir la ruta completa de la imagen
+                                        $ruta_imagen = $ruta_base_imagenes . $row["imagen"];
+                                        
+                                        // Verificar si la imagen existe y no está vacía
+                                        if (file_exists($ruta_imagen) && !empty($row["imagen"])) {
+                                            echo '<td><img src="' . $ruta_imagen . '" alt="' . $row['categoria_producto'] . '" class="img-item"></td>';
+                                        } else {
+                                            echo '<td>No hay imagen disponible.</td>';
+                                        }
+                                
                                         echo '<td>$' . $row["precio_producto"] . '</td>';
                                         echo '<td>';
                                         echo '<button type="button" class="btn btn-custom"><a href="model/interfaz_admin/Editar_catalogo.php?id_producto=' . $row['id_producto'] . '">Actualizar</a></button>';
@@ -251,7 +263,7 @@ if (!isset($_SESSION['Id_cliente'])) {
                                 } else {
                                     echo "<tr><td colspan='4'>No se encontraron productos.</td></tr>";
                                 }
-
+                                
                                 $conexion->close();
                                 ?>
                             </tbody>
