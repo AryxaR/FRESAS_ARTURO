@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CATÁLOGO</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATÁLOGO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="resource/css/Style_catalogo.css">
     <link rel="icon" href="resource/img/icons/strawberry.png" type="image/png">
 
     <script src="https://cdn.userway.org/widget.js" data-account="BD1vuC76ZG"></script>
 
-<?php
+    <?php
 
-session_start();
+    session_start();
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['Id_cliente'])) {
-    // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
-    header("Location: model/login_usuarios.php");
-    exit();
-}
-?>
-
-<?php
-require_once('controller/conexion.php');
-include_once('view/layout/navs/nav-usuario.php');
-?>
+    // Verificar si el usuario ha iniciado sesión
+    if (!isset($_SESSION['Id_cliente'])) {
+        // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+        header("Location: model/login_usuarios.php");
+        exit();
+    }
+    ?>
 
     <?php
-    
+    require_once('controller/conexion.php');
+    include_once('view/layout/navs/nav-usuario.php');
+    ?>
+
+    <?php
+
     if (!isset($_SESSION['carrito'])) {
         $_SESSION['carrito'] = array();
     }
@@ -208,73 +208,72 @@ include_once('view/layout/navs/nav-usuario.php');
 
 </head>
 
-    <style>
-        body .uwy.userway_p1 .userway_buttons_wrapper {
-            top: 250px;
-        }
+<style>
+    body .uwy.userway_p1 .userway_buttons_wrapper {
+        top: 250px;
+    }
 
-        .input-cantidad {
-            width: 190px;
-        }
+    .input-cantidad {
+        width: 190px;
+    }
 
-        .breadcrumbs-container {
-            position: absolute;
-            margin-top: 3%;
-            margin-left: 10%;
-        }
+    .breadcrumbs-container {
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 10%;
+    }
 
-        .breadcrumbs-container .breadcrumb {
-            margin-bottom: 0;
-        }
+    .breadcrumbs-container .breadcrumb {
+        margin-bottom: 0;
+    }
 
-        .breadcrumbs-container .breadcrumb-item a {
-            text-decoration: none;
-        }
+    .breadcrumbs-container .breadcrumb-item a {
+        text-decoration: none;
+    }
 
-        .item.agotado {
-            position: relative;
-            opacity: 0.5;
-        }
+    .item.agotado {
+        position: relative;
+        opacity: 0.5;
+    }
 
-        .item.agotado .btn,
-        .item.agotado .input-cantidad {
-            pointer-events: none;
-        }
+    .item.agotado .btn,
+    .item.agotado .input-cantidad {
+        pointer-events: none;
+    }
 
-        .item.agotado .precio-item {
-            display: none;
-        }
+    .item.agotado .precio-item {
+        display: none;
+    }
 
-        .item.agotado::after {
-            content: "AGOTADO";
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-55deg);
-            background: rgba(255, 0, 0, 0.8);
-            color: white;
-            font-size: 4em;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 10;
-        }
+    .item.agotado::after {
+        content: "AGOTADO";
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-55deg);
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        font-size: 4em;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 10;
+    }
 
-        .item .stock-agotado {
-            color: red;
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-        }
+    .item .stock-agotado {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+    }
 
-        .item img {
-            background-color: aqua;
-            width: 100%;
-            height: 450px;
-            border-radius: 1px;
-        }
-
-    </style>
+    .item img {
+        background-color: aqua;
+        width: 100%;
+        height: 450px;
+        border-radius: 1px;
+    }
+</style>
 </head>
 
 <body>
@@ -310,12 +309,14 @@ include_once('view/layout/navs/nav-usuario.php');
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $agotado = $row['Stock'] <= 0;
+                    $ruta_base_imagenes = "model/uploads/";
+                    $ruta_imagen = $ruta_base_imagenes . $row['imagen'];
             ?>
                     <div class="item <?php echo $agotado ? 'agotado' : ''; ?>">
                         <input type="hidden" name="id_producto" value="<?php echo $row['id_producto']; ?>">
                         <span class="titulo-item"><?php echo $row['categoria_producto']; ?></span>
 
-                        <img class="img-item" src="<?php echo $row['imagen']; ?>" alt="<?php echo $row['categoria_producto']; ?>">
+                        <img class="img-item" src="<?php echo $ruta_imagen; ?>" alt="<?php echo $row['categoria_producto']; ?>">
 
                         <h5>*EL PRECIO DE VENTA ES POR KG*</h5>
                         <h6></h6>
@@ -340,6 +341,7 @@ include_once('view/layout/navs/nav-usuario.php');
             ?>
         </div>
     </section>
+
 
     <?php mostrarModalCarrito(); ?>
 
