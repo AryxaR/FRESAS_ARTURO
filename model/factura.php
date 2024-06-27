@@ -5,10 +5,10 @@ require_once('../controller/conexion.php');
 if (isset($_GET['id_factura'])) {
     $id_factura = $_GET['id_factura'];
 
-    $sql_detalle_venta = "SELECT Detalle_venta.*, productos.nombre_producto, productos.categoria_producto
-                            FROM Detalle_venta 
-                            INNER JOIN productos ON Detalle_venta.id_producto = productos.id_producto 
-                            WHERE Detalle_venta.id_factura = $id_factura";
+    $sql_detalle_venta = "SELECT detalle_venta.*, productos.nombre_producto, productos.categoria_producto
+                            FROM detalle_venta 
+                            INNER JOIN productos ON detalle_venta.id_producto = productos.id_producto 
+                            WHERE detalle_venta.id_factura = $id_factura";
     $result_detalle = $conn->query($sql_detalle_venta);
 
     $sql_total_factura = "SELECT total FROM ventas WHERE id_factura = $id_factura";
