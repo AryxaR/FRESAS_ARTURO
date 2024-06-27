@@ -22,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Mover la imagen cargada al directorio de destino
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_destino)) {
-                $ruta_imagen_actualizada = '../../../model/uploads/' . $nombre_imagen;
+                // Guardar solo el nombre de la imagen en la base de datos
                 $sql_update_imagen = "UPDATE productos SET imagen = ? WHERE id_producto = ?";
                 $stmt_update_imagen = $conexion->prepare($sql_update_imagen);
-                $stmt_update_imagen->bind_param("si", $ruta_imagen_actualizada, $id_producto);
+                $stmt_update_imagen->bind_param("si", $nombre_imagen, $id_producto);
                 $stmt_update_imagen->execute();
                 $stmt_update_imagen->close();
             } else {
