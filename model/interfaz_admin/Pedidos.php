@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['Id_cliente'])) {
-    // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+
     header("Location: ../login_usuarios.php");
     exit();
 }
@@ -24,7 +23,6 @@ if (!isset($_SESSION['Id_cliente'])) {
         require_once '../../controller/conexion.php';
         include_once '../../view/layout/navs/nav-admin-redirect.php';
 
-        // Actualiza el estado de los pedidos si se reciben datos POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['id_pedido']) && isset($_POST['accion'])) {
                 $idPedido = $_POST['id_pedido'];
@@ -41,7 +39,6 @@ if (!isset($_SESSION['Id_cliente'])) {
             }
         }
 
-        // Función para obtener el total de pedidos
         function getTotalPedidos()
         {
             global $conn;
@@ -53,17 +50,13 @@ if (!isset($_SESSION['Id_cliente'])) {
 
         $tarjetasPorPagina = 4;
 
-        // Calcula el número total de páginas
         $totalPedidos = getTotalPedidos();
         $totalPaginas = ceil($totalPedidos / $tarjetasPorPagina);
 
-        // Obtiene el número de página actual
         $paginaActual = isset($_GET['page']) ? $_GET['page'] : 1;
 
-        // Calcula el desplazamiento para la consulta SQL
         $offset = ($paginaActual - 1) * $tarjetasPorPagina;
 
-        // Consulta predeterminada sin términos de búsqueda
         if (!isset($_GET['search'])) {
             $sql = "SELECT v.*, u.Nombre as nombre_cliente 
             FROM ventas v 
@@ -71,7 +64,6 @@ if (!isset($_SESSION['Id_cliente'])) {
             LIMIT $offset, $tarjetasPorPagina";
         }
 
-        // Realizar búsqueda si se ha enviado un término de búsqueda
         if (isset($_GET['search'])) {
             $searchTerm = $_GET['search'];
             $sql = "SELECT v.*, u.Nombre as nombre_cliente 
@@ -83,12 +75,10 @@ if (!isset($_SESSION['Id_cliente'])) {
 
         $resultado = $conn->query($sql);
 
-        // Verificar si hay resultados
         if ($resultado->num_rows > 0) {
-            // Array para almacenar los pedidos
+
             $pedidos = array();
 
-            // Iterar sobre los resultados y guardarlos en el array
             while ($fila = $resultado->fetch_assoc()) {
                 $pedidos[] = $fila;
             }
@@ -207,7 +197,6 @@ if (!isset($_SESSION['Id_cliente'])) {
                 <div class="TITULO">ORDENES DE COMPRA</div>
                 <br><br><br><br>
 
-                <!-- Formulario de búsqueda -->
                 <form action="Pedidos.php" method="GET" class="form-inline float-right search-form">
                     <div class="form-group mx-sm-3 mb-2">
                         <label for="searchTerm" class="sr-only">Buscar</label>
@@ -220,7 +209,6 @@ if (!isset($_SESSION['Id_cliente'])) {
 
                 <div class="row">
                     <?php
-                    // Verificar si $pedidos está definida y no es null
                     if (isset($pedidos) && !is_null($pedidos)) {
                         foreach ($pedidos as $pedido) :
                     ?>
@@ -253,7 +241,7 @@ if (!isset($_SESSION['Id_cliente'])) {
                     <?php
                         endforeach;
                     } else {
-                        // Si $pedidos no está definida o es null, mostrar un mensaje indicando que no se encontraron pedidos
+                       
                         echo "No se encontraron pedidos con esas características.";
                     }
                     ?>
@@ -274,7 +262,6 @@ if (!isset($_SESSION['Id_cliente'])) {
             <br><br><br><br>
             <?php include_once '../../view/layout/footers/footer-admin.php'; ?>
 
-            <!-- Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
