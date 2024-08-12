@@ -300,7 +300,7 @@
             <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><?php echo $numArticulosCarrito; ?></span>
         <?php endif; ?>
     </button>
-
+                    
     <section class="contenedor-general">
         <div class="contenedor-items">
             <?php
